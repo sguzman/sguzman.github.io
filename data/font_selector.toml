@@ -1,0 +1,85 @@
+[fonts.lexend]
+label = "Lexend"
+family = "'Lexend', sans-serif"
+
+[fonts.source-serif-4]
+label = "Source Serif 4"
+family = "'Source Serif 4', serif"
+
+[fonts.lora]
+label = "Lora"
+family = "'Lora', serif"
+
+[fonts.inter]
+label = "Inter"
+family = "'Inter', sans-serif"
+
+[fonts.crimson-pro]
+label = "Crimson Pro"
+family = "'Crimson Pro', serif"
+
+[fonts.spectral]
+label = "Spectral"
+family = "'Spectral', serif"
+
+[fonts.cinzel]
+label = "Cinzel"
+family = "'Cinzel', serif"
+
+[fonts.playfair-display]
+label = "Playfair Display"
+family = "'Playfair Display', serif"
+
+[fonts.cormorant-garamond]
+label = "Cormorant Garamond"
+family = "'Cormorant Garamond', serif"
+
+[fonts.merriweather]
+label = "Merriweather"
+family = "'Merriweather', serif"
+
+[fonts.oswald]
+label = "Oswald"
+family = "'Oswald', sans-serif"
+
+[fonts.space-grotesk]
+label = "Space Grotesk"
+family = "'Space Grotesk', sans-serif"
+
+[fonts.sora]
+label = "Sora"
+family = "'Sora', sans-serif"
+
+[fonts.montserrat]
+label = "Montserrat"
+family = "'Montserrat', sans-serif"
+
+[[categories]]
+id = "body"
+label = "Body"
+default = "lexend"
+options = ["lexend", "source-serif-4", "lora", "inter", "crimson-pro", "spectral"]
+
+[[categories]]
+id = "heading"
+label = "Headings"
+default = "oswald"
+options = ["cinzel", "playfair-display", "cormorant-garamond", "merriweather", "oswald", "space-grotesk"]
+
+[[categories]]
+id = "ui"
+label = "UI"
+default = "sora"
+options = ["space-grotesk", "sora", "montserrat", "inter", "lexend"]
+
+[[categories]]
+id = "entry"
+label = "Entries"
+default = "inter"
+options = ["oswald", "space-grotesk", "sora", "montserrat", "inter", "lexend", "merriweather", "playfair-display"]
+
+[[categories]]
+id = "title"
+label = "Title"
+default = "cinzel"
+options = ["cinzel", "playfair-display", "oswald", "space-grotesk", "montserrat", "merriweather", "lexend"]

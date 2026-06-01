@@ -1,0 +1,31 @@
+{{ if not .Site.Params.hideColorSchemeToggle }}
+{{ $fontCfg := site.Data.font_selector }}
+<div class="float-container">
+  <div class="font-switcher" id="font-switcher">
+    <button id="font-switcher-toggle" class="font-switcher-toggle" type="button" aria-expanded="false" aria-controls="font-switcher-panel">
+      <i class="fa-solid fa-font" aria-hidden="true"></i>
+    </button>
+
+    <div id="font-switcher-panel" class="font-switcher-panel" hidden>
+      {{ range $fontCfg.categories }}
+      <label for="font-{{ .id }}-select">{{ .label }}</label>
+      <select id="font-{{ .id }}-select" data-font-category="{{ .id }}">
+        {{ $cat := . }}
+        {{ range $cat.options }}
+          {{ $fontKey := . }}
+          {{ with index $fontCfg.fonts $fontKey }}
+          <option value="{{ $fontKey }}">{{ .label }}</option>
+          {{ end }}
+        {{ end }}
+      </select>
+      {{ end }}
+    </div>
+  </div>
+
+  <a id="dark-mode-toggle" class="colorscheme-toggle" aria-label="Toggle color theme">
+    <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+  </a>
+</div>
+<script id="font-selector-config" type="application/json">{{ $fontCfg | jsonify | safeJS }}</script>
+<script defer src="{{ "js/font-selector.js" | relURL }}"></script>
+{{ end }}

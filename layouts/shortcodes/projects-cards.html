@@ -1,0 +1,168 @@
+{{- $allProjects := hugo.Data.projects_spotlight.projects | default (slice) -}}
+{{- $metaRows := hugo.Data.projects_repo_meta.projects | default (slice) -}}
+{{- $projects := slice -}}
+{{- $allTags := slice -}}
+{{- range $allProjects -}}
+  {{- if eq .highlight true -}}
+    {{- $projects = $projects | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- range $allProjects -}}
+  {{- if ne .highlight true -}}
+    {{- $projects = $projects | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- range $projects -}}
+  {{- range (.tags | default (slice)) -}}
+    {{- $allTags = $allTags | append (lower .) -}}
+  {{- end -}}
+  {{- $repo := .repo | default "" -}}
+  {{- $metaSlice := where $metaRows "repo_url" $repo -}}
+  {{- if gt (len $metaSlice) 0 -}}
+    {{- $meta := index $metaSlice 0 -}}
+    {{- $topics := index $meta "topics" | default (slice) -}}
+    {{- range $topics -}}
+      {{- $allTags = $allTags | append (lower .) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $allTags = uniq $allTags | sort -}}
+{{- if gt (len $projects) 0 -}}
+<div class="projects-toolbar">
+  <div class="projects-filter-panel">
+    <div class="projects-sort-container">
+      <label for="projects-sort">Sort by</label>
+      <select id="projects-sort">
+        <option value="updated_date" selected>Last updated date</option>
+        <option value="pub_date">Published date</option>
+        <option value="commits">Total commits</option>
+        <option value="language">Programming language</option>
+      </select>
+    </div>
+
+    <div class="projects-tag-search">
+      <label for="projects-tag-search">Filter by tags</label>
+      <input
+        id="projects-tag-search"
+        type="search"
+        placeholder="Search projects or tags..."
+        autocomplete="off"
+      >
+    </div>
+
+    <div class="projects-tag-select-wrap">
+      <label for="projects-tag-select">Tag</label>
+      <select id="projects-tag-select">
+        <option value="">All tags</option>
+        {{- range $allTags -}}
+        <option value="{{ . }}">{{ . }}</option>
+        {{- end -}}
+      </select>
+    </div>
+
+    <button type="button" id="projects-clear-filters" class="projects-clear-btn">Clear filters</button>
+  </div>
+
+  <div class="projects-filter-summary">
+    <p id="projects-results-summary">Showing all projects</p>
+  </div>
+</div>
+<div class="projects-grid" id="projects-grid">
+  {{- range $projects -}}
+  {{- $repo := .repo | default "" -}}
+  {{- $metaSlice := where $metaRows "repo_url" $repo -}}
+  {{- $meta := dict -}}
+  {{- if gt (len $metaSlice) 0 -}}
+    {{- $meta = index $metaSlice 0 -}}
+  {{- end -}}
+  {{- $title := .title | default (index $meta "title") -}}
+  {{- $status := .status | default "Active" -}}
+  {{- $description := index $meta "description" | default "" -}}
+  {{- $topics := index $meta "topics" | default (slice) -}}
+  {{- $projectPage := index $meta "project_page" | default "" -}}
+  {{- $readmePage := index $meta "readme_page" | default "" -}}
+  {{- $deepwiki := index $meta "deepwiki_url" | default "" -}}
+  {{- $commitCount := index $meta "commit_count" | default 0 -}}
+  {{- $created := index $meta "created_at" | default "" -}}
+  {{- $updated := index $meta "updated_at" | default "" -}}
+  {{- $language := index $meta "primary_language" | default "" -}}
+  {{- $languages := index $meta "languages" | default (slice) -}}
+  {{- $projectTags := .tags | default (slice) -}}
+  {{- $combinedTags := slice -}}
+  {{- range $projectTags -}}
+    {{- $combinedTags = $combinedTags | append (lower .) -}}
+  {{- end -}}
+  {{- range $topics -}}
+    {{- $combinedTags = $combinedTags | append (lower .) -}}
+  {{- end -}}
+  {{- $combinedTags = uniq $combinedTags -}}
+  <article
+    class="project-card animate-on-scroll{{ if .highlight }} highlight-gold{{ end }}"
+    data-commits="{{ $commitCount }}"
+    data-created="{{ $created }}"
+    data-updated="{{ $updated }}"
+    data-language="{{ lower $language }}"
+    data-tags="{{ delimit $combinedTags "," }}"
+    data-title="{{ lower $title }}"
+    data-description="{{ lower $description }}"
+    data-highlight="{{ if .highlight }}1{{ else }}0{{ end }}"
+  >
+    <div class="project-card-inner">
+      <header class="project-card-head">
+        <h2 class="project-title">{{ $title }}</h2>
+        <span class="project-status-badge {{ lower $status }}">{{ $status }}</span>
+      </header>
+
+      {{- with $description -}}<p class="project-description">{{ . }}</p>{{- end -}}
+
+      {{- if gt (len $projectTags) 0 -}}
+      <ul class="project-focus-tags">
+        {{- range $projectTags -}}
+        <li>
+          <button type="button" class="project-tag-chip" data-card-tag="{{ lower . }}">{{ . }}</button>
+        </li>
+        {{- end -}}
+      </ul>
+      {{- end -}}
+
+      {{- if gt (len $topics) 0 -}}
+      <ul class="project-tech-tags">
+        {{- range $topics -}}
+        <li>
+          <button type="button" class="tech-tag" data-card-tag="{{ lower . }}">{{ . }}</button>
+        </li>
+        {{- end -}}
+      </ul>
+      {{- end -}}
+
+      <div class="project-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Commits</span>
+          <span class="meta-value">{{ $commitCount }}</span>
+        </div>
+        {{- with $language -}}
+        <div class="meta-item">
+          <span class="meta-label">Language</span>
+          <span class="meta-value">{{ . }}</span>
+        </div>
+        {{- end -}}
+        {{- with $updated -}}
+        <div class="meta-item">
+          <span class="meta-label">Updated</span>
+          <span class="meta-value">{{ . | time.Format "Jan 2006" }}</span>
+        </div>
+        {{- end -}}
+      </div>
+
+      <div class="project-links-footer">
+        {{- with $projectPage -}}<a href="{{ . | relURL }}" class="btn-project">Details</a>{{- end -}}
+        {{- with .repo -}}<a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn-project secondary">Repo</a>{{- end -}}
+        {{- with .demo -}}<a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn-project accent">Demo</a>{{- end -}}
+      </div>
+    </div>
+  </article>
+  {{- end -}}
+</div>
+{{- else -}}
+<p>No projects added yet.</p>
+{{- end -}}

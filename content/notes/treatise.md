@@ -1,0 +1,198 @@
++++
+title = "Treatises"
+date = 2026-02-12T00:00:00Z
+draft = false
++++
+
+# Treatises
+Drafts for treatises that I am working on
+
+# Treatise ideas
+- [X] truth as a process
+- [X] What is a Progressive Institution
+- [X] What is in a book
+- [X] Syntax of Closed Form Polynomial Iteration
+- [X] death by manager
+- [X] Aggression as Strategic Iteration
+- [ ] interpration-agnostic interpretation of algebraic equations
+- [ ] infinity as intractibility of domain specific toolset
+- [ ] non-naive interpretation of recursion to offer halting-proof encoding of infinite recursion
+- [ ] math as divinely inspired
+- [ ] logic as justified cause and effect
+- [ ] symbols as ambiguity circumscription
+- [ ] How not to read a book (disabusing perfect comprehension)
+- [ ] Banality of epistomology (books are interchangeable in knowledge content because wisdom is fungible)
+- [ ] Male violence as the norm (we cannot see it because it is assumed)
+- [ ] Defending elitism (elitist tendencies is part of human nature)
+- [ ] Using only carrots to persuade (reference the book *Europe Undivided* for arguments of success)
+- [ ] Commutativity as Fungibility
+- [ ] Towards an Algebra of the Fungible
+- [ ] Super axiom and the axiom of choice
+- [ ] I Dream of Femininity: Understanding the Phenomology of Transgenderism
+- [ ] Communism Transcended
+- [ ] 1 as information compression ratio for derivative algebraic objects
+- [ ] Objects that contain their own pedagogy
+- [ ] Applying the theory of semigroups of bounded linear operators to the collatz conjecture
+- [ ] Critical Math theory: non-marxist, anti-bazaar outlook, pro-pedagogical, anti-mythological
+- [ ] Mathematics by trinkets vs Mathematics by Industrial Use
+- [ ] Exp[x]== x^(x/Log[x])
+- [ ] Interpretation mathematic results narrowly vs. Unbounded expansive interpretations
+- [ ] Innovation ennervates more innovation by establishing as a platform speculative research for future researchers to scaffold off of
+- [ ] Using number of open math problems as the strength of current formalisms
+- [ ] Predicting the speculative turn of mathematics given competition from computer science that exclusively focuses on utility and function
+- [ ] Mathematics as an anti-normal science in the thomas kuhn sense
+- [ ] Symbol fatigue and math anxiety
+- [ ] Critical Progress Theory
+- [ ] Critical Progressive Theory
+- [ ] Heidegger's Ready-to-hand vs. present-at-hand Concept
+- [ ] The problem with "Win at all Costs" politics
+- [ ] Endangering the Utopia by using Marxist Praxis
+- [ ] Balancing the Trade-offs of liberal sexual attitudes vs traditional attitudes in terms of women's safety
+- [ ] Parasocial relationships in context: what can replace parasocial relationships?
+- [ ] "More Left than you": Understanding leftist praxis
+- [ ] Enumerating the domains and singleton instances of the contradiction in progressive politics in terms of expectations and actual outcomes
+- [ ] Understanding Wokeness by putting it in context
+- [ ] How Jerma985 interwove himself into the fabric of internet lore
+- [ ] Understanding Jerma's and Ster's relationship
+- [ ] What is the Left?
+- [ ] Outlining the contours of the utopia
+- [ ] Utopic lore: battling boredom
+- [ ] Boredom as the pre-eminent concern of liberal societies
+- [ ] The inescapability of the hedonism treadmill
+- [ ] Reduced disgust sensitivity in Asiatic cultures, defined by narrow genomes
+- [ ] Tolerable dysfunction as political praxis: democracy and neoliberalism as "good enough" for now but eyeing innovative improvements
+- [ ] What a genius do: studying personal behavioral habits as a mark of genius
+- [ ] How to measure the impact of speculative volumes on security prices
+- [ ] Rumor-proof finances through comprehensive transparency
+- [ ] Hostile ignorance. Weaponizing silence for political currency. Example: Communists never undertaking a systematic analysis of the fall of the USSR
+- [ ] Chinese Chauvanism and its detrimental affect on international diplomacy
+- [ ] Manager Chauvanism
+- [ ] Consumption as the small death
+- [ ] Muted Sensory Experience of Schizoid Patients
+- [ ] Political Dynamics: Studying and categorizing political ideology and innovations
+- [ ] Authoritarianism as the norm in mathematical manipulations
+- [ ] Politic Progress by Conspiracy
+- [ ] Conspiracies we can see: hidden power plays
+- [ ] Conspiratorial Designs as the norm
+- [ ] Histrionics as cultural praxis
+- [ ] Satire is no more: satire as naked, unabashed continuation of polemics by histrionic means
+- [ ] Political topologies and the politics of institutional capture
+- [ ] "Socialism for the rich": Understanding the micro-phenomena of socialism by subsidy
+- [ ] Fascism by practice vs Fascism by theory
+- [ ] Grievance mongering as political praxis
+- [ ] Human Chauvanism: A theory
+- [ ] Producer Market vs. Consumer Market
+- [ ] Markets defined by their audience
+- [ ] Marxist Mathematics
+- [ ] Recessive genes meeting as survival of genetic unit across adversarial and hostile terrain
+- [ ] Culture as built off of shared unsatiated phenotypes with no biological resolution
+- [ ] Technology as culture
+- [ ] Technology as gap-filling of phenotype
+- [ ] Cultural technologies
+- [ ] Birth should be voluntary
+- [ ] Cultural progression as formal indeterminism by design
+- [ ] Bounded feminism vs. Unbounded feminism
+- [ ] Working Class Aristocracy
+- [ ] Socialist Pluralism
+- [ ] Elite Progressivism vs. Proletarian Progressivism
+- [ ] Managerial Elitism as Fascism
+- [ ] Managerialism as Formalized Rent Seeking
+- [ ] brain layout as computation modules and consciousness as another module
+- [ ] Growth of the subjective world in the 20th century
+- [ ] Monarchism as totalitarianism in a subjective-dry world
+- [ ] No subjective mind prior to modernism
+- [ ] Charisma as resource-specific aggression
+- [ ] Heidegger's Ready-to-hand vs. present-at-hand Concept Extended with Myth-at-Hand
+- [ ] Anti-cheat software and adversarial interfaces
+- [ ] Adversarial domains
+- [ ] Politics as elite competition and intrigue
+- [ ] Video game economies
+- [ ] Interconnectedness of video game economies
+- [ ] Real economy as summation of smaller economies
+- [ ] Fastened recursive anchor points
+- [ ] Identity politics as the new caste system
+- [ ] Conservative politics as preserving hierarchies
+- [ ] Calvacade of ever-more tyrannical managers
+- [ ] Economy as satisfying elite desires
+- [ ] Axie Infinity: Extractive software
+- [ ] Extractive economic regimes
+- [ ] Symbolic analysis and computational regimes
+- [ ] Computation regimes as semantic universes
+- [ ] Stock price movement as summation of all speculative regimes at play
+- [ ] Revolte against the rational
+- [ ] Rationalizing process as political praxis
+- [ ] The Great Flattening: the fall of the our dear elites
+- [ ] The fall of the mangerial elite expert state
+- [ ] Debt is not the issue: forcing repayment is
+- [ ] Alternative debt: no repayment but virtual power accrues to the lender
+- [ ] Inflaming contradictions as political praxis
+- [ ] Contradiction of the expert state in the age of AI
+- [ ] Elite index: measuring the strength and entrenchment of the elite
+- [ ] Taxes as a symbolic act
+- [ ] Parasocial as a necessity
+- [ ] Semantic drift: the word itch (from intransitive to transitive) as an example
+- [ ] Neuron as a biological unit of computation
+- [ ] Neurons as computation in an adversarial environment
+- [ ] Producer prices vs consumer prices
+- [ ] Producer purchasing power vs consumer purchasing power
+- [ ] Producer inflation vs consumer inflation
+- [ ] Research by headlines
+- [ ] Research by entries
+- [ ] Secular Jewish culture serving conservative Jewish interests vs secular Jewish culture serving secular, modern interests
+- [ ] Fascism as a competitive species of negative socialism
+- [ ] Judaic God as a metaphor for the Jewish people
+- [ ] Post-Leftism: Beyond socialism and capitalism
+- [ ] Iterative speculation
+- [ ] Speculative horizon
+- [ ] Truth regimes
+- [ ] Truth regime entrenchment
+- [ ] Truth regime as an amalgamation of schools of thought
+- [ ] De-schooling truth regimes
+- [ ] Life of the organism as extension of ontogeny
+- [ ] Dependent type theory for safety: create array index type from array + Length type
+- [ ] Granular type theory: enabling granular type safety incrementally
+- [ ] Incremental topological microservices
+- [ ] Structural-fication of functional programming
+- [ ] Modern functional programming as a species of functional programming
+- [ ] Study of imposing structure on sets as Structure theory: from sets to hilbert spaces
+- [ ] Numbers as evidence of computation
+- [ ] Reality as the computation layer of consciousness
+- [ ] Decentralized Socialism
+- [ ] Modeling chemical dynamics with lambda calculus
+- [ ] Modeling chemical structure with lambda calculus
+- [ ] Modeling chemical reactions with game of life
+- [ ] Masculinity in service of the feminine
+- [ ] The topology of computation
+- [ ] The post-Marxist utopia
+- [ ] Marxism as the ideology that will consume liberalism
+- [ ] Elite Marxism
+- [ ] "Simp for thee but not for me": A study in game theoretical semiotics
+- [ ] Abstract game theory applied to Academia Arena
+- [ ] Psychoticism and the creative process
+- [ ] Pscyhoticism and Neuroticism
+- [ ] Psychoticism and gender nonconformity
+- [ ] Schizoid tendencies
+- [ ] "The world will belong to us": Schizoid social dynamics in the long run
+- [ ] Psychotic echos in a topological space
+- [ ] Elite chauvinism
+- [ ] Elite Chauvinistic Register #1
+- [ ] Histrionic Polemic Register #1
+- [ ] Linguistic Pragmatic Register Theory
+- [ ] Linguistic Pragmatic Taxonomy
+- [ ] Charisma Theory
+- [ ] Proof Assistants as granular logical computation
+- [ ] Sound through ears as delta stimuli; sight through eyes as continuous "on" stimuli
+- [ ] Analytic languages as rendering words to be more operational
+- [ ] Satire as anti-humor
+- [ ] Psychoanalysis as applied Psychological Chauvinism
+- [ ] Success is their downfall: Forecasting downstream consequences of political unfeasible programs
+- [ ] Proper nouns with set-like semantics
+- [ ] Common nouns as anonymous entities
+- [ ] Nomadic Intellectualism
+- [ ] Sedentary Intellectualism
+- [ ] Pragmatic as the receiving end of a socially conscious semantic delivery and my register theory as the delivery mechanism
+- [ ] Intellectual scoping
+- [ ] Intellectual scoping as a sign of intellectual maturity
+- [ ] Culture warriors: In search of casus belli
+- [ ] Incremental Utopia
+- [ ] Utopia achieved through incremental commutative utopic operators

@@ -1,0 +1,36 @@
+{{ define "content" }}
+<div class="hero-section">
+  <div class="container home-single animate-fade-in">
+    <div class="home-avatar">
+      <div class="business-card-scene" data-business-card-scene>
+        <button
+          class="business-card"
+          type="button"
+          data-business-card
+          aria-pressed="false"
+          aria-label="Show the back of Salvador Guzman's business card"
+        >
+          <span class="business-card-face">
+            <img
+              class="business-card-artwork"
+              data-business-card-image
+              src="/images/business-card-front.png"
+              alt="Front of Salvador Guzman's business card"
+              data-front-src="/images/business-card-front.png"
+              data-front-alt="Front of Salvador Guzman's business card"
+              data-back-src="/images/business-card-back.png"
+              data-back-alt="Back of Salvador Guzman's business card"
+            >
+          </span>
+        </button>
+        <span class="sr-only" data-business-card-status aria-live="polite">Showing the front of the business card</span>
+      </div>
+    </div>
+
+    <div class="home-body">
+      {{ .Content }}
+    </div>
+  </div>
+</div>
+<script defer src="{{ "js/business-card.js" | relURL }}"></script>
+{{ end }}

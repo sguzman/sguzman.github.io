@@ -1,0 +1,50 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+
+{{ define "content" }}
+  <section class="container page repos-page" data-repos-json="{{ "data/repos.json" | relURL }}">
+    <article>
+      <header>
+        <h1 class="title">
+          <a class="title-link" href="{{ .Permalink | safeURL }}">
+            {{ .Title }}
+          </a>
+        </h1>
+      </header>
+
+      {{ .Content }}
+
+      <div class="books-controls">
+        <label class="books-search-label" for="repos-search">Search repositories</label>
+        <input id="repos-search" class="books-search-input" type="search" placeholder="Name, description, language, topics..." autocomplete="off">
+        <p id="repos-meta" class="books-meta">Loading repositories...</p>
+      </div>
+
+      <div class="books-pagination" aria-label="Repository pagination controls">
+        <span id="repos-page-indicator" class="books-page-indicator">Drag columns to reorder</span>
+
+        <label class="books-page-size-label" for="repos-page-size">Rows per page</label>
+        <select id="repos-page-size" class="books-page-size">
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100" selected>100</option>
+          <option value="250">250</option>
+          <option value="all">All</option>
+        </select>
+      </div>
+
+      <details class="column-picker">
+        <summary>Columns</summary>
+        <div id="repos-column-picker" class="column-picker-grid"></div>
+      </details>
+
+      <div class="books-table-wrap">
+        <div id="repos-table"></div>
+      </div>
+    </article>
+  </section>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+  <script defer src="{{ "js/repos.js" | relURL }}"></script>
+{{ end }}

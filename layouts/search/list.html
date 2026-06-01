@@ -1,0 +1,28 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+
+{{ define "content" }}
+  <section class="container page search-page" data-search-index="{{ "index.json" | relLangURL }}">
+    <article>
+      <header>
+        <h1 class="title">
+          <a class="title-link" href="{{ .Permalink | safeURL }}">
+            {{ .Title }}
+          </a>
+        </h1>
+      </header>
+
+      {{ .Content }}
+
+      <label class="search-label" for="search-input">Search query</label>
+      <input id="search-input" class="search-input" type="search" placeholder="Try: rust, topology, introduction..." autocomplete="off">
+
+      <p id="search-status" class="search-status">Type at least 2 characters to search.</p>
+      <ul id="search-results" class="search-results"></ul>
+    </article>
+  </section>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"></script>
+  <script defer src="{{ "js/search.js" | relURL }}"></script>
+{{ end }}

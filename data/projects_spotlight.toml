@@ -1,0 +1,628 @@
+# Add new projects by appending another [[projects]] block.
+# Keep fields short for the card header.
+
+[[projects]]
+title = "flatfekt"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/flatfekt"
+demo = ""
+docs = ""
+tags = ["rust", "bevy", "gamedev", "2d", "toml", "simulation"]
+ambition = "Create a flexible platform for simulations, motion graphics, and interactive sketches that separates content (TOML) from runtime (Bevy/Rust)."
+novelty = [
+  "Schema-first approach with a Bevy-free core library for scene validation.",
+  "Declarative TOML-based scene definitions.",
+  "High-level engine layer for complex choreography and transitions.",
+]
+
+[[projects]]
+title = "rando"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/rando"
+demo = ""
+docs = ""
+tags = ["rust", "statistics", "math", "cli", "numerical-computing"]
+ambition = "Create a 'Mathematica-like' experience for Rust developers, where complex statistical operations are as simple as a single function call with clean results."
+novelty = [
+  "Verified implementations of Shapiro-Wilk and Levene's tests.",
+  "Comprehensive suite of hypothesis tests (T-test, Z-test, Correlation).",
+  "High-performance statistical toolkit focusing on ease-of-use.",
+]
+
+[[projects]]
+title = "brazen"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/brazen"
+demo = ""
+docs = ""
+tags = ["rust", "browser", "egui", "desktop", "ai", "mcp"]
+ambition = "Build a 'hacker's browser' where the browser chrome and the content engine are decoupled, allowing for extreme customization and capability-based security."
+novelty = [
+  "Capability-oriented permission model for granular security control.",
+  "Feature-gated engine seam for swapping rendering backends (Servo-ready).",
+  "Desktop shell built with egui for high-performance UI tools.",
+]
+
+[[projects]]
+title = "backster"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/backster"
+demo = ""
+docs = ""
+tags = ["rust", "finance", "backtesting", "polars", "mathematica", "quant"]
+ambition = "Provide the speed of Rust-based Polars for historical simulations while retaining the symbolic power of Wolfram for strategy modeling and research."
+novelty = [
+  "Integrated WSTP bindings for seamless data transfer with Mathematica.",
+  "High-performance backtesting using the Polars query engine.",
+  "Flexible configuration system for complex simulation parameters.",
+]
+
+[[projects]]
+title = "pollstats"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/pollstats"
+demo = ""
+docs = ""
+tags = ["rust", "politics", "data-pipeline", "scraping", "postgres", "archiving"]
+ambition = "Provide a reliable, automated pipeline for tracking political data changes with full historical versioning."
+novelty = [
+  "Automatic tracking of ETag, Last-Modified, and SHA256 for remote artifacts.",
+  "Config-driven downloader with local data store and optional Postgres ingest.",
+  "Full historical preservation of datasets whenever content changes.",
+]
+
+[[projects]]
+title = "bulk-merge"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/bulk-merge"
+demo = ""
+docs = ""
+tags = ["rust", "books", "metadata", "postgresql", "etl", "ingestion"]
+ambition = "Build the foundation for a universal open-library index that can handle hundreds of millions of records without breaking a sweat."
+novelty = [
+  "High-performance ingestion using PostgreSQL's COPY command.",
+  "Resumable import system for multi-gigabyte bibliographic dumps.",
+  "Dedicated schema management for diverse metadata sources.",
+]
+
+[[projects]]
+title = "woven"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/woven"
+demo = ""
+docs = ""
+tags = ["rust", "egui", "mathematica", "wolfram", "notebook", "desktop"]
+ambition = "A modern, lightweight alternative to the Mathematica notebook interface built with Rust and egui."
+novelty = [
+  "High-performance rendering for symbolic expressions and data.",
+  "Native integration with the Wolfram Engine via WSTP.",
+  "Desktop-native shell providing a low-latency research environment.",
+]
+
+[[projects]]
+title = "marginalia"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/marginalia"
+demo = ""
+docs = ""
+tags = ["rust", "static-site", "blogging", "markdown", "scss", "publishing"]
+ambition = "A highly personalized, minimal blog platform designed for longevity and easy archival."
+novelty = [
+  "Custom build pipeline supporting Markdown, HTML, and SCSS.",
+  "Minimalist design optimized for long-form reading and typography.",
+  "Architecture focused on static output and easy self-hosting.",
+]
+
+[[projects]]
+title = "sal-wiki"
+status = "Active"
+repo = "https://github.com/sguzman/sal-wiki"
+demo = ""
+docs = ""
+tags = ["knowledge-base", "wiki", "notes", "markdown", "personal-infrastructure"]
+ambition = "Create a dense, interconnected knowledge base that serves as a second brain for technical research and project planning."
+novelty = [
+  "Minimalist, high-performance structure for rapid knowledge entry.",
+  "Optimized for symbolic cross-referencing and deep technical indexing.",
+  "Fully version-controlled knowledge base with focus on longevity.",
+]
+
+[[projects]]
+title = "lantern-leaf"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/lantern-leaf"
+demo = ""
+docs = ""
+tags = ["tts", "accessibility", "reading", "piper", "document-processing", "desktop"]
+ambition = "Create a seamless, distraction-free reading experience that converts any document into high-quality speech or structured text."
+novelty = [
+  "Integrated Piper TTS support for local, high-quality voice synthesis.",
+  "Automated document textualization and normalization pipeline.",
+  "Distraction-free UI focused on long-form reading and accessibility.",
+]
+
+[[projects]]
+title = "fathrs"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/fathrs"
+demo = ""
+docs = ""
+tags = ["rust", "cli", "dotfiles", "symlinks", "toml"]
+ambition = "A lightweight, zero-dependency alternative to complex dotfile managers for managing system symlinks."
+novelty = [
+  "Minimalist design focused on speed and operational simplicity.",
+  "Clear TOML-based mapping for system-wide symlink management.",
+  "Written in Rust for guaranteed performance and reliability.",
+]
+
+[[projects]]
+title = "mathematica-mcp"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/mathematica-mcp"
+demo = ""
+docs = ""
+tags = ["rust", "mcp", "mathematica", "wolfram", "llm", "api"]
+ambition = "Enable LLMs and agentic systems to access the deep computational power of Mathematica through a standardized, tool-oriented interface."
+novelty = [
+  "Session-based Wolfram Language execution via WSTP.",
+  "High-level financial data APIs for real-time market lookups.",
+  "Automatic serialization of complex symbolic results for LLM consumption.",
+]
+
+[[projects]]
+title = "caliberate"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/caliberate"
+demo = ""
+docs = ""
+tags = ["rust", "calibre", "ebooks", "library-management", "desktop"]
+
+[[projects]]
+title = "ria"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/ria"
+demo = ""
+docs = ""
+tags = ["rust", "internet-archive", "api-client", "archiving", "cli"]
+
+[[projects]]
+title = "hoardr"
+status = "Active"
+repo = "https://github.com/sguzman/hoardr"
+demo = ""
+docs = ""
+tags = ["datasets", "archiving", "content-collection", "personal-infrastructure", "storage"]
+
+[[projects]]
+title = "num-chrunchr"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/num-chrunchr"
+demo = ""
+docs = ""
+tags = ["rust", "math", "number-theory", "factorization", "cli"]
+
+[[projects]]
+title = "chunkr"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/chunkr"
+demo = ""
+docs = ""
+tags = ["rust", "rag", "qdrant", "quickwit", "etl", "text-processing"]
+ambition = "Build a high-throughput data pipeline for RAG (Retrieval-Augmented Generation) systems that can process and index millions of documents with precision."
+novelty = [
+  "End-to-end normalization and chunking optimized for LLM contexts.",
+  "Native integration for Quickwit and Qdrant vector databases.",
+  "High-performance Rust implementation for massive document throughput.",
+]
+
+[[projects]]
+title = "pulsewire"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/pulsewire"
+demo = ""
+docs = ""
+tags = ["rust", "rss", "feed-reader", "polling", "storage", "backend"]
+
+[[projects]]
+title = "chatgpt-tool-shim"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/chatgpt-tool-shim"
+demo = ""
+docs = ""
+tags = ["typescript", "browser-extension", "chatgpt", "tooling", "web", "ai"]
+ambition = "Add practical, client-side pseudo-tool-calling to the ChatGPT web app so advanced workflows can happen directly in the browser without waiting on first-party product changes."
+novelty = [
+  "Injects tool-style workflows into the existing ChatGPT web interface from a browser extension.",
+  "Keeps the logic client-side instead of relying on a separate hosted backend.",
+  "Explores a lightweight bridge between conversational UI and structured action execution.",
+]
+
+[[projects]]
+title = "nflxport"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/nflxport"
+demo = ""
+docs = ""
+tags = ["rust", "sports", "nfl", "data", "cli", "etl"]
+ambition = "Build a serious Rust toolkit for working with nflverse data locally, with fast export, caching, and query paths for analysis-heavy workflows."
+novelty = [
+  "Focuses on local-first caching and export flows for nflverse datasets.",
+  "Combines data acquisition, querying, and transformation in one Rust-native toolchain.",
+  "Targets repeatable analysis workflows instead of one-off notebook pulls.",
+]
+
+[[projects]]
+title = "weathergraph-rs"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/weathergraph-rs"
+demo = ""
+docs = ""
+tags = ["rust", "machine-learning", "weather", "gnn", "inference", "scientific-computing"]
+ambition = "Rebuild graph-based weather model inference in Rust so advanced forecasting pipelines can run in a native, inspectable, high-performance environment."
+novelty = [
+  "Rust-native inference engine for a graph neural weather forecasting model.",
+  "Pushes scientific ML workloads into a systems-language implementation.",
+  "Bridges modern weather-model ideas with a reproducible CLI-friendly runtime.",
+]
+
+[[projects]]
+title = "mnist-from-scratch"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/mnist-from-scratch"
+demo = ""
+docs = ""
+tags = ["rust", "machine-learning", "mnist", "neural-network", "education", "math"]
+ambition = "Work through neural-network fundamentals from first principles in Rust, with the code structured so the math and learning dynamics stay legible."
+novelty = [
+  "Implements MNIST training as a fundamentals-first exercise rather than wrapping a large ML framework.",
+  "Uses Rust to make the learning pipeline explicit and inspectable.",
+  "Positions the repository as both a learning artifact and a base for deeper ML experiments.",
+]
+
+[[projects]]
+title = "xpos-js"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/xpos-js"
+demo = ""
+docs = ""
+tags = ["javascript", "browser-extension", "chrome-extension", "websocket", "tab-management"]
+
+[[projects]]
+title = "browsr"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/browsr"
+demo = ""
+docs = ""
+tags = ["rust", "local-server", "websocket", "browser", "http-api", "tab-management"]
+
+[[projects]]
+title = "http-cache"
+status = "Active"
+repo = "https://github.com/sguzman/http-cache"
+demo = ""
+docs = ""
+tags = ["rust", "proxy", "caching", "http", "sqlite", "networking"]
+
+[[projects]]
+title = "rivet"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/rivet"
+demo = ""
+docs = ""
+tags = ["rust", "tauri", "react", "typescript", "task-management", "desktop"]
+
+[[projects]]
+title = "zimrs"
+status = "Active"
+repo = "https://github.com/sguzman/zimrs"
+demo = ""
+docs = ""
+tags = ["rust", "zim", "sqlite", "postgres", "dictionary", "etl"]
+
+[[projects]]
+title = "translate-gemma-rs"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/translate-gemma-rs"
+demo = ""
+docs = ""
+tags = ["rust", "llm", "ollama", "translation", "markdown", "cli"]
+
+[[projects]]
+title = "voltlane"
+status = "Active"
+repo = "https://github.com/sguzman/voltlane"
+demo = ""
+docs = ""
+tags = ["rust", "tauri", "react", "music", "midi", "desktop"]
+
+[[projects]]
+title = "typr"
+status = "Active"
+repo = "https://github.com/sguzman/typr"
+demo = ""
+docs = ""
+tags = ["rust", "repl", "type-theory", "programming-languages", "experimental"]
+ambition = "Create an experimental REPL for signature-first type theory, allowing functions to be treated as interface objects that compose before implementation."
+novelty = [
+  "Implements structural query inference and ad-hoc boolean answers (any, all, is) over list expressions.",
+  "Supports multiple equivalence modes including syntactic, semantic, permutation, set, and canonical.",
+  "Features a fallback evaluator for concrete answers when structural inference is insufficient.",
+]
+
+[[projects]]
+title = "rustune"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/rustune"
+demo = ""
+docs = ""
+tags = ["rust", "cli", "unix", "fortune", "compatibility"]
+ambition = "Modernize the classic Unix fortune command with a memory-safe Rust implementation while maintaining strict behavior parity with the original fortune-mod."
+novelty = [
+  "Includes an oracle-driven parity harness that compares output against the system fortune command, achieving 100% weighted parity.",
+  "Deterministic RNG hooks for parity testing and property-based testing (proptest) for dat-file stability.",
+  "Modern structured logging with tracing and support for upstream-style seedable RNG behavior.",
+]
+
+[[projects]]
+title = "quack-check"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/quack-check"
+demo = ""
+docs = ""
+tags = ["rust", "pdf", "docling", "ocr", "text-extraction", "document-processing"]
+
+[[projects]]
+title = "symfose"
+status = "Active"
+repo = "https://github.com/sguzman/symfose"
+demo = ""
+docs = ""
+tags = ["rust", "music", "desktop", "piano", "virtual-instrument"]
+
+[[projects]]
+title = "cite-otter"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/cite-otter"
+demo = ""
+docs = ""
+tags = ["rust", "citations", "parser", "academia", "legal-tech", "nlp"]
+ambition = "Develop the fastest and most reliable citation parsing engine for academic and legal research."
+novelty = [
+  "Extremely accurate parsing of complex bibliography formats (APA, MLA, etc.).",
+  "Zero-dependency, high-performance Rust core.",
+  "Clean API design for integration into larger research tools.",
+]
+
+[[projects]]
+title = "zpars"
+status = "Active"
+repo = "https://github.com/sguzman/zpars"
+demo = ""
+docs = ""
+tags = ["rust", "compression", "zpaq", "cli", "archival"]
+
+[[projects]]
+title = "rust-code"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/rust-code"
+demo = ""
+docs = ""
+tags = ["rust", "legal-tech", "xml", "parser", "json", "etl"]
+ambition = "Convert complex, hierarchical legal XML (US Federal Code) into clean, machine-readable JSON for downstream NLP and legal analysis."
+novelty = [
+  "High-performance streaming XML parsing using xml-rs to handle multi-gigabyte legislative documents.",
+  "Preservation of deep hierarchical relationships in legal structures.",
+  "Optimized for low-memory footprint during massive ingestion tasks.",
+]
+
+[[projects]]
+title = "rics"
+status = "Active"
+repo = "https://github.com/sguzman/rics"
+demo = ""
+docs = ""
+tags = ["rust", "calendar", "ics", "scraping", "etl", "scheduling"]
+ambition = "A high-fidelity, high-performance iCalendar engine designed to handle non-standard time resolutions found in research and planning data."
+novelty = [
+  "Support for variable time precision including Quarter, Month, and Year-level events.",
+  "Advanced metadata extensions (X-RICS-*) for tracking event confidence and revision history.",
+  "Robust RFC 5545 compliant folding and escaping logic for high-compatibility exports.",
+]
+
+[[projects]]
+title = "cfr-to-text"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/cfr-to-text"
+demo = ""
+docs = ""
+tags = ["rust", "legal-tech", "xml", "text-extraction", "cli", "etl"]
+ambition = "A robust, industrial-grade extraction tool for the Code of Federal Regulations, stripping complex XML schemas into semantic text."
+novelty = [
+  "Sophisticated CLI with TOML configuration for fine-grained control over element exclusion and whitespace normalization.",
+  "High-speed XML event processing capable of handling the entire US Federal database.",
+  "Automated output splitting and file management for massive, multi-part datasets.",
+]
+
+[[projects]]
+title = "calibre-updatr-rs"
+status = "Active"
+repo = "https://github.com/sguzman/calibre-updatr-rs"
+demo = ""
+docs = ""
+tags = ["rust", "calibre", "ebooks", "sqlite", "metadata", "automation"]
+ambition = "A blazing fast, CLI-native alternative to the Calibre GUI for managing massive ebook libraries with a focus on metadata consistency."
+novelty = [
+  "Native SQLite-level interaction for rapid database updates without GUI overhead.",
+  "Sophisticated deduplication engine designed to identify overlaps across tens of thousands of records.",
+  "High-performance metadata extraction and normalization pipeline.",
+]
+
+[[projects]]
+title = "bw-password-dedup"
+status = "Active"
+repo = "https://github.com/sguzman/bw-password-dedup"
+demo = ""
+docs = ""
+tags = ["rust", "bitwarden", "security", "json", "deduplication", "cli"]
+ambition = "Provide a surgical deduplication tool for Bitwarden password exports, ensuring zero data loss while cleaning up redundant entries."
+novelty = [
+  "Policy-driven record merging (domain-based, username-based) with customizable collision strategies.",
+  "Detailed JSON reporting system summarizing duplicate groups and differing data paths.",
+  "Recursive object normalization ensuring identical records are matched regardless of key ordering.",
+]
+
+[[projects]]
+title = "slurp"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/slurp"
+demo = ""
+docs = ""
+tags = ["rust", "surrealdb", "json", "ingestion", "cli", "database"]
+ambition = "A high-throughput data ingestion engine for SurrealDB, capable of saturating network and database capacity through parallel processing."
+novelty = [
+  "Leverages rayon for work-stealing parallelism during JSON batch processing.",
+  "Optimized batched HTTP insertions using reqwest for maximum network throughput.",
+  "Fail-fast validation and detailed reporting for large-scale database migrations.",
+]
+
+[[projects]]
+title = "atmos"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/atmos"
+demo = ""
+docs = ""
+tags = ["rust", "bevy", "gamedev", "toml", "simulation", "hot-reload"]
+ambition = "Streamline Bevy game development by moving game state and entity configuration into readable, hot-reloadable TOML files."
+novelty = [
+  "Declarative entity configuration that decouples design from code.",
+  "Advanced TOML schema supporting complex component parameters.",
+  "Experimental hot-reloading for rapid gameplay iteration.",
+]
+
+[[projects]]
+title = "fiction-stuff"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/fiction-stuff"
+demo = ""
+docs = ""
+tags = ["worldbuilding", "fiction", "schema", "writing", "lore"]
+
+[[projects]]
+title = "manifoldr"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/manifoldr"
+demo = ""
+docs = ""
+tags = ["rust", "cli", "api-client", "prediction-markets", "finance"]
+ambition = "Provide a high-performance, command-line bridge to Manifold Markets for power users, enabling rapid betting and portfolio management without the friction of a web UI."
+novelty = [
+  "Native API Client: Custom-built asynchronous Rust client for the Manifold V0 API.",
+  "Tabular Intelligence: Rich, formatted console output for market trends, user positions, and portfolio history.",
+  "Safe Betting Interface: Streamlined CLI for placing bets with integrated logging and error handling.",
+]
+
+[[projects]]
+title = "clean-tts-text"
+status = "Active"
+repo = "https://github.com/sguzman/clean-tts-text"
+demo = ""
+docs = ""
+tags = ["rust", "tts", "text-processing", "normalization", "cli", "accessibility"]
+ambition = "Eliminate the 'robotic' artifacts and awkward pauses in AI-generated narration by providing a robust, rule-based text normalization pipeline."
+novelty = [
+  "Pacing Optimization: Specialized logic to flatten lists and normalize punctuation to ensure smooth narration rhythm.",
+  "Context-Aware Expansion: Intelligent acronym and brand expansion tailored for natural speech.",
+  "Configurable Narratives: TOML-driven profiles allow switching between minimalist and expressive normalization styles.",
+]
+
+[[projects]]
+title = "MathematicaMathFun"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/MathematicaMathFun"
+demo = ""
+docs = ""
+tags = ["mathematica", "wolfram", "math", "notebooks", "visualization", "research"]
+ambition = "A personal laboratory for exploring advanced mathematical concepts—ranging from algebraic topology to number theory—using the symbolic power of the Wolfram Language."
+novelty = [
+  "Computational Topology: Notebooks exploring complex function theory and curvature analysis in multi-dimensional spaces.",
+  "Symbolic Analysis: Implementations of calculus of variations and complex-system simulations.",
+  "Dynamic Data Viz: High-fidelity, sector-based statistical visualizations and probability density models.",
+]
+
+[[projects]]
+title = "oxban"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/oxban"
+demo = ""
+docs = ""
+tags = ["rust", "tauri", "yew", "kanban", "sqlite", "desktop"]
+ambition = "Create a premium, local-first Kanban experience that combines the performance of a native Rust backend with the flexibility of a modern WASM frontend."
+novelty = [
+  "Hybrid Architecture: Leverages Tauri and Yew for a seamless desktop experience with SQLite persistence.",
+  "Gapped Positioning: Implements a sophisticated 'gapped-position' strategy for efficient card reordering without full-table rewrites.",
+  "End-to-End Tracing: Deeply instrumented with tracing and tracing-wasm for unified diagnostic visibility across the bridge.",
+]
+
+[[projects]]
+title = "game-site-scraper"
+status = "Active"
+repo = "https://github.com/sguzman/game-site-scraper"
+demo = ""
+docs = ""
+tags = ["rust", "scraping", "meilisearch", "html", "etl", "gaming"]
+ambition = "Build a high-throughput, industrial-grade scraping engine that transforms unstructured gaming release pages into highly searchable, structured datasets."
+novelty = [
+  "Provenance Tracking: Integrated SHA-256 hashing and byte-level metadata for every extracted document to ensure data integrity.",
+  "Meilisearch Pipeline: Automated, concurrent batch-loading into Meilisearch with intelligent ID strategies and task monitoring.",
+  "Layout Resilience: Rule-based TOML configuration system that handles heterogeneous CSS layouts and spoiler sections.",
+]
+
+[[projects]]
+title = "lisp-lang-rust-chatgpt"
+status = "Active"
+highlight = true
+repo = "https://github.com/sguzman/lisp-lang-rust-chatgpt"
+demo = ""
+docs = ""
+tags = ["rust", "lisp", "interpreter", "compiler", "chatgpt", "programming-languages"]
+ambition = "Explore the frontier of AI-augmented compiler design by building a functional Lisp interpreter in Rust using LLM guidance for architectural decisions."
+novelty = [
+  "LLM-Guided Design: A case study in leveraging ChatGPT to scaffold recursive descent parsers and AST evaluation logic.",
+  "Pure AST Evaluation: Clean implementation of S-expression parsing and mathematical reduction in safe Rust.",
+  "Rapid Prototyping: Demonstrates the speed of moving from high-level 'conversation' to a tested, functional language implementation.",
+]

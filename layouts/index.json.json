@@ -1,0 +1,15 @@
+{{- $pages := where .Site.RegularPages "Draft" false -}}
+{{- $searchable := slice -}}
+{{- range $pages -}}
+  {{- $searchable = $searchable | append (dict
+    "title" .Title
+    "summary" (.Summary | plainify)
+    "content" (.Plain | htmlUnescape)
+    "permalink" .RelPermalink
+    "section" .Section
+    "date" (.Date.Format "2006-01-02")
+    "tags" (.Params.tags | default (slice))
+    "categories" (.Params.categories | default (slice))
+  ) -}}
+{{- end -}}
+{{- $searchable | jsonify -}}

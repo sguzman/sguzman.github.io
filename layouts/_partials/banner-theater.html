@@ -1,0 +1,17 @@
+{{- $link := .link | default "" -}}
+{{- $alt := .alt | default "Banner" -}}
+{{- if $link -}}
+<a class="hero-theater hero-theater-clickable" href="{{ $link | relURL }}">
+{{- else -}}
+<div class="hero-theater">
+{{- end -}}
+  <div class="hero-theater-stage">
+    <img class="hero-theater-main" src="/images/banner.png" alt="{{ $alt }}">
+    <img class="hero-theater-side hero-theater-side-left" src="/images/family-banner.png" alt="Family banner left">
+    <img class="hero-theater-side hero-theater-side-right" src="/images/family-banner.png" alt="Family banner right">
+  </div>
+{{- if $link -}}
+</a>
+{{- else -}}
+</div>
+{{- end -}}
