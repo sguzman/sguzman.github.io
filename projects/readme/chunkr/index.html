@@ -12,107 +12,225 @@
 </a><input type=checkbox id=menu-toggle>
 <label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/>Home</a></li><li class=navigation-item><a class=navigation-link href=/about/>About</a></li><li class=navigation-item><a class=navigation-link href=/projects/>Projects</a></li><li class=navigation-item><a class=navigation-link href=/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/search/>Search</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://sguzman.github.io/projects/readme/chunkr/>chunkr README</a></h1></header><p><a href=https://github.com/sguzman/chunkr class=external-link target=_blank rel=noopener>Repository</a> | <a href=https://deepwiki.com/sguzman/chunkr/ class=external-link target=_blank rel=noopener>DeepWiki</a></p><h1 id=chunkr>Chunkr
 <a class=heading-link href=#chunkr><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h1><p><code>chunkr</code> is a Rust CLI for turning an ebook library into search- and retrieval-ready text artifacts. It extracts text and metadata from Calibre-managed books, normalizes and chunks that text, generates embeddings through an HTTP provider, and inserts the resulting records into downstream systems such as Qdrant and Quickwit.</p><p>The repository is organized around a practical ingestion pipeline:</p><ol><li><code>extract</code>: walk a Calibre library and emit plain text plus sidecar metadata.</li><li><code>chunk</code>: clean extracted text and convert it into JSONL chunk records.</li><li><code>insert</code>: embed chunk text and write the results to vector and search indexes.</li><li><code>dups</code>, <code>dup-stats</code>, <code>dedup</code>: inspect and manage duplicate books in a Calibre library.</li></ol><h2 id=what-the-project-does>What The Project Does
-<a class=heading-link href=#what-the-project-does><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Chunkr is not just a text splitter. The crate is structured as an end-to-end ingestion tool for personal or research-scale libraries where Calibre is the source of truth and Qdrant/Quickwit are downstream consumers.</p><p>Core capabilities:</p><ul><li>Extract <code>.epub</code> and <code>.pdf</code> content from a Calibre library tree.</li><li>Preserve book-level metadata in JSON sidecars during extraction.</li><li>Normalize text before chunking, including Unicode cleanup and whitespace collapsing.</li><li>Produce JSONL chunk records with stable metadata fields and per-chunk offsets.</li><li>Generate embeddings through a configurable HTTP embedding provider.</li><li>Insert the same chunk corpus into both a vector store and a search index.</li><li>Scan a library for duplicate files and summarize duplicate storage overhead.</li><li>Score duplicate Calibre records by metadata completeness before removing lower-quality copies.</li></ul><h2 id=command-surface>Command Surface
-<a class=heading-link href=#command-surface><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The binary exposes the following subcommands:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>chunkr extract
-</span></span><span style=display:flex><span>chunkr chunk
-</span></span><span style=display:flex><span>chunkr insert
-</span></span><span style=display:flex><span>chunkr dups
-</span></span><span style=display:flex><span>chunkr dup-stats --input dups.json
-</span></span><span style=display:flex><span>chunkr dedup --input dups.json --dry-run
-</span></span></code></pre></div><p>Global flags:</p><ul><li><code>-c, --config &lt;PATH></code>: load a TOML config file. Defaults to <code>config.toml</code>.</li><li><code>-h, --help</code>: print help.</li><li><code>-V, --version</code>: print the version.</li></ul><h2 id=pipeline-overview>Pipeline Overview
-<a class=heading-link href=#pipeline-overview><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=1-extract>1. Extract
-<a class=heading-link href=#1-extract><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>chunkr extract</code> walks <code>paths.calibre_root</code>, filters by <code>extract.extensions</code>, and writes extracted text under <code>paths.extract_root</code>.</p><p>Current format support:</p><ul><li>EPUB extraction uses <code>pandoc</code>.</li><li>PDF extraction uses a <code>docling</code>-based pipeline, with optional text-first classification and OCR fallback logic.</li></ul><p>Extraction behavior includes:</p><ul><li>Layout templating for output and metadata paths through <code>extract.output_layout</code> and <code>extract.metadata_layout</code>.</li><li>Optional skipping of already extracted books with <code>extract.skip_existing</code>.</li><li>Optional metadata sidecar generation with <code>extract.write_metadata</code>.</li><li>EPUB chapter splitting for large books.</li><li>PDF quality classification to distinguish text PDFs, low-quality text PDFs, and scan-like PDFs.</li><li>Oversize PDF skipping when configured.</li></ul><p>Typical output under <code>extract_root</code> looks like:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>extract_root/
-</span></span><span style=display:flex><span>  epub/
-</span></span><span style=display:flex><span>    some_book.txt
-</span></span><span style=display:flex><span>    some_book.json
-</span></span><span style=display:flex><span>  pdf/
-</span></span><span style=display:flex><span>    another_book.txt
-</span></span><span style=display:flex><span>    another_book.json
-</span></span></code></pre></div><p>The extraction metadata sidecars include fields such as source path, format, title, authors, language, publication date, identifiers, Calibre id, and extraction timestamp.</p><h3 id=2-chunk>2. Chunk
-<a class=heading-link href=#2-chunk><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>chunkr chunk</code> reads <code>.txt</code> files from <code>paths.extract_root</code>, normalizes them, splits them into paragraphs, merges or breaks paragraphs according to configured size thresholds, and writes JSONL chunk files under <code>paths.chunk_root</code>.</p><p>Chunking behavior includes:</p><ul><li>Unicode normalization.</li><li>Whitespace collapsing.</li><li>Optional header/table-of-contents stripping.</li><li>Minimum and maximum paragraph sizing.</li><li>Target and hard maximum chunk lengths.</li><li>Overlap between adjacent chunks.</li><li>Metadata projection from file-level extraction metadata into each chunk record.</li></ul><p>Each emitted JSONL line contains:</p><ul><li><code>id</code>: a generated UUID.</li><li><code>text</code>: chunk text.</li><li><code>metadata</code>: source and book metadata plus chunk-local fields such as <code>chunk_index</code>, <code>char_start</code>, and <code>char_end</code>.</li></ul><p>Typical output under <code>chunk_root</code> looks like:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>chunk_root/
-</span></span><span style=display:flex><span>  epub/
-</span></span><span style=display:flex><span>    some_book.jsonl
-</span></span><span style=display:flex><span>  pdf/
-</span></span><span style=display:flex><span>    another_book.jsonl
-</span></span></code></pre></div><h3 id=3-insert>3. Insert
-<a class=heading-link href=#3-insert><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>chunkr insert</code> reads JSONL chunks from <code>paths.chunk_root</code>, batches them, requests embeddings from the configured provider, then writes results to:</p><ul><li>Qdrant for vector search.</li><li>Quickwit for text search / indexing.</li></ul><p>Insertion behavior includes:</p><ul><li>Parallel file ingestion.</li><li>Batched embedding requests.</li><li>Retry and backoff controls.</li><li>Optional in-memory embedding cache.</li><li>Optional Qdrant collection creation.</li><li>Optional Quickwit final commit after all files are processed.</li></ul><p>The current config shape suggests the intended deployment model is local services, for example:</p><ul><li>Qdrant at <code>http://127.0.0.1:6333</code></li><li>Quickwit at <code>http://127.0.0.1:7280</code></li><li>Ollama-compatible embeddings at <code>http://127.0.0.1:11434</code></li></ul><h3 id=4-duplicate-analysis-and-cleanup>4. Duplicate Analysis And Cleanup
-<a class=heading-link href=#4-duplicate-analysis-and-cleanup><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Chunkr also contains a separate duplicate-management workflow for Calibre libraries.</p><p><code>chunkr dups</code>:</p><ul><li>Walks a library tree.</li><li>Filters by extension and minimum size.</li><li>Hashes candidate files in parallel.</li><li>Emits duplicate groups in text or JSON format.</li></ul><p><code>chunkr dup-stats</code>:</p><ul><li>Reads the JSON report from <code>chunkr dups</code>.</li><li>Summarizes group counts, file counts, and extra bytes consumed by duplicates.</li></ul><p><code>chunkr dedup</code>:</p><ul><li>Reads duplicate groups from <code>chunkr dups</code>.</li><li>Extracts Calibre book ids from duplicate paths.</li><li>Fetches Calibre metadata from a local library or content server target.</li><li>Scores candidates by metadata completeness.</li><li>Keeps the best-scoring record and removes lower-scoring duplicates.</li><li>Supports <code>--dry-run</code> and should generally be run that way first.</li></ul><h2 id=requirements>Requirements
-<a class=heading-link href=#requirements><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Rust requirements:</p><ul><li>Rust edition <code>2024</code></li><li>Cargo</li></ul><p>External tools and services depend on which commands you use.</p><p>For extraction:</p><ul><li><code>pandoc</code> for EPUB extraction.</li><li><code>pdffonts</code>, <code>pdftotext</code>, and <code>pdfinfo</code> for PDF inspection/text-first heuristics.</li><li>A <code>docling</code> Python environment and entrypoint script for PDF conversion.</li><li>OCR tooling if your <code>docling</code> setup depends on it.</li></ul><p>For insertion:</p><ul><li>A running embeddings endpoint compatible with the configured provider.</li><li>A reachable Qdrant instance.</li><li>A reachable Quickwit instance.</li></ul><p>For deduplication:</p><ul><li>Access to a Calibre library path and/or Calibre content server.</li><li>A working Calibre CLI environment if book removal is performed live.</li></ul><h2 id=quick-start>Quick Start
-<a class=heading-link href=#quick-start><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Build the project:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo build
-</span></span></code></pre></div><p>Inspect commands:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --help
-</span></span><span style=display:flex><span>cargo run -- dups --help
-</span></span><span style=display:flex><span>cargo run -- dup-stats --help
-</span></span><span style=display:flex><span>cargo run -- dedup --help
-</span></span></code></pre></div><p>Run the main pipeline:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- extract
-</span></span><span style=display:flex><span>cargo run -- chunk
-</span></span><span style=display:flex><span>cargo run -- insert
-</span></span></code></pre></div><p>Run duplicate analysis:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- dups --out dups.json
-</span></span><span style=display:flex><span>cargo run -- dup-stats --input dups.json
-</span></span><span style=display:flex><span>cargo run -- dedup --input dups.json --dry-run
-</span></span></code></pre></div><h2 id=configuration>Configuration
+<span class=sr-only>Link to heading</span></a></h1><p>Chunkr is a CLI for extracting text + metadata from Calibre libraries, cleaning
+and chunking that text, and inserting the resulting chunks into Qdrant and
+Quickwit. Configuration is centralized in a single TOML file so that all
+properties, policies, and paths are controlled in one place.</p><p>This README formalizes the intended interface and configuration for the project.</p><h2 id=goals>Goals
+<a class=heading-link href=#goals><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li>Deterministic, idempotent extraction from Calibre (skip already-processed
+files).</li><li>Robust handling for large EPUB/PDF files (chunk during extraction to avoid
+memory spikes).</li><li>Clean, normalized text and metadata-enriched chunks for downstream search and
+embeddings.</li><li>Straightforward insertion into Qdrant + Quickwit with sensible defaults.</li><li>Extensive logging for long-running pipelines.</li></ul><h2 id=commands>Commands
+<a class=heading-link href=#commands><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><h3 id=extract><code>extract</code>
+<a class=heading-link href=#extract><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Extracts plaintext and metadata from a Calibre library into a target folder.</p><p>Key behaviors:</p><ul><li>Points at a Calibre library root (e.g. <code>/drive/calibre/en_nonfiction</code>).</li><li>Supports EPUB and PDF (for now).</li><li>Idempotent: skips items already extracted unless configured otherwise.</li><li>EPUB extraction should follow the approach in <code>tmp/epub.fish</code>.</li><li>PDF extraction should attempt text-first, and fall back to OCR via Docling
+(see <code>tmp/pdf.fish</code>).</li><li>Large files are segmented during extraction using chapter boundaries when
+available.</li><li>All extraction and segmentation policy is configured in TOML.</li></ul><h3 id=chunk><code>chunk</code>
+<a class=heading-link href=#chunk><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Cleans, normalizes, and chunks a large corpus of text files into chunked JSONL
+(or similar) with metadata.</p><p>Key behaviors:</p><ul><li>Uses the chunking strategies and policies defined in config.</li><li>Mirrors the “oxbed” ingestion/chunking approach (see <code>tmp/oxbed</code>).</li><li>Paragraph-aware segmentation: pack small paragraphs together, split oversized
+paragraphs.</li><li>Emits normalized text + metadata for downstream insertion.</li></ul><h3 id=insert><code>insert</code>
+<a class=heading-link href=#insert><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Inserts chunked text into Qdrant and Quickwit.</p><p>Key behaviors:</p><ul><li>Qdrant: vector store for embeddings, uses Ollama for embeddings.</li><li>Quickwit: text search index for fast keyword queries.</li><li>Connection details and collection/index policies are configured in TOML.</li><li>Defaults are aligned with <code>tmp/docker-compose-quickwit.yaml</code> and
+<code>tmp/docker-compose-ollama.yaml</code>.</li></ul><h3 id=dups><code>dups</code>
+<a class=heading-link href=#dups><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Runs a duplicate detection scan against a Calibre library.</p><p>Key behaviors:</p><ul><li>Hashes files inside the Calibre root (configurable via <code>paths.calibre_root</code> or
+CLI overrides).</li><li>Supports filtering by extension, minimum size, and optional Calibre sidecars.</li><li>Writes a JSON or plain-text report, either to stdout or a file path.</li><li>Threading and file selection policies are configured through <code>[dups]</code>.</li><li>Hash algorithm is driven by the <code>hash_algorithm</code> config key (<code>blake3</code> or
+<code>xxhash64</code>).</li></ul><h3 id=dup-stats><code>dup-stats</code>
+<a class=heading-link href=#dup-stats><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Consumes a <code>chunkr dups</code> JSON report (for example <code>dups.json</code>) and sums the
+redundant bytes so you can see how much space duplicates occupy.</p><p>Key behaviors:</p><ul><li>Keeps one canonical copy per group and treats the rest as extra bytes.</li><li>Prints a pretty human report by default or JSON when <code>--mode machine</code>.</li><li>Observes the <code>[dup_stats]</code> config section for default mode and verbosity.</li></ul><h3 id=dedup><code>dedup</code>
+<a class=heading-link href=#dedup><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Consumes a <code>chunkr dups</code> JSON report and deletes redundant copies bucket-wise.</p><p>Key behaviors:</p><ul><li>Keeps a single canonical file per group (alphabetically first) and removes the
+rest.</li><li>Scores metadata via <code>[calibre.scoring]</code> so the richest entry survives.</li><li>Skips groups whose byte size is below <code>[dedup].min_size</code>.</li><li>Honors <code>[dedup].dry_run</code> by default but can be overridden with <code>--dry-run</code>.</li></ul><h2 id=configuration>Configuration
 <a class=heading-link href=#configuration><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Configuration is TOML-based and loaded from <code>config.toml</code> by default. The shipped root config is a real working example and is the best starting point when adapting the project to a new machine.</p><p>Top-level sections:</p><ul><li><code>[logging]</code></li><li><code>[paths]</code></li><li><code>[extract]</code></li><li><code>[extract.epub]</code></li><li><code>[extract.pdf]</code></li><li><code>[chunk]</code></li><li><code>[chunk.metadata]</code></li><li><code>[insert]</code></li><li><code>[insert.qdrant]</code></li><li><code>[insert.quickwit]</code></li><li><code>[insert.embeddings]</code></li><li><code>[calibre]</code></li><li><code>[calibre.content_server]</code></li><li><code>[calibre.scoring]</code></li><li><code>[dups]</code></li><li><code>[dup_stats]</code></li><li><code>[dedup]</code></li></ul><h3 id=paths>Paths
-<a class=heading-link href=#paths><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>[paths]</code> defines where the pipeline reads from and writes to:</p><ul><li><code>calibre_root</code>: source library tree to scan for books.</li><li><code>extract_root</code>: destination for extracted plain text and extraction metadata.</li><li><code>chunk_root</code>: destination for chunk JSONL files.</li><li><code>state_dir</code>: state/work directory for supporting workflows.</li><li><code>examples_cfr_dir</code>: example text corpus used by the ignored pipeline test.</li></ul><h3 id=extract-section>Extract Section
-<a class=heading-link href=#extract-section><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>[extract]</code> controls which formats are processed and how outputs are named.</p><p>Important fields:</p><ul><li><code>extensions</code>: file extensions to include.</li><li><code>skip_existing</code>: avoid re-extracting existing outputs.</li><li><code>write_metadata</code>: emit <code>.json</code> sidecars next to extracted text.</li><li><code>output_layout</code>: path template for extracted text.</li><li><code>metadata_layout</code>: path template for metadata sidecars.</li></ul><p>Layout placeholders currently used by the code:</p><ul><li><code>{format}</code></li><li><code>{title_slug}</code></li></ul><h3 id=epub-extraction>EPUB Extraction
-<a class=heading-link href=#epub-extraction><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>[extract.epub]</code> configures the <code>pandoc</code> path and large-book splitting behavior.</p><p>Important fields:</p><ul><li><code>backend</code></li><li><code>pandoc_bin</code></li><li><code>toc_depth</code></li><li><code>chapter_split</code></li><li><code>max_chapter_bytes</code></li><li><code>max_file_bytes</code></li><li><code>join_parts</code></li><li><code>keep_parts</code></li></ul><h3 id=pdf-extraction>PDF Extraction
-<a class=heading-link href=#pdf-extraction><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>[extract.pdf]</code> is the most operationally dense part of the config. It controls:</p><ul><li>the <code>docling</code> executable and script paths,</li><li>PDF text-quality probing,</li><li>OCR fallback decisions,</li><li>table extraction modes,</li><li>batching and timeout behavior,</li><li>size limits and split-pass extraction for large PDFs.</li></ul><p>If README readers are onboarding to the project, this section is where environment drift is most likely to break the pipeline.</p><h3 id=chunk-section>Chunk Section
-<a class=heading-link href=#chunk-section><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>[chunk]</code> controls text cleanup and chunk sizing.</p><p>Important fields:</p><ul><li><code>normalize_unicode</code></li><li><code>collapse_whitespace</code></li><li><code>strip_headers</code></li><li><code>min_paragraph_chars</code></li><li><code>max_paragraph_chars</code></li><li><code>target_chunk_chars</code></li><li><code>max_chunk_chars</code></li><li><code>chunk_overlap_chars</code></li><li><code>emit_jsonl</code></li></ul><p><code>[chunk.metadata]</code> decides which file-level metadata fields get copied into each chunk record:</p><ul><li>source path</li><li>Calibre id</li><li>title</li><li>authors</li><li>published date</li><li>language</li></ul><h3 id=insert-section>Insert Section
-<a class=heading-link href=#insert-section><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>[insert]</code> controls ingestion throughput and retry behavior:</p><ul><li><code>batch_size</code></li><li><code>retry_max</code></li><li><code>retry_backoff_ms</code></li><li><code>max_parallel_files</code></li></ul><p><code>[insert.qdrant]</code> defines the vector collection target, including <code>url</code>, <code>collection</code>, <code>distance</code>, <code>vector_size</code>, and optional <code>api_key</code>.</p><p><code>[insert.quickwit]</code> defines the text index target, including <code>url</code>, <code>index_id</code>, and commit behavior.</p><p><code>[insert.embeddings]</code> defines the embedding provider contract:</p><ul><li>provider type</li><li>base URL</li><li>model name</li><li>request timeout</li><li>concurrency limits</li><li>input truncation limits</li><li>request batch sizing</li><li>cache size</li></ul><h3 id=duplicate-workflow-sections>Duplicate Workflow Sections
-<a class=heading-link href=#duplicate-workflow-sections><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>[dups]</code> controls duplicate scanning defaults:</p><ul><li>output format</li><li>allowed extensions</li><li>symlink handling</li><li>thread count</li><li>minimum file size</li><li>sidecar inclusion</li><li>hash algorithm</li></ul><p><code>[dup_stats]</code> controls the default output mode for duplicate summaries.</p><p><code>[dedup]</code> controls destructive dedup defaults:</p><ul><li><code>min_size</code></li><li><code>dry_run</code></li></ul><p><code>[calibre]</code> and related sections define how duplicate cleanup talks to Calibre and how it scores record quality.</p><h2 id=repository-layout>Repository Layout
-<a class=heading-link href=#repository-layout><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Top-level layout:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>.
-</span></span><span style=display:flex><span>├── Cargo.toml
-</span></span><span style=display:flex><span>├── Cargo.lock
-</span></span><span style=display:flex><span>├── README.md
-</span></span><span style=display:flex><span>├── LICENSE
-</span></span><span style=display:flex><span>├── config.toml
-</span></span><span style=display:flex><span>├── test.toml
-</span></span><span style=display:flex><span>├── justfile
-</span></span><span style=display:flex><span>├── docs/
-</span></span><span style=display:flex><span>├── examples/
-</span></span><span style=display:flex><span>├── src/
-</span></span><span style=display:flex><span>├── tests/
-</span></span><span style=display:flex><span>└── tmp/
-</span></span></code></pre></div><h3 id=src><code>src/</code>
-<a class=heading-link href=#src><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Rust crate source:</p><ul><li><code>main.rs</code>: CLI entrypoint, argument parsing, config loading, and subcommand dispatch.</li><li><code>lib.rs</code>: public module declarations for the crate.</li><li><code>config.rs</code>: TOML config model and defaults for duplicate-related sections.</li><li><code>extract.rs</code>: Calibre library walk, EPUB/PDF extraction, metadata sidecars, PDF quality handling, and output path layout logic.</li><li><code>chunk.rs</code>: text normalization, paragraph splitting, overlap handling, and JSONL chunk emission.</li><li><code>insert.rs</code>: embedding requests, batching, retries, cache, Qdrant insertion, and Quickwit insertion/commit flow.</li><li><code>dups.rs</code>: duplicate file scan, hashing, grouping, and report emission.</li><li><code>dup_stats.rs</code>: duplicate-report summarization and human/machine output.</li><li><code>dedup.rs</code>: duplicate-removal workflow driven by Calibre metadata quality scoring.</li><li><code>calibre_metadata.rs</code>: metadata normalization and scoring helpers used by dedup.</li><li><code>logging.rs</code>: tracing subscriber setup and colored log prefixes for concurrent insert operations.</li><li><code>util.rs</code>: small shared helpers such as slugification, layout rendering, and extension replacement.</li></ul><h3 id=tests><code>tests/</code>
-<a class=heading-link href=#tests><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><ul><li><code>pipeline.rs</code>: ignored integration-style test for chunking and insertion. It stages example text files, resets Qdrant/Quickwit targets, runs chunk and insert in process, then verifies the indexed results.</li></ul><p>This test is useful, but it is not a unit-test-only environment: it assumes live external services.</p><h3 id=examples><code>examples/</code>
-<a class=heading-link href=#examples><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Example corpora used for testing and experimentation:</p><ul><li><code>examples/cfr/</code>: a large set of plain text CFR samples used by the ignored pipeline test.</li><li><code>examples/pdf/</code>: representative PDF fixtures covering clean text, low-quality text, and scan-like cases.</li></ul><h3 id=docs><code>docs/</code>
-<a class=heading-link href=#docs><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Project notes and reference material:</p><ul><li><code>docs/chunkr/</code>: implementation summaries and planning notes for this project.</li><li><code>docs/reference/</code>: broader project references, release notes, tooling notes, migration notes, and AI workflow documentation.</li></ul><p>These docs are helpful for maintainers, but the crate does not appear to generate end-user docs from them directly.</p><h3 id=tmp><code>tmp/</code>
-<a class=heading-link href=#tmp><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Scratch material and local operational notes such as Docker Compose snippets and experimental extraction scripts. This directory looks like local working support rather than stable product surface.</p><h2 id=development-workflow>Development Workflow
-<a class=heading-link href=#development-workflow><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The repository includes a <code>justfile</code> for common tasks.</p><p>Useful targets:</p><ul><li><code>just build</code></li><li><code>just fmt</code></li><li><code>just fmt-check</code></li><li><code>just validate</code></li><li><code>just clippy</code></li><li><code>just test</code></li><li><code>just doc</code></li><li><code>just ci</code></li></ul><p>Examples:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>just build
-</span></span><span style=display:flex><span>just fmt
-</span></span><span style=display:flex><span>just ci
-</span></span></code></pre></div><h2 id=testing>Testing
+<span class=sr-only>Link to heading</span></a></h2><p>All properties, policies, and paths are set in a single TOML config file.
+Example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span>[<span style=color:#a6e22e>logging</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>level</span> = <span style=color:#e6db74>&#34;info&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>paths</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>calibre_root</span> = <span style=color:#e6db74>&#34;/drive/calibre/en_nonfiction&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>extract_root</span> = <span style=color:#e6db74>&#34;/drive/books/plaintext/books&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>chunk_root</span> = <span style=color:#e6db74>&#34;/drive/books/plaintext/chunked&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>state_dir</span> = <span style=color:#e6db74>&#34;/drive/books/.chunkr-state&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>extract</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>extensions</span> = [<span style=color:#e6db74>&#34;epub&#34;</span>, <span style=color:#e6db74>&#34;pdf&#34;</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>skip_existing</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>write_metadata</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>output_layout</span> = <span style=color:#e6db74>&#34;{format}/{title_slug}.txt&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>metadata_layout</span> = <span style=color:#e6db74>&#34;{format}/{title_slug}.json&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>extract</span>.<span style=color:#a6e22e>epub</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>backend</span> = <span style=color:#e6db74>&#34;pandoc&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pandoc_bin</span> = <span style=color:#e6db74>&#34;pandoc&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>toc_depth</span> = <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>chapter_split</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_chapter_bytes</span> = <span style=color:#ae81ff>2_000_000</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_file_bytes</span> = <span style=color:#ae81ff>20_000_000</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>join_parts</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>keep_parts</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>extract</span>.<span style=color:#a6e22e>pdf</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>backend</span> = <span style=color:#e6db74>&#34;docling&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pdffonts_bin</span> = <span style=color:#e6db74>&#34;pdffonts&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pdftotext_bin</span> = <span style=color:#e6db74>&#34;pdftotext&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pdfinfo_bin</span> = <span style=color:#e6db74>&#34;pdfinfo&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_bin</span> = <span style=color:#e6db74>&#34;/home/admin/Code/AI/docling/.venv/bin/python&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_script</span> = <span style=color:#e6db74>&#34;/home/admin/Code/AI/docling/docling/cli/main.py&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>text_first</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>text_good_min_chars</span> = <span style=color:#ae81ff>120</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>text_low_min_chars</span> = <span style=color:#ae81ff>40</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>text_alpha_ratio_min</span> = <span style=color:#ae81ff>0.65</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>text_sample_pages</span> = <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ocr_fallback</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ocr_lang</span> = <span style=color:#e6db74>&#34;eng&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ocr_engine</span> = <span style=color:#e6db74>&#34;tesseract&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_device</span> = <span style=color:#e6db74>&#34;cuda&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_pipeline</span> = <span style=color:#e6db74>&#34;standard&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_pdf_backend</span> = <span style=color:#e6db74>&#34;dlparse_v4&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_threads</span> = <span style=color:#ae81ff>16</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_tables</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>docling_table_mode</span> = <span style=color:#e6db74>&#34;accurate&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>low_quality_use_ocr</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>low_quality_force_ocr</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>low_quality_tables</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>low_quality_table_mode</span> = <span style=color:#e6db74>&#34;fast&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>scan_force_ocr</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>scan_tables</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>scan_table_mode</span> = <span style=color:#e6db74>&#34;fast&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>page_batch_size</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>document_timeout_seconds</span> = <span style=color:#ae81ff>600</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_pages_per_pass</span> = <span style=color:#ae81ff>50</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>split_text_extraction</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_file_bytes</span> = <span style=color:#ae81ff>20_000_000</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>skip_oversize</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>chunk</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>normalize_unicode</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>collapse_whitespace</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>strip_headers</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>min_paragraph_chars</span> = <span style=color:#ae81ff>120</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_paragraph_chars</span> = <span style=color:#ae81ff>2_400</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>target_chunk_chars</span> = <span style=color:#ae81ff>1_800</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_chunk_chars</span> = <span style=color:#ae81ff>2_600</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>chunk_overlap_chars</span> = <span style=color:#ae81ff>200</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>emit_jsonl</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>chunk</span>.<span style=color:#a6e22e>metadata</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>include_source_path</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>include_calibre_id</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>include_title</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>include_authors</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>include_published</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>include_language</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>insert</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>batch_size</span> = <span style=color:#ae81ff>128</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>retry_max</span> = <span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>retry_backoff_ms</span> = <span style=color:#ae81ff>500</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_parallel_files</span> = <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>insert</span>.<span style=color:#a6e22e>qdrant</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>url</span> = <span style=color:#e6db74>&#34;http://127.0.0.1:6333&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>collection</span> = <span style=color:#e6db74>&#34;books&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>distance</span> = <span style=color:#e6db74>&#34;Cosine&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>vector_size</span> = <span style=color:#ae81ff>384</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>create_collection</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>api_key</span> = <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>wait</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>insert</span>.<span style=color:#a6e22e>quickwit</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>url</span> = <span style=color:#e6db74>&#34;http://127.0.0.1:7280&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>index_id</span> = <span style=color:#e6db74>&#34;books&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>commit_timeout_seconds</span> = <span style=color:#ae81ff>30</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>commit_mode</span> = <span style=color:#e6db74>&#34;auto&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>commit_at_end</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>insert</span>.<span style=color:#a6e22e>embeddings</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>provider</span> = <span style=color:#e6db74>&#34;ollama&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>base_url</span> = <span style=color:#e6db74>&#34;http://127.0.0.1:11434&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>model</span> = <span style=color:#e6db74>&#34;qllama/bge-small-en-v1.5:latest&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>request_timeout_seconds</span> = <span style=color:#ae81ff>120</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_concurrency</span> = <span style=color:#ae81ff>4</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>max_input_chars</span> = <span style=color:#ae81ff>512</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>global_max_concurrency</span> = <span style=color:#ae81ff>16</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>request_batch_size</span> = <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cache_max_entries</span> = <span style=color:#ae81ff>50000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>calibre</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>library_path</span> = <span style=color:#e6db74>&#34;/drive/calibre/en_nonfiction&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>library_url</span> = <span style=color:#e6db74>&#34;http://127.0.0.1:8081/#en_nonfiction&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>state_path</span> = <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>calibre</span>.<span style=color:#a6e22e>content_server</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>username</span> = <span style=color:#e6db74>&#34;admin&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>password</span> = <span style=color:#e6db74>&#34;admin&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>calibre</span>.<span style=color:#a6e22e>scoring</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>title_weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>authors_weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>publisher_weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pubdate_weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>isbn_weight</span> = <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>identifiers_weight</span> = <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>tags_weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>comments_weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cover_weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>dup_stats</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>mode</span> = <span style=color:#e6db74>&#34;human&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>dedup</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>min_size</span> = <span style=color:#ae81ff>1024</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>dry_run</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>dups</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>output</span> = <span style=color:#e6db74>&#34;json&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>threads</span> = <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>min_size</span> = <span style=color:#ae81ff>1024</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>include_sidecars</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>follow_symlinks</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ext</span> = [<span style=color:#e6db74>&#34;epub&#34;</span>, <span style=color:#e6db74>&#34;mobi&#34;</span>, <span style=color:#e6db74>&#34;azw3&#34;</span>, <span style=color:#e6db74>&#34;pdf&#34;</span>, <span style=color:#e6db74>&#34;djvu&#34;</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>hash_algorithm</span> = <span style=color:#e6db74>&#34;xxhash64&#34;</span>
+</span></span></code></pre></div><p>Notes:</p><ul><li>The example values align with <code>tmp/docker-compose-quickwit.yaml</code> and
+<code>tmp/docker-compose-ollama.yaml</code>.</li><li>All extraction and chunking policy must be driven from this file (no
+hard-coded defaults).</li><li>Use the config file to set max sizes/limits to prevent large EPUB/PDF files
+from exhausting memory or GPU.</li></ul><h2 id=example-usage>Example Usage
+<a class=heading-link href=#example-usage><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Extract from Calibre into /drive/books/plaintext/books</span>
+</span></span><span style=display:flex><span>chunkr extract --config /path/to/config.toml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Chunk all extracted files into chunked JSONL</span>
+</span></span><span style=display:flex><span>chunkr chunk --config /path/to/config.toml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Insert into Qdrant + Quickwit</span>
+</span></span><span style=display:flex><span>chunkr insert --config /path/to/config.toml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Scan for duplicates (writes JSON report)</span>
+</span></span><span style=display:flex><span>chunkr dups --config /path/to/config.toml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Delete redundant copies (dry-run first)</span>
+</span></span><span style=display:flex><span>chunkr dedup --input dups.json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Estimate duplicate waste from a report</span>
+</span></span><span style=display:flex><span>chunkr dup-stats --input dups.json
+</span></span></code></pre></div><h2 id=dependencies-and-external-tools>Dependencies and External Tools
+<a class=heading-link href=#dependencies-and-external-tools><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li>EPUB extraction uses Pandoc.</li><li>PDF extraction uses Docling; OCR falls back to Tesseract via Docling.</li><li>Qdrant and Quickwit are expected to be running (Docker Compose configs in
+<code>tmp/</code>).</li><li>Ollama serves embeddings at the configured host/port.</li></ul><h2 id=logging>Logging
+<a class=heading-link href=#logging><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>All commands should emit extensive structured logs (start/end, counts, skips,
+timing, errors). Configure log level via <code>[logging]</code>.</p><h2 id=testing>Testing
 <a class=heading-link href=#testing><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Basic test command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo test
-</span></span></code></pre></div><p>Important caveat:</p><ul><li><code>tests/pipeline.rs</code> is marked <code>#[ignore]</code>.</li><li>It expects external services such as Qdrant, Quickwit, and an embeddings endpoint.</li><li>It uses <code>test.toml</code> plus runtime overrides for temporary directories and target names.</li></ul><p>So the automated test story is currently split between local crate tests and a service-backed integration test.</p><h2 id=operational-notes>Operational Notes
-<a class=heading-link href=#operational-notes><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><ul><li><code>config.toml</code> contains machine-specific absolute paths. Treat it as an example to adapt, not a portable default.</li><li>The PDF extraction stack has the highest environment complexity.</li><li><code>insert</code> assumes downstream schemas and endpoints are already compatible with the emitted chunk records.</li><li><code>dedup</code> can remove books from Calibre. Dry-run first and verify the scoring behavior against your library before running live.</li></ul><h2 id=current-shape-of-the-project>Current Shape Of The Project
-<a class=heading-link href=#current-shape-of-the-project><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>As the code stands today, Chunkr is best understood as a focused ingestion utility for Calibre-centered libraries rather than a general document ETL framework. It already has a useful split between extraction, chunk preparation, indexing, duplicate inspection, and duplicate cleanup, and the repository layout reflects that separation clearly.</p></article></section></div><footer class=footer><section class=container>©
+<span class=sr-only>Link to heading</span></a></h2><ul><li>The pipeline test (<code>cargo test --test pipeline -- --ignored --nocapture</code>)
+loads <code>test.toml</code> if present, otherwise <code>config.toml</code>.</li><li>It overrides only the <code>paths.*</code> values to use a temp directory, and uses the
+collection/index from the config file. Set those to test-safe values.</li></ul><h2 id=development-formatting-pipeline>Development Formatting Pipeline
+<a class=heading-link href=#development-formatting-pipeline><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li><code>just fmt</code> runs all write-mode formatters: <code>cargo fmt</code>, <code>taplo fmt</code>,
+<code>stylua .</code>, <code>biome check --write .</code>, and <code>rumdl fmt .</code>.</li><li><code>just fmt-check</code> runs all check-mode formatters: <code>cargo fmt --check</code>,
+<code>taplo fmt --check</code>, <code>stylua --check .</code>, <code>biome check .</code>, and <code>rumdl check .</code>.</li><li>StyLua behavior is configured in <code>stylua.toml</code>.</li></ul></article></section></div><footer class=footer><section class=container>©
 2026
 ·
 Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

@@ -12,114 +12,427 @@
 </a><input type=checkbox id=menu-toggle>
 <label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/>Home</a></li><li class=navigation-item><a class=navigation-link href=/about/>About</a></li><li class=navigation-item><a class=navigation-link href=/projects/>Projects</a></li><li class=navigation-item><a class=navigation-link href=/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/search/>Search</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://sguzman.github.io/projects/readme/num-chrunchr/>num-chrunchr README</a></h1></header><p><a href=https://github.com/sguzman/num-chrunchr class=external-link target=_blank rel=noopener>Repository</a> | <a href=https://deepwiki.com/sguzman/num-chrunchr/ class=external-link target=_blank rel=noopener>DeepWiki</a></p><h1 id=num-chrunchr>num-chrunchr
 <a class=heading-link href=#num-chrunchr><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h1><p><code>num-chrunchr</code> is a Rust CLI for working with very large integers when the useful question is not always &ldquo;can I fully factor this in RAM?&rdquo; but &ldquo;what can I learn about this number with the representation and compute budget I actually have?&rdquo;</p><p>The project is built around three ideas:</p><ul><li>use the cheapest representation that still supports the next operation;</li><li>stream from disk when materializing a full big integer is unnecessary or too expensive;</li><li>emit structure reports and compressed descriptions even when full factorization is impractical.</li></ul><p>Today the repository contains a working CLI, streaming arithmetic primitives, a resumable small-factor peeling pipeline, near-power decomposition tooling, an optional GPU batch remainder engine, configuration, and design notes for the next optimization steps.</p><h2 id=what-the-project-does>What The Project Does
-<a class=heading-link href=#what-the-project-does><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p><code>num-chrunchr</code> currently focuses on large-number analysis and partial factor search rather than promising complete factorization for arbitrarily large inputs.</p><p>Core capabilities already present in the codebase:</p><ul><li>streaming decimal operations on numbers stored as text files;</li><li>loading moderately sized values into <code>BigUint</code> when an in-memory upgrade is reasonable;</li><li>scanning divisor ranges on CPU or GPU-backed batch remainder kernels;</li><li>resumable &ldquo;peel&rdquo; runs that strip small factors and persist reports;</li><li>near-power analysis that approximates a number as powers of a chosen base;</li><li>compression of exponent sequences produced by repeated near-power decomposition;</li><li>binary-input support for numbers supplied as raw bytes instead of decimal text;</li><li>structure reporting for patterns like near-square, near-power, and sparse decimal terms.</li></ul><p>The project is best understood as a research-oriented toolkit for &ldquo;number understanding&rdquo;: factor what is cheap, sketch what is expensive, and preserve enough structure to continue later.</p><h2 id=representation-strategy>Representation Strategy
-<a class=heading-link href=#representation-strategy><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The crate deliberately avoids a single representation model.</p><h3 id=decimalstream><code>DecimalStream</code>
-<a class=heading-link href=#decimalstream><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Implemented in <a href=/win/linux/Code/rust/num-chrunchr/src/repr/mod.rs:1>src/repr/mod.rs</a>, <code>DecimalStream</code> is the main out-of-core representation for decimal text inputs.</p><p>It supports:</p><ul><li>counting decimal digits;</li><li>extracting leading digits;</li><li>computing <code>N mod p</code> with streaming Horner-style updates;</li><li>dividing by a small <code>u32</code> divisor and writing the quotient back to disk.</li></ul><p>This is the representation that keeps the project useful for very large decimal files.</p><h3 id=bigintram><code>BigIntRam</code>
-<a class=heading-link href=#bigintram><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Implemented in <a href=/win/linux/Code/rust/num-chrunchr/src/repr/bigint_ram.rs:1>src/repr/bigint_ram.rs</a>, <code>BigIntRam</code> upgrades a decimal stream into a <code>num_bigint::BigUint</code> once the configured size threshold makes that practical.</p><p>This path is used for:</p><ul><li>exact arithmetic on smaller cofactors;</li><li>structural detection that benefits from full big-integer access;</li><li>ECM-assisted follow-up inside the peel strategy.</li></ul><h3 id=limbfile><code>LimbFile</code>
-<a class=heading-link href=#limbfile><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Implemented in <a href=/win/linux/Code/rust/num-chrunchr/src/repr/limb_file.rs:1>src/repr/limb_file.rs</a>, <code>LimbFile</code> is a disk-backed base-<code>2^32</code> representation.</p><p>It is not yet the dominant representation in the CLI, but it exists as an important bridge for:</p><ul><li>chunked binary-style processing;</li><li>future GPU-friendly arithmetic paths;</li><li>avoiding repeated decimal parsing when a limb encoding is better suited to the workload.</li></ul><h2 id=strategy-layer>Strategy Layer
-<a class=heading-link href=#strategy-layer><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The strategy code lives under <a href=/win/linux/Code/rust/num-chrunchr/src/strategy/mod.rs:1>src/strategy</a>.</p><h3 id=peel>Peel
-<a class=heading-link href=#peel><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>The <code>peel</code> command is the main resumable factor workflow in the repository today.</p><p>It:</p><ul><li>copies the chosen input into a working cofactor file under the report directory;</li><li>sieves small primes up to a configured bound;</li><li>computes batched remainders for chunks of primes;</li><li>divides out discovered small factors;</li><li>persists factor counts to <code>factors.json</code>;</li><li>writes modular sketches to <code>sketch.json</code>;</li><li>writes a higher-level structural summary to <code>structure.json</code>;</li><li>optionally upgrades the remaining cofactor to <code>BigUint</code> and uses ECM when size policy allows.</li></ul><p>This makes <code>peel</code> a hybrid pipeline: streaming first, exact arithmetic later if the remaining cofactor becomes small enough.</p><h3 id=structure-reports>Structure Reports
-<a class=heading-link href=#structure-reports><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Implemented in <a href=/win/linux/Code/rust/num-chrunchr/src/strategy/report.rs:1>src/strategy/report.rs</a>, structure reports summarize properties of the current number or cofactor.</p><p>The report currently tracks:</p><ul><li>decimal length;</li><li>approximate bit length;</li><li>leading digits;</li><li>whether the value is close to a square;</li><li>whether the value is close to a small perfect power;</li><li>sparse non-zero decimal terms for smaller values;</li><li>a <code>special_forms</code> summary list for quick inspection.</li></ul><h2 id=gpu-support>GPU Support
-<a class=heading-link href=#gpu-support><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The GPU path lives under <a href=/win/linux/Code/rust/num-chrunchr/src/gpu/mod.rs:1>src/gpu</a>, primarily in <a href=/win/linux/Code/rust/num-chrunchr/src/gpu/batch_mod.rs:1>src/gpu/batch_mod.rs</a>.</p><p>The implemented GPU engine is a batch remainder engine, not a full general-purpose big-integer backend. That is an important distinction.</p><p>What it does well:</p><ul><li>update many prime remainders in parallel;</li><li>accelerate divisor-range scans and batched small-factor testing;</li><li>auto-tune or accept configured batch sizes.</li></ul><p>What it does not claim to do:</p><ul><li>replace all CPU-side arithmetic;</li><li>fully offload arbitrary factorization algorithms;</li><li>avoid the cost of quotient generation after a factor is found.</li></ul><p>If GPU initialization is disabled or unavailable, the code can fall back to the CPU batch engine.</p><h2 id=cli-overview>CLI Overview
-<a class=heading-link href=#cli-overview><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Build and inspect the CLI with:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo build
-</span></span><span style=display:flex><span>cargo run -- --help
-</span></span></code></pre></div><p>The top-level commands currently exposed by <a href=/win/linux/Code/rust/num-chrunchr/src/main.rs:1>src/main.rs</a> are:</p><ul><li><code>mod</code>: compute <code>N mod p</code> from a streamed input;</li><li><code>div</code>: divide by a small divisor and write the quotient;</li><li><code>analyze</code>: print decimal length and leading digits;</li><li><code>digits</code>: print the decimal digit count;</li><li><code>log</code>: estimate <code>log_base(N)</code> and optionally its integer part;</li><li><code>pow</code>: raise the supplied number to an exponent and emit decimal output;</li><li><code>near-power</code>: find the nearest <code>base^k</code> approximation and optionally iterate on the delta;</li><li><code>cache</code>: inspect or purge cached <code>near-power</code> results;</li><li><code>write-decimal</code>: convert raw binary bytes to decimal text;</li><li><code>estimate-any-factor</code>: estimate search time or success probability under a divisor budget;</li><li><code>range-factors</code>: scan an inclusive divisor range and print matching factors;</li><li><code>peel</code>: run the resumable small-factor peeling workflow.</li></ul><h2 id=input-modes>Input Modes
-<a class=heading-link href=#input-modes><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The CLI accepts numbers in two primary ways:</p><ul><li><code>--number &lt;digits></code> for inline decimal input;</li><li><code>--input &lt;path></code> for file-based input.</li></ul><p>For file-based inputs, the default interpretation is decimal text with non-digit bytes ignored by the streaming decimal routines.</p><p>Binary mode is also supported:</p><ul><li><code>--binary</code> reads <code>--input</code> as a raw integer byte string;</li><li><code>--little-endian</code> switches binary interpretation from big-endian to little-endian.</li></ul><p>Binary mode applies only to file inputs, not inline <code>--number</code>.</p><h2 id=common-workflows>Common Workflows
-<a class=heading-link href=#common-workflows><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=1-quick-inspection-of-a-large-decimal-file>1. Quick inspection of a large decimal file
-<a class=heading-link href=#1-quick-inspection-of-a-large-decimal-file><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --input res/big-num.txt analyze
-</span></span><span style=display:flex><span>cargo run -- --input res/big-num.txt digits
-</span></span><span style=display:flex><span>cargo run -- --input res/big-num.txt log --base <span style=color:#ae81ff>10</span> --integer-part
-</span></span></code></pre></div><h3 id=2-streaming-divisibility-checks>2. Streaming divisibility checks
-<a class=heading-link href=#2-streaming-divisibility-checks><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --input res/big-num.txt mod --p <span style=color:#ae81ff>97</span>
-</span></span><span style=display:flex><span>cargo run -- --input res/big-num.txt div --d <span style=color:#ae81ff>3</span> --out quotient.txt
-</span></span></code></pre></div><h3 id=3-resumable-small-factor-peeling>3. Resumable small-factor peeling
-<a class=heading-link href=#3-resumable-small-factor-peeling><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --input res/big-num.txt peel
-</span></span></code></pre></div><p>Useful flags:</p><ul><li><code>--config &lt;path></code> to select an alternate TOML config;</li><li><code>peel --primes-limit &lt;n></code> to override the configured sieve bound;</li><li><code>peel --reset</code> to discard prior report state and restart.</li></ul><h3 id=4-divisor-range-scanning>4. Divisor range scanning
-<a class=heading-link href=#4-divisor-range-scanning><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --input res/big-num.txt range-factors --start <span style=color:#ae81ff>2</span> --end <span style=color:#ae81ff>100000</span>
-</span></span></code></pre></div><p>Notable options:</p><ul><li><code>--use-gpu</code> to prefer the GPU batch remainder engine;</li><li><code>--first</code> or <code>--last</code> to constrain output;</li><li><code>--all</code> to emit repeated factors;</li><li><code>--limit &lt;n></code> to cap matches;</li><li><code>--gpu-batch-size &lt;n></code> to override automatic GPU batch sizing.</li></ul><h3 id=5-near-power-decomposition>5. Near-power decomposition
-<a class=heading-link href=#5-near-power-decomposition><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --number <span style=color:#ae81ff>123456789</span> near-power --base-number <span style=color:#ae81ff>10</span>
-</span></span></code></pre></div><p>This command can:</p><ul><li>search for the nearest exponent <code>k</code> such that <code>base^k</code> is closest to the target;</li><li>repeat the process over the remaining delta with <code>--n-times</code>;</li><li>optionally disallow overshoot with <code>--no-overshoot</code>;</li><li>switch to prime bases by round with <code>--prime-rounds</code>;</li><li>cache computed decompositions under <code>.cache/num-chrunchr</code> with <code>--cache</code>.</li></ul><p>For power-of-two bases, the code includes a dedicated fast path described in <a href=/win/linux/Code/rust/num-chrunchr/docs/power-of-2-bases.md:1>docs/power-of-2-bases.md</a>.</p><h3 id=6-compressing-exponent-sequences>6. Compressing exponent sequences
-<a class=heading-link href=#6-compressing-exponent-sequences><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>When <code>near-power</code> is run with multiple iterations, its exponent sequence can be compressed:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --number <span style=color:#ae81ff>123456789012345</span> near-power <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --base-number <span style=color:#ae81ff>10</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --n-times <span style=color:#ae81ff>8</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --compress-seq-a
-</span></span></code></pre></div><p>Available modes:</p><ul><li><code>--compress-seq-a</code>: store a chosen base plus per-entry deltas;</li><li><code>--compress-seq-b</code>: store the first exponent and consecutive deltas.</li></ul><p>Available optimization schemes:</p><ul><li><code>min-max-abs</code>;</li><li><code>min-total-abs</code> (default);</li><li><code>min-digit-count</code>;</li><li><code>min-bit-count</code>;</li><li><code>min-varint-size</code>.</li></ul><p>See <a href=/win/linux/Code/rust/num-chrunchr/docs/compress-seq.md:1>docs/compress-seq.md</a> and <a href=/win/linux/Code/rust/num-chrunchr/docs/roadmaps/compress-seq-roadmap.md:1>docs/roadmaps/compress-seq-roadmap.md</a> for the rationale and roadmap notes.</p><h3 id=7-cache-management>7. Cache management
-<a class=heading-link href=#7-cache-management><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- cache list
-</span></span><span style=display:flex><span>cargo run -- cache purge --confirm
-</span></span></code></pre></div><p>The cache currently stores serialized <code>near-power</code> entries keyed by target, base, and settings metadata.</p><h2 id=configuration>Configuration
-<a class=heading-link href=#configuration><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The default runtime configuration is checked in at <a href=/win/linux/Code/rust/num-chrunchr/config/default.toml:1>config/default.toml</a>.</p><p>Main sections:</p><ul><li><code>[logging]</code>: tracing level and timestamp format;</li><li><code>[stream]</code>: buffer size for streamed file processing;</li><li><code>[analysis]</code>: how many leading digits to record;</li><li><code>[policies]</code>: arithmetic limits such as divisor caps and in-memory upgrade threshold;</li><li><code>[policies.ecm]</code>: whether ECM is enabled and what search bounds it uses;</li><li><code>[strategy]</code>: peel defaults such as sieve bound, batch size, report directory, and GPU preference;</li><li><code>[range_factors]</code>: GPU batch-size override for divisor scans.</li></ul><p>Important defaults in the current repo:</p><ul><li>stream buffer size: <code>65536</code>;</li><li>leading digits recorded: <code>32</code>;</li><li>in-memory upgrade threshold: <code>128</code> decimal digits;</li><li>peel prime limit: <code>1_000_000</code>;</li><li>default report directory: <code>reports</code>;</li><li>strategy GPU preference: enabled by default in the checked-in config;</li><li>range-factor GPU batch size: <code>0</code> meaning auto-tune.</li></ul><p>If the configured file does not exist, the crate falls back to built-in defaults defined in <a href=/win/linux/Code/rust/num-chrunchr/src/config.rs:1>src/config.rs</a>.</p><h2 id=generated-artifacts>Generated Artifacts
-<a class=heading-link href=#generated-artifacts><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Some outputs are created at runtime rather than stored in git.</p><h3 id=reports><code>reports/</code>
-<a class=heading-link href=#reports><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>The peel strategy writes artifacts into the configured report directory, <code>reports/</code> by default:</p><ul><li><code>cofactor.txt</code>: the current remaining cofactor;</li><li><code>factors.json</code>: discovered factor multiplicities;</li><li><code>sketch.json</code>: residues modulo a small prime set;</li><li><code>structure.json</code>: structural summary of the remaining number.</li></ul><p>These files are intended to make long-running or exploratory work resumable and inspectable.</p><h3 id=cachenum-chrunchr><code>.cache/num-chrunchr</code>
-<a class=heading-link href=#cachenum-chrunchr><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p><code>near-power --cache</code> writes serialized cache entries under the user cache tree. The code treats the cache as disposable derived state.</p><h2 id=project-layout>Project Layout
+<span class=sr-only>Link to heading</span></a></h1><p><strong>num-chrunchr</strong> is a Rust toolkit for <strong>factoring and structurally analyzing extremely large integers</strong>, including numbers that do <strong>not</strong> fit comfortably in RAM.</p><p>It is built around a simple idea:</p><blockquote><p>A &ldquo;number&rdquo; is not always a <code>BigInt</code>.<br>It is a <em>representation</em> that may support only certain operations efficiently (streaming, symbolic, disk-backed, RAM-backed, GPU-assisted, etc.).</p></blockquote><p>This repo currently provides a working MVP for <strong>disk-backed decimal numbers</strong> with:</p><ul><li>streaming <code>N mod p</code> (<code>u32</code>/<code>u64</code>)</li><li>streaming long division <code>N / d</code> for small <code>d</code></li><li>quick analysis (decimal length + leading digits)</li><li>structured logging via <code>tracing</code></li></ul><p>…and a clear path to expand into a full multi-strategy factoring system.</p><hr><h2 id=goals>Goals
+<a class=heading-link href=#goals><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ol><li><strong>Factor when feasible</strong> (small/medium inputs; or large inputs with small factors).</li><li><strong>Use heuristics when not feasible</strong>, and still produce a meaningful &ldquo;structure report&rdquo;:<ul><li>size characteristics (digits/bit-estimates)</li><li>residue sketches (many <code>mod p</code>)</li><li>special-form detection (near-square, near-power, sparse expansions)</li><li>best known compressed representations</li><li>power-of-two base fast paths (see <code>docs/power-of-2-bases.md</code>)</li></ul></li><li><strong>Scale beyond RAM</strong>:<ul><li>stream from disk (decimal and later limb files)</li><li>operate piecewise and persist intermediate states</li></ul></li><li><strong>Optionally accelerate prime scanning with GPU</strong> (planned):<ul><li>batch remainder updates for huge prime sets</li></ul></li></ol><hr><h2 id=non-goals-important>Non-goals (important)
+<a class=heading-link href=#non-goals-important><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li>This is not intended as a turnkey “break RSA” tool.</li><li>Factoring arbitrary, cryptographically-sized semiprimes is hard; the project will eventually integrate / wrap mature external implementations (QS/NFS, ECM, etc.) rather than reimplement everything from scratch.</li><li>“Compression” here means <em>useful mathematical representation</em>, not general-purpose lossless compression.</li></ul><hr><h2 id=current-features-mvp>Current Features (MVP)
+<a class=heading-link href=#current-features-mvp><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><h3 id=disk-backed-decimalstream>Disk-backed <code>DecimalStream</code>
+<a class=heading-link href=#disk-backed-decimalstream><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Input is a text file containing decimal digits. Any non-digit characters are ignored. This makes it easy to:</p><ul><li>store gigantic numbers as text</li><li>include separators/newlines</li><li>stream operations without loading the whole value</li></ul><h3 id=streaming-operations-no-full-materialization>Streaming operations (no full materialization)
+<a class=heading-link href=#streaming-operations-no-full-materialization><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ul><li><code>decimal_len()</code> — count digits by streaming</li><li><code>leading_digits(k)</code> — read first <code>k</code> digits (streaming)</li><li><code>mod_u32(p)</code> / <code>mod_u64(p)</code> — Horner-style streaming modulus</li><li><code>div_u32_to_path(d, out)</code> — streaming long division by small <code>d</code></li></ul><h3 id=logging>Logging
+<a class=heading-link href=#logging><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Uses <code>tracing</code> + <code>tracing-subscriber</code> with env filtering.</p><hr><h2 id=why-capability-based-representations>Why capability-based representations?
+<a class=heading-link href=#why-capability-based-representations><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Different representations excel at different operations:</p><ul><li><p><strong>DecimalStream</strong> (disk-backed text)</p><ul><li>Great: <code>mod p</code>, <code>div by small p</code>, quick size/leading-digit analysis</li><li>Not great: big multiplications, general-purpose big-int algorithms</li></ul></li><li><p><strong>BigIntRam</strong> (implemented)</p><ul><li>Great: Pollard Rho, p-1/p+1, ECM, etc.</li><li>Limited: RAM size</li></ul></li><li><p><strong>ExprAst</strong> (planned)</p></li></ul><hr><h2 id=near-power-sequence-compression>Near-power sequence compression
+<a class=heading-link href=#near-power-sequence-compression><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>After running <code>near-power</code>, you can optionally compress the exponent sequence:</p><ul><li><code>--compress-seqA</code>: choose a base <code>B</code> and store deltas <code>e_i - B</code>.</li><li><code>--compress-seqB</code>: store <code>e_0</code> and deltas <code>e_i - e_{i-1}</code>.</li></ul><p>Select the optimization scheme with <code>--compress-scheme</code>:</p><ul><li><code>min-max-abs</code></li><li><code>min-total-abs</code> (default)</li><li><code>min-digit-count</code></li><li><code>min-bit-count</code></li><li><code>min-varint-size</code></li></ul><p>Example:</p><pre tabindex=0><code>num-chrunchr --input big.bin --binary near-power --base-number 2 --n-times 5 \
+  --compress-seqA --compress-scheme min-total-abs
+</code></pre><p>Prime-rounds mode (use primes as bases, no explicit base allowed):</p><pre tabindex=0><code>num-chrunchr --input big.bin --binary near-power --prime-rounds --n-times 5
+</code></pre><ul><li><p>Great: numbers like <code>a^b +/- c</code>, products, factorial-like forms, sparse sums</p></li><li><p>Allows: fast <code>mod p</code> without expansion via modular exponentiation</p></li><li><p>Enables: algebraic factor rules</p></li><li><p><strong>LimbFile</strong> (implemented)</p><ul><li><p>Disk-backed base 2^32/2^64 limbs</p></li><li><p>Great for GPU kernels and chunked high-throughput arithmetic</p></li><li><p>Cached residues for fast screening + resumability</p></li></ul></li></ul><p>The factoring strategy engine will choose algorithms based on:</p><ul><li>input size</li><li>which capabilities are available</li><li>what has already been learned (factors found, sketch residues, detected forms)</li></ul><hr><h2 id=project-layout>Project Layout
 <a class=heading-link href=#project-layout><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The repository is small enough that the layout reflects the architecture directly:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>num-chrunchr/
-</span></span><span style=display:flex><span>├── Cargo.toml
-</span></span><span style=display:flex><span>├── README.md
-</span></span><span style=display:flex><span>├── LICENSE
-</span></span><span style=display:flex><span>├── config/
-</span></span><span style=display:flex><span>│   └── default.toml
-</span></span><span style=display:flex><span>├── docs/
-</span></span><span style=display:flex><span>│   ├── compress-seq.md
-</span></span><span style=display:flex><span>│   ├── info.md
-</span></span><span style=display:flex><span>│   ├── power-of-2-bases.md
-</span></span><span style=display:flex><span>│   └── roadmaps/
-</span></span><span style=display:flex><span>│       ├── compress-seq-roadmap.md
-</span></span><span style=display:flex><span>│       └── power-of-2-optimizations.md
-</span></span><span style=display:flex><span>├── res/
-</span></span><span style=display:flex><span>│   └── big-num.txt
-</span></span><span style=display:flex><span>├── scripts/
-</span></span><span style=display:flex><span>│   ├── bench_power_of_two.fish
-</span></span><span style=display:flex><span>│   └── bench_power_of_two.sh
-</span></span><span style=display:flex><span>└── src/
-</span></span><span style=display:flex><span>    ├── main.rs
-</span></span><span style=display:flex><span>    ├── config.rs
-</span></span><span style=display:flex><span>    ├── source.rs
-</span></span><span style=display:flex><span>    ├── gpu/
-</span></span><span style=display:flex><span>    │   ├── mod.rs
-</span></span><span style=display:flex><span>    │   └── batch_mod.rs
-</span></span><span style=display:flex><span>    ├── repr/
-</span></span><span style=display:flex><span>    │   ├── mod.rs
-</span></span><span style=display:flex><span>    │   ├── bigint_ram.rs
-</span></span><span style=display:flex><span>    │   └── limb_file.rs
-</span></span><span style=display:flex><span>    └── strategy/
-</span></span><span style=display:flex><span>        ├── mod.rs
-</span></span><span style=display:flex><span>        └── report.rs
-</span></span></code></pre></div><h3 id=layout-notes>Layout Notes
-<a class=heading-link href=#layout-notes><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><ul><li><a href=/win/linux/Code/rust/num-chrunchr/src/main.rs:1>src/main.rs</a> contains the CLI surface, command dispatch, near-power logic, cache handling, and several utility routines.</li><li><a href=/win/linux/Code/rust/num-chrunchr/src/config.rs:1>src/config.rs</a> defines the config schema and defaulting behavior.</li><li><a href=/win/linux/Code/rust/num-chrunchr/src/source.rs:1>src/source.rs</a> normalizes file versus inline number sources and creates temporary files for streamed inline input.</li><li><a href=/win/linux/Code/rust/num-chrunchr/src/repr/mod.rs:1>src/repr</a> holds number representation backends.</li><li><a href=/win/linux/Code/rust/num-chrunchr/src/gpu/mod.rs:1>src/gpu</a> contains the batch modular arithmetic engine.</li><li><a href=/win/linux/Code/rust/num-chrunchr/src/strategy/mod.rs:1>src/strategy</a> implements higher-level factor and report workflows.</li><li><a href=/win/linux/Code/rust/num-chrunchr/docs/info.md:1>docs/info.md</a> captures the original architectural direction behind the project.</li><li><code>scripts/bench_power_of_two.*</code> exist to benchmark the specialized near-power fast path for bases <code>2^m</code>.</li><li><code>res/big-num.txt</code> is a sample resource for local experiments and smoke tests.</li></ul><h2 id=development>Development
-<a class=heading-link href=#development><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Standard cargo workflows apply:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo fmt
-</span></span><span style=display:flex><span>cargo test
-</span></span><span style=display:flex><span>cargo run -- --help
-</span></span></code></pre></div><p>The codebase already includes unit tests across configuration loading, representations, structure detection, and CLI-related logic embedded in <code>main.rs</code>.</p><h2 id=design-direction>Design Direction
-<a class=heading-link href=#design-direction><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>The repository already shows a clear design thesis:</p><ul><li>start with streamed representations;</li><li>upgrade to full big integers only when policy and size permit;</li><li>use GPU acceleration where the operation is embarrassingly parallel;</li><li>preserve intermediate knowledge as reports, sketches, and compressed decompositions.</li></ul><p>The roadmap notes in <a href=/win/linux/Code/rust/num-chrunchr/docs/roadmaps/compress-seq-roadmap.md:1>docs/roadmaps</a> and <a href=/win/linux/Code/rust/num-chrunchr/docs/roadmaps/power-of-2-optimizations.md:1>docs/roadmaps</a> make it clear that the project is still evolving, but the current implementation is already coherent enough to use as a serious experimentation base.</p><h2 id=limitations-and-expectations>Limitations And Expectations
-<a class=heading-link href=#limitations-and-expectations><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><ul><li>Full factorization of extremely large inputs is not guaranteed and is not the sole purpose of the crate.</li><li>Several workflows are intentionally heuristic or reporting-oriented.</li><li><code>BigIntRam</code> still requires complete materialization of the value once the upgrade path is taken.</li><li><code>LimbFile</code> is present as infrastructure, but it is not yet the universal execution backend.</li><li>GPU acceleration currently targets batched modular scans, not arbitrary exact arithmetic.</li></ul><p>That tradeoff is deliberate: the project prioritizes practical progress on oversized inputs over pretending every number can be handled by one algorithm or one representation.</p></article></section></div><footer class=footer><section class=container>©
+<span class=sr-only>Link to heading</span></a></h2><p>Current structure (MVP):</p><p>src/
+main.rs # CLI entrypoint
+repr/
+mod.rs # DecimalStream implementation (streaming ops)
+bigint_ram.rs # RAM-based factoring helpers
+limb_file.rs # Disk-backed base 2^32 limbs for GPU/IO-friendly scans</p><p>Planned expansions:</p><p>src/
+repr/
+decimal_stream.rs
+bigint_ram.rs
+expr_ast.rs
+limb_file.rs
+sketch.rs
+ops/
+mod.rs # traits + shared arithmetic helpers
+stream.rs
+bigint.rs
+strategy/
+mod.rs
+peel_small.rs # trial division / small-factor peeling
+upgrade.rs # stream -> bigint conversion thresholds
+rho.rs # Pollard Rho (RAM mode)
+pminus1.rs # Pollard p-1 / p+1
+ecm.rs # ECM integration or wrapper
+report.rs # structure report / certificates
+gpu/
+mod.rs
+batch_mod.rs # GPU-assisted remainder scanning (planned)</p><hr><h2 id=cli-usage-current>CLI Usage (current)
+<a class=heading-link href=#cli-usage-current><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><h3 id=input-sources>Input sources
+<a class=heading-link href=#input-sources><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ul><li>Use <code>--input &lt;path></code> to stream decimal digits from a file (non-digit characters are ignored).</li><li>Use <code>--number "&lt;digits>"</code> to provide a short decimal string inline (it is written to a temp file, which is then streamed).</li><li>Use global <code>--binary</code> to treat <code>--input</code> as raw bytes encoding an integer; default byte order is big-endian, and <code>--little-endian</code> switches order.</li></ul><h3 id=commands>Commands
+<a class=heading-link href=#commands><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ul><li><code>analyze</code> — digit length + leading digits</li><li><code>digits</code> — return decimal digit count of input</li><li><code>log</code> — compute <code>log_base(N)</code> with optional integer-only output</li><li><code>pow</code> — compute <code>N^exponent</code> and emit decimal</li><li><code>mod</code> — compute <code>N mod p</code> streaming</li><li><code>div</code> — divide by a small <code>u32</code> divisor (streaming), write quotient to a file</li><li><code>write-decimal</code> — convert raw binary input bytes into decimal text output (<code>--binary</code>, optional <code>--little-endian</code>)</li><li><code>estimate-any-factor</code> — estimate trial-division scan time and likely success for finding any factor (supports <code>--digits</code> without an input file)</li><li><code>range-factors</code> — scan an inclusive integer range and return divisors in that range using streaming modulus checks (<code>--all</code> includes repeated factors for each divisor power that divides <code>N</code>), with optional GPU batch scanning via <code>--use-gpu</code>.<ul><li>With <code>--use-gpu</code>, divisors up to <code>u32::MAX</code> are scanned on the GPU and larger divisors in the same request are scanned on CPU.</li><li><code>--first</code> returns only the first factor found in ascending scan order; <code>--last</code> returns only the largest factor found in range.</li><li><code>--low-latency-first</code> only affects <code>--first</code> with GPU auto-batch and prioritizes first-result latency over peak throughput.</li><li><code>--limit &lt;N></code> stops after <code>N</code> matching factors are emitted.</li><li><code>--gpu-batch-size &lt;N></code> tunes divisors-per-GPU-chunk; <code>0</code> means auto-tune from adapter limits.</li></ul></li><li><code>peel</code> — run the streaming small-factor peeling strategy; progress is stored under <code>reports/</code> (see below).</li></ul><h3 id=examples-fish-shell>Examples (fish shell)
+<a class=heading-link href=#examples-fish-shell><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ol><li>Create a file with digits or supply inline:</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-fish data-lang=fish><span style=display:flex><span>printf <span style=color:#e6db74>&#34;123456789012345678901234567890\n&#34;</span> <span style=color:#f92672>&gt;</span> n.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Analyze</span> from file:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt analyze <span style=color:#a6e22e>--leading</span> <span style=color:#ae81ff>20</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Analyze</span> inline digits:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --number</span> <span style=color:#e6db74>&#34;20260228123456&#34;</span> analyze
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Modulus</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt mod <span style=color:#a6e22e>--p</span> <span style=color:#ae81ff>97</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.bin <span style=color:#a6e22e>--binary</span> <span style=color:#a6e22e>--little-endian</span> mod <span style=color:#a6e22e>--p</span> <span style=color:#ae81ff>97</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Binary</span> to decimal file:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.bin <span style=color:#a6e22e>--binary</span> <span style=color:#a6e22e>--little-endian</span> write-decimal <span style=color:#a6e22e>--out</span> n.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Digit</span> count:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt digits
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Logarithm</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt log <span style=color:#a6e22e>--base</span> <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt log <span style=color:#a6e22e>--base</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--integer-part</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Exponentiation</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --number</span> <span style=color:#e6db74>&#34;12&#34;</span> pow <span style=color:#a6e22e>--exponent</span> <span style=color:#ae81ff>20</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --number</span> <span style=color:#e6db74>&#34;12&#34;</span> pow <span style=color:#a6e22e>--exponent</span> <span style=color:#ae81ff>20</span> <span style=color:#a6e22e>--out</span> power.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Divide</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt div <span style=color:#a6e22e>--d</span> <span style=color:#ae81ff>3</span> <span style=color:#a6e22e>--out</span> q.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> writes quotient digits to q.txt and <span style=color:#a6e22e>prints</span> remainder<span style=color:#f92672>=</span>....
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>`div`, `analyze`, and `peel` currently support decimal input only; `--binary` is supported by `digits`, `log`, `pow`, `mod`, `write-decimal`, `estimate-any-factor`, and `range-factors`.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Any-factor</span> estimate:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- estimate-any-factor</span> <span style=color:#a6e22e>--digits</span> <span style=color:#ae81ff>1000000</span> <span style=color:#a6e22e>--factors-per-sec</span> <span style=color:#ae81ff>350000000</span> <span style=color:#a6e22e>--mode</span> unknown
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.bin <span style=color:#a6e22e>--binary</span> estimate-any-factor <span style=color:#a6e22e>--max-divisor</span> <span style=color:#ae81ff>100000000000</span> <span style=color:#a6e22e>--factors-per-sec</span> <span style=color:#ae81ff>350000000</span> <span style=color:#a6e22e>--mode</span> random
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> reports estimated scan time and, for random mode, an approximate success probability of hitting a small factor under the scan cutoff.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Range</span> divisor scan:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> prints a JSON array of all divisors from the inclusive range `<span style=color:#f92672>[</span><span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1000</span><span style=color:#f92672>]</span>` without loading the whole number into RAM.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>1000</span> <span style=color:#a6e22e>--all</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> includes repeated entries when `d<span style=color:#f92672>^</span>k` keeps dividing `N` for the same divisor `d`.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>1000</span> <span style=color:#a6e22e>--first</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> returns just the first factor in ascending order <span style=color:#f92672>(</span><span style=color:#a6e22e>or</span> `null` if none are found<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>1000</span> <span style=color:#a6e22e>--last</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> returns only the largest factor in range <span style=color:#f92672>(</span><span style=color:#a6e22e>or</span> `null` if none are found<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>1000</span> <span style=color:#a6e22e>--limit</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> stops after returning three matching factors.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.bin <span style=color:#a6e22e>--binary</span> range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>1000</span> <span style=color:#a6e22e>--use-gpu</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> treats `n.bin` as a raw big-endian integer and <span style=color:#a6e22e>uses</span> the GPU batch remainder engine.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.bin <span style=color:#a6e22e>--binary</span> <span style=color:#a6e22e>--little-endian</span> range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>1000</span> <span style=color:#a6e22e>--use-gpu</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> reads the same raw bytes as little-endian.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt range-factors <span style=color:#a6e22e>--start</span> <span style=color:#ae81ff>2</span> <span style=color:#a6e22e>--end</span> <span style=color:#ae81ff>10000000</span> <span style=color:#a6e22e>--use-gpu</span> <span style=color:#a6e22e>--gpu-batch-size</span> <span style=color:#ae81ff>65536</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> overrides the GPU divisor chunk size for throughput tuning.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Peel</span> small factors and <span style=color:#a6e22e>persist</span> reports:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt peel <span style=color:#a6e22e>--primes-limit</span> <span style=color:#ae81ff>500</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Reports
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>`peel` keeps resumable state inside `config.strategy.report_directory` <span style=color:#f92672>(</span><span style=color:#a6e22e>default</span> `reports/`<span style=color:#f92672>)</span>. You can inspect:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`factors.json` — list of peeled primes/exponents along with the input label.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`cofactor.txt` — the current working decimal digits for the remaining cofactor.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`sketch.json` — residues of the current cofactor against the primes listed in `config.strategy.sketch_primes`.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>The</span> next peel invocation will detect these files and <span style=color:#a6e22e>resume</span> from the last known quotient unless you pass `--reset`.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Configuration
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>`config/default.toml` exposes the tuning knobs you need:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`logging` / `stream` / `analysis` segments we already mention.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`policies` <span style=color:#f92672>(</span><span style=color:#a6e22e>modulus</span>/divisor limits, division budget<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`policies.ecm` <span style=color:#f92672>(</span><span style=color:#a6e22e>enable</span>/disable ECM, adjust stage <span style=color:#ae81ff>1</span>/<span style=color:#ae81ff>2</span> bounds, curve budget, and <span style=color:#a6e22e>RNG</span> seed for the Lenstra fallback that runs after the RAM upgrade when Pollard/p±<span style=color:#ae81ff>1</span> stall<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`strategy` — `primes_limit`, `batch_size`, `report_directory`, `sketch_primes`, and `use_gpu` control how aggressively `peel` sieves, how many primes are grouped for each batch scan, where state is persisted, and <span style=color:#a6e22e>whether</span> the GPU-backed batch modulo kernel is engaged.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>- </span>`range_factors` — `gpu_batch_size` controls `range-factors <span style=color:#a6e22e>--use-gpu</span>` chunking <span style=color:#f92672>(</span>`<span style=color:#ae81ff>0</span>` auto-tunes from adapter limits<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### GPU acceleration
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>When</span> you set `strategy.use_gpu <span style=color:#f92672>=</span> true`, the `peel` command streams digit chunks through a `wgpu` compute shader that updates every tracked remainder across the current prime batch in parallel. GPU initialization is treated as required in this mode, so failures abort the run instead of silently falling back.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Logging</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Set</span> RUST_LOG to control verbosity.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Examples</span> <span style=color:#f92672>(</span>fish<span style=color:#f92672>)</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>set</span> <span style=color:#a6e22e>-x</span> RUST_LOG info
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt analyze
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>More</span> detail:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>set</span> <span style=color:#a6e22e>-x</span> RUST_LOG <span style=color:#e6db74>&#34;num-chrunchr=debug,info&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>cargo</span> run <span style=color:#a6e22e>-- --input</span> n.txt mod <span style=color:#a6e22e>--p</span> <span style=color:#ae81ff>1000003</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Design</span> Notes: Streaming Modulus
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>For</span> DecimalStream, modulus is computed with a streaming Horner method:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Start</span> r <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>For</span> each digit d in the file:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        r <span style=color:#f92672>=</span> <span style=color:#f92672>(</span><span style=color:#a6e22e>r</span> * <span style=color:#ae81ff>10</span> + d<span style=color:#f92672>)</span> mod p
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> is:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>O</span><span style=color:#f92672>(</span><span style=color:#a6e22e>number_of_digits</span><span style=color:#f92672>)</span> time
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>O</span><span style=color:#f92672>(</span><span style=color:#a6e22e>1</span><span style=color:#f92672>)</span> memory
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Works</span> even when the input is many GBs of decimal text
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Division</span> by a small integer
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>div_u32_to_path</span><span style=color:#f92672>(</span><span style=color:#a6e22e>d</span>, out<span style=color:#f92672>)</span> implements streaming long division:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>reads</span> digits sequentially
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>maintains</span> a remainder
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>emits</span> quotient digits as it goes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>never</span> holds the whole number in memory
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> operation is crucial because it lets the strategy engine:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>detect</span> a small factor p
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>divide</span> it out immediately
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>continue</span> factoring the smaller quotient <span style=color:#f92672>(</span><span style=color:#a6e22e>still</span> disk-backed<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Compression</span> and “Structure” <span style=color:#f92672>(</span><span style=color:#a6e22e>planned</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Factoring</span> becomes infeasible for truly enormous numbers. So num-chrunchr will also produce a structure report with:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>size</span> estimates <span style=color:#f92672>(</span><span style=color:#a6e22e>digits</span>, approximate bits<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>residue</span> sketches: N mod p_i for many primes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>detected</span> special forms <span style=color:#f92672>(</span><span style=color:#a6e22e>when</span> possible<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>candidate</span> compressed representations
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Your</span> <span style=color:#e6db74>&#34;series of exponents&#34;</span> idea
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>We</span> will support sparse base-B representations:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    N <span style=color:#f92672>=</span> Σ d_i * B<span style=color:#f92672>^{</span>e_i<span style=color:#f92672>}</span> with <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;=</span> d_i <span style=color:#f92672>&lt;</span> B, decreasing e_i, skipping zero runs.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>There</span> are two variants:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Approximate</span> <span style=color:#f92672>(</span><span style=color:#a6e22e>stream-only</span>, very large N<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Use</span> <span style=color:#f92672>(</span><span style=color:#a6e22e>decimal_len</span>, leading_digits<span style=color:#f92672>)</span> to estimate floor<span style=color:#f92672>(</span><span style=color:#a6e22e>log_B</span><span style=color:#f92672>(</span><span style=color:#a6e22e>N</span><span style=color:#f92672>))</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Produce</span> a compressed description candidate for reporting/heuristics
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Exact</span> <span style=color:#f92672>(</span><span style=color:#a6e22e>requires</span> BigIntRam or <span style=color:#a6e22e>later</span> LimbFile subtraction<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Compute</span> the true sparse expansion and <span style=color:#a6e22e>store</span> the <span style=color:#f92672>(</span><span style=color:#a6e22e>d_i</span>, e_i<span style=color:#f92672>)</span> pairs
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Other</span> planned compression / heuristic tactics
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Near-square</span> detection <span style=color:#f92672>(</span><span style=color:#a6e22e>Fermat-style</span><span style=color:#f92672>)</span>: check if N ≈ a<span style=color:#f92672>^</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Near-power</span> detection: fit N ≈ a<span style=color:#f92672>^</span>k, represent as a<span style=color:#f92672>^</span>k +/- c
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Recognize</span> algebraic forms in ExprAst:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>x</span><span style=color:#f92672>^</span>k <span style=color:#a6e22e>- y</span><span style=color:#f92672>^</span>k, x<span style=color:#f92672>^</span>k + y<span style=color:#f92672>^</span>k
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>products</span> and <span style=color:#a6e22e>partial</span> factorizations
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>repunit</span>/Mersenne-like patterns <span style=color:#f92672>(</span><span style=color:#a6e22e>where</span> applicable<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Batch-GCD</span> tricks for small prime blocks <span style=color:#f92672>(</span><span style=color:#a6e22e>when</span> P fits in RAM<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Factoring</span> Strategy Roadmap
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Phase</span> <span style=color:#ae81ff>1</span>: Small-factor peeling <span style=color:#f92672>(</span><span style=color:#a6e22e>works</span> for huge files<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Sieve</span> primes up to a bound
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Compute</span> N mod p streaming
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>If</span> divisible, divide out and <span style=color:#a6e22e>repeat</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Persist</span> factors found
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> alone will completely factor many large numbers that contain small primes.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Phase</span> <span style=color:#ae81ff>2</span>: Upgrade to RAM BigInt when feasible
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>When</span> the remaining cofactor is small enough:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>load</span> it into BigIntRam
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>run</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>Pollard</span> Rho <span style=color:#f92672>(</span><span style=color:#a6e22e>Brent</span> variant<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>Pollard</span> p-<span style=color:#ae81ff>1</span> / p+<span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>primality</span> tests <span style=color:#f92672>(</span><span style=color:#a6e22e>probabilistic</span> first<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Phase</span> <span style=color:#ae81ff>3</span>: ECM and <span style=color:#a6e22e>heavier</span> tools
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>integrate</span> ECM <span style=color:#f92672>(</span><span style=color:#a6e22e>library</span> or <span style=color:#a6e22e>wrapper</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>later</span>: QS/NFS via wrappers
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Phase</span> <span style=color:#ae81ff>4</span>: GPU acceleration
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Primary</span> GPU target: batch remainder scanning:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>test</span> divisibility by huge batches of primes efficiently
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>keep</span> remainders on-device, stream chunks from disk
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>CPU</span> fallback always available
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>The</span> batch remainder engine now ships a `repr::LimbFile` helper so you can persist base-<span style=color:#ae81ff>2</span><span style=color:#f92672>^</span><span style=color:#ae81ff>32</span> limbs, and <span style=color:#a6e22e>the</span> `gpu::BatchModEngine`/CPU fallback already stream through those chunks via `wgpu` shaders or <span style=color:#a6e22e>CPU</span> loops depending on hardware.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>GPU</span> work will likely be most practical on systems with NVIDIA hardware, but the design will aim to keep the interface backend-agnostic.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Resumability</span> <span style=color:#f92672>(</span><span style=color:#a6e22e>planned</span><span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Long</span> runs should be restartable. Planned artifacts:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>factors</span>.json — factors found so far, exponents
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>sketch</span>.json — stored residues <span style=color:#f92672>(</span><span style=color:#a6e22e>p</span> <span style=color:#a6e22e>-&gt;</span> N mod p<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cofactor</span>.txt — current quotient as a new DecimalStream
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>report</span>.md — structure report / certificate of attempts
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>The</span> strategy engine will:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>detect</span> existing sidecars
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>resume</span> from last known cofactor and <span style=color:#a6e22e>factor</span> list
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Correctness</span> and <span style=color:#a6e22e>Safety</span> Notes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Streaming</span> routines treat non-digits as separators. This is convenient, but be mindful when using untrusted inputs.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Remainder</span> and <span style=color:#a6e22e>division</span> are exact for the digits seen.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>For</span> enormous numbers, “structure” output may include approximations unless explicitly marked exact.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>This</span> is research-grade tooling; <span style=color:#a6e22e>validate</span> results when used for anything high-stakes.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Contributing</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Contributions</span> are welcome, especially in these areas:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>prime</span> peeling strategy module <span style=color:#f92672>(</span><span style=color:#a6e22e>CPU</span> first<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>sketch</span> persistence format
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>RAM</span> BigInt upgrade + Pollard Rho implementation
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>expression</span> AST + modular evaluation
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>limb-file</span> representation and <span style=color:#a6e22e>GPU</span> batch mods
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Recommended</span> dev hygiene:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cargo</span> fmt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cargo</span> clippy
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cargo</span> test
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>(</span><span style=color:#a6e22e>Exact</span> CI tooling will be added as the crate grows.<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>License</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>This</span> project is licensed under CC0-<span style=color:#ae81ff>1</span>.<span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span><span style=color:#a6e22e>public</span> domain dedication<span style=color:#f92672>)</span>. See the license <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;CC0-1.0&#34;</span> entry in Cargo.toml.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>If</span> you add dependencies or <span style=color:#a6e22e>code</span>, please ensure the result remains compatible with CC0 distribution.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Status</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>MVP</span> stage:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    ✅ disk-backed decimal stream
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    ✅ streaming mod / div / analyze
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    🔜 small-factor peeling strategy
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    🔜 resumable factor reports + sketches
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    🔜 BigInt upgrade + Pollard Rho/p-<span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    🔜 expression/AST compressed representations
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    🔜 limb files + GPU batch remainder scanning
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Phase</span> <span style=color:#ae81ff>3</span> now includes Lenstra’s ECM via the `ecm` crate, with `<span style=color:#f92672>[</span>policies.ecm<span style=color:#f92672>]</span>` letting you toggle the fallback, adjust the stage <span style=color:#ae81ff>1</span>/<span style=color:#ae81ff>2</span> bounds, curve budget, and <span style=color:#a6e22e>RNG</span> seed that the RAM upgrade uses when Pollard/p±<span style=color:#ae81ff>1</span> are stuck.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>FAQ</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Why</span> not just store everything as a BigInt?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Because</span> once you pass a certain size, even “basic” operations become dominated by memory and <span style=color:#a6e22e>bandwidth</span>, and <span style=color:#a6e22e>you</span> lose the ability to do useful incremental work. Streaming representations let you:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>find</span> small factors
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>compute</span> sketches
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>generate</span> structure reports
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>reduce</span> the number
+</span></span><span style=display:flex><span>    …without ever holding it all in memory.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Will</span> this factor a <span style=color:#ae81ff>1000</span>-digit RSA number?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Not</span> by itself. For that, you’ll rely on advanced algorithms and <span style=color:#a6e22e>mature</span> implementations <span style=color:#f92672>(</span><span style=color:#a6e22e>ECM</span>, QS, NFS<span style=color:#f92672>)</span>, likely via wrappers or <span style=color:#a6e22e>integrations</span>.
+</span></span><span style=display:flex><span><span style=color:#a6e22e>What</span>’s the most valuable near-term addition?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>A</span> small prime peeling strategy that repeatedly:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>scans</span> primes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>finds</span> divisors via streaming mod
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>divides</span> via streaming long division
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>persists</span> factors and <span style=color:#a6e22e>continues</span> on the quotient
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>That</span> will immediately make the tool useful on very large inputs.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ChatGPT</span> can make mistakes. Check important info. See Cookie Preferences.
+</span></span></code></pre></div></article></section></div><footer class=footer><section class=container>©
 2026
 ·
 Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
