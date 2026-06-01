@@ -12,78 +12,128 @@
 </a><input type=checkbox id=menu-toggle>
 <label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/>Home</a></li><li class=navigation-item><a class=navigation-link href=/about/>About</a></li><li class=navigation-item><a class=navigation-link href=/projects/>Projects</a></li><li class=navigation-item><a class=navigation-link href=/contact/>Contact</a></li><li class=navigation-item><a class=navigation-link href=/search/>Search</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://sguzman.github.io/projects/readme/fathrs/>fathrs README</a></h1></header><p><a href=https://github.com/sguzman/fathrs class=external-link target=_blank rel=noopener>Repository</a> | <a href=https://deepwiki.com/sguzman/fathrs/ class=external-link target=_blank rel=noopener>DeepWiki</a></p><h1 id=fathrs>fathrs
 <a class=heading-link href=#fathrs><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h1><p>A tiny, no-bullshit dotfile linker.</p><p><code>fathrs</code> reads a <code>links.toml</code> file and creates <strong>symlinks</strong> from your target paths to your source paths. That is all. No templates. No variable expansion. No “rendering.” Just links, with loud logging so you can see exactly what happened.</p><p>This is essentially a minimal, single-binary “dotter-rs style” linker.</p><h2 id=features>Features
-<a class=heading-link href=#features><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><ul><li><strong>TOML-driven symlink map</strong> (<code>links.toml</code>)</li><li><strong>File symlinks</strong> and <strong>folder symlinks</strong></li><li><strong>Force mode</strong> to replace existing targets</li><li><strong>Dry run</strong> mode to preview actions</li><li><strong>Intense logging</strong> via <code>tracing</code> (spans + debug/trace details)</li><li>Cross-platform symlink creation (Unix + Windows)</li></ul><h2 id=non-features-on-purpose>Non-features (on purpose)
-<a class=heading-link href=#non-features-on-purpose><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><ul><li>No templates</li><li>No “config language”</li><li>No magic variable substitution</li><li>No copying files (it links)</li></ul><h2 id=install--build>Install / Build
-<a class=heading-link href=#install--build><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>cargo build --release
-</span></span></code></pre></div><p>Run the binary:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>cargo run --release -- [ARGS]
-</span></span></code></pre></div><h2 id=usage>Usage
-<a class=heading-link href=#usage><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=basic>Basic
-<a class=heading-link href=#basic><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>By default, <code>fathrs</code> looks for <code>links.toml</code> in the current working directory:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>fathrs
-</span></span></code></pre></div><h3 id=point-at-a-config-file>Point at a config file
-<a class=heading-link href=#point-at-a-config-file><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>fathrs --config path/to/links.toml
-</span></span></code></pre></div><h3 id=base-directory-resolution>Base directory resolution
-<a class=heading-link href=#base-directory-resolution><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Relative paths in <code>links.toml</code> are resolved under <code>--base-dir</code>.</p><p>If you do not pass <code>--base-dir</code>, it defaults to the <strong>directory containing</strong> the config file.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>fathrs --config examples/test1/links.toml --base-dir examples/test1
-</span></span></code></pre></div><h3 id=replace-existing-targets>Replace existing targets
-<a class=heading-link href=#replace-existing-targets><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>If the target already exists, <code>fathrs</code> refuses to overwrite it unless you pass <code>--force</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>fathrs --config links.toml --force
-</span></span></code></pre></div><h3 id=dry-run>Dry run
-<a class=heading-link href=#dry-run><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Print what would happen without modifying the filesystem:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>fathrs --config links.toml --dry-run
-</span></span></code></pre></div><h3 id=status-report>Status report
-<a class=heading-link href=#status-report><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Ensure every destination is where you expect it before touching the filesystem:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>fathrs --config links.toml --status
-</span></span></code></pre></div><p>Each entry logs <code>info</code> when the symlink already exists and <code>warn</code> when it does not, then logs again with <code>info</code> if the parent directory is writable or <code>warn</code> if it likely requires sudo to update. This flag does not create or remove anything.</p><p>If you only want to see warnings while running the status check, add <code>--warn-only</code> together with <code>--status</code>; this suppresses the informational messages and only emits the warning lines shown above.</p><h2 id=logging>Logging
+<span class=sr-only>Link to heading</span></a></h1><p><code>fathrs</code> is a small Rust CLI for deploying dotfiles and similar filesystem
+artifacts from a declarative <code>links.toml</code> file. It reads source-to-target
+mappings, resolves them relative to a configurable base directory, and then
+creates symlinks or copies files/directories into place.</p><p>The project is intentionally narrow in scope: it is a linker, not a full
+dotfile management framework. There is no templating layer, no profile engine,
+and no repository mutation logic beyond making the requested links or copies.</p><h2 id=what-it-does>What It Does
+<a class=heading-link href=#what-it-does><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li>Reads link definitions from a TOML config.</li><li>Creates symlinks for files or directories.</li><li>Supports replacing existing destinations with <code>--force</code>.</li><li>Supports dry runs before touching the filesystem.</li><li>Can probe configured destinations and report their current state.</li><li>Can mark entries or sections as <code>copy = true</code> instead of linking.</li><li>Can mark entries or sections as <code>sudo = true</code>, which uses <code>doas</code> for
+privileged filesystem operations.</li></ul><h2 id=current-behavior>Current Behavior
+<a class=heading-link href=#current-behavior><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The binary is named <code>fathrs</code>. The CLI exposes three modes:</p><ul><li><code>link</code>: apply the configuration by creating links or copies.</li><li><code>validate</code>: parse the config and fail early if it is invalid.</li><li><code>probe</code>: inspect destinations and report whether they are present, missing,
+symlinks, copies, or likely to require elevated privileges.</li></ul><p>If no subcommand is provided, the program defaults to <code>link</code> mode with
+<code>force = false</code> and <code>dry_run = false</code>.</p><h2 id=requirements>Requirements
+<a class=heading-link href=#requirements><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li>A Rust toolchain if you are building from source.</li><li>A filesystem/environment that supports symlinks.</li><li><code>doas</code> installed if you want to use <code>sudo = true</code> entries.</li><li>A <code>links.toml</code> file describing the desired links.</li></ul><h2 id=toolchain-notes>Toolchain Notes
+<a class=heading-link href=#toolchain-notes><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li>The repo includes a <a href=./rust-toolchain.toml>rust-toolchain.toml</a> pinned to
+<code>nightly</code> with <code>clippy</code>, <code>rustfmt</code>, and <code>rust-src</code>.</li><li>The release workflow in
+<a href=./.github/workflows/release.yml>.github/workflows/release.yml</a> builds and
+packages the binary on Ubuntu.</li></ul><h2 id=build-and-run>Build And Run
+<a class=heading-link href=#build-and-run><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Build the project:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo build
+</span></span></code></pre></div><p>Show CLI help:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --help
+</span></span></code></pre></div><p>Apply links from the default <code>links.toml</code> in the current directory:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- link
+</span></span></code></pre></div><p>Apply links from a specific config using the config directory as the default
+base directory:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --config ~/dotfiles/links.toml link
+</span></span></code></pre></div><p>Preview changes without writing anything:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --config ~/dotfiles/links.toml link --dry-run
+</span></span></code></pre></div><p>Replace existing targets when needed:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --config ~/dotfiles/links.toml link --force
+</span></span></code></pre></div><p>Validate the config:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --config ~/dotfiles/links.toml validate
+</span></span></code></pre></div><p>Probe current link state:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo run -- --config ~/dotfiles/links.toml probe
+</span></span></code></pre></div><h2 id=configuration-format>Configuration Format
+<a class=heading-link href=#configuration-format><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p><code>fathrs</code> expects a TOML document where each top-level table is a section. Each
+section contains source-path keys mapped to target-path values, plus optional
+section defaults.</p><p>At the section level, these flags are supported:</p><ul><li><code>copy = true|false</code></li><li><code>sudo = true|false</code></li></ul><p>Each mapping can be either:</p><ul><li>A string target path.</li><li>An object with <code>target</code> plus optional per-entry <code>copy</code> and <code>sudo</code> overrides.</li></ul><h3 id=minimal-example>Minimal Example
+<a class=heading-link href=#minimal-example><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span>[<span style=color:#a6e22e>dotfiles</span>]
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;.zshrc&#34;</span> = <span style=color:#e6db74>&#34;~/.zshrc&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;.gitconfig&#34;</span> = <span style=color:#e6db74>&#34;~/.gitconfig&#34;</span>
+</span></span></code></pre></div><h3 id=mixed-example>Mixed Example
+<a class=heading-link href=#mixed-example><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span>[<span style=color:#a6e22e>user</span>]
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;config/nvim&#34;</span> = <span style=color:#e6db74>&#34;~/.config/nvim&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;bin/tool&#34;</span> = { <span style=color:#a6e22e>target</span> = <span style=color:#e6db74>&#34;~/.local/bin/tool&#34;</span>, <span style=color:#a6e22e>copy</span> = <span style=color:#66d9ef>true</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>system</span>]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>sudo</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;/repo/services/example.service&#34;</span> = <span style=color:#e6db74>&#34;/etc/systemd/system/example.service&#34;</span>
+</span></span></code></pre></div><h3 id=path-resolution-rules>Path Resolution Rules
+<a class=heading-link href=#path-resolution-rules><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ul><li><code>--config</code> defaults to <code>links.toml</code>.</li><li><code>~</code> and <code>~/...</code> are expanded using <code>$HOME</code>.</li><li>Relative paths are resolved against <code>--base-dir</code> if provided.</li><li>If <code>--base-dir</code> is not provided, relative paths are resolved against the
+directory containing the config file.</li><li>Both source and destination paths go through this same resolution logic.</li></ul><p>This means a config can be kept inside a dotfiles repository and still use
+short relative paths cleanly.</p><h2 id=cli-reference>CLI Reference
+<a class=heading-link href=#cli-reference><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><h3 id=global-options>Global Options
+<a class=heading-link href=#global-options><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ul><li><code>--config &lt;PATH></code>: path to the TOML config file. Default: <code>links.toml</code>.</li><li><code>--base-dir &lt;PATH></code>: base directory used to resolve relative paths in the
+config. Defaults to the directory containing the config file.</li></ul><h3 id=link><code>link</code>
+<a class=heading-link href=#link><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Creates symlinks or copies according to the config.</p><ul><li><code>--force</code>: remove conflicting existing destinations first.</li><li><code>--dry-run</code>: report actions without changing the filesystem.</li></ul><p>Behavior notes:</p><ul><li>If a destination already exists and is the correct symlink, <code>fathrs</code> skips it.</li><li>If a destination exists and points elsewhere, <code>--force</code> is required.</li><li>Parent directories for destinations are created automatically.</li><li><code>copy = true</code> copies files/directories instead of making symlinks.</li><li><code>sudo = true</code> uses <code>doas</code> for directory creation, removal, copy, and link
+creation.</li></ul><h3 id=validate><code>validate</code>
+<a class=heading-link href=#validate><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Parses the config and exits successfully if it is syntactically valid for the
+current application parser.</p><p>The repository also includes a JSON schema at
+<a href=./schema/links.schema.json>schema/links.schema.json</a> that documents the
+expected shape of <code>links.toml</code>.</p><h3 id=probe><code>probe</code>
+<a class=heading-link href=#probe><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Reports the status of configured destinations without changing them.</p><ul><li><code>--warn-only</code>: suppress non-warning informational output and focus on
+problems/missing targets.</li></ul><p>Probe mode is useful for checking whether links are already present, whether a
+destination is a plain file instead of a symlink, and whether a destination
+path may require elevated privileges.</p><h2 id=logging>Logging
 <a class=heading-link href=#logging><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p><code>fathrs</code> uses <code>tracing</code> for structured logs. You can control verbosity with <code>RUST_LOG</code>.</p><p>Examples:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>RUST_LOG=info  fathrs --config links.toml
-</span></span><span style=display:flex><span>RUST_LOG=debug fathrs --config links.toml
-</span></span><span style=display:flex><span>RUST_LOG=trace fathrs --config links.toml
-</span></span></code></pre></div><p>If something goes wrong, run with <code>trace</code> and you will see every step: path resolution, metadata checks, directory creation, conflict handling, deletions, symlink creation, and post-checks.</p><h2 id=linkstoml-format><code>links.toml</code> format
-<a class=heading-link href=#linkstoml-format><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p><code>links.toml</code> contains sections. Each section contains one or more mappings:</p><ul><li><strong>Key</strong> = source path</li><li><strong>Value</strong> = target path</li><li>The program creates a symlink at <strong>target</strong> pointing to <strong>source</strong></li></ul><p>Example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span>[<span style=color:#a6e22e>test1</span>]
-</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;link-source/test1.txt&#34;</span> = <span style=color:#e6db74>&#34;link-target/test1.txt&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>test2</span>]
-</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;link-source/test2.txt&#34;</span> = <span style=color:#e6db74>&#34;link-target/test2.txt&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>folder</span>]
-</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;link-source/test-dir&#34;</span> = <span style=color:#e6db74>&#34;link-target/local-dir&#34;</span>
-</span></span></code></pre></div><p>Notes:</p><ul><li>Sections are only for organization; they do not affect behavior.</li><li>Paths can be relative or absolute. Paths starting with <code>~</code> expand to your home directory.</li><li>Relative paths are resolved under <code>--base-dir</code> (or the config directory by default).</li></ul><h2 id=schema>Schema
-<a class=heading-link href=#schema><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p><code>schema/links.schema.json</code> describes the same layout (section tables mapping sources to targets). <code>taplo.toml</code> has a rule that applies that schema to every <code>links.toml</code>, so Taplo-aware editors or <code>taplo check</code> will flag deviations automatically.</p><h2 id=behavior-details>Behavior details
-<a class=heading-link href=#behavior-details><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><h3 id=what-gets-created>What gets created
-<a class=heading-link href=#what-gets-created><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>For each mapping:</p><ul><li><p>Ensure the destination parent directory exists.</p></li><li><p>If the destination already exists:</p><ul><li><p>If it is a symlink pointing to the same place, skip.</p></li><li><p>Otherwise:</p><ul><li>error unless <code>--force</code></li><li>if <code>--force</code>, remove the existing path and recreate the link</li></ul></li></ul></li><li><p>Create a symlink at the destination pointing to the source.</p></li></ul><h3 id=metadata-vs-symlink_metadata><code>metadata</code> vs <code>symlink_metadata</code>
-<a class=heading-link href=#metadata-vs-symlink_metadata><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h3><p>Internally, <code>fathrs</code> uses <code>symlink_metadata</code> to avoid accidentally following symlinks while inspecting paths. This prevents “oops I traversed into the link” style bugs when handling directory links.</p><h2 id=example-layout-repo>Example layout (repo)
-<a class=heading-link href=#example-layout-repo><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p><code>examples/test1</code> contains a minimal scenario:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>examples/test1/
-</span></span><span style=display:flex><span>  links.toml
-</span></span><span style=display:flex><span>  link-source/
-</span></span><span style=display:flex><span>    test1.txt
-</span></span><span style=display:flex><span>    test2.txt
-</span></span><span style=display:flex><span>    test-dir/
-</span></span><span style=display:flex><span>      test3.txt
-</span></span><span style=display:flex><span>  link-target/
-</span></span></code></pre></div><p>Run it:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>RUST_LOG=trace cargo run --release -- \
-</span></span><span style=display:flex><span>  --config examples/test1/links.toml \
-</span></span><span style=display:flex><span>  --base-dir examples/test1 \
-</span></span><span style=display:flex><span>  --force
-</span></span></code></pre></div><p>After running, <code>link-target/</code> should contain symlinks:</p><ul><li><code>test1.txt</code> -> <code>link-source/test1.txt</code></li><li><code>test2.txt</code> -> <code>link-source/test2.txt</code></li><li><code>local-dir</code> -> <code>link-source/test-dir</code> (directory symlink)</li></ul><h2 id=testing>Testing
+<span class=sr-only>Link to heading</span></a></h2><p>The application uses <code>tracing</code> and <code>tracing-subscriber</code>.</p><ul><li>By default, it initializes an <code>EnvFilter</code> that falls back to
+<code>info,dotlink=trace</code> if <code>RUST_LOG</code> is not set.</li><li>You can increase verbosity in practice with something like:</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>RUST_LOG<span style=color:#f92672>=</span>trace cargo run -- --config ~/dotfiles/links.toml probe
+</span></span></code></pre></div><h2 id=testing>Testing
 <a class=heading-link href=#testing><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>There is an integration test that executes the binary against <code>examples/test1</code> and verifies that the expected symlinks exist and point to the correct sources.</p><p>Run:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>cargo test
-</span></span></code></pre></div><p>To see logs during the test run:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>cargo test -- --nocapture
-</span></span></code></pre></div><p>(You can also set <code>RUST_LOG=trace</code> to go nuclear.)</p><h2 id=license>License
-<a class=heading-link href=#license><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>MIT</p></article></section></div><footer class=footer><section class=container>©
+<span class=sr-only>Link to heading</span></a></h2><p>Run the test suite with:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cargo test
+</span></span></code></pre></div><p>The integration test in <a href=./tests/examples_test1.rs>tests/examples_test1.rs</a>
+executes the compiled binary against the example config under
+<a href=./examples/test1>examples/test1</a> and verifies that the expected symlinks are
+created.</p><h2 id=example-layout>Example Layout
+<a class=heading-link href=#example-layout><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The example config at <a href=./examples/test1/links.toml>examples/test1/links.toml</a>
+demonstrates three mappings:</p><ul><li>A file-to-file symlink.</li><li>Another file-to-file symlink in a separate section.</li><li>A directory symlink.</li></ul><p>The fixture source files live under <code>examples/test1/link-source</code>, and the test
+creates outputs under <code>examples/test1/link-target</code>.</p><h2 id=project-layout>Project Layout
+<a class=heading-link href=#project-layout><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>This repository is small, but it has a few distinct layers:</p><ul><li><a href=./src/main.rs>src/main.rs</a>: program entrypoint, config parsing, command
+dispatch, section iteration, and high-level execution flow.</li><li><a href=./src/cli.rs>src/cli.rs</a>: <code>clap</code> definitions for the CLI and <code>~</code> home-path
+expansion helpers.</li><li><a href=./src/link.rs>src/link.rs</a>: low-level filesystem behavior for path
+resolution, status probing, directory creation, copy operations, removal, and
+symlink creation.</li><li><a href=./tests/examples_test1.rs>tests/examples_test1.rs</a>: integration test that
+validates the example workflow end to end.</li><li><a href=./examples/test1>examples/test1</a>: sample config and fixture data used by the
+test suite.</li><li><a href=./schema/links.schema.json>schema/links.schema.json</a>: JSON schema
+documenting the shape of <code>links.toml</code>.</li><li><a href=./docs/reference>docs/reference</a>: supporting project documentation,
+including release policy, tool guidance, and template/reference material kept
+alongside the crate.</li><li><a href=./justfile>justfile</a>: common development tasks such as build, test, lint,
+coverage, release helpers, and CI-style local checks.</li><li><a href=./.github/workflows/release.yml>.github/workflows/release.yml</a>: GitHub
+Actions release workflow that builds, verifies, and packages the binary.</li><li><a href=./tmp>tmp</a>: scratch/example material used for local config experiments.</li></ul><h2 id=development-workflow>Development Workflow
+<a class=heading-link href=#development-workflow><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Common commands:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>just build
+</span></span><span style=display:flex><span>just test
+</span></span><span style=display:flex><span>just clippy
+</span></span><span style=display:flex><span>just fmt
+</span></span><span style=display:flex><span>just ci
+</span></span></code></pre></div><p>The <code>just ci</code> target runs the repo&rsquo;s broader local verification workflow,
+including formatting checks, TOML validation, link checking, linting, docs, and
+tests. Some of those tools are optional local dependencies outside Cargo itself
+such as <code>taplo</code>, <code>biome</code>, <code>typos</code>, and <code>lychee</code>.</p><h2 id=design-constraints>Design Constraints
+<a class=heading-link href=#design-constraints><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The crate currently favors explicit and inspectable behavior over abstraction:</p><ul><li>Config is plain TOML.</li><li>Source and destination resolution is deterministic.</li><li>Filesystem changes are observable through logs and dry-run mode.</li><li>Existing destinations are never replaced silently unless <code>--force</code> is used.</li><li>Privileged operations are opt-in per section or per entry.</li></ul><p>That narrow scope is the point of the tool. If you want a dotfile manager with
+templating, environment overlays, or secret materialization, this repository is
+not trying to be that.</p><h2 id=limitations-and-caveats>Limitations And Caveats
+<a class=heading-link href=#limitations-and-caveats><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li>The implementation is Unix-oriented. Symlink creation uses Unix APIs, and the
+<code>sudo</code> path relies on <code>doas</code>.</li><li>Filesystem permission checks are best-effort and platform-sensitive.</li><li><code>validate</code> confirms parser compatibility but does not currently apply every
+possible semantic filesystem check up front.</li><li>Copy mode and symlink mode intentionally share the same config structure, so
+it is on the operator to use the right behavior for each destination.</li></ul><h2 id=related-docs>Related Docs
+<a class=heading-link href=#related-docs><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li><a href=./docs/reference/RELEASE.md>docs/reference/RELEASE.md</a>: release and SemVer
+policy.</li><li><a href=./docs/reference/ai/POST-CHANGES.md>docs/reference/ai/POST-CHANGES.md</a>:
+post-change verification checklist.</li><li><a href=./docs/reference/tools/cliff.md>docs/reference/tools/cliff.md</a>: changelog
+and <code>git-cliff</code> guidance.</li></ul></article></section></div><footer class=footer><section class=container>©
 2026
 ·
 Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
