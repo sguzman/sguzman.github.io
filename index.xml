@@ -1,0 +1,2568 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Salvador Guzman</title><link>https://sguzman.github.io/</link><description>Recent content on Salvador Guzman</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 12 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sguzman.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Computer Research</title><link>https://sguzman.github.io/notes/cs/</link><pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/notes/cs/</guid><description>&lt;h1 id="computer-research"&gt;
+ Computer Research
+ &lt;a class="heading-link" href="#computer-research"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A list of topics in computer science that I wish to iterate on one day. I believe them to be important cornerstones for our technological utopian future&lt;/p&gt;
+&lt;h2 id="topics"&gt;
+ Topics
+ &lt;a class="heading-link" href="#topics"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust compiler macro that imports file resources so that comptime optimizations can be done&lt;/li&gt;
+&lt;li&gt;Defining grammars for data files (JSON, CSV, HTTP Request) and slurping data into file (failing on bad parse)&lt;/li&gt;
+&lt;li&gt;Rust compiler macro that imports HTTP requests into source code for comptime optimizations&lt;/li&gt;
+&lt;li&gt;Splitting compile time into compile_n generations for further optimization&lt;/li&gt;
+&lt;li&gt;Pre-runtime compile time vs Pre-written compile time&lt;/li&gt;
+&lt;li&gt;Using smart and comprehensive compiler to verify integrity of runtime process&lt;/li&gt;
+&lt;li&gt;Meta programming language environment for types&lt;/li&gt;
+&lt;li&gt;Type theoretical environment to model the type dynamics of other programming languages&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Math Brags</title><link>https://sguzman.github.io/notes/math-brags/</link><pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/notes/math-brags/</guid><description>&lt;h1 id="math-brags"&gt;
+ Math Brags
+ &lt;a class="heading-link" href="#math-brags"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A list of my math brags. Stuff I discovered independently from founders in my own research&lt;/p&gt;
+&lt;h1 id="stuff"&gt;
+ Stuff
+ &lt;a class="heading-link" href="#stuff"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Linear Homotopy &lt;code&gt;(1-a)*f[x]+ a*g[x]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Multiplicative Mixture vs Additive Mixture
+&lt;ul&gt;
+&lt;li&gt;The first is interwoven: ABABABABA. The second is isolated chunks: AAAAABBBBBB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Using the dot-product to determine functional resonance&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Math Research</title><link>https://sguzman.github.io/notes/math/</link><pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/notes/math/</guid><description>&lt;h1 id="math-research"&gt;
+ Math Research
+ &lt;a class="heading-link" href="#math-research"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A list of topics in mathematics that I have researched to some degree OR wish to research. Mind the aspirational tone&lt;/p&gt;
+&lt;h2 id="topics"&gt;
+ Topics
+ &lt;a class="heading-link" href="#topics"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Convolution with $e^{-x^2}$ as a &lt;em&gt;cursor&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Convolution $\int{e^{-x^2}f(x)(g(x-t))}dt$ as incremental application of function &lt;code&gt;f(x)&lt;/code&gt; onto &lt;code&gt;g(x)&lt;/code&gt; substrate&lt;/li&gt;
+&lt;li&gt;Cartesian plane as a binary switch board on some field&lt;/li&gt;
+&lt;li&gt;Unit Circle Projection&lt;/li&gt;
+&lt;li&gt;Developing programming primitives from real analysis operands&lt;/li&gt;
+&lt;li&gt;Solving collatz conjecture using operator theory&lt;/li&gt;
+&lt;li&gt;Having a function reference itself&lt;/li&gt;
+&lt;li&gt;Develop an operator that can &lt;code&gt;iterate&lt;/code&gt; a number an indefinite number of times&lt;/li&gt;
+&lt;li&gt;Integral transform for length of orbits of collatz conjecture&lt;/li&gt;
+&lt;li&gt;Modified collatz conjecture that adds &lt;code&gt;collatz(1) = 0&lt;/code&gt; and &lt;code&gt;collatz(0) = 0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Deconstructing a function by dot product of its derivative to other function&lt;/li&gt;
+&lt;li&gt;Scanning line across a function with dot product&lt;/li&gt;
+&lt;li&gt;Multiplying by x as inbuing of curvature&lt;/li&gt;
+&lt;li&gt;All single-term polynomials have complete curvature of 2&lt;/li&gt;
+&lt;li&gt;Curvature as a measure of information&lt;/li&gt;
+&lt;li&gt;Curvature as a program to steer function&lt;/li&gt;
+&lt;li&gt;A torus that culminates at a pinched point at one side&lt;/li&gt;
+&lt;li&gt;Algebra as a crude mechanic process&lt;/li&gt;
+&lt;li&gt;Algebraic expressions as a sequence of associative function compositions&lt;/li&gt;
+&lt;li&gt;Integral transforms extract and count properties of functions&lt;/li&gt;
+&lt;li&gt;Fractional application of a function&lt;/li&gt;
+&lt;li&gt;Treating [0,1] as a torus&lt;/li&gt;
+&lt;li&gt;Sinify a function&lt;/li&gt;
+&lt;li&gt;Curve-filling (space filling) curve&lt;/li&gt;
+&lt;li&gt;An equation as a manipulatable algebraic object&lt;/li&gt;
+&lt;li&gt;Compressed executable that is semantically equivalent to uncompressed&lt;/li&gt;
+&lt;li&gt;An expression as a program&lt;/li&gt;
+&lt;li&gt;Normalizing a program to a mathematical expression&lt;/li&gt;
+&lt;li&gt;All math fields should have some way of uniquely mappings their idiosyncratic algebraic objects back to integers&lt;/li&gt;
+&lt;li&gt;Curves are an infinite series of linear terms&lt;/li&gt;
+&lt;li&gt;The more curvy, the more linear terms is needed to duplicated it&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;e&lt;/code&gt; is the function number(?)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;e&lt;/code&gt; is a self-referential number(?)&lt;/li&gt;
+&lt;li&gt;Inside a sum is a more expressive language&lt;/li&gt;
+&lt;li&gt;Function that spits out number of rounds needed for a space curve to hit a random (a,b) in R^2&lt;/li&gt;
+&lt;li&gt;Nested operations maximize the expressiveness of the syntax&lt;/li&gt;
+&lt;li&gt;Generalized unit measure - allows you to measure anything measurable relatively&lt;/li&gt;
+&lt;li&gt;Rigorous formalism for how mapping Reals (and reals subsets) to Reals functions - for example that just take a line and stretch it&lt;/li&gt;
+&lt;li&gt;f[x]+f&amp;rsquo;[x] I&lt;/li&gt;
+&lt;li&gt;f[x]+ ArcCurvature[{x,f[x]},x] I&lt;/li&gt;
+&lt;li&gt;x ^2 == c; algebraic diff between sqrt and div by x&lt;/li&gt;
+&lt;li&gt;integration as picking random algorithm to add up area&lt;/li&gt;
+&lt;li&gt;all integrations can be set from a to b to 0 to 1&lt;/li&gt;
+&lt;li&gt;there is a direct line ( no need for Euler-Lagrange optimization) in a set if the geometry of the boundary is a convex hull on the interior set&lt;/li&gt;
+&lt;li&gt;does homeomorphism always imply homeomorphism between boundaries?&lt;/li&gt;
+&lt;li&gt;Does Euler-Lagrange equation map to an easier problem and then solve it?&lt;/li&gt;
+&lt;li&gt;What is the manual analog of calculus of variation?&lt;/li&gt;
+&lt;li&gt;Discrete/Continuous invariant calculus&lt;/li&gt;
+&lt;li&gt;Using the Laplacian operator to incrementally/analytically convert any function to another in a continuous manner&lt;/li&gt;
+&lt;li&gt;using complex numbers to model curvature&lt;/li&gt;
+&lt;li&gt;Representing $R^2$ as a matrix centered around the origin with infinite rows and columns&lt;/li&gt;
+&lt;li&gt;Representing a curve on $R^2$ using a field of boolean values&lt;/li&gt;
+&lt;li&gt;Representing a curve as a $R^2$ matrix of 1s and 0s where the 1s are the position of points of the curve&lt;/li&gt;
+&lt;li&gt;Multiplying two $R^2$ matrix curves to find intersection points&lt;/li&gt;
+&lt;li&gt;Extending the dimensions of a row as a operation by adding or subtracting new rows or columns with 0s&lt;/li&gt;
+&lt;li&gt;For every class of functions (harmonics, elliptic, polynomials), there is a function involving the exponent of e that can emulate it to some degree&lt;/li&gt;
+&lt;li&gt;Nested riemann sum: While taking a riemann sum, use another riemann to calculate the error of the raw sum&lt;/li&gt;
+&lt;li&gt;Using the Dirac Delta function as a zero-detector. Feed it a formula that = 0. Integrate it dirac delta function; then what results is a step function that takes a step function that takes a step at every 0&lt;/li&gt;
+&lt;li&gt;Creating a relativized version of $R^2$ where the identity curve , $f(x)=x$, is equivalent to another function like $x^2$ or $sin(x)$&lt;/li&gt;
+&lt;li&gt;Understanding the derivative of a function in reference to another function&lt;/li&gt;
+&lt;li&gt;Function semantics that comphrensively handles recursive call bombs&lt;/li&gt;
+&lt;li&gt;Extracting range from integral and creating a dedicated &amp;ldquo;iterator&amp;rdquo; object (similar to programming)&lt;/li&gt;
+&lt;li&gt;Exp[x]== x^(x/Log[x])&lt;/li&gt;
+&lt;li&gt;Measure using number of open problems as relative health of mathematic formalisms&lt;/li&gt;
+&lt;li&gt;Analytic formalisms for function application to incrementally apply and compose functions&lt;/li&gt;
+&lt;li&gt;Tool must contain a commensurate amount of infinity as the problem&lt;/li&gt;
+&lt;li&gt;Duality between structure and dynamics. Structure can be interpreted as dynamics if you re-interpret one of the dimensions of structure as a time&lt;/li&gt;
+&lt;li&gt;Destructuring a real curve into holomorphic function. Re[f(x)] is scaling and Im[f(x)] is rotation&lt;/li&gt;
+&lt;li&gt;Creating a general functional iterator that takes a function and composes itself once. This general functional iterator can be easily composed&lt;/li&gt;
+&lt;li&gt;Symbol fatigue and math anxiety&lt;/li&gt;
+&lt;li&gt;Holomorphic functional calculus for iterated real functions of one variable&lt;/li&gt;
+&lt;li&gt;Formally overloading functions to accept points, lines, surfaces, etc.&lt;/li&gt;
+&lt;li&gt;Destructuring function application into eucleaean operations&lt;/li&gt;
+&lt;li&gt;General Integral transform for destructuring constructed algebraic objects&lt;/li&gt;
+&lt;li&gt;Localizing euclidean operations&lt;/li&gt;
+&lt;li&gt;Computing analytical and continuous version of function application&lt;/li&gt;
+&lt;li&gt;Using infinitary methods to surmount cryptographic techniques&lt;/li&gt;
+&lt;li&gt;Creating an alternative to cartesian coordinate system using dot product and function/vector. Its similar to polar but has two 0s and a 1 and -1&lt;/li&gt;
+&lt;li&gt;Outline of a proof for collatz that mentions random iteration across evens eventually resolves to 1&lt;/li&gt;
+&lt;li&gt;Normal form of an expression as the &amp;ldquo;compressed&amp;rdquo; symbolic version of un-normalizable variants&lt;/li&gt;
+&lt;li&gt;When does linear homotopy allow homeomorphism?&lt;/li&gt;
+&lt;li&gt;Linear homotopy as a fractional function application&lt;/li&gt;
+&lt;li&gt;Using ambience space to exogenously study the connectedness and holes of a topological space&lt;/li&gt;
+&lt;li&gt;Distinguishing between homology and connectedness&lt;/li&gt;
+&lt;li&gt;Treating all topological spaces as compact. Non-connected segments are considered addendum aggregate spaces nominally considered together&lt;/li&gt;
+&lt;li&gt;Mapping neighborhoods onto a chart then onto a topological space then tracking neighborhoods across homeomorphism&lt;/li&gt;
+&lt;li&gt;Neighborhoods preserved in turbulent flows&lt;/li&gt;
+&lt;li&gt;Measuring turbulence using measure of Euclidean operations&lt;/li&gt;
+&lt;li&gt;Nesting euclidean plane and operations into domain specific spaces&lt;/li&gt;
+&lt;li&gt;Linear homotopy as a semigroup of bounded linear operators&lt;/li&gt;
+&lt;li&gt;An infinite set contains itself in the same way a recursive function contains itself&lt;/li&gt;
+&lt;li&gt;Process oriented function semantics to represent recursive functions&lt;/li&gt;
+&lt;li&gt;Process theory and the intractability of its formalisms introduce&lt;/li&gt;
+&lt;li&gt;Dichotomy between intractable but computable formalisms vs non-computable but tractable formalisms&lt;/li&gt;
+&lt;li&gt;All curves correspond to a straight line in respective space&lt;/li&gt;
+&lt;li&gt;Using operator theory to study dynamics of genome state and genetic mutation&lt;/li&gt;
+&lt;li&gt;Using operator theory to study any arbitrary state space and dynamics thereof&lt;/li&gt;
+&lt;li&gt;Representing a matrix as a infinite matrix with 0s being filled in around the matrix&lt;/li&gt;
+&lt;li&gt;Zero-matrix (all slots are 0) algebraic closure&lt;/li&gt;
+&lt;li&gt;Computing intersections by: create a $R^2$ matrix for points for each curve (1 for point, 0 elsewhere), multiply both matrices, somehow zoom in on non-zero points&lt;/li&gt;
+&lt;li&gt;Addition as disjoint, additive semantics&lt;/li&gt;
+&lt;li&gt;UI 2D user artifacts as wishlist for mathematical tools&lt;/li&gt;
+&lt;li&gt;Scrolling on a subset of R^2&lt;/li&gt;
+&lt;li&gt;Scroll.fx function that can scroll a subset of R^2 like a scrollbar can&lt;/li&gt;
+&lt;li&gt;Encoding order-related information in object to achieve commutativity&lt;/li&gt;
+&lt;li&gt;Multiplicative properties as local properties and additive properties as global properties&lt;/li&gt;
+&lt;li&gt;Taxonomy of useful math functions&lt;/li&gt;
+&lt;li&gt;Deterministic formalism for random phenomena&lt;/li&gt;
+&lt;li&gt;Achieving convergence of quantum mechanics and general relativity&lt;/li&gt;
+&lt;li&gt;DeMorgan laws as percolation of global and local properties&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Reading Log</title><link>https://sguzman.github.io/notes/reading-stuff/</link><pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/notes/reading-stuff/</guid><description>&lt;h1 id="reading-log"&gt;
+ Reading Log
+ &lt;a class="heading-link" href="#reading-log"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="summary"&gt;
+ Summary
+ &lt;a class="heading-link" href="#summary"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Stuff I want to read.&lt;/p&gt;
+&lt;h2 id="description"&gt;
+ Description
+ &lt;a class="heading-link" href="#description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This file outlines the genre of textual content I would like to read. It is offered as a general scope of my interests and as a way to solicit recommendations from others. This almost be a todo list of what I will end up reading.&lt;/p&gt;</description></item><item><title>Researching</title><link>https://sguzman.github.io/notes/to-research/</link><pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/notes/to-research/</guid><description>&lt;h1 id="researching"&gt;
+ Researching
+ &lt;a class="heading-link" href="#researching"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Things I want to look into&lt;/p&gt;
+&lt;h2 id="list"&gt;
+ List
+ &lt;a class="heading-link" href="#list"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="technology"&gt;
+ Technology
+ &lt;a class="heading-link" href="#technology"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;h4 id="os"&gt;
+ OS
+ &lt;a class="heading-link" href="#os"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Plan 9
+&lt;ul&gt;
+&lt;li&gt;A more faithful attempt at &amp;ldquo;Everything is a file&amp;rdquo; variant of unix&lt;/li&gt;
+&lt;li&gt;Interesting ideas within the realm of distributed computing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;NixOS
+&lt;ul&gt;
+&lt;li&gt;Linux distro with a functional package manager that preserves previous states&lt;/li&gt;
+&lt;li&gt;Has its own prog lang for configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Gentoo
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Build everything yourself&amp;rdquo; linux&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;GoBo Linux
+&lt;ul&gt;
+&lt;li&gt;Distro of linux that does not respect standard File System Hierarchy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;GNU Guix
+&lt;ul&gt;
+&lt;li&gt;Like NixOS but with using Scheme prog lang for configuration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;*BSDs
+&lt;ul&gt;
+&lt;li&gt;Competitor to linux&lt;/li&gt;
+&lt;li&gt;Originators of a lot of good ideas that were ported over to linux&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="filesystems"&gt;
+ Filesystems
+ &lt;a class="heading-link" href="#filesystems"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;ZFS
+&lt;ul&gt;
+&lt;li&gt;filesystem that lets you pool together drives like raid&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/johang/btfs" class="external-link" target="_blank" rel="noopener"&gt;BTFS&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Mount a torrent as folder and access content on demand&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="data-structures"&gt;
+ Data Structures
+ &lt;a class="heading-link" href="#data-structures"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Y-fast_trie" class="external-link" target="_blank" rel="noopener"&gt;Y-Fast trie&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;data structure for storing integers from a bounded domain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="langs"&gt;
+ Langs
+ &lt;a class="heading-link" href="#langs"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.red-lang.org/" class="external-link" target="_blank" rel="noopener"&gt;Red Lang&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Modern Incarnation of REBOL&lt;/li&gt;
+&lt;li&gt;Extremely expressive prog lang&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Haskell
+&lt;ul&gt;
+&lt;li&gt;Purely functional prog lang&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nixos.org/nix/manual/#ch-expression-language" class="external-link" target="_blank" rel="noopener"&gt;Nix&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;NixOS config prog lang&lt;/li&gt;
+&lt;li&gt;Purely functional&lt;/li&gt;
+&lt;li&gt;Declarative&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.luna-lang.org/" class="external-link" target="_blank" rel="noopener"&gt;Luna&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Visual prog lang&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://elm-lang.org/" class="external-link" target="_blank" rel="noopener"&gt;Elm&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Prog lang for designing functional UIs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/J_%28programming_language%29" class="external-link" target="_blank" rel="noopener"&gt;J&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Tacit programming&lt;/li&gt;
+&lt;li&gt;Function-level programming&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Nim_%28programming_language%29" class="external-link" target="_blank" rel="noopener"&gt;Nim&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;???&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://coconut-lang.org/" class="external-link" target="_blank" rel="noopener"&gt;Coconut&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Functional variant of python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hylang/hy" class="external-link" target="_blank" rel="noopener"&gt;Hy&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Lispy version of python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="programming-paradigm"&gt;
+ Programming Paradigm
+ &lt;a class="heading-link" href="#programming-paradigm"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Tacit_programming" class="external-link" target="_blank" rel="noopener"&gt;Tacit Programming&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;???&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Function-level_programming" class="external-link" target="_blank" rel="noopener"&gt;Function-Level Programming&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;???&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="shells"&gt;
+ Shells
+ &lt;a class="heading-link" href="#shells"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/ab25cq/xyzsh" class="external-link" target="_blank" rel="noopener"&gt;xyzsh&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;???&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="tools"&gt;
+ Tools
+ &lt;a class="heading-link" href="#tools"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pijul.org/" class="external-link" target="_blank" rel="noopener"&gt;Pijul&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust-based version control based on the theory of patches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Wayland
+&lt;ul&gt;
+&lt;li&gt;Graphics system&lt;/li&gt;
+&lt;li&gt;Competitor to X11&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Glendix
+&lt;ul&gt;
+&lt;li&gt;Linux port of Plan 9 functionality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://languagemachine.sourceforge.net/index.html" class="external-link" target="_blank" rel="noopener"&gt;a toolkit for language and grammar&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="math"&gt;
+ Math
+ &lt;a class="heading-link" href="#math"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Homotopical Patch Theory
+&lt;ul&gt;
+&lt;li&gt;Theory behind pijul&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Complex_analysis" class="external-link" target="_blank" rel="noopener"&gt;Complex Analysis&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Analysis with complex numbers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Functional_analysis" class="external-link" target="_blank" rel="noopener"&gt;Functional Analysis&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Study of vector spaces endowed with limit-related structure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Spectral_theory" class="external-link" target="_blank" rel="noopener"&gt;Spectral Theory&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Extension of theories of eigenvalues and eigenvectors to operators&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="computer-science"&gt;
+ Computer Science
+ &lt;a class="heading-link" href="#computer-science"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Semi-Thue_system" class="external-link" target="_blank" rel="noopener"&gt;Semi-Thue System&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Formal rewriting system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Purely_functional_programming" class="external-link" target="_blank" rel="noopener"&gt;Purely functional programming&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Programming paradigm that treats all computation as mathematical functions&lt;/li&gt;
+&lt;li&gt;Easy to cache computation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Type_theory" class="external-link" target="_blank" rel="noopener"&gt;Type Theory&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Alternative to set theory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Homotopy_type_theory" class="external-link" target="_blank" rel="noopener"&gt;Homotopy Type Theory&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Types realized as abstract spaces and mapping of one type to another as paths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Combinatory_logic" class="external-link" target="_blank" rel="noopener"&gt;Combinatory Logic&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Alterinative to lambda calculus&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Treatises</title><link>https://sguzman.github.io/notes/treatise/</link><pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/notes/treatise/</guid><description>&lt;h1 id="treatises"&gt;
+ Treatises
+ &lt;a class="heading-link" href="#treatises"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Drafts for treatises that I am working on&lt;/p&gt;
+&lt;h1 id="treatise-ideas"&gt;
+ Treatise ideas
+ &lt;a class="heading-link" href="#treatise-ideas"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; truth as a process&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; What is a Progressive Institution&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; What is in a book&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; Syntax of Closed Form Polynomial Iteration&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; death by manager&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; Aggression as Strategic Iteration&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; interpration-agnostic interpretation of algebraic equations&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; infinity as intractibility of domain specific toolset&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; non-naive interpretation of recursion to offer halting-proof encoding of infinite recursion&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; math as divinely inspired&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; logic as justified cause and effect&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; symbols as ambiguity circumscription&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; How not to read a book (disabusing perfect comprehension)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Banality of epistomology (books are interchangeable in knowledge content because wisdom is fungible)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Male violence as the norm (we cannot see it because it is assumed)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Defending elitism (elitist tendencies is part of human nature)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Using only carrots to persuade (reference the book &lt;em&gt;Europe Undivided&lt;/em&gt; for arguments of success)&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Commutativity as Fungibility&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Towards an Algebra of the Fungible&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Super axiom and the axiom of choice&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; I Dream of Femininity: Understanding the Phenomology of Transgenderism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Communism Transcended&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 1 as information compression ratio for derivative algebraic objects&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Objects that contain their own pedagogy&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Applying the theory of semigroups of bounded linear operators to the collatz conjecture&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Critical Math theory: non-marxist, anti-bazaar outlook, pro-pedagogical, anti-mythological&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Mathematics by trinkets vs Mathematics by Industrial Use&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Exp[x]== x^(x/Log[x])&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Interpretation mathematic results narrowly vs. Unbounded expansive interpretations&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Innovation ennervates more innovation by establishing as a platform speculative research for future researchers to scaffold off of&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Using number of open math problems as the strength of current formalisms&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Predicting the speculative turn of mathematics given competition from computer science that exclusively focuses on utility and function&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Mathematics as an anti-normal science in the thomas kuhn sense&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Symbol fatigue and math anxiety&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Critical Progress Theory&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Critical Progressive Theory&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Heidegger&amp;rsquo;s Ready-to-hand vs. present-at-hand Concept&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; The problem with &amp;ldquo;Win at all Costs&amp;rdquo; politics&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Endangering the Utopia by using Marxist Praxis&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Balancing the Trade-offs of liberal sexual attitudes vs traditional attitudes in terms of women&amp;rsquo;s safety&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Parasocial relationships in context: what can replace parasocial relationships?&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; &amp;ldquo;More Left than you&amp;rdquo;: Understanding leftist praxis&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Enumerating the domains and singleton instances of the contradiction in progressive politics in terms of expectations and actual outcomes&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Understanding Wokeness by putting it in context&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; How Jerma985 interwove himself into the fabric of internet lore&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Understanding Jerma&amp;rsquo;s and Ster&amp;rsquo;s relationship&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; What is the Left?&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Outlining the contours of the utopia&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Utopic lore: battling boredom&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Boredom as the pre-eminent concern of liberal societies&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; The inescapability of the hedonism treadmill&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Reduced disgust sensitivity in Asiatic cultures, defined by narrow genomes&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Tolerable dysfunction as political praxis: democracy and neoliberalism as &amp;ldquo;good enough&amp;rdquo; for now but eyeing innovative improvements&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; What a genius do: studying personal behavioral habits as a mark of genius&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; How to measure the impact of speculative volumes on security prices&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Rumor-proof finances through comprehensive transparency&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Hostile ignorance. Weaponizing silence for political currency. Example: Communists never undertaking a systematic analysis of the fall of the USSR&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Chinese Chauvanism and its detrimental affect on international diplomacy&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Manager Chauvanism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Consumption as the small death&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Muted Sensory Experience of Schizoid Patients&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Political Dynamics: Studying and categorizing political ideology and innovations&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Authoritarianism as the norm in mathematical manipulations&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Politic Progress by Conspiracy&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Conspiracies we can see: hidden power plays&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Conspiratorial Designs as the norm&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Histrionics as cultural praxis&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Satire is no more: satire as naked, unabashed continuation of polemics by histrionic means&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Political topologies and the politics of institutional capture&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; &amp;ldquo;Socialism for the rich&amp;rdquo;: Understanding the micro-phenomena of socialism by subsidy&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Fascism by practice vs Fascism by theory&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Grievance mongering as political praxis&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Human Chauvanism: A theory&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Producer Market vs. Consumer Market&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Markets defined by their audience&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Marxist Mathematics&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Recessive genes meeting as survival of genetic unit across adversarial and hostile terrain&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Culture as built off of shared unsatiated phenotypes with no biological resolution&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Technology as culture&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Technology as gap-filling of phenotype&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Cultural technologies&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Birth should be voluntary&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Cultural progression as formal indeterminism by design&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Bounded feminism vs. Unbounded feminism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Working Class Aristocracy&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Socialist Pluralism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Elite Progressivism vs. Proletarian Progressivism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Managerial Elitism as Fascism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Managerialism as Formalized Rent Seeking&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; brain layout as computation modules and consciousness as another module&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Growth of the subjective world in the 20th century&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Monarchism as totalitarianism in a subjective-dry world&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; No subjective mind prior to modernism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Charisma as resource-specific aggression&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Heidegger&amp;rsquo;s Ready-to-hand vs. present-at-hand Concept Extended with Myth-at-Hand&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Anti-cheat software and adversarial interfaces&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Adversarial domains&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Politics as elite competition and intrigue&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Video game economies&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Interconnectedness of video game economies&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Real economy as summation of smaller economies&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Fastened recursive anchor points&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Identity politics as the new caste system&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Conservative politics as preserving hierarchies&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Calvacade of ever-more tyrannical managers&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Economy as satisfying elite desires&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Axie Infinity: Extractive software&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Extractive economic regimes&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Symbolic analysis and computational regimes&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Computation regimes as semantic universes&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Stock price movement as summation of all speculative regimes at play&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Revolte against the rational&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Rationalizing process as political praxis&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; The Great Flattening: the fall of the our dear elites&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; The fall of the mangerial elite expert state&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Debt is not the issue: forcing repayment is&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Alternative debt: no repayment but virtual power accrues to the lender&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Inflaming contradictions as political praxis&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Contradiction of the expert state in the age of AI&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Elite index: measuring the strength and entrenchment of the elite&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Taxes as a symbolic act&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Parasocial as a necessity&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Semantic drift: the word itch (from intransitive to transitive) as an example&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Neuron as a biological unit of computation&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Neurons as computation in an adversarial environment&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Producer prices vs consumer prices&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Producer purchasing power vs consumer purchasing power&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Producer inflation vs consumer inflation&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Research by headlines&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Research by entries&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Secular Jewish culture serving conservative Jewish interests vs secular Jewish culture serving secular, modern interests&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Fascism as a competitive species of negative socialism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Judaic God as a metaphor for the Jewish people&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Post-Leftism: Beyond socialism and capitalism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Iterative speculation&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Speculative horizon&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Truth regimes&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Truth regime entrenchment&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Truth regime as an amalgamation of schools of thought&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; De-schooling truth regimes&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Life of the organism as extension of ontogeny&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Dependent type theory for safety: create array index type from array + Length type&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Granular type theory: enabling granular type safety incrementally&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Incremental topological microservices&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Structural-fication of functional programming&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Modern functional programming as a species of functional programming&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Study of imposing structure on sets as Structure theory: from sets to hilbert spaces&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Numbers as evidence of computation&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Reality as the computation layer of consciousness&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Decentralized Socialism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Modeling chemical dynamics with lambda calculus&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Modeling chemical structure with lambda calculus&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Modeling chemical reactions with game of life&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Masculinity in service of the feminine&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; The topology of computation&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; The post-Marxist utopia&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Marxism as the ideology that will consume liberalism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Elite Marxism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; &amp;ldquo;Simp for thee but not for me&amp;rdquo;: A study in game theoretical semiotics&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Abstract game theory applied to Academia Arena&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Psychoticism and the creative process&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Pscyhoticism and Neuroticism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Psychoticism and gender nonconformity&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Schizoid tendencies&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; &amp;ldquo;The world will belong to us&amp;rdquo;: Schizoid social dynamics in the long run&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Psychotic echos in a topological space&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Elite chauvinism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Elite Chauvinistic Register #1&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Histrionic Polemic Register #1&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Linguistic Pragmatic Register Theory&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Linguistic Pragmatic Taxonomy&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Charisma Theory&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Proof Assistants as granular logical computation&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Sound through ears as delta stimuli; sight through eyes as continuous &amp;ldquo;on&amp;rdquo; stimuli&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Analytic languages as rendering words to be more operational&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Satire as anti-humor&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Psychoanalysis as applied Psychological Chauvinism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Success is their downfall: Forecasting downstream consequences of political unfeasible programs&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Proper nouns with set-like semantics&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Common nouns as anonymous entities&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Nomadic Intellectualism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Sedentary Intellectualism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Pragmatic as the receiving end of a socially conscious semantic delivery and my register theory as the delivery mechanism&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Intellectual scoping&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Intellectual scoping as a sign of intellectual maturity&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Culture warriors: In search of casus belli&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Incremental Utopia&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; Utopia achieved through incremental commutative utopic operators&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>atmos README</title><link>https://sguzman.github.io/projects/readme/atmos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/atmos/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/atmos" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/atmos/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="atmos-engine"&gt;
+ Atmos Engine
+ &lt;a class="heading-link" href="#atmos-engine"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Atmos is a Bevy-powered playground where every scene and interaction is driven by TOML. It pairs lightweight configuration with mesh caching, physics, and a handful of action systems so you can prototype novel ideas (like the slicing workflow outlined in &lt;code&gt;tmp/cut.md&lt;/code&gt;) without rebuilding the engine every time.&lt;/p&gt;
+&lt;h2 id="repository-layout"&gt;
+ Repository layout
+ &lt;a class="heading-link" href="#repository-layout"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Cargo.toml&lt;/code&gt;, &lt;code&gt;Cargo.lock&lt;/code&gt; – the Bevy/Rapier/serde manifest that bundles the runtime and feature flags.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;assets/&lt;/code&gt; – runtime content:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;config.toml&lt;/code&gt; – global settings for the window, camera, debug flags, and mesh cache paths.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scenes/&lt;/code&gt; – one folder per scene. Each scene houses:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;world.toml&lt;/code&gt; – entry point that wires up camera, bounds, gravity, render tweaks, lights, and scene transitions.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;actions.toml&lt;/code&gt;, &lt;code&gt;input.toml&lt;/code&gt;, &lt;code&gt;entities.toml&lt;/code&gt;, and the &lt;code&gt;entities/&lt;/code&gt; directory – templates and overrides for triggers, controls, and spawnable primitives.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tmp/&lt;/code&gt; under a scene can be used for experimentation (e.g., &lt;code&gt;tmp/cut.md&lt;/code&gt; captures design notes for the slicing pipeline).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;textures/&lt;/code&gt;, &lt;code&gt;dialogue/&lt;/code&gt;, and &lt;code&gt;overlay/&lt;/code&gt; contain auxiliary assets referenced from the TOML files.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.cache/meshes/&lt;/code&gt; – precomputed mesh exports (including sliced halves) written by the mesh cache system during &lt;code&gt;cargo run -- bake&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;schemas/&lt;/code&gt; – JSON schemas intended to validate the TOML files for scenes, entities, and actions so you know what fields are available.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/&lt;/code&gt; – everything that runs at runtime:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;main.rs&lt;/code&gt; and &lt;code&gt;app_config.rs&lt;/code&gt; parse the CLI, load &lt;code&gt;assets/config.toml&lt;/code&gt;, register plugins, and bootstrap the &lt;code&gt;Menu&lt;/code&gt; ↔ &lt;code&gt;Main&lt;/code&gt; app states.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scenes/&lt;/code&gt; contains the domain logic: TOML loaders, mesh cache helpers, bounds/despawn systems, input/action wiring, and the &lt;code&gt;spawn&lt;/code&gt; tree that instantiates entities, overlays, lights, and the cutting workflow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scenes/spawn/cut.rs&lt;/code&gt; implements the modal cutting system: it looks for &lt;code&gt;ShapeConfig&lt;/code&gt; entries marked &lt;code&gt;cuttable&lt;/code&gt;, selects them while you hold the cut key via the preview plane, and uses the plane-slicing utilities described in &lt;code&gt;tmp/cut.md&lt;/code&gt; to split cubes into two cached halves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="toml-driven-behavior"&gt;
+ TOML-driven behavior
+ &lt;a class="heading-link" href="#toml-driven-behavior"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Entities&lt;/strong&gt; – Each template under &lt;code&gt;assets/scenes/&amp;lt;scene&amp;gt;/entities/&lt;/code&gt; defines a &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;transform&lt;/code&gt;, &lt;code&gt;shape&lt;/code&gt;, &lt;code&gt;material&lt;/code&gt;, and &lt;code&gt;physics&lt;/code&gt;. Set &lt;code&gt;shape.cuttable = true&lt;/code&gt; (only box shapes currently) to let the slicer target that object. Templates blend overrides from &lt;code&gt;entities.toml&lt;/code&gt; and spawn tables that reuse material assets while obeying physics overrides.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Actions &amp;amp; Triggers&lt;/strong&gt; – Actions (see &lt;code&gt;schemas/actions.schema.json&lt;/code&gt;) describe rates, ranges, and colors for gestures like &lt;code&gt;grab&lt;/code&gt;, &lt;code&gt;shoot&lt;/code&gt;, and &lt;code&gt;cut&lt;/code&gt;. Triggers map keys/mouse/volumes to those action IDs. The cut system uses the &lt;code&gt;cut&lt;/code&gt; action, whose &lt;code&gt;angle_step_degrees&lt;/code&gt;, &lt;code&gt;rotation_sensitivity&lt;/code&gt;, &lt;code&gt;preview_size&lt;/code&gt;, &lt;code&gt;preview_thickness&lt;/code&gt;, &lt;code&gt;preview_color&lt;/code&gt;, &lt;code&gt;preview_opacity&lt;/code&gt;, and &lt;code&gt;preview_emissive&lt;/code&gt; come straight from TOML. You can also switch the action &lt;code&gt;mode&lt;/code&gt; between &lt;code&gt;hold&lt;/code&gt; (default) and &lt;code&gt;toggle&lt;/code&gt;, control how scroll-wheel ticks advance the preview via &lt;code&gt;wheel_rotation_sensitivity&lt;/code&gt;, and set the confirmation button through &lt;code&gt;confirm_button&lt;/code&gt; (defaults to &lt;code&gt;right&lt;/code&gt; click) so the slicer never shares a binding with shooting.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Input&lt;/strong&gt; – The camera and system overlays are configured in &lt;code&gt;input.toml&lt;/code&gt;; overlays toggle on demand while the cut system relies on the &lt;code&gt;c&lt;/code&gt; key (or whatever trigger points at the cut action) as a hold-mode entry point.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="cutting-workflow"&gt;
+ Cutting workflow
+ &lt;a class="heading-link" href="#cutting-workflow"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Selection&lt;/strong&gt; – Hold the cut action key (or flip &lt;code&gt;mode = &amp;quot;toggle&amp;quot;&lt;/code&gt; to keep it latched). While in that mode, every &lt;code&gt;CuttableShape&lt;/code&gt; under a dynamic rigid body is raycasted so the preview plane appears on the cube you&amp;rsquo;re pointing at (the plane uses the color configured via &lt;code&gt;actions.params.preview_color&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Preview&lt;/strong&gt; – Once an entity is selected, a transparent 2D preview (plane) spawns at the center and rotates about its vertical axis according to your mouse motion (and scroll-wheel rolls, which also advance via &lt;code&gt;wheel_rotation_sensitivity&lt;/code&gt;). The angle snaps to the configuration’s resolution (&lt;code&gt;angle_step_degrees&lt;/code&gt;), so you get crisp cuts without fighting continuous rotation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Slice&lt;/strong&gt; – Press the configured confirmation button (default &lt;code&gt;right&lt;/code&gt; click) once the plane is aligned to invoke the slicing routine. The cutter:
+&lt;ul&gt;
+&lt;li&gt;Transforms the plane into the object’s local space.&lt;/li&gt;
+&lt;li&gt;Clips the cube’s triangles into two halves.&lt;/li&gt;
+&lt;li&gt;Caps the exposed boundary to keep the volumes manifold.&lt;/li&gt;
+&lt;li&gt;Builds mesh/collider pairs, caches the result under &lt;code&gt;assets/.cache/meshes/&lt;/code&gt;, and spawns two new entities with the original material and sane physical properties (splitting mass/restitution/friction accordingly).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cache reuse&lt;/strong&gt; – Subsequent cuts with identical dimensions/angle reuse the cached mesh handles, so even repeated slicing stays responsive.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;References&lt;/strong&gt; – For the geometry/physics reasoning behind these steps, consult &lt;code&gt;tmp/cut.md&lt;/code&gt;; it is a living notes file that explains the plane-slicing approach, collider heuristics, and physics trade-offs that inspired the implementation.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="running-the-project"&gt;
+ Running the project
+ &lt;a class="heading-link" href="#running-the-project"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo run&lt;/code&gt; boots the menu/main states, loads &lt;code&gt;assets/config.toml&lt;/code&gt;, and begins playing the default scene (roughly derived from &lt;code&gt;assets/scenes/main/world.toml&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cargo run -- bake&lt;/code&gt; precomputes meshes/meshes caches in &lt;code&gt;assets/.cache/meshes/&lt;/code&gt;, which helps the runtime skip expensive geometry generation for primitives and sliced halves.&lt;/li&gt;
+&lt;li&gt;Modify any TOML under &lt;code&gt;assets/scenes/...&lt;/code&gt; and the custom TOML asset loader automatically re-imports it when you reload the scene. Use the JSON schema files in &lt;code&gt;schemas/&lt;/code&gt; to validate new templates before launching.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="next-steps"&gt;
+ Next steps
+ &lt;a class="heading-link" href="#next-steps"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Want new primitives? Add a template under a scene’s &lt;code&gt;entities/&lt;/code&gt;, mark it &lt;code&gt;cuttable&lt;/code&gt; if you want the slicer to target it, and extend &lt;code&gt;schemas/3d.entity.schema.json&lt;/code&gt; if you add fields.&lt;/li&gt;
+&lt;li&gt;Need advanced slicing? Follow the ideas in &lt;code&gt;tmp/cut.md&lt;/code&gt; to expand beyond cubes, improve cap triangulation, or adjust the physics colliders/RigidBody mass split logic.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>brazen README</title><link>https://sguzman.github.io/projects/readme/brazen/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/brazen/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/brazen" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/brazen/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="brazen"&gt;
+ Brazen
+ &lt;a class="heading-link" href="#brazen"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Brazen is a Rust browser-platform skeleton built around an &lt;code&gt;egui&lt;/code&gt;/&lt;code&gt;eframe&lt;/code&gt; shell and a future Servo-backed content engine. The current repo is intentionally the first durable platform layer: configuration, runtime paths, tracing, a capability-oriented permission model, a feature-gated engine seam, and tests that keep those pieces stable while the rendering backend evolves.&lt;/p&gt;
+&lt;h2 id="current-status"&gt;
+ Current Status
+ &lt;a class="heading-link" href="#current-status"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The app currently launches a desktop shell with:&lt;/p&gt;</description></item><item><title>browsr README</title><link>https://sguzman.github.io/projects/readme/browsr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/browsr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/browsr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/browsr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="browsr"&gt;
+ browsr
+ &lt;a class="heading-link" href="#browsr"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;browsr&lt;/code&gt; is a local HTTP + WebSocket bridge for live browser session introspection.&lt;/p&gt;
+&lt;p&gt;It is designed to work with the &lt;code&gt;xpose&lt;/code&gt; Edge/Chromium extension:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The extension connects to &lt;code&gt;browsr&lt;/code&gt; over WebSocket.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;browsr&lt;/code&gt; exposes stable HTTP endpoints for multiple local clients.&lt;/li&gt;
+&lt;li&gt;Clients can list windows/tabs and request tab snapshots (HTML/text/selection).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="architecture"&gt;
+ Architecture
+ &lt;a class="heading-link" href="#architecture"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xpose&lt;/code&gt; extension -&amp;gt; WebSocket -&amp;gt; &lt;code&gt;browsr&lt;/code&gt; (&lt;code&gt;/ws&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;client apps / CLI / GUI -&amp;gt; HTTP -&amp;gt; &lt;code&gt;browsr&lt;/code&gt; (&lt;code&gt;/v1/...&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;browsr&lt;/code&gt; sends command envelopes to the extension:&lt;/p&gt;</description></item><item><title>bulk-merge README</title><link>https://sguzman.github.io/projects/readme/bulk-merge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/bulk-merge/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/bulk-merge" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/bulk-merge/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="bulk-merge"&gt;
+ bulk-merge
+ &lt;a class="heading-link" href="#bulk-merge"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;bulk-merge&lt;/code&gt; is a Rust CLI that ingests large bibliographic metadata dumps into
+PostgreSQL as usable, queryable tables.&lt;/p&gt;
+&lt;h2 id="phase-1-scope-current"&gt;
+ Phase 1 scope (current)
+ &lt;a class="heading-link" href="#phase-1-scope-current"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;LibGen-only ingestion&lt;/li&gt;
+&lt;li&gt;Dedicated tables per dump kind (&lt;code&gt;fiction&lt;/code&gt; vs &lt;code&gt;compact&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Resumable imports and incremental updates tracked in &lt;code&gt;bm_meta&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Ingest speed first: bulk load via &lt;code&gt;COPY&lt;/code&gt;, create indexes after load&lt;/li&gt;
+&lt;li&gt;1-to-1 field mapping from the MySQL dump to PostgreSQL columns (no semantic normalization yet)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="non-goals-phase-1"&gt;
+ Non-goals (Phase 1)
+ &lt;a class="heading-link" href="#non-goals-phase-1"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Cross-source merging / identity resolution&lt;/li&gt;
+&lt;li&gt;Fuzzy matching / deduplication graphs&lt;/li&gt;
+&lt;li&gt;Universal canonical “work/author” schema&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="quick-start"&gt;
+ Quick start
+ &lt;a class="heading-link" href="#quick-start"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure Postgres is running (see &lt;code&gt;tmp/docker-compose.yaml&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>bw-password-dedup README</title><link>https://sguzman.github.io/projects/readme/bw-password-dedup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/bw-password-dedup/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/bw-password-dedup" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/bw-password-dedup/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="bw-passport-dedup"&gt;
+ bw-passport-dedup
+ &lt;a class="heading-link" href="#bw-passport-dedup"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Deduplicate Bitwarden JSON exports by hashing each item after removing volatile fields
+(like IDs and timestamps). Produces a cleaned export you can re-import.&lt;/p&gt;
+&lt;p&gt;By default it uses &lt;code&gt;config.toml&lt;/code&gt;, which defines what counts as a duplicate.&lt;/p&gt;
+&lt;h2 id="build"&gt;
+ Build
+ &lt;a class="heading-link" href="#build"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo build --release
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="usage"&gt;
+ Usage
+ &lt;a class="heading-link" href="#usage"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; --input tmp/bitwarden_export_20260128034458.json &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; --output tmp/bitwarden_export_20260128034458.dedup.json &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; --pretty
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="config"&gt;
+ Config
+ &lt;a class="heading-link" href="#config"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The tool looks for &lt;code&gt;config.toml&lt;/code&gt; in the current directory (or use &lt;code&gt;--config &amp;lt;FILE&amp;gt;&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>calibre-updatr-rs README</title><link>https://sguzman.github.io/projects/readme/calibre-updatr-rs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/calibre-updatr-rs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/calibre-updatr-rs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/calibre-updatr-rs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="calibre-metadata-updatr-rust"&gt;
+ Calibre Metadata Updatr (Rust)
+ &lt;a class="heading-link" href="#calibre-metadata-updatr-rust"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Bulk metadata updater for Calibre EPUB books with idempotent processing.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Iterate through a Calibre library and update metadata for EPUB books.&lt;/li&gt;
+&lt;li&gt;Prefer books that are English or missing language.&lt;/li&gt;
+&lt;li&gt;Fetch richer metadata when current data is incomplete.&lt;/li&gt;
+&lt;li&gt;Embed metadata directly into EPUB files after updating the Calibre DB.&lt;/li&gt;
+&lt;li&gt;Avoid reprocessing the same book on subsequent runs by default.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="behavior"&gt;
+ Behavior
+ &lt;a class="heading-link" href="#behavior"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Idempotent by default&lt;/strong&gt;: each book is processed only once (per book id).
+This is controlled by &lt;code&gt;REPROCESS_ON_METADATA_CHANGE&lt;/code&gt; in &lt;code&gt;src/main.rs&lt;/code&gt;.
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;false&lt;/code&gt; (default): skip any book already processed successfully.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;true&lt;/code&gt;: reprocess a book when its metadata snapshot hash changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Failure handling&lt;/strong&gt;: if a step fails, the error is recorded and the script continues.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embedding&lt;/strong&gt;: successful runs embed metadata into EPUB files via &lt;code&gt;calibredb embed_metadata&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="configuration"&gt;
+ Configuration
+ &lt;a class="heading-link" href="#configuration"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;All settings live in &lt;code&gt;config.toml&lt;/code&gt; under categorized tables (&lt;code&gt;[logging]&lt;/code&gt;, &lt;code&gt;[library]&lt;/code&gt;, &lt;code&gt;[state]&lt;/code&gt;, &lt;code&gt;[formats]&lt;/code&gt;, &lt;code&gt;[calibredb]&lt;/code&gt;, &lt;code&gt;[content_server]&lt;/code&gt;, &lt;code&gt;[fetch]&lt;/code&gt;, &lt;code&gt;[policy]&lt;/code&gt;, &lt;code&gt;[scoring]&lt;/code&gt;).
+Note: &lt;code&gt;config.toml&lt;/code&gt; can include credentials; consider excluding it from version control.&lt;/p&gt;</description></item><item><title>cfr-to-text README</title><link>https://sguzman.github.io/projects/readme/cfr-to-text/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/cfr-to-text/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/cfr-to-text" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/cfr-to-text/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="cfr-to-text"&gt;
+ cfr-to-text
+ &lt;a class="heading-link" href="#cfr-to-text"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Extract text from CFR XML files (Code of Federal Regulations) into plain text or JSONL.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;
+ Quick start
+ &lt;a class="heading-link" href="#quick-start"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Build&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo build
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Use the default config (cfr-to-text.toml)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- extract
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Override inputs and output dir&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- extract tmp/cfr/title-3 --output-dir out --format plain
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Emit JSONL with element and file metadata&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- extract tmp/cfr/title-3 --format jsonl --emit-element --emit-source
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="cli-overview"&gt;
+ CLI overview
+ &lt;a class="heading-link" href="#cli-overview"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cfr-to-text [OPTIONS] &amp;lt;COMMAND&amp;gt;
+
+Commands:
+ extract Extract text from CFR XML inputs
+ init-config Write a default config file
+ print-config Print the effective config as TOML
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Key extract flags:&lt;/p&gt;</description></item><item><title>chatgpt-tool-shim README</title><link>https://sguzman.github.io/projects/readme/chatgpt-tool-shim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/chatgpt-tool-shim/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/chatgpt-tool-shim" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/chatgpt-tool-shim/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="chatgpt-tool-shim"&gt;
+ ChatGPT Tool Shim
+ &lt;a class="heading-link" href="#chatgpt-tool-shim"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;ChatGPT Tool Shim is a Chrome/Edge extension that adds client-side pseudo-tool-calling to the ChatGPT website. It watches visible assistant output for structured &lt;code&gt;&amp;lt;tool_call&amp;gt;&lt;/code&gt; blocks, executes allowlisted browser or local tools through the extension runtime, and injects &lt;code&gt;&amp;lt;tool_result&amp;gt;&lt;/code&gt; blocks back into the conversation.&lt;/p&gt;
+&lt;p&gt;This is not a backend integration, not a real OpenAI plugin, and not a true MCP client inside OpenAI&amp;rsquo;s servers. The extension is the tool runtime. ChatGPT web is only the UI surface.&lt;/p&gt;</description></item><item><title>chunkr README</title><link>https://sguzman.github.io/projects/readme/chunkr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/chunkr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/chunkr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/chunkr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="chunkr"&gt;
+ Chunkr
+ &lt;a class="heading-link" href="#chunkr"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Chunkr is a CLI for extracting text + metadata from Calibre libraries, cleaning
+and chunking that text, and inserting the resulting chunks into Qdrant and
+Quickwit. Configuration is centralized in a single TOML file so that all
+properties, policies, and paths are controlled in one place.&lt;/p&gt;
+&lt;p&gt;This README formalizes the intended interface and configuration for the project.&lt;/p&gt;
+&lt;h2 id="goals"&gt;
+ Goals
+ &lt;a class="heading-link" href="#goals"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Deterministic, idempotent extraction from Calibre (skip already-processed
+files).&lt;/li&gt;
+&lt;li&gt;Robust handling for large EPUB/PDF files (chunk during extraction to avoid
+memory spikes).&lt;/li&gt;
+&lt;li&gt;Clean, normalized text and metadata-enriched chunks for downstream search and
+embeddings.&lt;/li&gt;
+&lt;li&gt;Straightforward insertion into Qdrant + Quickwit with sensible defaults.&lt;/li&gt;
+&lt;li&gt;Extensive logging for long-running pipelines.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="commands"&gt;
+ Commands
+ &lt;a class="heading-link" href="#commands"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="extract"&gt;
+ &lt;code&gt;extract&lt;/code&gt;
+ &lt;a class="heading-link" href="#extract"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Extracts plaintext and metadata from a Calibre library into a target folder.&lt;/p&gt;</description></item><item><title>cite-otter README</title><link>https://sguzman.github.io/projects/readme/cite-otter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/cite-otter/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/cite-otter" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/cite-otter/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="cite-otter"&gt;
+ Cite-Otter
+ &lt;a class="heading-link" href="#cite-otter"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;img src="branding/cite-otter-primary.png" alt="Cite-Otter"&gt;&lt;/p&gt;
+&lt;div align="center"&gt;
+ &lt;a href="https://github.com/sguzman/cite-otter/issues"&gt;
+ &lt;img src="https://img.shields.io/github/issues/sguzman/cite-otter?color=EF4F10&amp;labelColor=023A7C&amp;style=for-the-badge" alt="issues"&gt;
+ &lt;/a&gt;
+ &lt;a href="https://github.com/sguzman/cite-otter/stargazers"&gt;
+ &lt;img src="https://img.shields.io/github/stars/sguzman/cite-otter?color=EF4F10&amp;labelColor=023A7C&amp;style=for-the-badge" alt="stars"&gt;
+ &lt;/a&gt;
+ &lt;a href="https://github.com/sguzman/cite-otter"&gt;
+ &lt;img src="https://img.shields.io/github/repo-size/sguzman/cite-otter?color=EF4F10&amp;labelColor=023A7C&amp;style=for-the-badge" alt="repo size"&gt;
+ &lt;/a&gt;
+ &lt;a href="LICENSE"&gt;
+ &lt;img src="https://img.shields.io/static/v1.svg?style=for-the-badge&amp;label=License&amp;message=MIT&amp;logoColor=ffffff&amp;colorA=023a7c&amp;colorB=ef4f10" alt="license"&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;Cite-Otter is a Rust re-implementation of the Ruby
+&lt;a href="https://github.com/inukshuk/anystyle" class="external-link" target="_blank" rel="noopener"&gt;&lt;code&gt;AnyStyle&lt;/code&gt;&lt;/a&gt; reference parser. The project
+retraces AnyStyle’s parser/finder/training workflows while embracing Rust idioms
+for parsing, modeling, and CLI tooling.&lt;/p&gt;
+&lt;h2 id="whats-here"&gt;
+ What’s Here
+ &lt;a class="heading-link" href="#whats-here"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reference alignment&lt;/strong&gt;: &lt;code&gt;docs/migration/REFERENCE.md&lt;/code&gt; records the Ruby repo
+structure, dependencies, build/training surfaces, and validation steps we aim
+to mirror.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implementation strategy&lt;/strong&gt;: &lt;code&gt;docs/cite-otter/ROADMAP.md&lt;/code&gt; breaks the work into
+SemVer milestones (&lt;code&gt;v0.1.0&lt;/code&gt; → &lt;code&gt;v1.0.0&lt;/code&gt;), prioritizing CLI/parser foundations &amp;amp;
+tests first, then training/finder logic, and finally documentation + parity
+polish.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Docs layout&lt;/strong&gt;: &lt;code&gt;docs/reference/&lt;/code&gt; for shared rules, &lt;code&gt;docs/migration/&lt;/code&gt; for
+migration notes, and &lt;code&gt;docs/&amp;lt;project-name&amp;gt;/&lt;/code&gt; for project-specific docs (here:
+&lt;code&gt;docs/cite-otter/&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cargo scaffold&lt;/strong&gt;: &lt;code&gt;Cargo.toml&lt;/code&gt;, &lt;code&gt;src/&lt;/code&gt;, and Rust tooling files are ready for
+the first wave of parser and CLI work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="getting-started"&gt;
+ Getting Started
+ &lt;a class="heading-link" href="#getting-started"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Install Rust (2024 edition) per &lt;code&gt;rust-toolchain.toml&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Build/test via &lt;code&gt;cargo build&lt;/code&gt; / &lt;code&gt;cargo test&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;docs/cite-otter/ROADMAP.md&lt;/code&gt; to decide which phase you are tackling and
+refer to &lt;code&gt;docs/migration/REFERENCE.md&lt;/code&gt; for Ruby behaviors to match.&lt;/li&gt;
+&lt;li&gt;The CLI &lt;code&gt;parse&lt;/code&gt; command now accepts &lt;code&gt;--format json|bibtex|csl&lt;/code&gt; so you can
+request multiple export styles from the same parsing pipeline.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;cite-otter sample --format json|bibtex|csl&lt;/code&gt; to see the richer metadata
+map emitted by the parser/formatter (journal → container-title, collection →
+series, DOI/URL, etc.).&lt;/li&gt;
+&lt;li&gt;Normalize output fields with synced abbreviation assets:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cite-otter normalization-sync
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; --repo https://github.com/inukshuk/anystyle
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; --output-dir target/normalization
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cite-otter parse
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; --normalization-dir target/normalization
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; --format json &lt;span style="color:#e6db74"&gt;&amp;#34;Doe, J. Proc. Test. Proceedings of Testing.\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; City: Univ. Press, 2020.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="goals-beyond-the-docs"&gt;
+ Goals Beyond the Docs
+ &lt;a class="heading-link" href="#goals-beyond-the-docs"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Preserve AnyStyle’s CLI surface (&lt;code&gt;parse&lt;/code&gt;, &lt;code&gt;find&lt;/code&gt;, &lt;code&gt;train&lt;/code&gt;, &lt;code&gt;check&lt;/code&gt;, &lt;code&gt;delta&lt;/code&gt;)
+and repo layout so users can migrate workflows.&lt;/li&gt;
+&lt;li&gt;Build a parser/finder module suite with pluggable adapters that can be reused
+both as a CLI and as a library.&lt;/li&gt;
+&lt;li&gt;Keep documentation, tests, and release notes synchronized with the roadmap’s
+SemVer rhythm.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="verification-profiles"&gt;
+ Verification Profiles
+ &lt;a class="heading-link" href="#verification-profiles"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Fast local checks (default): &lt;code&gt;just verify-fast&lt;/code&gt; or
+&lt;code&gt;./scripts/post-change.sh fast&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Full checks (includes CI and Ruby format parity): &lt;code&gt;just verify-full&lt;/code&gt; or
+&lt;code&gt;./scripts/post-change.sh full&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Long benchmark suites (optional): &lt;code&gt;just verify-full-with-benchmarks&lt;/code&gt; or
+&lt;code&gt;./scripts/post-change.sh full-benchmarks&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="release-readiness-candidate-v050"&gt;
+ Release Readiness (candidate V0.5.0)
+ &lt;a class="heading-link" href="#release-readiness-candidate-v050"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;train/check/delta&lt;/code&gt; now capture both parser and finder datasets plus sample
+outputs, so &lt;code&gt;target/reports/{training,validation,delta}-report.json&lt;/code&gt; mirrors
+the Ruby &lt;code&gt;rake&lt;/code&gt; flow and can be used to verify parity before tagging.&lt;/li&gt;
+&lt;li&gt;The CLI exposes deterministic metadata (structured authors, normalized years,
+container titles, etc.), and the docs/tests now describe how to feed the same
+sample references through &lt;code&gt;cite-otter sample --format json|bibtex|csl&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Before tagging v0.5.0, run &lt;code&gt;cargo test&lt;/code&gt;,
+&lt;code&gt;cargo clippy --all-targets -- -D warnings&lt;/code&gt;, and inspect &lt;code&gt;target/reports&lt;/code&gt; plus
+&lt;code&gt;target/models&lt;/code&gt; in CI or locally; update &lt;code&gt;release.toml&lt;/code&gt; details and the
+&lt;code&gt;README&lt;/code&gt;/ &lt;code&gt;ROADMAP&lt;/code&gt; sections if any behavior changes occur afterward.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="recent-progress"&gt;
+ Recent Progress
+ &lt;a class="heading-link" href="#recent-progress"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Parser precision &amp;amp; metadata coverage&lt;/strong&gt; – The parser now builds &lt;code&gt;FieldTokens&lt;/code&gt;
+for each reference line so token tagging matches the same
+author/title/location/ publisher/date/pages data it extracts; additional
+helpers also populate &lt;code&gt;container-title&lt;/code&gt;, &lt;code&gt;volume&lt;/code&gt;, &lt;code&gt;issue&lt;/code&gt;, &lt;code&gt;genre&lt;/code&gt;, and
+&lt;code&gt;edition&lt;/code&gt; fields and surface &lt;code&gt;scripts&lt;/code&gt;/ &lt;code&gt;language&lt;/code&gt; from the reference string.
+The new heuristics live in &lt;code&gt;src/parser.rs&lt;/code&gt; and keep
+&lt;code&gt;tests/reference_parser.rs&lt;/code&gt; green.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Training/finder parity&lt;/strong&gt; – The training workflow now records sequence
+signatures for parser and finder datasets (persisted under
+&lt;code&gt;target/models/*-sequences.json&lt;/code&gt;), and &lt;code&gt;find&lt;/code&gt; loads those signatures so
+detected segments are compared against the trained corpus before falling back
+to the raw content; &lt;code&gt;tests/reference_training.rs&lt;/code&gt; continues to exercise the
+train/check/delta lifecycle.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sequence learning backend&lt;/strong&gt; – Parser/finder training now builds lightweight
+sequence models (signature counts) so inference respects learned frequency
+patterns, laying the groundwork for a richer ML-style backend.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sample outputs in reports&lt;/strong&gt; – Each &lt;code&gt;train&lt;/code&gt; invocation now captures the
+JSON/BibTeX/CSL renderings of the curated sample references and writes them
+into &lt;code&gt;target/reports/training-report.json&lt;/code&gt;. The new CLI helpers used in
+&lt;code&gt;run_training&lt;/code&gt; keep those samples up-to-date so you can inspect exact
+formatter output for each supported format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="upcoming-work"&gt;
+ Upcoming Work
+ &lt;a class="heading-link" href="#upcoming-work"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Parser normalization coverage&lt;/strong&gt; – Extend &lt;code&gt;parser.rs&lt;/code&gt;/ &lt;code&gt;normalizer.rs&lt;/code&gt; so
+author/date heuristics can deterministically resolve multi-name strings and
+varied year formats, matching the Ruby suite’s behavior documented in
+&lt;code&gt;docs/migration/REFERENCE.md&lt;/code&gt;. A normalized field map plus expanded
+&lt;code&gt;FieldTokens&lt;/code&gt; help the parser emit the same metadata that AnyStyle isolates.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Training/finder parity&lt;/strong&gt; – Round out the CLI’s training/check/delta flows so
+they mirror &lt;code&gt;rake train&lt;/code&gt;, &lt;code&gt;rake check&lt;/code&gt;, and &lt;code&gt;rake delta&lt;/code&gt;. The roadmap’s
+&lt;code&gt;v0.5.0&lt;/code&gt; section lists the outstanding milestones (training datasets, finder
+detection, dictionary adapters) and the tests/training fixtures under
+&lt;code&gt;tests/reference_training.rs&lt;/code&gt; should drive those flows before we mark parity
+complete.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="references"&gt;
+ References
+ &lt;a class="heading-link" href="#references"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;https://github.com/inukshuk/anystyle&lt;/code&gt; – Ruby source and training data that inspired the Rust port.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docs/migration/structure.md&lt;/code&gt; – Migration template that guided
+&lt;code&gt;docs/migration/REFERENCE.md&lt;/code&gt; and overall planning.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>clean-tts-text README</title><link>https://sguzman.github.io/projects/readme/clean-tts-text/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/clean-tts-text/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/clean-tts-text" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/clean-tts-text/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="clean-tts-text"&gt;
+ clean-tts-text
+ &lt;a class="heading-link" href="#clean-tts-text"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A tiny Rust CLI that normalizes text before passing it into an XTTS-style TTS engine so narration stays clean, paced, and predictable. The tool unwraps hard line wraps, removes citation noise, flattens list markers, expands troublesome acronyms, and applies other tiny transformations that can be the difference between multi-second gaps and a smooth read.&lt;/p&gt;
+&lt;h2 id="usage"&gt;
+ Usage
+ &lt;a class="heading-link" href="#usage"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Configure the policy in &lt;code&gt;config.toml&lt;/code&gt; (a sensible default is already checked into the repo).&lt;/li&gt;
+&lt;li&gt;Run the cleaner over any plain text file and write the normalized version:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- --input examples/matrix.txt --output cleaned/matrix-tts.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Feed the resulting file (&lt;code&gt;cleaned/matrix-tts.txt&lt;/code&gt; in the example above) to your TTS pipeline. If you want to override the config, add &lt;code&gt;--config path/to/custom.toml&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The CLI emits a short summary of bytes and paragraph counts; set &lt;code&gt;LOG_LEVEL=debug&lt;/code&gt; (or change &lt;code&gt;logging.level&lt;/code&gt; in the config) for more diagnostics.&lt;/p&gt;</description></item><item><title>fathrs README</title><link>https://sguzman.github.io/projects/readme/fathrs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/fathrs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/fathrs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/fathrs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="fathrs"&gt;
+ fathrs
+ &lt;a class="heading-link" href="#fathrs"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A tiny, no-bullshit dotfile linker.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fathrs&lt;/code&gt; reads a &lt;code&gt;links.toml&lt;/code&gt; file and creates &lt;strong&gt;symlinks&lt;/strong&gt; from your target paths to your source paths. That is all. No templates. No variable expansion. No “rendering.” Just links, with loud logging so you can see exactly what happened.&lt;/p&gt;
+&lt;p&gt;This is essentially a minimal, single-binary “dotter-rs style” linker.&lt;/p&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;TOML-driven symlink map&lt;/strong&gt; (&lt;code&gt;links.toml&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;File symlinks&lt;/strong&gt; and &lt;strong&gt;folder symlinks&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Force mode&lt;/strong&gt; to replace existing targets&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dry run&lt;/strong&gt; mode to preview actions&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intense logging&lt;/strong&gt; via &lt;code&gt;tracing&lt;/code&gt; (spans + debug/trace details)&lt;/li&gt;
+&lt;li&gt;Cross-platform symlink creation (Unix + Windows)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="non-features-on-purpose"&gt;
+ Non-features (on purpose)
+ &lt;a class="heading-link" href="#non-features-on-purpose"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;No templates&lt;/li&gt;
+&lt;li&gt;No “config language”&lt;/li&gt;
+&lt;li&gt;No magic variable substitution&lt;/li&gt;
+&lt;li&gt;No copying files (it links)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="install--build"&gt;
+ Install / Build
+ &lt;a class="heading-link" href="#install--build"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo build --release
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run the binary:&lt;/p&gt;</description></item><item><title>flatfekt README</title><link>https://sguzman.github.io/projects/readme/flatfekt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/flatfekt/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/flatfekt" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/flatfekt/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="flatfekt"&gt;
+ flatfekt
+ &lt;a class="heading-link" href="#flatfekt"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;flatfekt&lt;/code&gt; is a &lt;strong&gt;2D scene runtime built on Bevy&lt;/strong&gt; where scenes are &lt;strong&gt;declared in TOML&lt;/strong&gt; and then instantiated, simulated, animated, and rendered by an engine layer.&lt;/p&gt;
+&lt;p&gt;The intended end state is an umbrella capability set that supports:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;simulations (agents + physics + rule-driven world evolution)&lt;/li&gt;
+&lt;li&gt;games and interactive sketches&lt;/li&gt;
+&lt;li&gt;motion-graphics style scene choreography (timelines, transitions, text effects)&lt;/li&gt;
+&lt;li&gt;reusable “content packs” of scenes and assets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="core-idea"&gt;
+ Core idea
+ &lt;a class="heading-link" href="#core-idea"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Bevy provides the runtime (ECS, scheduling, rendering, input integration). TOML provides authored state (scene description, parameters, bindings). The engine layer interprets TOML into a running world and manages the lifecycle (load/reset/reload, transitions, patches, timelines).&lt;/p&gt;</description></item><item><title>game-site-scraper README</title><link>https://sguzman.github.io/projects/readme/game-site-scraper/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/game-site-scraper/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/game-site-scraper" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/game-site-scraper/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="game-scraper"&gt;
+ game-scraper
+ &lt;a class="heading-link" href="#game-scraper"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;game-scraper&lt;/code&gt; parses saved game-release HTML pages into structured JSON metadata.&lt;/p&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Rich CLI (&lt;code&gt;clap&lt;/code&gt;) with subcommands&lt;/li&gt;
+&lt;li&gt;Extensive structured logging (&lt;code&gt;tracing&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;TOML config that explicitly controls each scraped property&lt;/li&gt;
+&lt;li&gt;Per-document provenance (&lt;code&gt;path&lt;/code&gt;, &lt;code&gt;bytes&lt;/code&gt;, &lt;code&gt;sha256&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Batch parsing for files and directories&lt;/li&gt;
+&lt;li&gt;Error collection without stopping the full run&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;
+ Installation
+ &lt;a class="heading-link" href="#installation"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo build --release
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Binary path:&lt;/p&gt;</description></item><item><title>http-cache README</title><link>https://sguzman.github.io/projects/readme/http-cache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/http-cache/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/http-cache" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/http-cache/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="http-forward-proxy-rust"&gt;
+ HTTP Forward Proxy (Rust)
+ &lt;a class="heading-link" href="#http-forward-proxy-rust"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Async forward proxy with HTTP/1.1 absolute-form support and HTTPS tunneling via CONNECT. Built with Tokio + Hyper, structured logging via tracing, and SQLite-backed caching.&lt;/p&gt;
+&lt;h2 id="milestones"&gt;
+ Milestones
+ &lt;a class="heading-link" href="#milestones"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;M1: HTTP forward proxy (GET/POST) without CONNECT&lt;/li&gt;
+&lt;li&gt;M2: CONNECT tunnel support&lt;/li&gt;
+&lt;li&gt;M3: Connection pooling (optional)&lt;/li&gt;
+&lt;li&gt;M4: Real caching implementation&lt;/li&gt;
+&lt;li&gt;M5: Metrics endpoint and exporters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;M1, M2, and a meaningful M4 slice are implemented in this workspace, with tests.&lt;/p&gt;</description></item><item><title>lantern-leaf README</title><link>https://sguzman.github.io/projects/readme/lantern-leaf/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/lantern-leaf/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/lantern-leaf" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/lantern-leaf/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="lanternleaf"&gt;
+ LanternLeaf
+ &lt;a class="heading-link" href="#lanternleaf"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Rust desktop reader for EPUB/TXT/Markdown with synchronized TTS playback, sentence highlighting, bookmark persistence, and a starter library flow (recent books + Calibre).&lt;/p&gt;
+&lt;p align="center"&gt;
+ &lt;img src="branding/mascot.png" alt="Pipwick mascot" width="220" /&gt;
+&lt;/p&gt;
+&lt;h2 id="branding"&gt;
+ Branding
+ &lt;a class="heading-link" href="#branding"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Product name: &lt;code&gt;LanternLeaf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Mascot: &lt;code&gt;Pipwick&lt;/code&gt; (chibi candle scholar)&lt;/li&gt;
+&lt;li&gt;Brand palette source: &lt;code&gt;branding/colors.css&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Mascot source image: &lt;code&gt;branding/mascot.png&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generated favicon set: &lt;code&gt;branding/favicon/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="current-project-status"&gt;
+ Current Project Status
+ &lt;a class="heading-link" href="#current-project-status"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This project is actively developed and currently supports:&lt;/p&gt;</description></item><item><title>lisp-lang-rust-chatgpt README</title><link>https://sguzman.github.io/projects/readme/lisp-lang-rust-chatgpt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/lisp-lang-rust-chatgpt/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/lisp-lang-rust-chatgpt" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/lisp-lang-rust-chatgpt/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="lisp-lang-rust-chatgpt"&gt;
+ lisp-lang-rust-chatgpt
+ &lt;a class="heading-link" href="#lisp-lang-rust-chatgpt"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A functional Lisp interpreter implemented in Rust, developed as a case study in AI-augmented compiler design.&lt;/p&gt;
+&lt;h2 id="overview"&gt;
+ Overview
+ &lt;a class="heading-link" href="#overview"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This project documents a collaborative development process between a human developer and an LLM (ChatGPT) to build a functional programming language from scratch. It demonstrates how AI can be used to scaffold complex architectural components like recursive descent parsers and AST evaluation logic.&lt;/p&gt;</description></item><item><title>manifoldr README</title><link>https://sguzman.github.io/projects/readme/manifoldr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/manifoldr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/manifoldr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/manifoldr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="manifoldr"&gt;
+ manifoldr
+ &lt;a class="heading-link" href="#manifoldr"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A high-performance, asynchronous Rust CLI for &lt;a href="https://manifold.markets/" class="external-link" target="_blank" rel="noopener"&gt;Manifold Markets&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="overview"&gt;
+ Overview
+ &lt;a class="heading-link" href="#overview"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;manifoldr&lt;/code&gt; provides a streamlined command-line interface for interacting with the Manifold Markets API. Designed for power users, it enables rapid market analysis, portfolio tracking, and betting without the overhead of a web browser.&lt;/p&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;User Analytics&lt;/strong&gt;: Retrieve detailed metrics for any user, including profit history and contract metrics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Market Metrics&lt;/strong&gt;: Query real-time data on markets, including probability trends and liquidity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Betting Interface&lt;/strong&gt;: Securely place bets directly from the console.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tabular Visualization&lt;/strong&gt;: Uses rich console formatting to present complex API responses in a human-readable format.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Robust Error Handling&lt;/strong&gt;: Integrated logging for clear diagnostic output and resilient network operations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="tech-stack"&gt;
+ Tech Stack
+ &lt;a class="heading-link" href="#tech-stack"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rust&lt;/strong&gt;: Core logic and performance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tokio&lt;/strong&gt;: Asynchronous runtime for non-blocking I/O.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reqwest&lt;/strong&gt;: Type-safe HTTP client for API interactions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clap&lt;/strong&gt;: Powerful CLI argument parsing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Serde&lt;/strong&gt;: High-performance JSON serialization/deserialization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="getting-started"&gt;
+ Getting Started
+ &lt;a class="heading-link" href="#getting-started"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="prerequisites"&gt;
+ Prerequisites
+ &lt;a class="heading-link" href="#prerequisites"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.rust-lang.org/tools/install" class="external-link" target="_blank" rel="noopener"&gt;Rust&lt;/a&gt; (latest stable version)&lt;/li&gt;
+&lt;li&gt;A Manifold Markets API Key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="installation"&gt;
+ Installation
+ &lt;a class="heading-link" href="#installation"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;git clone https://github.com/sguzman/manifoldr.git
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cd manifoldr
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo install --path .
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="configuration"&gt;
+ Configuration
+ &lt;a class="heading-link" href="#configuration"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Set your Manifold API key as an environment variable:&lt;/p&gt;</description></item><item><title>marginalia README</title><link>https://sguzman.github.io/projects/readme/marginalia/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/marginalia/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/marginalia" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/marginalia/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="marginalia"&gt;
+ marginalia
+ &lt;a class="heading-link" href="#marginalia"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Hugo blog deployed to GitHub Pages via GitHub Actions.&lt;/p&gt;
+&lt;h2 id="deploy-github-pages"&gt;
+ Deploy (GitHub Pages)
+ &lt;a class="heading-link" href="#deploy-github-pages"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This repo uses &lt;code&gt;.github/workflows/pages.yml&lt;/code&gt; to build with Hugo and push the generated site to the &lt;code&gt;gh-pages&lt;/code&gt; branch.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In GitHub repo &lt;strong&gt;Settings → Pages&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Under &lt;strong&gt;Build and deployment&lt;/strong&gt;, set &lt;strong&gt;Source&lt;/strong&gt; to &lt;strong&gt;Deploy from a branch&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Select branch &lt;strong&gt;&lt;code&gt;gh-pages&lt;/code&gt;&lt;/strong&gt; and folder &lt;strong&gt;&lt;code&gt;/ (root)&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Your site URL will be:&lt;/p&gt;</description></item><item><title>mathematica-mcp README</title><link>https://sguzman.github.io/projects/readme/mathematica-mcp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mathematica-mcp/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/mathematica-mcp" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/mathematica-mcp/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="mathematica-mcp-server"&gt;
+ Mathematica-Mcp-Server
+ &lt;a class="heading-link" href="#mathematica-mcp-server"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;An MCP (Model Context Protocol) server that exposes a local
+&lt;strong&gt;Wolfram/Mathematica kernel&lt;/strong&gt; over &lt;strong&gt;stdio&lt;/strong&gt;, with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;multi-session kernel management&lt;/li&gt;
+&lt;li&gt;tamper-evident session IDs&lt;/li&gt;
+&lt;li&gt;a safe-ish &lt;code&gt;FinancialData[...]&lt;/code&gt; helper&lt;/li&gt;
+&lt;li&gt;an interactive &lt;strong&gt;REPL&lt;/strong&gt; for testing without an MCP client&lt;/li&gt;
+&lt;li&gt;extensive structured logging via &lt;code&gt;tracing&lt;/code&gt; (to stderr)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is intended for MCP hosts like Continue and other stdio-based MCP clients.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="what-this-server-provides"&gt;
+ What This Server Provides
+ &lt;a class="heading-link" href="#what-this-server-provides"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="tools-all-prefixed-with-mathematica"&gt;
+ Tools (all Prefixed with &lt;code&gt;mathematica.&lt;/code&gt;)
+ &lt;a class="heading-link" href="#tools-all-prefixed-with-mathematica"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mathematica.create_session&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Launch a new kernel session and return a session id.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mathematica.execute_code&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Evaluate Wolfram Language code in a specific session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mathematica.close_session&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Shutdown a specific session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mathematica.list_sessions&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Return all active sessions and creation times.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mathematica.time&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Return current local + UTC time (RFC3339).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mathematica.get_finance&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;“Sugar syntax” for &lt;code&gt;FinancialData[...]&lt;/code&gt; that builds valid WL and evaluates
+it in-session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="requirements"&gt;
+ Requirements
+ &lt;a class="heading-link" href="#requirements"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="system-prerequisites"&gt;
+ System Prerequisites
+ &lt;a class="heading-link" href="#system-prerequisites"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A working Wolfram kernel executable:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WolframKernel&lt;/code&gt; (common) or &lt;code&gt;MathKernel&lt;/code&gt; (older installs)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;WSTP must be available on your system (typically installed alongside
+Mathematica / Wolfram Engine).&lt;/li&gt;
+&lt;li&gt;Rust toolchain (recent stable).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="notes-about-licensing--data"&gt;
+ Notes About Licensing / Data
+ &lt;a class="heading-link" href="#notes-about-licensing--data"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;FinancialData[...]&lt;/code&gt; depends on your Wolfram installation and the data sources
+it can access. Some data requires an active license or network access.&lt;/p&gt;</description></item><item><title>MathematicaMathFun README</title><link>https://sguzman.github.io/projects/readme/mathematicamathfun/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mathematicamathfun/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/MathematicaMathFun" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/MathematicaMathFun/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="mathematicamathfun"&gt;
+ MathematicaMathFun
+ &lt;a class="heading-link" href="#mathematicamathfun"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A research-oriented repository of Wolfram Language notebooks exploring advanced topics in pure and applied mathematics.&lt;/p&gt;
+&lt;h2 id="overview"&gt;
+ Overview
+ &lt;a class="heading-link" href="#overview"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This repository serves as a personal computational laboratory for investigating complex mathematical structures. It contains a collection of research-grade &lt;code&gt;.nb&lt;/code&gt; files focused on symbolic analysis, topological visualization, and system modeling.&lt;/p&gt;
+&lt;h2 id="featured-research"&gt;
+ Featured Research
+ &lt;a class="heading-link" href="#featured-research"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-algebraic-topology--differential-geometry"&gt;
+ 1. Algebraic Topology &amp;amp; Differential Geometry
+ &lt;a class="heading-link" href="#1-algebraic-topology--differential-geometry"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Curvature Analysis&lt;/strong&gt;: Notebooks for visualizing Riemann tensors and Gaussian curvature on multi-dimensional manifolds.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complex Function Theory&lt;/strong&gt;: Symbolic exploration of holomorphicity and conformal mapping.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-calculus-of-variations--optimization"&gt;
+ 2. Calculus of Variations &amp;amp; Optimization
+ &lt;a class="heading-link" href="#2-calculus-of-variations--optimization"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Functional Minimization&lt;/strong&gt;: Implementations of Euler-Lagrange equations for physical systems and shortest-path problems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Probability Density Models&lt;/strong&gt;: High-fidelity visualizations of sector-based statistical distributions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-dynamic-systems--fractals"&gt;
+ 3. Dynamic Systems &amp;amp; Fractals
+ &lt;a class="heading-link" href="#3-dynamic-systems--fractals"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;System Stability&lt;/strong&gt;: Analysis of attractor basins and phase-space trajectories for non-linear oscillators.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Generative Geometry&lt;/strong&gt;: Scripts for rendering complex recursive patterns and fractal sets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="technical-details"&gt;
+ Technical Details
+ &lt;a class="heading-link" href="#technical-details"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Language&lt;/strong&gt;: Wolfram Language (Mathematica)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Primary Focus&lt;/strong&gt;: Symbolic computation, numerical analysis, and research-grade visualization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="usage"&gt;
+ Usage
+ &lt;a class="heading-link" href="#usage"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;These notebooks are best viewed in &lt;strong&gt;Wolfram Mathematica&lt;/strong&gt; or &lt;strong&gt;Wolfram Desktop&lt;/strong&gt;. For a lightweight preview, you can use the &lt;strong&gt;Wolfram Player&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>mnist-from-scratch README</title><link>https://sguzman.github.io/projects/readme/mnist-from-scratch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mnist-from-scratch/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/mnist-from-scratch" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/mnist-from-scratch/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="mnist-from-scratch-in-rust"&gt;
+ MNIST from Scratch in Rust
+ &lt;a class="heading-link" href="#mnist-from-scratch-in-rust"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A high-performance, educational machine learning laboratory for the MNIST
+dataset, built entirely from scratch in Rust. This project implements
+fundamental ML architectures without high-level frameworks (like PyTorch or
+TensorFlow), focusing on raw mathematical implementation and terminal-based
+visualization.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!TIP]
+&lt;strong&gt;New to Machine Learning?&lt;/strong&gt; Check out our comprehensive
+&lt;a href="./TRAINING_GUIDE.md" &gt;Training Guide&lt;/a&gt; to learn how these models actually
+&amp;ldquo;think&amp;rdquo; and learn!&lt;/p&gt;</description></item><item><title>nflxport README</title><link>https://sguzman.github.io/projects/readme/nflxport/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/nflxport/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/nflxport" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/nflxport/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="nflxport"&gt;
+ nflxport
+ &lt;a class="heading-link" href="#nflxport"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A high-performance Rust toolkit for working with &lt;code&gt;nflverse&lt;/code&gt; data.&lt;/p&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Blazing Fast&lt;/strong&gt;: Powered by Polars and Rust.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Idempotent Caching&lt;/strong&gt;: Efficiently manage large Parquet datasets under &lt;code&gt;.cache/nflxport&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Analytical Query Engine&lt;/strong&gt;: Perform statistical queries directly from the CLI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wolfram Mathematica Bridge&lt;/strong&gt;: Seamlessly export data for advanced symbolic analysis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;
+ Installation
+ &lt;a class="heading-link" href="#installation"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo build --release
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The CLI binary is located at &lt;code&gt;target/release/nflx&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>num-chrunchr README</title><link>https://sguzman.github.io/projects/readme/num-chrunchr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/num-chrunchr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/num-chrunchr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/num-chrunchr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="num-chrunchr"&gt;
+ num-chrunchr
+ &lt;a class="heading-link" href="#num-chrunchr"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;num-chrunchr&lt;/strong&gt; is a Rust toolkit for &lt;strong&gt;factoring and structurally analyzing extremely large integers&lt;/strong&gt;, including numbers that do &lt;strong&gt;not&lt;/strong&gt; fit comfortably in RAM.&lt;/p&gt;
+&lt;p&gt;It is built around a simple idea:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A &amp;ldquo;number&amp;rdquo; is not always a &lt;code&gt;BigInt&lt;/code&gt;.&lt;br&gt;
+It is a &lt;em&gt;representation&lt;/em&gt; that may support only certain operations efficiently (streaming, symbolic, disk-backed, RAM-backed, GPU-assisted, etc.).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This repo currently provides a working MVP for &lt;strong&gt;disk-backed decimal numbers&lt;/strong&gt; with:&lt;/p&gt;</description></item><item><title>oxban README</title><link>https://sguzman.github.io/projects/readme/oxban/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/oxban/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/oxban" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/oxban/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="oxban"&gt;
+ Oxban
+ &lt;a class="heading-link" href="#oxban"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Oxban is a local-first Kanban desktop app scaffold for experimenting with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust backend logic and persistence&lt;/li&gt;
+&lt;li&gt;Tauri desktop shell&lt;/li&gt;
+&lt;li&gt;Yew (WASM) frontend&lt;/li&gt;
+&lt;li&gt;Plain CSS styling&lt;/li&gt;
+&lt;li&gt;End-to-end &lt;code&gt;tracing&lt;/code&gt; instrumentation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="features-in-this-scaffold"&gt;
+ Features in this scaffold
+ &lt;a class="heading-link" href="#features-in-this-scaffold"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Multi-board Kanban workflow&lt;/li&gt;
+&lt;li&gt;Column and card creation&lt;/li&gt;
+&lt;li&gt;Card editing modal (title, description, tags, priority)&lt;/li&gt;
+&lt;li&gt;Card drag/drop between columns&lt;/li&gt;
+&lt;li&gt;Search/filter by text and tags&lt;/li&gt;
+&lt;li&gt;SQLite persistence with migrations&lt;/li&gt;
+&lt;li&gt;Config file bootstrap (&lt;code&gt;oxban.toml&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Structured tracing logs in backend and frontend&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="repository-layout"&gt;
+ Repository layout
+ &lt;a class="heading-link" href="#repository-layout"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;crates/oxban-core&lt;/code&gt;: shared domain models and command argument types&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src-tauri&lt;/code&gt;: Tauri backend, command handlers, DB layer, migrations, tracing setup&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ui&lt;/code&gt;: Yew app and CSS assets&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;oxban.toml&lt;/code&gt;: sample runtime config copied into app config dir on first launch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="prerequisites"&gt;
+ Prerequisites
+ &lt;a class="heading-link" href="#prerequisites"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust stable (&lt;code&gt;rustup&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;trunk&lt;/code&gt; for frontend builds&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tauri-cli&lt;/code&gt; for running desktop dev mode&lt;/li&gt;
+&lt;li&gt;Platform dependencies required by Tauri/WebKit (Linux/macOS/Windows specific)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="install-helpers"&gt;
+ Install helpers
+ &lt;a class="heading-link" href="#install-helpers"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo install trunk
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo install tauri-cli
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="development"&gt;
+ Development
+ &lt;a class="heading-link" href="#development"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;From repo root:&lt;/p&gt;</description></item><item><title>pollstats README</title><link>https://sguzman.github.io/projects/readme/pollstats/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/pollstats/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/pollstats" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/pollstats/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="pollstats"&gt;
+ pollstats
+ &lt;a class="heading-link" href="#pollstats"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Config-driven downloader + local data store for US politics datasets, with optional Postgres ingest of manifest metadata.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;
+ Quick start
+ &lt;a class="heading-link" href="#quick-start"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Build:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo build&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;List configured datasets:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo run -- list&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;Check remote vs local:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo run -- check&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;Update local store (download only if remote is newer):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo run -- update&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;Force download (replace local regardless):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo run -- download&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="6"&gt;
+&lt;li&gt;Postgres (optional):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;docker compose -f tmp/docker-compose.yaml up -d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cargo run -- pg-init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cargo run -- pg-load&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="config-toml"&gt;
+ Config (TOML)
+ &lt;a class="heading-link" href="#config-toml"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;config/pollstats.toml&lt;/code&gt; (store location, Postgres URL, HTTP settings)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config/sources.toml&lt;/code&gt; (sources + datasets)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Override:&lt;/p&gt;</description></item><item><title>pulsewire README</title><link>https://sguzman.github.io/projects/readme/pulsewire/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/pulsewire/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/pulsewire" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/pulsewire/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="pulsewire"&gt;
+ Pulsewire
+ &lt;a class="heading-link" href="#pulsewire"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;a href="#"&gt;&lt;img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="branding/pulsewire-banner.png" alt="Pulsewire banner"&gt;&lt;/p&gt;
+&lt;div align="center"&gt;
+ &lt;a href="https://github.com/sguzman/pulsewire/issues"&gt;
+ &lt;img src="https://img.shields.io/github/issues/sguzman/pulsewire?color=fab387&amp;labelColor=303446&amp;style=for-the-badge"&gt;
+ &lt;/a&gt;
+ &lt;a href="https://github.com/sguzman/pulsewire/stargazers"&gt;
+ &lt;img src="https://img.shields.io/github/stars/sguzman/pulsewire?color=1f6feb&amp;labelColor=303446&amp;style=for-the-badge"&gt;
+ &lt;/a&gt;
+ &lt;a href="https://github.com/sguzman/pulsewire"&gt;
+ &lt;img src="https://img.shields.io/github/repo-size/sguzman/pulsewire?color=ff4d4d&amp;labelColor=303446&amp;style=for-the-badge"&gt;
+ &lt;/a&gt;
+ &lt;a href="LICENSE"&gt;
+ &lt;img src="https://img.shields.io/static/v1.svg?style=for-the-badge&amp;label=License&amp;message=MIT&amp;logoColor=ffffff&amp;colorA=313244&amp;colorB=2ea043"/&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;Pulsewire is a time-aware ingestion engine for the open web: RSS/Atom feeds today, release calendars and structured datasets next. It polls with adaptive backoff, respects per-domain limits, stores payloads + items in SQLite/Postgres, and ships a companion HTTP server for reader clients.&lt;/p&gt;
+&lt;h2 id="overview"&gt;
+ Overview
+ &lt;a class="heading-link" href="#overview"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Fetcher loads app/domain/feed config from a TOML bundle, migrates/creates a
+SQL database (SQLite or Postgres) and bulk-ingests feed definitions.&lt;/li&gt;
+&lt;li&gt;Scheduler ticks every 5s, finds due feeds, and processes them with bounded
+parallelism. Per-domain semaphores prevent hammering the same host; optional
+global cap controls total concurrency.&lt;/li&gt;
+&lt;li&gt;Each feed alternates HEAD/GET based on last state. HEAD decides whether
+content changed; GET parses the body (via &lt;code&gt;feed-rs&lt;/code&gt;), hashes it, and stores
+payload + items. Errors trigger exponential backoff with jitter and persisted
+state.&lt;/li&gt;
+&lt;li&gt;Server provides auth, subscriptions, read/unread state, folders, favorites,
+and search APIs for clients. It reads from the fetcher database schema and
+maintains its own state in a separate schema.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="code-layout"&gt;
+ Code Layout
+ &lt;a class="heading-link" href="#code-layout"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;crates/core/src/&lt;/code&gt; – shared runtime logic (config, scheduler, infra, ports,
+domain, feed parsing).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/fetcher/src/main.rs&lt;/code&gt; – fetcher entrypoint; config loading, repo
+init/migrations, optional ingest benchmark, then scheduler loop.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/server/src/main.rs&lt;/code&gt; – server entrypoint; config loading, schema apply,
+and HTTP routes.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/cli/src/main.rs&lt;/code&gt; – ops CLI for validation/cleanup commands.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/tui/src/main.rs&lt;/code&gt; – interactive terminal UI for the server API.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/*/README.md&lt;/code&gt; – crate-specific docs (core/fetcher/cli).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/fetcher/res/&lt;/code&gt; – example config bundle (&lt;code&gt;config.toml&lt;/code&gt;, &lt;code&gt;domains.toml&lt;/code&gt;,
+&lt;code&gt;feeds/*.toml&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/server/res/&lt;/code&gt; – server config and OpenAPI docs (&lt;code&gt;config.toml&lt;/code&gt;,
+&lt;code&gt;openapi.json&lt;/code&gt;, &lt;code&gt;openapi.html&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;branding/&lt;/code&gt; – logo/banner/icon assets.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="configuration"&gt;
+ Configuration
+ &lt;a class="heading-link" href="#configuration"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Fetcher config resolution order: 1) CLI argument path (if provided), else 2)
+&lt;code&gt;CONFIG_PATH&lt;/code&gt; environment variable (if set), else 3)
+&lt;code&gt;crates/fetcher/res/config.toml&lt;/code&gt; when present. Feed definitions default to
+&lt;code&gt;feeds/&lt;/code&gt; under the config directory, but can be overridden with &lt;code&gt;FEEDS_DIR&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>quack-check README</title><link>https://sguzman.github.io/projects/readme/quack-check/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/quack-check/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/quack-check" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/quack-check/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="quack-check"&gt;
+ quack-check
+ &lt;a class="heading-link" href="#quack-check"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;quack-check is a deterministic PDF transcript orchestrator built around Docling. It classifies PDF quality, chooses a policy, chunks large files safely, runs Docling (or native extraction), and merges a stable transcript with optional post-processing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PDFs are not uniform. Some have clean embedded text, some have partial/broken layers, and some are image-only scans.&lt;/li&gt;
+&lt;li&gt;Docling can do a lot, but deterministic orchestration, chunking, and policy decisions are on you.&lt;/li&gt;
+&lt;li&gt;quack-check makes those decisions explicit and configurable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Key Features&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>rics README</title><link>https://sguzman.github.io/projects/readme/rics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rics/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rics" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rics/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="rics"&gt;
+ rics
+ &lt;a class="heading-link" href="#rics"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;rics&lt;/code&gt; is a Rust calendar ETL and ICS generator. It ingests source-specific TOML definitions, extracts event data from web pages, JSON feeds, PDFs, or rough text, normalizes events, updates prior future events, and emits year-bucketed &lt;code&gt;.ics&lt;/code&gt; files.&lt;/p&gt;
+&lt;h2 id="what-it-does"&gt;
+ What It Does
+ &lt;a class="heading-link" href="#what-it-does"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Loads sources from &lt;code&gt;configs/sources/**/*.toml&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fetches each source via &lt;code&gt;http&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;, or &lt;code&gt;inline&lt;/code&gt; mode.&lt;/li&gt;
+&lt;li&gt;Parses records with declarative field mapping:
+&lt;ul&gt;
+&lt;li&gt;HTML (&lt;code&gt;css:&lt;/code&gt; selectors)&lt;/li&gt;
+&lt;li&gt;JSON (&lt;code&gt;json:&lt;/code&gt; paths)&lt;/li&gt;
+&lt;li&gt;PDF text / rough text (&lt;code&gt;regex:&lt;/code&gt; and text splitting)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Supports custom Rust parsers by key (&lt;code&gt;[custom] parser = &amp;quot;...&amp;quot;&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Persists canonical events in &lt;code&gt;data/state/events.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Maintains stable UID identity and revision &lt;code&gt;SEQUENCE&lt;/code&gt; updates.&lt;/li&gt;
+&lt;li&gt;Buckets output calendars by event year:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;data/out/sources/&amp;lt;source-key&amp;gt;/&amp;lt;source-key&amp;gt;-&amp;lt;year&amp;gt;.ics&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Optional mirror publish target per source:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[publish] mirror_dir = &amp;quot;/home/admin/Code/calendars/rics&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Mirrors rebuilt files to &lt;code&gt;&amp;lt;mirror_dir&amp;gt;/&amp;lt;source-key&amp;gt;/&amp;lt;source-key&amp;gt;-&amp;lt;year&amp;gt;.ics&lt;/code&gt; when enabled.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Marks missing future events as &lt;code&gt;cancelled&lt;/code&gt; on subsequent syncs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="architecture"&gt;
+ Architecture
+ &lt;a class="heading-link" href="#architecture"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;src/config.rs&lt;/code&gt;: Source TOML schema + config loading/validation.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/fetch.rs&lt;/code&gt;: HTTP/file/inline document fetching + pagination.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/parser.rs&lt;/code&gt;: Declarative parser engine + custom parser registry.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/pipeline.rs&lt;/code&gt;: Sync/build orchestration, merge/update logic.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/store.rs&lt;/code&gt;: Persistent event state.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/ics.rs&lt;/code&gt;: RFC-style ICS output with escaping/folding and rich &lt;code&gt;X-RICS-*&lt;/code&gt; metadata.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/harness.rs&lt;/code&gt;: Repeatable harness for success metrics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="quick-start"&gt;
+ Quick Start
+ &lt;a class="heading-link" href="#quick-start"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Validate source configs:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- validate --source-file configs/sources/publishing/oecd_publications.toml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Sync all configured sources and generate/update ICS output:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- sync
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Rebuild ICS files from stored state only:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- build
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- build --year &lt;span style="color:#ae81ff"&gt;2026&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- build --source oecd.publications.en --year &lt;span style="color:#ae81ff"&gt;2026&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
+&lt;li&gt;Publish already-generated ICS files to mirror directories (no rebuild):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- publish
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- publish --source oecd.publications.en --year &lt;span style="color:#ae81ff"&gt;2026&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="4"&gt;
+&lt;li&gt;Run the harness (double-sync stability measurement):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run -- --config-dir tests/fixtures/sources --state-path /tmp/rics-state.json --out-dir /tmp/rics-out harness
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="source-configuration"&gt;
+ Source Configuration
+ &lt;a class="heading-link" href="#source-configuration"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Each source is defined in its own TOML file.&lt;/p&gt;</description></item><item><title>rivet README</title><link>https://sguzman.github.io/projects/readme/rivet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rivet/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rivet" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rivet/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="rivet"&gt;
+ Rivet
+ &lt;a class="heading-link" href="#rivet"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Rivet is a Rust-first Taskwarrior port with two layers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A CLI-compatible core (&lt;code&gt;task&lt;/code&gt;) focused on Taskwarrior-style workflows.&lt;/li&gt;
+&lt;li&gt;A desktop GUI layer built with Rust + TypeScript/React + Tailwind + Material UI + Tauri on top of the same core data model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="mascot"&gt;
+ Mascot
+ &lt;a class="heading-link" href="#mascot"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;img src="branding/mascot.png" alt="Rivet Mascot"&gt;&lt;/p&gt;
+&lt;p&gt;Branding assets live under &lt;code&gt;branding/&lt;/code&gt;. The app, taskbar, and platform icons are generated from
+&lt;code&gt;branding/mascot-square.png&lt;/code&gt; into &lt;code&gt;crates/rivet-gui/src-tauri/icons/&lt;/code&gt;, and web favicons are in
+&lt;code&gt;crates/rivet-gui/ui/assets/icons/&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>rust-code README</title><link>https://sguzman.github.io/projects/readme/rust-code/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rust-code/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rust-code" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rust-code/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="rust-code"&gt;
+ rust-code
+ &lt;a class="heading-link" href="#rust-code"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Parser for US Federal Code to pack structure into json format&lt;/p&gt;</description></item><item><title>rustune README</title><link>https://sguzman.github.io/projects/readme/rustune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rustune/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rustune" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rustune/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="rustune"&gt;
+ rustune
+ &lt;a class="heading-link" href="#rustune"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;rustune&lt;/code&gt; is a Rust port of &lt;code&gt;fortune-mod&lt;/code&gt; focused on behavior parity while modernizing the internals:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;memory-safe STRFILE parsing/writing&lt;/li&gt;
+&lt;li&gt;deterministic RNG hooks for parity testing&lt;/li&gt;
+&lt;li&gt;structured diagnostics with &lt;code&gt;tracing&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;an oracle-driven parity harness&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="binaries"&gt;
+ Binaries
+ &lt;a class="heading-link" href="#binaries"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rustune&lt;/code&gt;: selects and prints fortunes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;strfile&lt;/code&gt;: generates &lt;code&gt;*.dat&lt;/code&gt; indexes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fortune-parity&lt;/code&gt;: compares this port against a system &lt;code&gt;fortune&lt;/code&gt; oracle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="build"&gt;
+ Build
+ &lt;a class="heading-link" href="#build"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo build
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="logging"&gt;
+ Logging
+ &lt;a class="heading-link" href="#logging"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;All binaries use &lt;code&gt;tracing&lt;/code&gt; and honor &lt;code&gt;RUST_LOG&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>slurp README</title><link>https://sguzman.github.io/projects/readme/slurp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/slurp/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/slurp" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/slurp/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="slurp"&gt;
+ slurp
+ &lt;a class="heading-link" href="#slurp"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;slurp&lt;/code&gt; is a lightweight Rust CLI tool for batch-inserting JSON data into &lt;a href="https://surrealdb.com/" class="external-link" target="_blank" rel="noopener"&gt;SurrealDB&lt;/a&gt;.
+It reads a JSON array from a file, splits it into batches, and inserts each batch into a SurrealDB table over HTTP.
+Parallel insertion, colored logs, and flexible verbosity levels make it practical for handling large payloads.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Chunked inserts&lt;/strong&gt;: split large JSON arrays into batches of configurable size.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parallel execution&lt;/strong&gt;: run multiple inserts concurrently with a &lt;code&gt;--thread&lt;/code&gt; flag.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Color-coded logs&lt;/strong&gt;: timestamps and verbosity control for easy diagnostics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dry-run mode&lt;/strong&gt;: check how data would be split without touching the database.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zero auth assumption&lt;/strong&gt;: connects to SurrealDB without authentication headers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Functional style&lt;/strong&gt;: uses immutable dataflow with Rayon for parallel processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;
+ Installation
+ &lt;a class="heading-link" href="#installation"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;With Nix (recommended, using the flake):&lt;/p&gt;</description></item><item><title>symfose README</title><link>https://sguzman.github.io/projects/readme/symfose/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/symfose/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/symfose" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/symfose/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="symfose"&gt;
+ Symfose
+ &lt;a class="heading-link" href="#symfose"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Symfose is a Rust desktop app for playing virtual instruments from your keyboard, starting with piano.&lt;/p&gt;
+&lt;p&gt;It is inspired by browser virtual pianos, but aimed at structured practice and performance scoring.&lt;/p&gt;
+&lt;h2 id="project-ambition"&gt;
+ Project Ambition
+ &lt;a class="heading-link" href="#project-ambition"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Symfose is being built to support:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;real-time instrument play from configurable keyboard mappings&lt;/li&gt;
+&lt;li&gt;playable song charts with tempo-aware timing&lt;/li&gt;
+&lt;li&gt;score mode (accuracy + streak + grading)&lt;/li&gt;
+&lt;li&gt;timed/challenge modes&lt;/li&gt;
+&lt;li&gt;ergonomic mapping optimization per song:
+&lt;ul&gt;
+&lt;li&gt;avoids same-finger conflicts&lt;/li&gt;
+&lt;li&gt;minimizes awkward reaches&lt;/li&gt;
+&lt;li&gt;supports multi-key chords without relying on shift-heavy combos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;instrument profiles so multiple instruments can be added later without changing core gameplay&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="what-works-today"&gt;
+ What Works Today
+ &lt;a class="heading-link" href="#what-works-today"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;desktop GUI app (&lt;code&gt;iced&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;playable keyboard piano in a native window&lt;/li&gt;
+&lt;li&gt;horizontal white/black piano key layout with horizontal scrolling when needed&lt;/li&gt;
+&lt;li&gt;reactive key visuals for physical keypresses, mouse clicks, and autoplay touches&lt;/li&gt;
+&lt;li&gt;realistic piano synthesis through SoundFont (&lt;code&gt;SF2&lt;/code&gt;) rendering via &lt;code&gt;rustysynth&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;song library loaded from &lt;code&gt;res/songs/*.toml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;MIDI song ingestion from &lt;code&gt;res/assets/midi/*.mid|*.midi&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;source processing cache in &lt;code&gt;.cache/songs/v2/&lt;/code&gt; for fast warm startups&lt;/li&gt;
+&lt;li&gt;song key/timing lane rendered above the keyboard (virtual-piano style)&lt;/li&gt;
+&lt;li&gt;three song modes:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Timer&lt;/code&gt;: metronome + note/timing scoring&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Tutorial&lt;/code&gt;: step-by-step progression with configurable strictness&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Auto Play&lt;/code&gt;: automatic playback with key reactivity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;live volume slider in GUI (runtime gain adjustment)&lt;/li&gt;
+&lt;li&gt;live instrument profile switching in GUI (e.g., piano and acoustic guitar)&lt;/li&gt;
+&lt;li&gt;rich tracing logs to console and rolling files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="quick-start"&gt;
+ Quick Start
+ &lt;a class="heading-link" href="#quick-start"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To use a custom config:&lt;/p&gt;</description></item><item><title>typr README</title><link>https://sguzman.github.io/projects/readme/typr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/typr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/typr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/typr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="typr"&gt;
+ typr
+ &lt;a class="heading-link" href="#typr"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;typr&lt;/code&gt; is an experimental Rust REPL for a signature-first type theory calculator.&lt;/p&gt;
+&lt;p&gt;It implements the core ideas from &lt;code&gt;tmp/type.md&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Functions as interface objects (&lt;code&gt;In(f)&lt;/code&gt;, &lt;code&gt;Out(f)&lt;/code&gt;) that compose before implementation.&lt;/li&gt;
+&lt;li&gt;Reified arithmetic operator bodies (&lt;code&gt;add&lt;/code&gt;, &lt;code&gt;mul&lt;/code&gt;, &lt;code&gt;pow&lt;/code&gt;, &lt;code&gt;comp&lt;/code&gt;, &lt;code&gt;seq&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Container lifting via &lt;code&gt;map&lt;/code&gt; over list expressions.&lt;/li&gt;
+&lt;li&gt;Refinement constructors for list structure: &lt;code&gt;sort&lt;/code&gt;, &lt;code&gt;unique&lt;/code&gt;, &lt;code&gt;canon&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Structural query inference and ad hoc boolean answers (&lt;code&gt;any&lt;/code&gt;, &lt;code&gt;all&lt;/code&gt;, &lt;code&gt;is&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Multiple equivalence modes (&lt;code&gt;syntactic&lt;/code&gt;, &lt;code&gt;semantic&lt;/code&gt;, &lt;code&gt;permutation&lt;/code&gt;, &lt;code&gt;set&lt;/code&gt;, &lt;code&gt;canonical&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Signature-first function declarations (&lt;code&gt;:fn&lt;/code&gt;) with optional bodies (&lt;code&gt;:body&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Property annotations and inference:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ProducesEven&lt;/code&gt;, &lt;code&gt;ProducesOdd&lt;/code&gt;, &lt;code&gt;Monotone&lt;/code&gt;, &lt;code&gt;Injective&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Typed expression forms:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(range a b)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(map f expr)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(sort expr)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(unique expr)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(canon expr)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Query forms:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(any odd expr)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(all even expr)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(is sorted expr)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(is unique expr)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(is canonical expr)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Fallback evaluator for concrete answers when structural inference is insufficient.&lt;/li&gt;
+&lt;li&gt;Tracing-based logging throughout parse/typecheck/facts/query/repl flows.&lt;/li&gt;
+&lt;li&gt;Built-in rlwrap-style line editing and history via &lt;code&gt;rustyline&lt;/code&gt; (saved at &lt;code&gt;~/.typr_history&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="repl-commands"&gt;
+ REPL Commands
+ &lt;a class="heading-link" href="#repl-commands"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;:help&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:quit&lt;/code&gt; / &lt;code&gt;:q&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:trace on|off&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:show&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:fn &amp;lt;name&amp;gt; &amp;lt;InTy&amp;gt; &amp;lt;OutTy&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:body &amp;lt;name&amp;gt; &amp;lt;op-sexp&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:prop &amp;lt;name&amp;gt; produces_even|produces_odd|monotone|injective&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:type &amp;lt;expr-sexp&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:query &amp;lt;query-sexp&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:eq &amp;lt;mode&amp;gt; &amp;lt;expr1&amp;gt; &amp;lt;expr2&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:normalize &amp;lt;expr-sexp&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:eval &amp;lt;expr-sexp&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="operator-language-body"&gt;
+ Operator Language (&lt;code&gt;:body&lt;/code&gt;)
+ &lt;a class="heading-link" href="#operator-language-body"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(id)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(add k)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(mul k)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(pow p)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(comp op1 op2)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(seq op1 op2 op3 ...)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;comp&lt;/code&gt;/&lt;code&gt;seq&lt;/code&gt; are pipeline-ordered: the left operator runs first.&lt;/p&gt;</description></item><item><title>voltlane README</title><link>https://sguzman.github.io/projects/readme/voltlane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/voltlane/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/voltlane" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/voltlane/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="voltlane"&gt;
+ Voltlane
+ &lt;a class="heading-link" href="#voltlane"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Voltlane is a Rust-first FL-style/chiptune composition prototype built with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;voltlane-core&lt;/code&gt; (Rust): project model, timeline engine, export pipeline, parity tooling, and tracing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src-tauri&lt;/code&gt; (Rust/Tauri): desktop shell and typed command bridge to the core.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ui&lt;/code&gt; (React + TypeScript + CSS): lightweight visual playlist/mixer control surface.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The current implementation now spans Milestone A/B plus core audio-clip workflow slices: project lifecycle, transport controls, colored tracks, clip creation/editing, audio import/indexing, exports, parity harness, logging, and docs.&lt;/p&gt;</description></item><item><title>weathergraph-rs README</title><link>https://sguzman.github.io/projects/readme/weathergraph-rs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/weathergraph-rs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/weathergraph-rs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/weathergraph-rs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="weathergraph-rs"&gt;
+ weathergraph-rs
+ &lt;a class="heading-link" href="#weathergraph-rs"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Rust-native inference port of the Keisler 2022 graph neural weather forecasting model.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;weathergraph-rs&lt;/code&gt; ports the Python/JAX/Haiku inference path from &lt;a href="https://github.com/rkeisler/keisler-2022" class="external-link" target="_blank" rel="noopener"&gt;&lt;code&gt;rkeisler/keisler-2022&lt;/code&gt;&lt;/a&gt; into a Rust workspace built around typed artifact loading, explicit model modules, &lt;code&gt;tracing&lt;/code&gt;-based logging, strict checkpoint validation, one-step parity fixtures, autoregressive rollout, and NetCDF forecast output.&lt;/p&gt;
+&lt;h2 id="status"&gt;
+ Status
+ &lt;a class="heading-link" href="#status"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Milestone&lt;/th&gt;
+					&lt;th&gt;Status&lt;/th&gt;
+					&lt;th&gt;Notes&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Artifact inspector&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;Loads &lt;code&gt;.npz.gz&lt;/code&gt; graph, feature, normalizer, and surface artifacts.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Geometry parity&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;Reconstructs ERA5/H3 geometry with exact &lt;code&gt;65160 / 5882 / 71042&lt;/code&gt; node counts.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Graph aggregation kernel&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;CPU-first gather/scatter tensor helpers with deterministic tests.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MLP and LayerNorm parity&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;Explicit Rust/Candle modules with strict weight inspection.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;One-step runner/model path&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;Graph-aware one-step execution with solar, day-of-year, and surface features.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;CLI and logging&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;inspect-artifacts&lt;/code&gt;, &lt;code&gt;inspect-geometry&lt;/code&gt;, &lt;code&gt;inspect-weights&lt;/code&gt;, and &lt;code&gt;forecast&lt;/code&gt;.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Python/Rust parity workflow&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;Weight export, strict inspection, and one-step parity validation against real upstream tensors.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Autoregressive rollout / NetCDF output&lt;/td&gt;
+					&lt;td&gt;Implemented&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;forecast&lt;/code&gt; performs local ERA5-style initialization, rollout, and &lt;code&gt;.nc&lt;/code&gt; writing.&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The supported V1 path is now fixed:&lt;/p&gt;</description></item><item><title>woven README</title><link>https://sguzman.github.io/projects/readme/woven/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/woven/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/woven" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/woven/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="woven"&gt;
+ Woven
+ &lt;a class="heading-link" href="#woven"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Woven is a Rust + &lt;code&gt;egui&lt;/code&gt; notebook-style frontend for the Wolfram Language (Mathematica), with an explicit goal of replacing/modernizing plotting using &lt;code&gt;egui_plot&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="requirements"&gt;
+ Requirements
+ &lt;a class="heading-link" href="#requirements"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A Wolfram installation that provides &lt;code&gt;WolframKernel&lt;/code&gt; and WSTP (e.g., Wolfram Engine / Mathematica).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wolframscript&lt;/code&gt; on &lt;code&gt;PATH&lt;/code&gt; is strongly recommended (used by WSTP discovery/linking).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="running"&gt;
+ Running
+ &lt;a class="heading-link" href="#running"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Config is required at &lt;code&gt;config/woven.toml&lt;/code&gt; and defaults to &lt;code&gt;mode = &amp;quot;dev&amp;quot;&lt;/code&gt; (which writes logs under &lt;code&gt;logs/&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>xpos-js README</title><link>https://sguzman.github.io/projects/readme/xpos-js/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/xpos-js/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/xpos-js" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/xpos-js/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="xpose"&gt;
+ xpose
+ &lt;a class="heading-link" href="#xpose"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;MV3 extension for Edge/Chromium that exposes live tab and window introspection to a local self-hosted server over WebSocket.&lt;/p&gt;
+&lt;h2 id="what-it-does"&gt;
+ What it does
+ &lt;a class="heading-link" href="#what-it-does"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Streams live tab/window events across all browser windows.&lt;/li&gt;
+&lt;li&gt;Handles server commands to list windows, list tabs, snapshot a tab&amp;rsquo;s DOM/HTML/text, and manipulate tabs.&lt;/li&gt;
+&lt;li&gt;Supports debugger-backed &lt;code&gt;import-bundle&lt;/code&gt; jobs that reload a tab, capture asset bodies, and expose a reconstructable bundle manifest.&lt;/li&gt;
+&lt;li&gt;Uses structured trace logging with timestamps and trace IDs for all lifecycle, socket, and command operations.&lt;/li&gt;
+&lt;li&gt;Provides an options page for runtime config.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="local-protocol"&gt;
+ Local protocol
+ &lt;a class="heading-link" href="#local-protocol"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The extension connects to &lt;code&gt;ws://127.0.0.1:17373/ws&lt;/code&gt; by default and sends:&lt;/p&gt;</description></item><item><title>zimrs README</title><link>https://sguzman.github.io/projects/readme/zimrs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/zimrs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/zimrs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/zimrs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="zimrs"&gt;
+ zimrs
+ &lt;a class="heading-link" href="#zimrs"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;zimrs&lt;/code&gt; converts a Wiktionary &lt;code&gt;.zim&lt;/code&gt; archive into a queryable dictionary database and includes operational tooling for verification, reindexing, export, benchmarking, and release packaging.&lt;/p&gt;
+&lt;p&gt;Default backend is PostgreSQL (&lt;code&gt;data.dictionary&lt;/code&gt;). SQLite remains fully supported as a compatibility backend.&lt;/p&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Postgres-first ingestion with automatic startup checks, database bootstrap, and schema management.&lt;/li&gt;
+&lt;li&gt;SQLite compatibility mode for local/offline workflows.&lt;/li&gt;
+&lt;li&gt;Configurable ZIM -&amp;gt; DB ingestion with namespace/MIME/prefix filters.&lt;/li&gt;
+&lt;li&gt;Resumable checkpointing for long-running archive conversions.&lt;/li&gt;
+&lt;li&gt;Optional parallel extraction workers.&lt;/li&gt;
+&lt;li&gt;Nested-list-aware definition extraction and relation extraction (&lt;code&gt;synonyms&lt;/code&gt;, &lt;code&gt;antonyms&lt;/code&gt;, &lt;code&gt;translations&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Per-language normalization plugins and confidence scoring.&lt;/li&gt;
+&lt;li&gt;Alias normalization table for search (&lt;code&gt;lemma_aliases&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Optional search indexing (&lt;code&gt;page_fts&lt;/code&gt;) for both backends.&lt;/li&gt;
+&lt;li&gt;Incremental reindex command.&lt;/li&gt;
+&lt;li&gt;JSON/JSONL export command.&lt;/li&gt;
+&lt;li&gt;Release artifact builder with packaged sample database.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="commands"&gt;
+ Commands
+ &lt;a class="heading-link" href="#commands"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Convert (default command)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml convert
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Incremental reindex&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml reindex
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Export to JSONL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml export-json --output out/wiktionary.jsonl
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Build synthetic sample DB (SQLite helper for release tooling)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml sample-db --output out/sample.sqlite
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Build release artifacts bundle (archive + checksum + sample DB)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml build-artifacts
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Default command behavior:&lt;/p&gt;</description></item><item><title>zpars README</title><link>https://sguzman.github.io/projects/readme/zpars/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/zpars/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/zpars" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/zpars/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="zpars"&gt;
+ zpars
+ &lt;a class="heading-link" href="#zpars"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;zpars&lt;/code&gt; is an in-progress Rust port of core ZPAQ compression/decompression ideas.&lt;/p&gt;
+&lt;p&gt;Current implementation includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A native Rust block codec (&lt;code&gt;.zpars&lt;/code&gt;) with LZ77-based compression/decompression.&lt;/li&gt;
+&lt;li&gt;A CLI built with &lt;code&gt;clap&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Toggleable structured logging via &lt;code&gt;tracing&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;ZPAQ archive inspection and partial extraction tooling.&lt;/li&gt;
+&lt;li&gt;Compatibility tests that exercise the bundled reference implementation in &lt;code&gt;tmp/zpaq&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="status"&gt;
+ Status
+ &lt;a class="heading-link" href="#status"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This repository is &lt;strong&gt;not yet a full bit-compatible ZPAQ Level 2 implementation&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>
