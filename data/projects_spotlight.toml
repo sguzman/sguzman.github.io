@@ -626,3 +626,59 @@ novelty = [
   "Pure AST Evaluation: Clean implementation of S-expression parsing and mathematical reduction in safe Rust.",
   "Rapid Prototyping: Demonstrates the speed of moving from high-level 'conversation' to a tested, functional language implementation.",
 ]
+
+[[projects]]
+title = "wxmatch"
+status = "Active"
+repo = "https://github.com/sguzman/wxmatch"
+demo = ""
+docs = ""
+tags = ["rust", "weather"]
+
+[[projects]]
+title = "simurom"
+status = "Active"
+repo = "https://github.com/sguzman/simurom"
+demo = ""
+docs = ""
+tags = ["rust", "gamedev", "toml", "2d"]
+
+[[projects]]
+title = "kalx"
+status = "Active"
+repo = "https://github.com/sguzman/kalx"
+demo = ""
+docs = ""
+tags = ["rust", "cli", "finance"]
+
+[[projects]]
+title = "rivetr"
+status = "Active"
+repo = "https://github.com/sguzman/rivetr"
+demo = ""
+docs = ""
+tags = ["rust", "egui"]
+
+[[projects]]
+title = "vessel"
+status = "Active"
+repo = "https://github.com/sguzman/vessel"
+demo = ""
+docs = ""
+tags = ["rust", "media", "metadata", "extractor"]
+
+[[projects]]
+title = "cinegraph"
+status = "Active"
+repo = "https://github.com/sguzman/cinegraph"
+demo = ""
+docs = ""
+tags = ["rust", "data", "aggregation"]
+
+[[projects]]
+title = "pokesay"
+status = "Active"
+repo = "https://github.com/sguzman/pokesay"
+demo = ""
+docs = ""
+tags = ["rust", "cli"]
