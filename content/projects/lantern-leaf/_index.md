@@ -30,9 +30,9 @@ Create a seamless, distraction-free reading experience that converts any documen
 
 - Project page: /projects/lantern-leaf/
 - Primary language: Rust
-- Commits: 548
+- Commits: 552
 - Created: 2025-12-07T02:51:09Z
-- Last updated: 2026-03-14T06:03:05Z
+- Last updated: 2026-05-22T19:43:58Z
 
 ## Links
 

@@ -6,7 +6,7 @@ description: "Http server integrating browser tab data from my previous extensio
 
 ## Overview
 
-`browsr` is a local HTTP + WebSocket bridge for live browser session introspection.
+`browsr` is a local HTTP and WebSocket bridge for live browser session introspection, designed to pair with a Chromium/Edge extension.
 
 ## Ambition
 
@@ -19,19 +19,19 @@ I’m building this to become a sharp, reusable tool that I can rely on in real 
 
 ## Highlights
 
-- The extension connects to `browsr` over WebSocket.
-- `browsr` exposes stable HTTP endpoints for multiple local clients.
-- Clients can list windows/tabs and request tab snapshots (HTML/text/selection).
-- `xpose` extension -> WebSocket -> `browsr` (`/ws`)
-- client apps / CLI / GUI -> HTTP -> `browsr` (`/v1/...`)
+- Local HTTP endpoints for browser-derived data.
+- WebSocket bridge for extension communication.
+- Configurable runtime behavior.
+- Containerization support via `Dockerfile` and `docker-compose.yml`.
+- Separation between protocol definitions and service state.
 
 ## Stats
 
 - Project page: /projects/browsr/
 - Primary language: Rust
-- Commits: 10
+- Commits: 11
 - Created: 2026-03-05T17:21:50Z
-- Last updated: 2026-03-10T00:44:25Z
+- Last updated: 2026-05-03T01:12:03Z
 
 ## Links
 

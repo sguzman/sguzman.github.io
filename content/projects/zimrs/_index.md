@@ -6,7 +6,7 @@ description: "Zim -> sqlite"
 
 ## Overview
 
-`zimrs` converts a Wiktionary `.zim` archive into a queryable dictionary database and includes operational tooling for verification, reindexing, export, benchmarking, and release packaging.
+`zimrs` converts Wiktionary `.zim` archives into a queryable dictionary database and includes tooling for verification, reindexing, export, benchmarking, and release packaging.
 
 ## Ambition
 
@@ -19,19 +19,19 @@ I’m building this to become a sharp, reusable tool that I can rely on in real 
 
 ## Highlights
 
-- Postgres-first ingestion with automatic startup checks, database bootstrap, and schema management.
-- SQLite compatibility mode for local/offline workflows.
-- Configurable ZIM -> DB ingestion with namespace/MIME/prefix filters.
-- Resumable checkpointing for long-running archive conversions.
-- Optional parallel extraction workers.
+- Convert `.zim` archives into database records.
+- Support verification, export, and incremental reindex flows.
+- Work with PostgreSQL and SQLite backends.
+- Benchmark and benchmark-report related artifacts.
+- Package release outputs and synthetic sample data.
 
 ## Stats
 
 - Project page: /projects/zimrs/
 - Primary language: Rust
-- Commits: 20
+- Commits: 21
 - Created: 2026-02-26T21:24:23Z
-- Last updated: 2026-03-05T16:28:14Z
+- Last updated: 2026-05-03T01:13:03Z
 
 ## Links
 

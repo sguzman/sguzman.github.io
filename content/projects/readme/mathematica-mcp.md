@@ -6,324 +6,295 @@ draft = false
 
 [Repository](https://github.com/sguzman/mathematica-mcp) | [DeepWiki](https://deepwiki.com/sguzman/mathematica-mcp/)
 
-# Mathematica-Mcp-Server
+# Mathematica MCP
 
-An MCP (Model Context Protocol) server that exposes a local
-**Wolfram/Mathematica kernel** over **stdio**, with:
+`mathematica-mcp` is a Rust MCP server that exposes a local Wolfram Language / Mathematica kernel over stdio. It is intended for MCP-compatible clients that need symbolic computation, numerical evaluation, finance lookups, or notebook-style experimentation backed by a real local kernel instead of a remote API.
 
-- multi-session kernel management
-- tamper-evident session IDs
-- a safe-ish `FinancialData[...]` helper
-- an interactive **REPL** for testing without an MCP client
-- extensive structured logging via `tracing` (to stderr)
+The repository also includes a local REPL that exercises the same session-management and evaluation path without requiring an MCP host, which makes it useful for development, debugging, and validating kernel setup.
 
-This is intended for MCP hosts like Continue and other stdio-based MCP clients.
+## What The Project Does
 
----
+The server starts one or more local Wolfram kernel processes and presents them through a small MCP tool surface:
 
-## What This Server Provides
+- Create a kernel-backed session.
+- Execute arbitrary Wolfram Language code inside a specific session.
+- Close a session and release its resources.
+- List active sessions and their idle times.
+- Return current local and UTC time.
+- Provide a convenience helper around `FinancialData[...]`.
 
-### Tools (all Prefixed with `mathematica.`)
+Each session is isolated in its own worker thread and is cleaned up automatically after 30 minutes of inactivity.
 
-- `mathematica.create_session`
-  - Launch a new kernel session and return a session id.
-- `mathematica.execute_code`
-  - Evaluate Wolfram Language code in a specific session.
-- `mathematica.close_session`
-  - Shutdown a specific session.
-- `mathematica.list_sessions`
-  - Return all active sessions and creation times.
-- `mathematica.time`
-  - Return current local + UTC time (RFC3339).
-- `mathematica.get_finance`
-  - “Sugar syntax” for `FinancialData[...]` that builds valid WL and evaluates
-    it in-session.
+## Why This Exists
 
----
+Most MCP clients speak stdio well, but they do not know how to launch and manage a local Mathematica kernel. This project fills that gap:
 
-## Requirements
+- `rmcp` handles the MCP server and stdio transport.
+- `wstp` handles the Wolfram Symbolic Transfer Protocol bridge into the kernel.
+- The crate adds session lifecycle management, kernel discovery, evaluation wrappers, and a local debugging workflow.
 
-### System Prerequisites
+## Runtime Modes
 
-- A working Wolfram kernel executable:
-  - `WolframKernel` (common) or `MathKernel` (older installs)
-- WSTP must be available on your system (typically installed alongside
-  Mathematica / Wolfram Engine).
-- Rust toolchain (recent stable).
+The binary supports two modes.
 
-### Notes About Licensing / Data
+### `serve`
 
-`FinancialData[...]` depends on your Wolfram installation and the data sources
-it can access. Some data requires an active license or network access.
+Runs the MCP server over stdio for use by MCP hosts such as desktop assistants, editor integrations, or custom clients.
 
----
+```bash
+cargo run -- serve
+```
 
-## Installation & Build
+This is also the default when no subcommand is provided:
 
-From the repo directory:
+```bash
+cargo run
+```
 
-- Build release:
-  - `cargo build --release`
+### `repl`
 
-The output binary will be at:
+Runs an interactive local shell that calls the same session manager and evaluation path without MCP in the middle.
 
-- `target/release/mathematica-mcp-server`
+```bash
+cargo run -- repl
+```
 
----
+The REPL is useful when:
 
-## Running
+- you want to verify that the Wolfram kernel launches correctly;
+- you want to debug evaluation behavior before testing through an MCP client;
+- you want to inspect raw output, logs, and graphics handling locally.
 
-### 1. MCP Server Mode (stdio)
+## MCP Tool Surface
 
-Run:
+The server currently exposes these tools from [`src/mcp.rs`](/win/linux/Code/rust/mathematica-mcp/src/mcp.rs):
 
-- `mathematica-mcp-server serve`
+- `mathematica_create_session`
+  Launch a new kernel session and return a session id.
+- `mathematica_execute_code`
+  Evaluate Wolfram Language code in a specific session.
+- `mathematica_close_session`
+  Shut down a session.
+- `mathematica_list_sessions`
+  Return active sessions, creation time, and idle time.
+- `mathematica_time`
+  Return local and UTC time in RFC3339 format.
+- `mathematica_get_finance`
+  Build and execute a `FinancialData[...]` expression for a given ticker and optional property/date range/interval.
 
-This mode is for MCP hosts. **Do not print to stdout** in this mode; MCP stdio
-uses stdout for protocol traffic. This project logs to **stderr** via `tracing`.
+Recommended usage flow:
 
-### 2. Local REPL Mode (recommended for Testing)
+1. Call `mathematica_create_session`.
+2. Reuse the returned `session_id` for one or more `mathematica_execute_code` or `mathematica_get_finance` calls.
+3. Call `mathematica_close_session` when you are done.
 
-Run:
+## How Evaluation Works
 
-- `mathematica-mcp-server repl`
+The evaluation pipeline lives primarily in [`src/wolfram.rs`](/win/linux/Code/rust/mathematica-mcp/src/wolfram.rs) and [`src/session.rs`](/win/linux/Code/rust/mathematica-mcp/src/session.rs).
 
-Inside the REPL you can type the same tool names you’d call from an MCP client:
+At a high level:
 
-Example session:
+1. The server resolves a Wolfram kernel executable.
+2. A new session spawns a dedicated kernel process through WSTP.
+3. Each session owns a worker thread and receives requests over a channel.
+4. User code is wrapped before evaluation so the server can return structured JSON.
+5. The wrapper captures:
+   - `output`: the result rendered with `ToString[..., InputForm]`
+   - `graphics`: a PNG, Base64-encoded, when the result looks like a graphics object
+   - `logs`: text packets such as `Print[...]` output
+6. The MCP layer measures elapsed time and returns the structured result.
 
-- `mathematica.create_session`
-- `mathematica.execute_code 2+2`
-- `mathematica.time`
-- `mathematica.get_finance AAPL Close 2025-01-01 2025-02-01`
-- `mathematica.list_sessions`
-- `mathematica.close_session`
+This design keeps the transport layer thin and concentrates kernel behavior in a small number of files.
+
+## Session Model
+
+Sessions are managed by `SessionManager` in [`src/session.rs`](/win/linux/Code/rust/mathematica-mcp/src/session.rs).
+
+Important behavior:
+
+- Each session gets its own kernel process.
+- Each session tracks `created_at` and `last_accessed`.
+- Idle sessions are closed automatically after 30 minutes.
+- Eval requests are timeout-bound per call.
+- Closing a session joins the worker thread and removes it from the internal map.
+
+Session ids are human-readable four-part tokens such as `quick_fox-kind_sloth-bright_auk-calm_mole`. The generator and verifier live in [`src/session_id.rs`](/win/linux/Code/rust/mathematica-mcp/src/session_id.rs).
+
+## Kernel Discovery And Configuration
+
+Kernel resolution is implemented in [`src/wolfram.rs`](/win/linux/Code/rust/mathematica-mcp/src/wolfram.rs) with platform-specific helpers in [`src/platform/`](/win/linux/Code/rust/mathematica-mcp/src/platform).
+
+Resolution order:
+
+1. `WOLFRAM_KERNEL_PATH`
+2. platform discovery via `wolfram-app-discovery`
+3. executable lookup on `PATH`
+4. fallback to a bare `WolframKernel` command name
+
+### `WOLFRAM_KERNEL_PATH`
+
+If your Wolfram installation is not discoverable automatically, set the kernel explicitly:
+
+```bash
+export WOLFRAM_KERNEL_PATH=/path/to/WolframKernel
+```
+
+On Windows, use the `.exe` path.
+
+The platform layer validates that the configured path exists and looks executable for the current OS.
+
+## Logging And Observability
+
+Tracing is initialized in [`src/main.rs`](/win/linux/Code/rust/mathematica-mcp/src/main.rs).
+
+Important detail: in server mode, logs are written to `stderr`, not `stdout`, because stdio MCP transport uses `stdout` for protocol traffic.
+
+The logger uses `tracing-subscriber` with `RUST_LOG` support:
+
+```bash
+RUST_LOG=debug cargo run -- serve
+```
+
+## REPL Commands
+
+The REPL implementation lives in [`src/repl.rs`](/win/linux/Code/rust/mathematica-mcp/src/repl.rs).
+
+Supported commands:
+
+- `mathematica_create_session`
+- `mathematica_list_sessions`
+- `mathematica_time`
+- `mathematica_execute_code <code...>`
+- `mathematica_get_finance <SYMBOL> [PROPERTY] [START YYYY-MM-DD] [END YYYY-MM-DD] [INTERVAL]`
+- `mathematica_close_session [SESSION_ID]`
+- `exit`
 - `quit`
 
----
+REPL history is stored at `.cache/mathematica_repl_history.txt`.
 
-## Environment Variables
+## Build, Run, And Test
 
-### Required / Recommended
+### Requirements
 
-- `ANIMALID_SECRET_KEY`
-  - Secret key used to generate and verify tamper-evident session IDs.
-  - If not set, a dev default is used (not recommended).
+- Rust toolchain with Cargo
+- A local Wolfram / Mathematica installation with a usable kernel
+- Native toolchain support needed by the `wstp` dependency on your platform
 
-- `WOLFRAM_KERNEL_PATH`
-  - Optional explicit path to the kernel executable.
-  - If not set, the server will try `WolframKernel` or `MathKernel` on `PATH`.
+### Common Commands
 
-### Logging
-
-- `RUST_LOG`
-  - Controls verbosity of tracing logs.
-  - Examples: `info`, `debug`, `trace`
-- `RUST_BACKTRACE=1`
-  - Helpful during debugging.
-
-### Fish Examples
-
-```text
-set -x ANIMALID_SECRET_KEY "your-long-random-secret"
-set -x WOLFRAM_KERNEL_PATH "/usr/local/bin/WolframKernel"
-set -x RUST_LOG "info"
-set -x RUST_BACKTRACE "1"
+```bash
+cargo build
+cargo run -- --help
+cargo run -- serve
+cargo run -- repl
+cargo test
 ```
 
+## Repository Layout
 
-````text
+Top-level structure:
 
----
+- [`Cargo.toml`](/win/linux/Code/rust/mathematica-mcp/Cargo.toml)
+  Main crate manifest and dependency list.
+- [`src/`](/win/linux/Code/rust/mathematica-mcp/src)
+  Application source code for the MCP server, REPL, session manager, and Wolfram integration.
+- [`docs/`](/win/linux/Code/rust/mathematica-mcp/docs)
+  Reference notes, migration material, release process notes, and internal project documentation.
+- [`wstp-sys-patched/`](/win/linux/Code/rust/mathematica-mcp/wstp-sys-patched)
+  Local patched replacement for the `wstp-sys` crate used through `[patch.crates-io]`.
+- [`tmp/`](/win/linux/Code/rust/mathematica-mcp/tmp)
+  Scratch/reference area ignored by git for temporary migration inputs or notes.
+- [`target/`](/win/linux/Code/rust/mathematica-mcp/target)
+  Cargo build output.
 
-## Using with Continue (config.yaml)
+### `src/` Layout
 
-Replace your Python/uv command with either a release binary (recommended) or
-cargo.
+- [`src/main.rs`](/win/linux/Code/rust/mathematica-mcp/src/main.rs)
+  CLI entrypoint, tracing setup, and subcommand dispatch.
+- [`src/mcp.rs`](/win/linux/Code/rust/mathematica-mcp/src/mcp.rs)
+  MCP server implementation and tool definitions.
+- [`src/repl.rs`](/win/linux/Code/rust/mathematica-mcp/src/repl.rs)
+  Interactive local shell for manual testing.
+- [`src/session.rs`](/win/linux/Code/rust/mathematica-mcp/src/session.rs)
+  Session lifecycle, worker threads, idle cleanup, and eval dispatch.
+- [`src/session_id.rs`](/win/linux/Code/rust/mathematica-mcp/src/session_id.rs)
+  Human-readable session id generation and format validation.
+- [`src/wolfram.rs`](/win/linux/Code/rust/mathematica-mcp/src/wolfram.rs)
+  Kernel discovery, WSTP launch, evaluation wrapper, and finance helper code generation.
+- [`src/platform/mod.rs`](/win/linux/Code/rust/mathematica-mcp/src/platform/mod.rs)
+  Platform abstraction for kernel path discovery and validation.
+- [`src/platform/linux.rs`](/win/linux/Code/rust/mathematica-mcp/src/platform/linux.rs)
+  Linux-specific kernel path handling.
+- [`src/platform/windows.rs`](/win/linux/Code/rust/mathematica-mcp/src/platform/windows.rs)
+  Windows-specific kernel path handling.
 
-### Option A: Run the Compiled Release Binary (recommended)
+### `docs/` Layout
 
-```yaml
-- name: Mathematica (Kernel MCP)
-command:
-/home/admin/Code/mcp/mathematica_mcp/target/release/mathematica-mcp-server args:
-    - serve
-  env:
-    ANIMALID_SECRET_KEY: "..."
-    WOLFRAM_KERNEL_PATH: "/usr/local/bin/WolframKernel"
-    RUST_LOG: "info"
-    RUST_BACKTRACE: "1"
-```
+The `docs/reference/` tree is supporting project documentation, not runtime code. It currently contains:
 
-### Option B: Run via Cargo (dev-Friendly)
+- release and semver notes;
+- migration structure and roadmap documents;
+- tool references used during development;
+- AI/reference notes used while shaping the project.
 
-```yaml
-- name: Mathematica (Kernel MCP)
-  command: cargo
-  cwd: /home/admin/Code/mcp/mathematica_mcp
-  args:
-    - run
-    - --release
-    - --
-    - serve
-  env:
-    ANIMALID_SECRET_KEY: "..."
-    WOLFRAM_KERNEL_PATH: "/usr/local/bin/WolframKernel"
-    RUST_LOG: "info"
-    RUST_BACKTRACE: "1"
-```
+If you are trying to understand runtime behavior, start with `src/` first. If you are trying to understand maintenance workflow, planned structure, or release process, then `docs/reference/` is relevant.
 
----
+### `wstp-sys-patched/`
 
-## Tool Details & Examples
+This repository patches `wstp-sys` locally:
 
-### `mathematica.create_session`
+- `Cargo.toml` redirects the crate with `[patch.crates-io]`.
+- the directory provides the low-level WSTP FFI crate used by the upstream `wstp` crate;
+- `generated/` contains pre-generated bindings used during builds.
 
-Returns:
+This exists because WSTP integration is the most platform-sensitive part of the stack, and local patching gives the project control over that boundary.
 
-```json
-{ "session_id": "alert_fox-kind_sloth-bright_auk-calm_mole" }
-```
+## Dependency Notes
 
-### `mathematica.execute_code`
+Key runtime dependencies from [`Cargo.toml`](/win/linux/Code/rust/mathematica-mcp/Cargo.toml):
 
-Input:
+- `rmcp`
+  MCP server framework and stdio transport.
+- `tokio`
+  Async runtime for the server and cleanup tasks.
+- `wstp`
+  Rust bindings over Wolfram's WSTP.
+- `wolfram-expr`
+  Expression handling for WSTP interactions.
+- `wolfram-app-discovery`
+  Kernel path discovery across supported installations.
+- `rustyline`
+  Interactive REPL support.
+- `tracing` and `tracing-subscriber`
+  Structured logging.
+- `clap`
+  CLI parsing.
+- `flume`
+  Cross-thread request channel for session workers.
 
-```json
-{
-  "session_id": "alert_fox-kind_sloth-bright_auk-calm_mole",
-  "code": "FactorInteger[123456]"
-}
-```
+## Current Limitations
 
-Output:
+- This project depends on a locally installed proprietary Wolfram runtime.
+- The MCP surface is intentionally small; most Wolfram functionality currently flows through generic code execution rather than many specialized tools.
+- Graphics results are detected with a simple wrapper and returned as Base64 PNG, which is practical but not a full notebook rendering model.
+- Session ids are human-readable and format-validated, but they are not durable credentials and should be treated as local process identifiers.
 
-```json
-{
-  "output": "{{2,6},{3,1},{643,1}}",
-  "elapsed_ms": 12
-}
-```
+## Development Notes
 
-### `mathematica.get_finance`
+Useful files for maintainers:
 
-Input:
+- [`docs/reference/RELEASE.md`](/win/linux/Code/rust/mathematica-mcp/docs/reference/RELEASE.md)
+  Release and semver policy.
+- [`docs/reference/migration/structure.md`](/win/linux/Code/rust/mathematica-mcp/docs/reference/migration/structure.md)
+  Notes for migration-oriented project organization.
 
-```json
-{
-  "session_id": "alert_fox-kind_sloth-bright_auk-calm_mole",
-  "symbol": "AAPL",
-  "property": "Close",
-  "start_date": "2025-01-01",
-  "end_date": "2025-02-01",
-  "interval": "Day"
-}
-```
+## Status
 
-Output (example):
+The repository is already a functional local MCP bridge:
 
-```json
-{ "wolfram_code": "FinancialData
-[\"AAPL\",\"Close\",{DateObject[{2025,1,1}], DateObject[{2025,2,1}]},\"Day\"]",
-"output": "{...}", "elapsed_ms": 45}
-```
+- MCP server mode works over stdio.
+- REPL mode exercises the same kernel/session path locally.
+- Session creation, evaluation, listing, finance lookup, and shutdown are implemented.
+- Linux and Windows kernel discovery paths are present.
 
-Notes:
-
-- Dates must be `YYYY-MM-DD`.
-- If you provide a date range without a `property`, the server defaults the
-  property to `"Close"` so the WL syntax remains valid.
-
-### `mathematica.list_sessions`
-
-Returns:
-
-```json
-{
-  "sessions": [
-    {
-      "session_id": "alert_fox-kind_sloth-bright_auk-calm_mole",
-      "created_at_utc": "2026-02-01T16:23:12Z"
-    }
-  ]
-}
-```
-
-### `mathematica.time`
-
-Returns:
-
-```json
-{
-  "local_rfc3339": "2026-02-01T10:23:12-06:00",
-  "utc_rfc3339": "2026-02-01T16:23:12Z"
-}
-```
-
----
-
-## Architecture (how It Works)
-
-- **Session manager** maintains multiple sessions.
-- Each session runs the Wolfram kernel behind a **WSTP Link**.
-- Each session Link lives on its **own OS thread** (so we never require
-  `Link: Send`).
-- Tool calls communicate with session threads via channels.
-- Session IDs are:
-
-  - human-friendly (adjective_animal tokens)
-  - tamper-evident via a small HMAC-derived checksum embedded in the words
-
----
-
-## Troubleshooting
-
-### “Kernel Not Found” / Failing to Launch
-
-- Set `WOLFRAM_KERNEL_PATH` explicitly to your kernel executable.
-- Verify the kernel path is executable.
-
-### `FinancialData[...]` Returns Errors
-
-- This is often due to:
-
-  - missing data access
-  - licensing limitations
-  - lack of network connectivity
-- Try evaluating a simpler query first:
-
-  - `mathematica.execute_code FinancialData["AAPL"]`
-
-### MCP Host Gets Corrupted Output / Protocol Errors
-
-- Ensure the server is not printing to stdout.
-- Keep logs on stderr (this project does).
-
-### Increase Logging
-
-```text
-set -x RUST_LOG "debug"
-```
-
----
-
-## Security Notes
-
-- Treat `ANIMALID_SECRET_KEY` like an application secret.
-- Session IDs are designed to be tamper-evident, not cryptographically private.
-- This server evaluates arbitrary Wolfram Language code in the kernel. Only run
-  it in environments you trust.
-
----
-
-## License
-
-CC0-1.0 (public domain dedication).
-
-```text
-
-If you want, paste your current repo tree (or just `Cargo.toml` + `src/`
-filenames), and I’ll tailor the README’s paths/commands to exactly match what
-you’ve actually got (binary name, tool list, and any extra tools you kept from
-the Python version). ::contentReference [oaicite:0]{index=0}
-```
+The main area to be careful with is environment setup around WSTP and local kernel discovery, since that is the part most likely to vary by machine.

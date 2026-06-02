@@ -6,7 +6,7 @@ description: "Taskwarrior-like plus extra features like gui, calendar view/sync"
 
 ## Overview
 
-Rivet is a Rust-first Taskwarrior port with two layers:
+Rivet is a Rust workspace for building a Taskwarrior-style task manager with two main product surfaces:
 
 ## Ambition
 
@@ -19,19 +19,19 @@ I’m building this to become a sharp, reusable tool that I can rely on in real 
 
 ## Highlights
 
-- A CLI-compatible core (`task`) focused on Taskwarrior-style workflows.
-- A desktop GUI layer built with Rust + TypeScript/React + Tailwind + Material UI + Tauri on top of the same core data model.
-- `crates/rivet-core`: task engine, parsing, datastore, filters, renderer, command dispatch.
-- `crates/rivet-cli`: `task` binary.
-- `crates/rivet-parity`: parity harness that compares Rivet results to Taskwarrior.
+- a `task`-compatible CLI implemented in Rust
+- a desktop GUI implemented with Tauri on the backend and React on the frontend
+- a Rust core crate that parses task-style commands, loads config, filters
+- a thin CLI binary named `task`
+- a parity harness for comparing Rivet behavior against Taskwarrior
 
 ## Stats
 
 - Project page: /projects/rivet/
 - Primary language: TypeScript
-- Commits: 126
+- Commits: 128
 - Created: 2026-02-16T04:11:41Z
-- Last updated: 2026-04-25T11:05:36Z
+- Last updated: 2026-05-04T03:28:04Z
 
 ## Links
 

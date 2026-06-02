@@ -26,9 +26,9 @@ A highly personalized, minimal blog platform designed for longevity and easy arc
 
 - Project page: /projects/marginalia/
 - Primary language: Python
-- Commits: 19
+- Commits: 43
 - Created: 2026-04-20T11:32:58Z
-- Last updated: 2026-04-26T19:00:51Z
+- Last updated: 2026-06-01T21:16:49Z
 
 ## Links
 

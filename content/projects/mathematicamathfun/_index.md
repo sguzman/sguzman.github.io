@@ -6,7 +6,7 @@ description: "A repo for my Mathematica document files - mostly math research an
 
 ## Overview
 
-A research-oriented repository of Wolfram Language notebooks exploring advanced topics in pure and applied mathematics.
+A repo for my Mathematica document files - mostly math research and fun
 
 ## Ambition
 
@@ -17,14 +17,6 @@ A personal laboratory for exploring advanced mathematical concepts—ranging fro
 - Computational Topology: Notebooks exploring complex function theory and curvature analysis in multi-dimensional spaces.
 - Symbolic Analysis: Implementations of calculus of variations and complex-system simulations.
 - Dynamic Data Viz: High-fidelity, sector-based statistical visualizations and probability density models.
-
-## Highlights
-
-- **Curvature Analysis**: Notebooks for visualizing Riemann tensors and Gaussian curvature on multi-dimensional manifolds.
-- **Complex Function Theory**: Symbolic exploration of holomorphicity and conformal mapping.
-- **Functional Minimization**: Implementations of Euler-Lagrange equations for physical systems and shortest-path problems.
-- **Probability Density Models**: High-fidelity visualizations of sector-based statistical distributions.
-- **System Stability**: Analysis of attractor basins and phase-space trajectories for non-linear oscillators.
 
 ## Stats
 

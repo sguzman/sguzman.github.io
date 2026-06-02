@@ -6,7 +6,7 @@ description: "An rust+egui alternative notebook frontend for mathematica"
 
 ## Overview
 
-Woven is a Rust + `egui` notebook-style frontend for the Wolfram Language (Mathematica), with an explicit goal of replacing/modernizing plotting using `egui_plot`.
+Woven is a Rust and `egui` notebook-style frontend for the Wolfram Language, with a specific interest in modernizing plotting through `egui_plot`.
 
 ## Ambition
 
@@ -20,16 +20,19 @@ A modern, lightweight alternative to the Mathematica notebook interface built wi
 
 ## Highlights
 
-- A Wolfram installation that provides `WolframKernel` and WSTP (e.g., Wolfram Engine / Mathematica).
-- `wolframscript` on `PATH` is strongly recommended (used by WSTP discovery/linking).
+- Native Rust app shell over Wolfram kernel workflows.
+- Config-driven runtime behavior.
+- Notebook-style UX foundations in `egui`.
+- Kernel integration modules and supporting tests.
+- Documentation/config assets for local development.
 
 ## Stats
 
 - Project page: /projects/woven/
 - Primary language: Rust
-- Commits: 13
+- Commits: 14
 - Created: 2026-04-22T00:08:18Z
-- Last updated: 2026-04-22T10:51:20Z
+- Last updated: 2026-05-03T01:13:01Z
 
 ## Links
 

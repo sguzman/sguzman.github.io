@@ -6,7 +6,7 @@ description: "Rust based mcp integration for mathemathica"
 
 ## Overview
 
-An MCP (Model Context Protocol) server that exposes a local
+`mathematica-mcp` is a Rust MCP server that exposes a local Wolfram Language / Mathematica kernel over stdio. It is intended for MCP-compatible clients that need symbolic computation, numerical evaluation, finance lookups, or notebook-style experimentation backed by a real local kernel instead of a remote API.
 
 ## Ambition
 
@@ -20,19 +20,19 @@ Enable LLMs and agentic systems to access the deep computational power of Mathem
 
 ## Highlights
 
-- multi-session kernel management
-- tamper-evident session IDs
-- a safe-ish `FinancialData[...]` helper
-- an interactive **REPL** for testing without an MCP client
-- extensive structured logging via `tracing` (to stderr)
+- Create a kernel-backed session.
+- Execute arbitrary Wolfram Language code inside a specific session.
+- Close a session and release its resources.
+- List active sessions and their idle times.
+- Return current local and UTC time.
 
 ## Stats
 
 - Project page: /projects/mathematica-mcp/
 - Primary language: Rust
-- Commits: 26
+- Commits: 28
 - Created: 2026-02-01T06:28:37Z
-- Last updated: 2026-04-19T21:39:09Z
+- Last updated: 2026-05-03T23:51:11Z
 
 ## Links
 

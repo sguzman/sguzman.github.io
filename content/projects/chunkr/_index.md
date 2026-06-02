@@ -6,7 +6,7 @@ description: "end to end pipeline for taking text -> normalizing -> chunking -> 
 
 ## Overview
 
-Chunkr is a CLI for extracting text + metadata from Calibre libraries, cleaning and chunking that text, and inserting the resulting chunks into Qdrant and Quickwit. Configuration is centralized in a single TOML file so that all properties, policies, and paths are controlled in one place.
+`chunkr` is a Rust CLI for turning an ebook library into search- and retrieval-ready text artifacts. It extracts text and metadata from Calibre-managed books, normalizes and chunks that text, generates embeddings through an HTTP provider, and inserts the resulting records into downstream systems such as Qdrant and Quickwit.
 
 ## Ambition
 
@@ -20,19 +20,19 @@ Build a high-throughput data pipeline for RAG (Retrieval-Augmented Generation) s
 
 ## Highlights
 
-- Deterministic, idempotent extraction from Calibre (skip already-processed
-- Robust handling for large EPUB/PDF files (chunk during extraction to avoid
-- Clean, normalized text and metadata-enriched chunks for downstream search and
-- Straightforward insertion into Qdrant + Quickwit with sensible defaults.
-- Extensive logging for long-running pipelines.
+- Extract `.epub` and `.pdf` content from a Calibre library tree.
+- Preserve book-level metadata in JSON sidecars during extraction.
+- Normalize text before chunking, including Unicode cleanup and whitespace collapsing.
+- Produce JSONL chunk records with stable metadata fields and per-chunk offsets.
+- Generate embeddings through a configurable HTTP embedding provider.
 
 ## Stats
 
 - Project page: /projects/chunkr/
 - Primary language: Rust
-- Commits: 608
+- Commits: 610
 - Created: 2026-01-29T10:17:54Z
-- Last updated: 2026-02-09T21:06:24Z
+- Last updated: 2026-05-03T21:44:58Z
 
 ## Links
 

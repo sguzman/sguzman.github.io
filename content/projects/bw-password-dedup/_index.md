@@ -30,9 +30,9 @@ Provide a surgical deduplication tool for Bitwarden password exports, ensuring z
 
 - Project page: /projects/bw-password-dedup/
 - Primary language: Rust
-- Commits: 5
+- Commits: 6
 - Created: 2026-01-28T10:51:47Z
-- Last updated: 2026-01-28T11:32:26Z
+- Last updated: 2026-05-03T01:12:06Z
 
 ## Links
 

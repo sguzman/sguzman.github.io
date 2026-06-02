@@ -6,7 +6,7 @@ description: "A wrapper around docling for detecting quality of text and produci
 
 ## Overview
 
-quack-check is a deterministic PDF transcript orchestrator built around Docling. It classifies PDF quality, chooses a policy, chunks large files safely, runs Docling (or native extraction), and merges a stable transcript with optional post-processing.
+`quack-check` is a deterministic PDF transcript orchestration tool written in Rust. It sits above the actual extraction backends and makes explicit decisions about:
 
 ## Ambition
 
@@ -19,19 +19,19 @@ I’m building this to become a sharp, reusable tool that I can rely on in real 
 
 ## Highlights
 
-- PDFs are not uniform. Some have clean embedded text, some have partial/broken layers, and some are image-only scans.
-- Docling can do a lot, but deterministic orchestration, chunking, and policy decisions are on you.
-- quack-check makes those decisions explicit and configurable.
-- Preflight probe for text quality (chars/page, garbage ratio, whitespace ratio).
-- Policy-driven extraction tiers: high-text, mixed-text, scan.
+- how to inspect a PDF before conversion
+- which extraction path to use
+- when to split a document into chunks
+- how to merge chunk output into a stable final transcript
+- which metadata and audit artifacts to keep
 
 ## Stats
 
 - Project page: /projects/quack-check/
 - Primary language: Rust
-- Commits: 15
+- Commits: 17
 - Created: 2026-02-13T20:05:07Z
-- Last updated: 2026-02-14T04:48:05Z
+- Last updated: 2026-05-04T02:11:24Z
 
 ## Links
 

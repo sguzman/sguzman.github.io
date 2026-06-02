@@ -8,315 +8,478 @@ draft = false
 
 # Chunkr
 
-Chunkr is a CLI for extracting text + metadata from Calibre libraries, cleaning
-and chunking that text, and inserting the resulting chunks into Qdrant and
-Quickwit. Configuration is centralized in a single TOML file so that all
-properties, policies, and paths are controlled in one place.
+`chunkr` is a Rust CLI for turning an ebook library into search- and retrieval-ready text artifacts. It extracts text and metadata from Calibre-managed books, normalizes and chunks that text, generates embeddings through an HTTP provider, and inserts the resulting records into downstream systems such as Qdrant and Quickwit.
 
-This README formalizes the intended interface and configuration for the project.
+The repository is organized around a practical ingestion pipeline:
 
-## Goals
+1. `extract`: walk a Calibre library and emit plain text plus sidecar metadata.
+2. `chunk`: clean extracted text and convert it into JSONL chunk records.
+3. `insert`: embed chunk text and write the results to vector and search indexes.
+4. `dups`, `dup-stats`, `dedup`: inspect and manage duplicate books in a Calibre library.
 
-- Deterministic, idempotent extraction from Calibre (skip already-processed
-  files).
-- Robust handling for large EPUB/PDF files (chunk during extraction to avoid
-  memory spikes).
-- Clean, normalized text and metadata-enriched chunks for downstream search and
-  embeddings.
-- Straightforward insertion into Qdrant + Quickwit with sensible defaults.
-- Extensive logging for long-running pipelines.
+## What The Project Does
 
-## Commands
+Chunkr is not just a text splitter. The crate is structured as an end-to-end ingestion tool for personal or research-scale libraries where Calibre is the source of truth and Qdrant/Quickwit are downstream consumers.
 
-### `extract`
+Core capabilities:
 
-Extracts plaintext and metadata from a Calibre library into a target folder.
+- Extract `.epub` and `.pdf` content from a Calibre library tree.
+- Preserve book-level metadata in JSON sidecars during extraction.
+- Normalize text before chunking, including Unicode cleanup and whitespace collapsing.
+- Produce JSONL chunk records with stable metadata fields and per-chunk offsets.
+- Generate embeddings through a configurable HTTP embedding provider.
+- Insert the same chunk corpus into both a vector store and a search index.
+- Scan a library for duplicate files and summarize duplicate storage overhead.
+- Score duplicate Calibre records by metadata completeness before removing lower-quality copies.
 
-Key behaviors:
+## Command Surface
 
-- Points at a Calibre library root (e.g. `/drive/calibre/en_nonfiction`).
-- Supports EPUB and PDF (for now).
-- Idempotent: skips items already extracted unless configured otherwise.
-- EPUB extraction should follow the approach in `tmp/epub.fish`.
-- PDF extraction should attempt text-first, and fall back to OCR via Docling
-  (see `tmp/pdf.fish`).
-- Large files are segmented during extraction using chapter boundaries when
-  available.
-- All extraction and segmentation policy is configured in TOML.
+The binary exposes the following subcommands:
 
-### `chunk`
+```bash
+chunkr extract
+chunkr chunk
+chunkr insert
+chunkr dups
+chunkr dup-stats --input dups.json
+chunkr dedup --input dups.json --dry-run
+```
 
-Cleans, normalizes, and chunks a large corpus of text files into chunked JSONL
-(or similar) with metadata.
+Global flags:
 
-Key behaviors:
+- `-c, --config <PATH>`: load a TOML config file. Defaults to `config.toml`.
+- `-h, --help`: print help.
+- `-V, --version`: print the version.
 
-- Uses the chunking strategies and policies defined in config.
-- Mirrors the “oxbed” ingestion/chunking approach (see `tmp/oxbed`).
-- Paragraph-aware segmentation: pack small paragraphs together, split oversized
-  paragraphs.
-- Emits normalized text + metadata for downstream insertion.
+## Pipeline Overview
 
-### `insert`
+### 1. Extract
 
-Inserts chunked text into Qdrant and Quickwit.
+`chunkr extract` walks `paths.calibre_root`, filters by `extract.extensions`, and writes extracted text under `paths.extract_root`.
 
-Key behaviors:
+Current format support:
 
-- Qdrant: vector store for embeddings, uses Ollama for embeddings.
-- Quickwit: text search index for fast keyword queries.
-- Connection details and collection/index policies are configured in TOML.
-- Defaults are aligned with `tmp/docker-compose-quickwit.yaml` and
-  `tmp/docker-compose-ollama.yaml`.
+- EPUB extraction uses `pandoc`.
+- PDF extraction uses a `docling`-based pipeline, with optional text-first classification and OCR fallback logic.
 
-### `dups`
+Extraction behavior includes:
 
-Runs a duplicate detection scan against a Calibre library.
+- Layout templating for output and metadata paths through `extract.output_layout` and `extract.metadata_layout`.
+- Optional skipping of already extracted books with `extract.skip_existing`.
+- Optional metadata sidecar generation with `extract.write_metadata`.
+- EPUB chapter splitting for large books.
+- PDF quality classification to distinguish text PDFs, low-quality text PDFs, and scan-like PDFs.
+- Oversize PDF skipping when configured.
 
-Key behaviors:
+Typical output under `extract_root` looks like:
 
-- Hashes files inside the Calibre root (configurable via `paths.calibre_root` or
-  CLI overrides).
-- Supports filtering by extension, minimum size, and optional Calibre sidecars.
-- Writes a JSON or plain-text report, either to stdout or a file path.
-- Threading and file selection policies are configured through `[dups]`.
-- Hash algorithm is driven by the `hash_algorithm` config key (`blake3` or
-  `xxhash64`).
+```text
+extract_root/
+  epub/
+    some_book.txt
+    some_book.json
+  pdf/
+    another_book.txt
+    another_book.json
+```
 
-### `dup-stats`
+The extraction metadata sidecars include fields such as source path, format, title, authors, language, publication date, identifiers, Calibre id, and extraction timestamp.
 
-Consumes a `chunkr dups` JSON report (for example `dups.json`) and sums the
-redundant bytes so you can see how much space duplicates occupy.
+### 2. Chunk
 
-Key behaviors:
+`chunkr chunk` reads `.txt` files from `paths.extract_root`, normalizes them, splits them into paragraphs, merges or breaks paragraphs according to configured size thresholds, and writes JSONL chunk files under `paths.chunk_root`.
 
-- Keeps one canonical copy per group and treats the rest as extra bytes.
-- Prints a pretty human report by default or JSON when `--mode machine`.
-- Observes the `[dup_stats]` config section for default mode and verbosity.
+Chunking behavior includes:
 
-### `dedup`
+- Unicode normalization.
+- Whitespace collapsing.
+- Optional header/table-of-contents stripping.
+- Minimum and maximum paragraph sizing.
+- Target and hard maximum chunk lengths.
+- Overlap between adjacent chunks.
+- Metadata projection from file-level extraction metadata into each chunk record.
 
-Consumes a `chunkr dups` JSON report and deletes redundant copies bucket-wise.
+Each emitted JSONL line contains:
 
-Key behaviors:
+- `id`: a generated UUID.
+- `text`: chunk text.
+- `metadata`: source and book metadata plus chunk-local fields such as `chunk_index`, `char_start`, and `char_end`.
 
-- Keeps a single canonical file per group (alphabetically first) and removes the
-  rest.
-- Scores metadata via `[calibre.scoring]` so the richest entry survives.
-- Skips groups whose byte size is below `[dedup].min_size`.
-- Honors `[dedup].dry_run` by default but can be overridden with `--dry-run`.
+Typical output under `chunk_root` looks like:
+
+```text
+chunk_root/
+  epub/
+    some_book.jsonl
+  pdf/
+    another_book.jsonl
+```
+
+### 3. Insert
+
+`chunkr insert` reads JSONL chunks from `paths.chunk_root`, batches them, requests embeddings from the configured provider, then writes results to:
+
+- Qdrant for vector search.
+- Quickwit for text search / indexing.
+
+Insertion behavior includes:
+
+- Parallel file ingestion.
+- Batched embedding requests.
+- Retry and backoff controls.
+- Optional in-memory embedding cache.
+- Optional Qdrant collection creation.
+- Optional Quickwit final commit after all files are processed.
+
+The current config shape suggests the intended deployment model is local services, for example:
+
+- Qdrant at `http://127.0.0.1:6333`
+- Quickwit at `http://127.0.0.1:7280`
+- Ollama-compatible embeddings at `http://127.0.0.1:11434`
+
+### 4. Duplicate Analysis And Cleanup
+
+Chunkr also contains a separate duplicate-management workflow for Calibre libraries.
+
+`chunkr dups`:
+
+- Walks a library tree.
+- Filters by extension and minimum size.
+- Hashes candidate files in parallel.
+- Emits duplicate groups in text or JSON format.
+
+`chunkr dup-stats`:
+
+- Reads the JSON report from `chunkr dups`.
+- Summarizes group counts, file counts, and extra bytes consumed by duplicates.
+
+`chunkr dedup`:
+
+- Reads duplicate groups from `chunkr dups`.
+- Extracts Calibre book ids from duplicate paths.
+- Fetches Calibre metadata from a local library or content server target.
+- Scores candidates by metadata completeness.
+- Keeps the best-scoring record and removes lower-scoring duplicates.
+- Supports `--dry-run` and should generally be run that way first.
+
+## Requirements
+
+Rust requirements:
+
+- Rust edition `2024`
+- Cargo
+
+External tools and services depend on which commands you use.
+
+For extraction:
+
+- `pandoc` for EPUB extraction.
+- `pdffonts`, `pdftotext`, and `pdfinfo` for PDF inspection/text-first heuristics.
+- A `docling` Python environment and entrypoint script for PDF conversion.
+- OCR tooling if your `docling` setup depends on it.
+
+For insertion:
+
+- A running embeddings endpoint compatible with the configured provider.
+- A reachable Qdrant instance.
+- A reachable Quickwit instance.
+
+For deduplication:
+
+- Access to a Calibre library path and/or Calibre content server.
+- A working Calibre CLI environment if book removal is performed live.
+
+## Quick Start
+
+Build the project:
+
+```bash
+cargo build
+```
+
+Inspect commands:
+
+```bash
+cargo run -- --help
+cargo run -- dups --help
+cargo run -- dup-stats --help
+cargo run -- dedup --help
+```
+
+Run the main pipeline:
+
+```bash
+cargo run -- extract
+cargo run -- chunk
+cargo run -- insert
+```
+
+Run duplicate analysis:
+
+```bash
+cargo run -- dups --out dups.json
+cargo run -- dup-stats --input dups.json
+cargo run -- dedup --input dups.json --dry-run
+```
 
 ## Configuration
 
-All properties, policies, and paths are set in a single TOML config file.
-Example:
+Configuration is TOML-based and loaded from `config.toml` by default. The shipped root config is a real working example and is the best starting point when adapting the project to a new machine.
 
-```toml
-[logging]
-level = "info"
+Top-level sections:
 
-[paths]
-calibre_root = "/drive/calibre/en_nonfiction"
-extract_root = "/drive/books/plaintext/books"
-chunk_root = "/drive/books/plaintext/chunked"
-state_dir = "/drive/books/.chunkr-state"
+- `[logging]`
+- `[paths]`
+- `[extract]`
+- `[extract.epub]`
+- `[extract.pdf]`
+- `[chunk]`
+- `[chunk.metadata]`
+- `[insert]`
+- `[insert.qdrant]`
+- `[insert.quickwit]`
+- `[insert.embeddings]`
+- `[calibre]`
+- `[calibre.content_server]`
+- `[calibre.scoring]`
+- `[dups]`
+- `[dup_stats]`
+- `[dedup]`
 
-[extract]
-extensions = ["epub", "pdf"]
-skip_existing = true
-write_metadata = true
-output_layout = "{format}/{title_slug}.txt"
-metadata_layout = "{format}/{title_slug}.json"
+### Paths
 
-[extract.epub]
-backend = "pandoc"
-pandoc_bin = "pandoc"
-toc_depth = 3
-chapter_split = true
-max_chapter_bytes = 2_000_000
-max_file_bytes = 20_000_000
-join_parts = true
-keep_parts = false
+`[paths]` defines where the pipeline reads from and writes to:
 
-[extract.pdf]
-backend = "docling"
-pdffonts_bin = "pdffonts"
-pdftotext_bin = "pdftotext"
-pdfinfo_bin = "pdfinfo"
-docling_bin = "/home/admin/Code/AI/docling/.venv/bin/python"
-docling_script = "/home/admin/Code/AI/docling/docling/cli/main.py"
-text_first = true
-text_good_min_chars = 120
-text_low_min_chars = 40
-text_alpha_ratio_min = 0.65
-text_sample_pages = 3
-ocr_fallback = true
-ocr_lang = "eng"
-ocr_engine = "tesseract"
-docling_device = "cuda"
-docling_pipeline = "standard"
-docling_pdf_backend = "dlparse_v4"
-docling_threads = 16
-docling_tables = true
-docling_table_mode = "accurate"
-low_quality_use_ocr = false
-low_quality_force_ocr = false
-low_quality_tables = false
-low_quality_table_mode = "fast"
-scan_force_ocr = true
-scan_tables = false
-scan_table_mode = "fast"
-page_batch_size = 1
-document_timeout_seconds = 600
-max_pages_per_pass = 50
-split_text_extraction = true
-max_file_bytes = 20_000_000
-skip_oversize = false
+- `calibre_root`: source library tree to scan for books.
+- `extract_root`: destination for extracted plain text and extraction metadata.
+- `chunk_root`: destination for chunk JSONL files.
+- `state_dir`: state/work directory for supporting workflows.
+- `examples_cfr_dir`: example text corpus used by the ignored pipeline test.
 
-[chunk]
-normalize_unicode = true
-collapse_whitespace = true
-strip_headers = true
-min_paragraph_chars = 120
-max_paragraph_chars = 2_400
-target_chunk_chars = 1_800
-max_chunk_chars = 2_600
-chunk_overlap_chars = 200
-emit_jsonl = true
+### Extract Section
 
-[chunk.metadata]
-include_source_path = true
-include_calibre_id = true
-include_title = true
-include_authors = true
-include_published = true
-include_language = true
+`[extract]` controls which formats are processed and how outputs are named.
 
-[insert]
-batch_size = 128
-retry_max = 5
-retry_backoff_ms = 500
-max_parallel_files = 2
+Important fields:
 
-[insert.qdrant]
-url = "http://127.0.0.1:6333"
-collection = "books"
-distance = "Cosine"
-vector_size = 384
-create_collection = true
-api_key = ""
-wait = false
+- `extensions`: file extensions to include.
+- `skip_existing`: avoid re-extracting existing outputs.
+- `write_metadata`: emit `.json` sidecars next to extracted text.
+- `output_layout`: path template for extracted text.
+- `metadata_layout`: path template for metadata sidecars.
 
-[insert.quickwit]
-url = "http://127.0.0.1:7280"
-index_id = "books"
-commit_timeout_seconds = 30
-commit_mode = "auto"
-commit_at_end = true
+Layout placeholders currently used by the code:
 
-[insert.embeddings]
-provider = "ollama"
-base_url = "http://127.0.0.1:11434"
-model = "qllama/bge-small-en-v1.5:latest"
-request_timeout_seconds = 120
-max_concurrency = 4
-max_input_chars = 512
-global_max_concurrency = 16
-request_batch_size = 8
-cache_max_entries = 50000
+- `{format}`
+- `{title_slug}`
 
-[calibre]
-library_path = "/drive/calibre/en_nonfiction"
-library_url = "http://127.0.0.1:8081/#en_nonfiction"
-state_path = ""
+### EPUB Extraction
 
-[calibre.content_server]
-username = "admin"
-password = "admin"
+`[extract.epub]` configures the `pandoc` path and large-book splitting behavior.
 
-[calibre.scoring]
-title_weight = 1
-authors_weight = 1
-publisher_weight = 1
-pubdate_weight = 1
-isbn_weight = 2
-identifiers_weight = 2
-tags_weight = 1
-comments_weight = 1
-cover_weight = 1
+Important fields:
 
-[dup_stats]
-mode = "human"
+- `backend`
+- `pandoc_bin`
+- `toc_depth`
+- `chapter_split`
+- `max_chapter_bytes`
+- `max_file_bytes`
+- `join_parts`
+- `keep_parts`
 
-[dedup]
-min_size = 1024
-dry_run = true
+### PDF Extraction
 
-[dups]
-output = "json"
-threads = 8
-min_size = 1024
-include_sidecars = false
-follow_symlinks = false
-ext = ["epub", "mobi", "azw3", "pdf", "djvu"]
-hash_algorithm = "xxhash64"
+`[extract.pdf]` is the most operationally dense part of the config. It controls:
+
+- the `docling` executable and script paths,
+- PDF text-quality probing,
+- OCR fallback decisions,
+- table extraction modes,
+- batching and timeout behavior,
+- size limits and split-pass extraction for large PDFs.
+
+If README readers are onboarding to the project, this section is where environment drift is most likely to break the pipeline.
+
+### Chunk Section
+
+`[chunk]` controls text cleanup and chunk sizing.
+
+Important fields:
+
+- `normalize_unicode`
+- `collapse_whitespace`
+- `strip_headers`
+- `min_paragraph_chars`
+- `max_paragraph_chars`
+- `target_chunk_chars`
+- `max_chunk_chars`
+- `chunk_overlap_chars`
+- `emit_jsonl`
+
+`[chunk.metadata]` decides which file-level metadata fields get copied into each chunk record:
+
+- source path
+- Calibre id
+- title
+- authors
+- published date
+- language
+
+### Insert Section
+
+`[insert]` controls ingestion throughput and retry behavior:
+
+- `batch_size`
+- `retry_max`
+- `retry_backoff_ms`
+- `max_parallel_files`
+
+`[insert.qdrant]` defines the vector collection target, including `url`, `collection`, `distance`, `vector_size`, and optional `api_key`.
+
+`[insert.quickwit]` defines the text index target, including `url`, `index_id`, and commit behavior.
+
+`[insert.embeddings]` defines the embedding provider contract:
+
+- provider type
+- base URL
+- model name
+- request timeout
+- concurrency limits
+- input truncation limits
+- request batch sizing
+- cache size
+
+### Duplicate Workflow Sections
+
+`[dups]` controls duplicate scanning defaults:
+
+- output format
+- allowed extensions
+- symlink handling
+- thread count
+- minimum file size
+- sidecar inclusion
+- hash algorithm
+
+`[dup_stats]` controls the default output mode for duplicate summaries.
+
+`[dedup]` controls destructive dedup defaults:
+
+- `min_size`
+- `dry_run`
+
+`[calibre]` and related sections define how duplicate cleanup talks to Calibre and how it scores record quality.
+
+## Repository Layout
+
+Top-level layout:
+
+```text
+.
+├── Cargo.toml
+├── Cargo.lock
+├── README.md
+├── LICENSE
+├── config.toml
+├── test.toml
+├── justfile
+├── docs/
+├── examples/
+├── src/
+├── tests/
+└── tmp/
 ```
 
-Notes:
+### `src/`
 
-- The example values align with `tmp/docker-compose-quickwit.yaml` and
-  `tmp/docker-compose-ollama.yaml`.
-- All extraction and chunking policy must be driven from this file (no
-  hard-coded defaults).
-- Use the config file to set max sizes/limits to prevent large EPUB/PDF files
-  from exhausting memory or GPU.
+Rust crate source:
 
-## Example Usage
+- `main.rs`: CLI entrypoint, argument parsing, config loading, and subcommand dispatch.
+- `lib.rs`: public module declarations for the crate.
+- `config.rs`: TOML config model and defaults for duplicate-related sections.
+- `extract.rs`: Calibre library walk, EPUB/PDF extraction, metadata sidecars, PDF quality handling, and output path layout logic.
+- `chunk.rs`: text normalization, paragraph splitting, overlap handling, and JSONL chunk emission.
+- `insert.rs`: embedding requests, batching, retries, cache, Qdrant insertion, and Quickwit insertion/commit flow.
+- `dups.rs`: duplicate file scan, hashing, grouping, and report emission.
+- `dup_stats.rs`: duplicate-report summarization and human/machine output.
+- `dedup.rs`: duplicate-removal workflow driven by Calibre metadata quality scoring.
+- `calibre_metadata.rs`: metadata normalization and scoring helpers used by dedup.
+- `logging.rs`: tracing subscriber setup and colored log prefixes for concurrent insert operations.
+- `util.rs`: small shared helpers such as slugification, layout rendering, and extension replacement.
+
+### `tests/`
+
+- `pipeline.rs`: ignored integration-style test for chunking and insertion. It stages example text files, resets Qdrant/Quickwit targets, runs chunk and insert in process, then verifies the indexed results.
+
+This test is useful, but it is not a unit-test-only environment: it assumes live external services.
+
+### `examples/`
+
+Example corpora used for testing and experimentation:
+
+- `examples/cfr/`: a large set of plain text CFR samples used by the ignored pipeline test.
+- `examples/pdf/`: representative PDF fixtures covering clean text, low-quality text, and scan-like cases.
+
+### `docs/`
+
+Project notes and reference material:
+
+- `docs/chunkr/`: implementation summaries and planning notes for this project.
+- `docs/reference/`: broader project references, release notes, tooling notes, migration notes, and AI workflow documentation.
+
+These docs are helpful for maintainers, but the crate does not appear to generate end-user docs from them directly.
+
+### `tmp/`
+
+Scratch material and local operational notes such as Docker Compose snippets and experimental extraction scripts. This directory looks like local working support rather than stable product surface.
+
+## Development Workflow
+
+The repository includes a `justfile` for common tasks.
+
+Useful targets:
+
+- `just build`
+- `just fmt`
+- `just fmt-check`
+- `just validate`
+- `just clippy`
+- `just test`
+- `just doc`
+- `just ci`
+
+Examples:
 
 ```bash
-# Extract from Calibre into /drive/books/plaintext/books
-chunkr extract --config /path/to/config.toml
-
-# Chunk all extracted files into chunked JSONL
-chunkr chunk --config /path/to/config.toml
-
-# Insert into Qdrant + Quickwit
-chunkr insert --config /path/to/config.toml
-
-# Scan for duplicates (writes JSON report)
-chunkr dups --config /path/to/config.toml
-
-# Delete redundant copies (dry-run first)
-chunkr dedup --input dups.json
-
-# Estimate duplicate waste from a report
-chunkr dup-stats --input dups.json
+just build
+just fmt
+just ci
 ```
-
-## Dependencies and External Tools
-
-- EPUB extraction uses Pandoc.
-- PDF extraction uses Docling; OCR falls back to Tesseract via Docling.
-- Qdrant and Quickwit are expected to be running (Docker Compose configs in
-  `tmp/`).
-- Ollama serves embeddings at the configured host/port.
-
-## Logging
-
-All commands should emit extensive structured logs (start/end, counts, skips,
-timing, errors). Configure log level via `[logging]`.
 
 ## Testing
 
-- The pipeline test (`cargo test --test pipeline -- --ignored --nocapture`)
-  loads `test.toml` if present, otherwise `config.toml`.
-- It overrides only the `paths.*` values to use a temp directory, and uses the
-  collection/index from the config file. Set those to test-safe values.
+Basic test command:
 
-## Development Formatting Pipeline
+```bash
+cargo test
+```
 
-- `just fmt` runs all write-mode formatters: `cargo fmt`, `taplo fmt`,
-  `stylua .`, `biome check --write .`, and `rumdl fmt .`.
-- `just fmt-check` runs all check-mode formatters: `cargo fmt --check`,
-  `taplo fmt --check`, `stylua --check .`, `biome check .`, and `rumdl check .`.
-- StyLua behavior is configured in `stylua.toml`.
+Important caveat:
+
+- `tests/pipeline.rs` is marked `#[ignore]`.
+- It expects external services such as Qdrant, Quickwit, and an embeddings endpoint.
+- It uses `test.toml` plus runtime overrides for temporary directories and target names.
+
+So the automated test story is currently split between local crate tests and a service-backed integration test.
+
+## Operational Notes
+
+- `config.toml` contains machine-specific absolute paths. Treat it as an example to adapt, not a portable default.
+- The PDF extraction stack has the highest environment complexity.
+- `insert` assumes downstream schemas and endpoints are already compatible with the emitted chunk records.
+- `dedup` can remove books from Calibre. Dry-run first and verify the scoring behavior against your library before running live.
+
+## Current Shape Of The Project
+
+As the code stands today, Chunkr is best understood as a focused ingestion utility for Calibre-centered libraries rather than a general document ETL framework. It already has a useful split between extraction, chunk preparation, indexing, duplicate inspection, and duplicate cleanup, and the repository layout reflects that separation clearly.

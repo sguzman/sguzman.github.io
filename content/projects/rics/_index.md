@@ -30,9 +30,9 @@ A high-fidelity, high-performance iCalendar engine designed to handle non-standa
 
 - Project page: /projects/rics/
 - Primary language: Rust
-- Commits: 13
+- Commits: 36
 - Created: 2026-02-25T16:39:27Z
-- Last updated: 2026-02-25T22:43:06Z
+- Last updated: 2026-05-22T04:49:00Z
 
 ## Links
 

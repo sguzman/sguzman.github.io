@@ -30,9 +30,9 @@ Provide a high-performance, command-line bridge to Manifold Markets for power us
 
 - Project page: /projects/manifoldr/
 - Primary language: Rust
-- Commits: 4
+- Commits: 25
 - Created: 2026-05-01T22:06:52Z
-- Last updated: 2026-05-01T23:20:53Z
+- Last updated: 2026-05-06T20:00:02Z
 
 ## Links
 

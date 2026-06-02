@@ -6,7 +6,7 @@ description: "A bevy based 2D custom environment that lets you configure scenes 
 
 ## Overview
 
-`flatfekt` is a **2D scene runtime built on Bevy** where scenes are **declared in TOML** and then instantiated, simulated, animated, and rendered by an engine layer.
+`flatfekt` is a Rust workspace for a TOML-driven 2D Bevy scene runner and simulation environment. Scenes, playback, simulation, and export inputs are declared in TOML; engine behavior, feature flags, limits, paths, and operational policy are centralized in a control-pane config.
 
 ## Ambition
 
@@ -20,19 +20,19 @@ Create a flexible platform for simulations, motion graphics, and interactive ske
 
 ## Highlights
 
-- simulations (agents + physics + rule-driven world evolution)
-- games and interactive sketches
-- motion-graphics style scene choreography (timelines, transitions, text effects)
-- reusable “content packs” of scenes and assets
-- `crates/`: engine crates (libraries)
+- Scene content is TOML-first.
+- Project policy and tunables live in `.config/flatfekt/flatfekt.toml`.
+- Wayland is the default Unix graphics environment.
+- Vulkan is required; GUI apps fail fast if no Vulkan adapter is available.
+- Cache and derived artifacts are stored under `.cache/flatfekt/`.
 
 ## Stats
 
 - Project page: /projects/flatfekt/
 - Primary language: Rust
-- Commits: 85
+- Commits: 87
 - Created: 2026-04-17T00:38:34Z
-- Last updated: 2026-04-28T13:41:10Z
+- Last updated: 2026-05-03T23:05:06Z
 
 ## Links
 

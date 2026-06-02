@@ -30,9 +30,9 @@ Create an experimental REPL for signature-first type theory, allowing functions 
 
 - Project page: /projects/typr/
 - Primary language: Rust
-- Commits: 5
+- Commits: 6
 - Created: 2026-02-22T08:18:01Z
-- Last updated: 2026-02-22T08:18:19Z
+- Last updated: 2026-05-03T01:12:58Z
 
 ## Links
 

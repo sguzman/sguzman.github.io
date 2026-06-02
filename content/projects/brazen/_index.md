@@ -6,7 +6,7 @@ description: "An experimental browser with AI, mcp tools, power-horse features, 
 
 ## Overview
 
-Brazen is a Rust browser-platform skeleton built around an `egui`/`eframe` shell and a future Servo-backed content engine. The current repo is intentionally the first durable platform layer: configuration, runtime paths, tracing, a capability-oriented permission model, a feature-gated engine seam, and tests that keep those pieces stable while the rendering backend evolves.
+Brazen is a Rust desktop browser/runtime project built around an `egui` / `eframe` shell, a configurable engine abstraction, and an automation-oriented platform layer. It is not just a browser UI prototype: the repository also contains profile persistence, permissions, a cache/asset plane, extraction helpers, automation APIs, MCP integration seams, and an optional Servo-backed integration path.
 
 ## Ambition
 
@@ -20,19 +20,19 @@ Build a 'hacker's browser' where the browser chrome and the content engine are d
 
 ## Highlights
 
-- one workspace/tab model
-- an address bar and basic command routing
-- backend status and placeholder content viewport
-- permission and log panels
-- comprehensive TOML configuration
+- A native desktop shell built with `eframe` / `egui`.
+- A `BrowserEngine` abstraction that isolates the shell from the underlying rendering/content engine.
+- Session, tab, window, history, zoom, and recovery state management.
+- A capability-oriented permission model for operations such as terminal execution, DOM reads, cache reads, file access, and screenshots.
+- A cache/asset store with metadata indexing, body capture policy, import/export, and replay-oriented storage primitives.
 
 ## Stats
 
 - Project page: /projects/brazen/
 - Primary language: Rust
-- Commits: 128
+- Commits: 130
 - Created: 2026-03-13T06:30:19Z
-- Last updated: 2026-04-29T15:21:15Z
+- Last updated: 2026-05-03T22:19:46Z
 
 ## Links
 

@@ -6,7 +6,7 @@ description: "Factorize and compress numbers"
 
 ## Overview
 
-It is built around a simple idea:
+`num-chrunchr` is a Rust CLI for working with very large integers when the useful question is not always "can I fully factor this in RAM?" but "what can I learn about this number with the representation and compute budget I actually have?"
 
 ## Ambition
 
@@ -19,19 +19,19 @@ I’m building this to become a sharp, reusable tool that I can rely on in real 
 
 ## Highlights
 
-- streaming `N mod p` (`u32`/`u64`)
-- streaming long division `N / d` for small `d`
-- quick analysis (decimal length + leading digits)
-- structured logging via `tracing`
-- size characteristics (digits/bit-estimates)
+- use the cheapest representation that still supports the next operation;
+- stream from disk when materializing a full big integer is unnecessary or too expensive;
+- emit structure reports and compressed descriptions even when full factorization is impractical.
+- streaming decimal operations on numbers stored as text files;
+- loading moderately sized values into `BigUint` when an in-memory upgrade is reasonable;
 
 ## Stats
 
 - Project page: /projects/num-chrunchr/
 - Primary language: Rust
-- Commits: 71
+- Commits: 73
 - Created: 2026-01-31T09:29:16Z
-- Last updated: 2026-03-28T12:56:02Z
+- Last updated: 2026-05-03T23:54:15Z
 
 ## Links
 

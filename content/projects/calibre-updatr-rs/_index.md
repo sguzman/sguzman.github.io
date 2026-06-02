@@ -30,9 +30,9 @@ A blazing fast, CLI-native alternative to the Calibre GUI for managing massive e
 
 - Project page: /projects/calibre-updatr-rs/
 - Primary language: Rust
-- Commits: 25
+- Commits: 26
 - Created: 2026-01-28T04:29:59Z
-- Last updated: 2026-01-28T08:05:31Z
+- Last updated: 2026-05-03T01:12:09Z
 
 ## Links
 

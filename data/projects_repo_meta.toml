@@ -1,4 +1,4 @@
-generated_at = "2026-05-03T00:04:16.858451Z"
+generated_at = "2026-06-02T00:33:25.379400Z"
 
 [[projects]]
 repo_url = "https://github.com/sguzman/flatfekt"
@@ -7,12 +7,12 @@ repo = "flatfekt"
 slug = "flatfekt"
 title = "flatfekt"
 description = "A bevy based 2D custom environment that lets you configure scenes with toml to exquisite detail"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 85
+commit_count = 87
 created_at = "2026-04-17T00:38:34Z"
-updated_at = "2026-04-28T13:41:10Z"
-pushed_at = "2026-04-28T13:35:25Z"
+updated_at = "2026-05-03T23:05:06Z"
+pushed_at = "2026-05-03T23:05:02Z"
 deepwiki_url = "https://deepwiki.com/sguzman/flatfekt/"
 project_page = "/projects/flatfekt/"
 readme_page = "/projects/readme/flatfekt/"
@@ -28,16 +28,16 @@ repo = "rando"
 slug = "rando"
 title = "rando"
 description = "Thick rust random tooling"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 8
+commit_count = 10
 created_at = "2026-04-24T01:01:18Z"
-updated_at = "2026-04-24T17:38:19Z"
-pushed_at = "2026-04-24T17:38:16Z"
+updated_at = "2026-05-04T02:24:14Z"
+pushed_at = "2026-05-04T02:24:11Z"
 deepwiki_url = "https://deepwiki.com/sguzman/rando/"
 project_page = "/projects/rando/"
 readme_page = "/projects/readme/rando/"
-readme_source = "missing"
+readme_source = "raw:main/README.md"
 topics = []
 languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
 pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
@@ -49,12 +49,12 @@ repo = "brazen"
 slug = "brazen"
 title = "brazen"
 description = "An experimental browser with AI, mcp tools, power-horse features, expose tabs and doms, etc."
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 128
+commit_count = 130
 created_at = "2026-03-13T06:30:19Z"
-updated_at = "2026-04-29T15:21:15Z"
-pushed_at = "2026-04-29T15:17:28Z"
+updated_at = "2026-05-03T22:19:46Z"
+pushed_at = "2026-05-03T22:19:42Z"
 deepwiki_url = "https://deepwiki.com/sguzman/brazen/"
 project_page = "/projects/brazen/"
 readme_page = "/projects/readme/brazen/"
@@ -70,16 +70,16 @@ repo = "backster"
 slug = "backster"
 title = "backster"
 description = "A rust back testing framework for testing out ideas"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 29
+commit_count = 31
 created_at = "2026-04-23T19:08:55Z"
-updated_at = "2026-04-27T22:00:57Z"
-pushed_at = "2026-04-27T22:00:54Z"
+updated_at = "2026-05-03T21:50:20Z"
+pushed_at = "2026-05-03T21:50:16Z"
 deepwiki_url = "https://deepwiki.com/sguzman/backster/"
 project_page = "/projects/backster/"
 readme_page = "/projects/readme/backster/"
-readme_source = "missing"
+readme_source = "raw:main/README.md"
 topics = []
 languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
 pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
@@ -91,7 +91,7 @@ repo = "pollstats"
 slug = "pollstats"
 title = "pollstats"
 description = "Download us political data "
-highlight = false
+highlight = true
 primary_language = "Rust"
 commit_count = 25
 created_at = "2026-04-21T23:53:11Z"
@@ -112,12 +112,12 @@ repo = "bulk-merge"
 slug = "bulk-merge"
 title = "bulk-merge"
 description = "A program to clean and merge book metadata libraries into one cohesive postgresql presentation"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 56
+commit_count = 58
 created_at = "2026-04-13T23:06:29Z"
-updated_at = "2026-04-22T23:53:12Z"
-pushed_at = "2026-04-22T23:53:09Z"
+updated_at = "2026-05-03T22:25:23Z"
+pushed_at = "2026-05-03T22:25:19Z"
 deepwiki_url = "https://deepwiki.com/sguzman/bulk-merge/"
 project_page = "/projects/bulk-merge/"
 readme_page = "/projects/readme/bulk-merge/"
@@ -133,12 +133,12 @@ repo = "woven"
 slug = "woven"
 title = "woven"
 description = "An rust+egui alternative notebook frontend for mathematica"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 13
+commit_count = 14
 created_at = "2026-04-22T00:08:18Z"
-updated_at = "2026-04-22T10:51:20Z"
-pushed_at = "2026-04-22T15:19:40Z"
+updated_at = "2026-05-03T01:13:01Z"
+pushed_at = "2026-05-03T01:12:58Z"
 deepwiki_url = "https://deepwiki.com/sguzman/woven/"
 project_page = "/projects/woven/"
 readme_page = "/projects/readme/woven/"
@@ -154,19 +154,19 @@ repo = "marginalia"
 slug = "marginalia"
 title = "marginalia"
 description = "Personal Blog of Salvador Guzman"
-highlight = false
+highlight = true
 primary_language = "Python"
-commit_count = 19
+commit_count = 43
 created_at = "2026-04-20T11:32:58Z"
-updated_at = "2026-04-26T19:00:51Z"
-pushed_at = "2026-04-26T19:01:03Z"
+updated_at = "2026-06-01T21:16:49Z"
+pushed_at = "2026-06-01T21:17:14Z"
 deepwiki_url = "https://deepwiki.com/sguzman/marginalia/"
 project_page = "/projects/marginalia/"
 readme_page = "/projects/readme/marginalia/"
 readme_source = "raw:main/README.md"
 topics = []
-languages = [{ name = "Python", percent = 44.50, color = "#3572A5" }, { name = "HTML", percent = 30.45, color = "#e34c26" }, { name = "SCSS", percent = 20.16, color = "#c6538c" }, { name = "CSS", percent = 2.59, color = "#663399" }, { name = "JavaScript", percent = 1.75, color = "#f1e05a" }, { name = "Shell", percent = 0.40, color = "#89e051" }, { name = "Makefile", percent = 0.15, color = "#427819" }]
-pie_css = "conic-gradient(#3572A5 0.00% 44.50%, #e34c26 44.50% 74.95%, #c6538c 74.95% 95.11%, #663399 95.11% 97.70%, #f1e05a 97.70% 99.45%, #89e051 99.45% 99.85%, #427819 99.85% 100.00%)"
+languages = [{ name = "Python", percent = 49.29, color = "#3572A5" }, { name = "HTML", percent = 29.98, color = "#e34c26" }, { name = "SCSS", percent = 14.72, color = "#c6538c" }, { name = "JavaScript", percent = 2.92, color = "#f1e05a" }, { name = "CSS", percent = 2.69, color = "#663399" }, { name = "Shell", percent = 0.30, color = "#89e051" }, { name = "Makefile", percent = 0.11, color = "#427819" }]
+pie_css = "conic-gradient(#3572A5 0.00% 49.29%, #e34c26 49.29% 79.27%, #c6538c 79.27% 93.99%, #f1e05a 93.99% 96.91%, #663399 96.91% 99.60%, #89e051 99.60% 99.89%, #427819 99.89% 100.00%)"
 
 [[projects]]
 repo_url = "https://github.com/sguzman/sal-wiki"
@@ -177,10 +177,10 @@ title = "sal-wiki"
 description = "My personal knowledge base/wiki"
 highlight = false
 primary_language = ""
-commit_count = 3
+commit_count = 4
 created_at = "2026-04-20T16:38:18Z"
-updated_at = "2026-04-25T01:17:18Z"
-pushed_at = "2026-04-25T01:17:14Z"
+updated_at = "2026-05-03T03:29:46Z"
+pushed_at = "2026-05-03T03:29:42Z"
 deepwiki_url = "https://deepwiki.com/sguzman/sal-wiki/"
 project_page = "/projects/sal-wiki/"
 readme_page = "/projects/readme/sal-wiki/"
@@ -196,19 +196,19 @@ repo = "lantern-leaf"
 slug = "lantern-leaf"
 title = "lantern-leaf"
 description = "Document textualizer/reader with tts integration (via piper)"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 548
+commit_count = 552
 created_at = "2025-12-07T02:51:09Z"
-updated_at = "2026-03-14T06:03:05Z"
-pushed_at = "2026-04-29T01:53:52Z"
+updated_at = "2026-05-22T19:43:58Z"
+pushed_at = "2026-05-22T19:43:54Z"
 deepwiki_url = "https://deepwiki.com/sguzman/lantern-leaf/"
 project_page = "/projects/lantern-leaf/"
 readme_page = "/projects/readme/lantern-leaf/"
 readme_source = "raw:main/README.md"
 topics = []
-languages = [{ name = "Rust", percent = 51.18, color = "#dea584" }, { name = "TypeScript", percent = 42.15, color = "#3178c6" }, { name = "JavaScript", percent = 3.30, color = "#f1e05a" }, { name = "Python", percent = 2.29, color = "#3572A5" }, { name = "CSS", percent = 0.83, color = "#663399" }, { name = "Lua", percent = 0.19, color = "#000080" }, { name = "HTML", percent = 0.06, color = "#e34c26" }]
-pie_css = "conic-gradient(#dea584 0.00% 51.18%, #3178c6 51.18% 93.33%, #f1e05a 93.33% 96.64%, #3572A5 96.64% 98.93%, #663399 98.93% 99.76%, #000080 99.76% 99.94%, #e34c26 99.94% 100.00%)"
+languages = [{ name = "Rust", percent = 96.84, color = "#dea584" }, { name = "Python", percent = 2.58, color = "#3572A5" }, { name = "CSS", percent = 0.34, color = "#663399" }, { name = "Lua", percent = 0.21, color = "#000080" }, { name = "HTML", percent = 0.03, color = "#e34c26" }]
+pie_css = "conic-gradient(#dea584 0.00% 96.84%, #3572A5 96.84% 99.42%, #663399 99.42% 99.76%, #000080 99.76% 99.97%, #e34c26 99.97% 100.00%)"
 
 [[projects]]
 repo_url = "https://github.com/sguzman/fathrs"
@@ -217,12 +217,12 @@ repo = "fathrs"
 slug = "fathrs"
 title = "fathrs"
 description = "Dead simple sym linking"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 47
+commit_count = 49
 created_at = "2026-01-16T19:23:07Z"
-updated_at = "2026-04-20T09:27:04Z"
-pushed_at = "2026-04-20T09:27:00Z"
+updated_at = "2026-05-03T22:47:19Z"
+pushed_at = "2026-05-03T22:47:14Z"
 deepwiki_url = "https://deepwiki.com/sguzman/fathrs/"
 project_page = "/projects/fathrs/"
 readme_page = "/projects/readme/fathrs/"
@@ -238,12 +238,12 @@ repo = "mathematica-mcp"
 slug = "mathematica-mcp"
 title = "mathematica-mcp"
 description = "Rust based mcp integration for mathemathica"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 26
+commit_count = 28
 created_at = "2026-02-01T06:28:37Z"
-updated_at = "2026-04-19T21:39:09Z"
-pushed_at = "2026-04-19T21:39:05Z"
+updated_at = "2026-05-03T23:51:11Z"
+pushed_at = "2026-05-03T23:51:08Z"
 deepwiki_url = "https://deepwiki.com/sguzman/mathematica-mcp/"
 project_page = "/projects/mathematica-mcp/"
 readme_page = "/projects/readme/mathematica-mcp/"
@@ -259,16 +259,16 @@ repo = "caliberate"
 slug = "caliberate"
 title = "caliberate"
 description = "A calibre rust port"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 83
+commit_count = 85
 created_at = "2026-03-30T19:56:51Z"
-updated_at = "2026-04-13T23:31:09Z"
-pushed_at = "2026-04-13T23:31:04Z"
+updated_at = "2026-05-03T22:34:24Z"
+pushed_at = "2026-05-03T22:34:20Z"
 deepwiki_url = "https://deepwiki.com/sguzman/caliberate/"
 project_page = "/projects/caliberate/"
 readme_page = "/projects/readme/caliberate/"
-readme_source = "missing"
+readme_source = "raw:main/README.md"
 topics = []
 languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
 pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
@@ -280,16 +280,16 @@ repo = "ria"
 slug = "ria"
 title = "ria"
 description = "A rust version of python-internetarchive"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 35
+commit_count = 37
 created_at = "2026-03-30T02:10:06Z"
-updated_at = "2026-03-30T17:55:28Z"
-pushed_at = "2026-03-30T17:55:25Z"
+updated_at = "2026-05-04T02:34:02Z"
+pushed_at = "2026-05-04T02:33:58Z"
 deepwiki_url = "https://deepwiki.com/sguzman/ria/"
 project_page = "/projects/ria/"
 readme_page = "/projects/readme/ria/"
-readme_source = "missing"
+readme_source = "raw:main/README.md"
 topics = []
 languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
 pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
@@ -322,12 +322,12 @@ repo = "num-chrunchr"
 slug = "num-chrunchr"
 title = "num-chrunchr"
 description = "Factorize and compress numbers"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 71
+commit_count = 73
 created_at = "2026-01-31T09:29:16Z"
-updated_at = "2026-03-28T12:56:02Z"
-pushed_at = "2026-03-28T12:55:59Z"
+updated_at = "2026-05-03T23:54:15Z"
+pushed_at = "2026-05-03T23:54:11Z"
 deepwiki_url = "https://deepwiki.com/sguzman/num-chrunchr/"
 project_page = "/projects/num-chrunchr/"
 readme_page = "/projects/readme/num-chrunchr/"
@@ -343,12 +343,12 @@ repo = "chunkr"
 slug = "chunkr"
 title = "chunkr"
 description = "end to end pipeline for taking text -> normalizing -> chunking -> inserting into quickwit or qdrant"
-highlight = false
+highlight = true
 primary_language = "Rust"
-commit_count = 608
+commit_count = 610
 created_at = "2026-01-29T10:17:54Z"
-updated_at = "2026-02-09T21:06:24Z"
-pushed_at = "2026-02-09T21:06:20Z"
+updated_at = "2026-05-03T21:44:58Z"
+pushed_at = "2026-05-03T21:44:53Z"
 deepwiki_url = "https://deepwiki.com/sguzman/chunkr/"
 project_page = "/projects/chunkr/"
 readme_page = "/projects/readme/chunkr/"
@@ -364,7 +364,7 @@ repo = "pulsewire"
 slug = "pulsewire"
 title = "pulsewire"
 description = "A redo of rss poll/fetcher/storage in rust"
-highlight = false
+highlight = true
 primary_language = "Rust"
 commit_count = 319
 created_at = "2025-12-16T06:49:36Z"
@@ -379,573 +379,6 @@ languages = [{ name = "Rust", percent = 98.22, color = "#dea584" }, { name = "Ju
 pie_css = "conic-gradient(#dea584 0.00% 98.22%, #384d54 98.22% 98.91%, #384d54 98.91% 99.50%, #f7931e 99.50% 99.88%, #e34c26 99.88% 99.97%, #89e051 99.97% 100.00%)"
 
 [[projects]]
-repo_url = "https://github.com/sguzman/xpos-js"
-owner = "sguzman"
-repo = "xpos-js"
-slug = "xpos-js"
-title = "xpos-js"
-description = "Simple extension to act as a sort of server endpoint for live tabs on browser"
-highlight = false
-primary_language = "JavaScript"
-commit_count = 25
-created_at = "2026-03-05T17:04:56Z"
-updated_at = "2026-03-10T04:36:25Z"
-pushed_at = "2026-03-10T04:36:22Z"
-deepwiki_url = "https://deepwiki.com/sguzman/xpos-js/"
-project_page = "/projects/xpos-js/"
-readme_page = "/projects/readme/xpos-js/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "JavaScript", percent = 94.22, color = "#f1e05a" }, { name = "HTML", percent = 4.20, color = "#e34c26" }, { name = "CSS", percent = 1.57, color = "#663399" }]
-pie_css = "conic-gradient(#f1e05a 0.00% 94.22%, #e34c26 94.22% 98.43%, #663399 98.43% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/browsr"
-owner = "sguzman"
-repo = "browsr"
-slug = "browsr"
-title = "browsr"
-description = "Http server integrating browser tab data from my previous extension project xpose"
-highlight = false
-primary_language = "Rust"
-commit_count = 10
-created_at = "2026-03-05T17:21:50Z"
-updated_at = "2026-03-10T00:44:25Z"
-pushed_at = "2026-03-10T00:44:22Z"
-deepwiki_url = "https://deepwiki.com/sguzman/browsr/"
-project_page = "/projects/browsr/"
-readme_page = "/projects/readme/browsr/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 98.69, color = "#dea584" }, { name = "Dockerfile", percent = 1.31, color = "#384d54" }]
-pie_css = "conic-gradient(#dea584 0.00% 98.69%, #384d54 98.69% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/http-cache"
-owner = "sguzman"
-repo = "http-cache"
-slug = "http-cache"
-title = "http-cache"
-description = "a forward proxy for heavy caching"
-highlight = false
-primary_language = "Rust"
-commit_count = 24
-created_at = "2026-03-08T05:17:36Z"
-updated_at = "2026-03-09T21:48:52Z"
-pushed_at = "2026-03-09T21:48:47Z"
-deepwiki_url = "https://deepwiki.com/sguzman/http-cache/"
-project_page = "/projects/http-cache/"
-readme_page = "/projects/readme/http-cache/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/rivet"
-owner = "sguzman"
-repo = "rivet"
-slug = "rivet"
-title = "rivet"
-description = "Taskwarrior-like plus extra features like gui, calendar view/sync"
-highlight = false
-primary_language = "TypeScript"
-commit_count = 126
-created_at = "2026-02-16T04:11:41Z"
-updated_at = "2026-04-25T11:05:36Z"
-pushed_at = "2026-04-25T11:05:32Z"
-deepwiki_url = "https://deepwiki.com/sguzman/rivet/"
-project_page = "/projects/rivet/"
-readme_page = "/projects/readme/rivet/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "TypeScript", percent = 54.88, color = "#3178c6" }, { name = "Rust", percent = 41.09, color = "#dea584" }, { name = "CSS", percent = 3.31, color = "#663399" }, { name = "Just", percent = 0.37, color = "#384d54" }, { name = "Handlebars", percent = 0.20, color = "#f7931e" }, { name = "JavaScript", percent = 0.09, color = "#f1e05a" }, { name = "HTML", percent = 0.06, color = "#e34c26" }]
-pie_css = "conic-gradient(#3178c6 0.00% 54.88%, #dea584 54.88% 95.97%, #663399 95.97% 99.28%, #384d54 99.28% 99.65%, #f7931e 99.65% 99.85%, #f1e05a 99.85% 99.94%, #e34c26 99.94% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/zimrs"
-owner = "sguzman"
-repo = "zimrs"
-slug = "zimrs"
-title = "zimrs"
-description = "Zim -> sqlite"
-highlight = false
-primary_language = "Rust"
-commit_count = 20
-created_at = "2026-02-26T21:24:23Z"
-updated_at = "2026-03-05T16:28:14Z"
-pushed_at = "2026-03-05T16:25:38Z"
-deepwiki_url = "https://deepwiki.com/sguzman/zimrs/"
-project_page = "/projects/zimrs/"
-readme_page = "/projects/readme/zimrs/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 99.12, color = "#dea584" }, { name = "HTML", percent = 0.51, color = "#e34c26" }, { name = "Shell", percent = 0.36, color = "#89e051" }]
-pie_css = "conic-gradient(#dea584 0.00% 99.12%, #e34c26 99.12% 99.64%, #89e051 99.64% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/translate-gemma-rs"
-owner = "sguzman"
-repo = "translate-gemma-rs"
-slug = "translate-gemma-rs"
-title = "translate-gemma-rs"
-description = "Simple program to convert markdown files with translategemma from ollama"
-highlight = false
-primary_language = "Rust"
-commit_count = 21
-created_at = "2026-01-25T08:02:50Z"
-updated_at = "2026-03-02T20:37:06Z"
-pushed_at = "2026-03-02T20:37:03Z"
-deepwiki_url = "https://deepwiki.com/sguzman/translate-gemma-rs/"
-project_page = "/projects/translate-gemma-rs/"
-readme_page = "/projects/readme/translate-gemma-rs/"
-readme_source = "missing"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/voltlane"
-owner = "sguzman"
-repo = "voltlane"
-slug = "voltlane"
-title = "voltlane"
-description = "a chiptune/midi composer app (based off of furnace and fl-studio)"
-highlight = false
-primary_language = "Rust"
-commit_count = 16
-created_at = "2026-02-23T10:33:41Z"
-updated_at = "2026-02-23T13:51:07Z"
-pushed_at = "2026-02-23T13:51:03Z"
-deepwiki_url = "https://deepwiki.com/sguzman/voltlane/"
-project_page = "/projects/voltlane/"
-readme_page = "/projects/readme/voltlane/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 58.60, color = "#dea584" }, { name = "TypeScript", percent = 37.81, color = "#3178c6" }, { name = "CSS", percent = 3.26, color = "#663399" }, { name = "Shell", percent = 0.24, color = "#89e051" }, { name = "HTML", percent = 0.08, color = "#e34c26" }]
-pie_css = "conic-gradient(#dea584 0.00% 58.60%, #3178c6 58.60% 96.41%, #663399 96.41% 99.67%, #89e051 99.67% 99.92%, #e34c26 99.92% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/typr"
-owner = "sguzman"
-repo = "typr"
-slug = "typr"
-title = "typr"
-description = "Type theory experiments"
-highlight = true
-primary_language = "Rust"
-commit_count = 5
-created_at = "2026-02-22T08:18:01Z"
-updated_at = "2026-02-22T08:18:19Z"
-pushed_at = "2026-02-22T08:18:16Z"
-deepwiki_url = "https://deepwiki.com/sguzman/typr/"
-project_page = "/projects/typr/"
-readme_page = "/projects/readme/typr/"
-readme_source = "local:tmp/typr/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/rustune"
-owner = "sguzman"
-repo = "rustune"
-slug = "rustune"
-title = "rustune"
-description = "rust port of fortune-mod"
-highlight = true
-primary_language = "Rust"
-commit_count = 8
-created_at = "2026-02-15T03:18:20Z"
-updated_at = "2026-02-15T04:02:49Z"
-pushed_at = "2026-02-15T04:02:46Z"
-deepwiki_url = "https://deepwiki.com/sguzman/rustune/"
-project_page = "/projects/rustune/"
-readme_page = "/projects/readme/rustune/"
-readme_source = "local:tmp/rustune/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/quack-check"
-owner = "sguzman"
-repo = "quack-check"
-slug = "quack-check"
-title = "quack-check"
-description = "A wrapper around docling for detecting quality of text and producing high quality output transcript"
-highlight = false
-primary_language = "Rust"
-commit_count = 15
-created_at = "2026-02-13T20:05:07Z"
-updated_at = "2026-02-14T04:48:05Z"
-pushed_at = "2026-02-14T04:48:02Z"
-deepwiki_url = "https://deepwiki.com/sguzman/quack-check/"
-project_page = "/projects/quack-check/"
-readme_page = "/projects/readme/quack-check/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 70.76, color = "#dea584" }, { name = "Python", percent = 29.24, color = "#3572A5" }]
-pie_css = "conic-gradient(#dea584 0.00% 70.76%, #3572A5 70.76% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/symfose"
-owner = "sguzman"
-repo = "symfose"
-slug = "symfose"
-title = "symfose"
-description = "A virtual instrument player"
-highlight = false
-primary_language = "Rust"
-commit_count = 25
-created_at = "2026-02-10T00:11:48Z"
-updated_at = "2026-02-10T04:38:21Z"
-pushed_at = "2026-02-10T04:38:17Z"
-deepwiki_url = "https://deepwiki.com/sguzman/symfose/"
-project_page = "/projects/symfose/"
-readme_page = "/projects/readme/symfose/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 98.73, color = "#dea584" }, { name = "Handlebars", percent = 1.27, color = "#f7931e" }]
-pie_css = "conic-gradient(#dea584 0.00% 98.73%, #f7931e 98.73% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/cite-otter"
-owner = "sguzman"
-repo = "cite-otter"
-slug = "cite-otter"
-title = "cite-otter"
-description = "A fast, friendly citation parser in Rust"
-highlight = false
-primary_language = "Rust"
-commit_count = 167
-created_at = "2026-01-21T18:00:31Z"
-updated_at = "2026-02-09T02:36:54Z"
-pushed_at = "2026-02-09T02:36:51Z"
-deepwiki_url = "https://deepwiki.com/sguzman/cite-otter/"
-project_page = "/projects/cite-otter/"
-readme_page = "/projects/readme/cite-otter/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 94.52, color = "#dea584" }, { name = "Shell", percent = 3.53, color = "#89e051" }, { name = "Just", percent = 1.09, color = "#384d54" }, { name = "Handlebars", percent = 0.49, color = "#f7931e" }, { name = "Ruby", percent = 0.34, color = "#701516" }, { name = "CSS", percent = 0.04, color = "#663399" }]
-pie_css = "conic-gradient(#dea584 0.00% 94.52%, #89e051 94.52% 98.05%, #384d54 98.05% 99.14%, #f7931e 99.14% 99.62%, #701516 99.62% 99.96%, #663399 99.96% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/zpars"
-owner = "sguzman"
-repo = "zpars"
-slug = "zpars"
-title = "zpars"
-description = "A rust zpaq port"
-highlight = false
-primary_language = "Rust"
-commit_count = 10
-created_at = "2026-01-31T10:24:42Z"
-updated_at = "2026-02-08T01:40:39Z"
-pushed_at = "2026-02-08T01:40:35Z"
-deepwiki_url = "https://deepwiki.com/sguzman/zpars/"
-project_page = "/projects/zpars/"
-readme_page = "/projects/readme/zpars/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/rust-code"
-owner = "sguzman"
-repo = "rust-code"
-slug = "rust-code"
-title = "rust-code"
-description = "Parser for US Federal Code to pack structure into json format"
-highlight = true
-primary_language = "Rust"
-commit_count = 20
-created_at = "2022-02-20T20:50:10Z"
-updated_at = "2022-02-20T20:52:35Z"
-pushed_at = "2022-02-25T23:04:31Z"
-deepwiki_url = "https://deepwiki.com/sguzman/rust-code/"
-project_page = "/projects/rust-code/"
-readme_page = "/projects/readme/rust-code/"
-readme_source = "local:tmp/rust-code/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/rics"
-owner = "sguzman"
-repo = "rics"
-slug = "rics"
-title = "rics"
-description = "Calendar file (ics) generator from heterogeneous sources"
-highlight = true
-primary_language = "Rust"
-commit_count = 13
-created_at = "2026-02-25T16:39:27Z"
-updated_at = "2026-02-25T22:43:06Z"
-pushed_at = "2026-02-25T22:43:03Z"
-deepwiki_url = "https://deepwiki.com/sguzman/rics/"
-project_page = "/projects/rics/"
-readme_page = "/projects/readme/rics/"
-readme_source = "local:tmp/rics/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/cfr-to-text"
-owner = "sguzman"
-repo = "cfr-to-text"
-slug = "cfr-to-text"
-title = "cfr-to-text"
-description = "Extract text from cfr xml files"
-highlight = true
-primary_language = "Rust"
-commit_count = 5
-created_at = "2026-01-29T11:54:35Z"
-updated_at = "2026-01-29T12:49:25Z"
-pushed_at = "2026-01-29T12:49:21Z"
-deepwiki_url = "https://deepwiki.com/sguzman/cfr-to-text/"
-project_page = "/projects/cfr-to-text/"
-readme_page = "/projects/readme/cfr-to-text/"
-readme_source = "local:tmp/cfr-to-text/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/calibre-updatr-rs"
-owner = "sguzman"
-repo = "calibre-updatr-rs"
-slug = "calibre-updatr-rs"
-title = "calibre-updatr-rs"
-description = "Calibre update but in rust (python version made me pull my hair out)"
-highlight = false
-primary_language = "Rust"
-commit_count = 25
-created_at = "2026-01-28T04:29:59Z"
-updated_at = "2026-01-28T08:05:31Z"
-pushed_at = "2026-01-28T08:05:27Z"
-deepwiki_url = "https://deepwiki.com/sguzman/calibre-updatr-rs/"
-project_page = "/projects/calibre-updatr-rs/"
-readme_page = "/projects/readme/calibre-updatr-rs/"
-readme_source = "local:tmp/calibre-updatr-rs/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/bw-password-dedup"
-owner = "sguzman"
-repo = "bw-password-dedup"
-slug = "bw-password-dedup"
-title = "bw-password-dedup"
-description = "Clean duplicate passwords from bitwarden's export json"
-highlight = true
-primary_language = "Rust"
-commit_count = 5
-created_at = "2026-01-28T10:51:47Z"
-updated_at = "2026-01-28T11:32:26Z"
-pushed_at = "2026-01-28T11:26:33Z"
-deepwiki_url = "https://deepwiki.com/sguzman/bw-password-dedup/"
-project_page = "/projects/bw-password-dedup/"
-readme_page = "/projects/readme/bw-password-dedup/"
-readme_source = "local:tmp/bw-password-dedup/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/slurp"
-owner = "sguzman"
-repo = "slurp"
-slug = "slurp"
-title = "slurp"
-description = "A surrealdb ingester cli tool"
-highlight = true
-primary_language = "Nix"
-commit_count = 28
-created_at = "2025-09-25T18:30:33Z"
-updated_at = "2025-09-25T19:46:50Z"
-pushed_at = "2025-09-25T19:52:12Z"
-deepwiki_url = "https://deepwiki.com/sguzman/slurp/"
-project_page = "/projects/slurp/"
-readme_page = "/projects/readme/slurp/"
-readme_source = "local:tmp/slurp/README.md"
-topics = []
-languages = [{ name = "Nix", percent = 53.61, color = "#7e7eff" }, { name = "Rust", percent = 46.39, color = "#dea584" }]
-pie_css = "conic-gradient(#7e7eff 0.00% 53.61%, #dea584 53.61% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/atmos"
-owner = "sguzman"
-repo = "atmos"
-slug = "atmos"
-title = "atmos"
-description = "Experiment using toml to configure bevy game stuff"
-highlight = false
-primary_language = "Rust"
-commit_count = 214
-created_at = "2025-12-16T14:31:08Z"
-updated_at = "2026-01-20T00:50:12Z"
-pushed_at = "2026-01-20T00:50:08Z"
-deepwiki_url = "https://deepwiki.com/sguzman/atmos/"
-project_page = "/projects/atmos/"
-readme_page = "/projects/readme/atmos/"
-readme_source = "raw:main/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/fiction-stuff"
-owner = "sguzman"
-repo = "fiction-stuff"
-slug = "fiction-stuff"
-title = "fiction-stuff"
-description = "Fiction schema for generating fictional universes"
-highlight = false
-primary_language = ""
-commit_count = 19
-created_at = "2026-04-16T12:40:39Z"
-updated_at = "2026-04-23T14:00:01Z"
-pushed_at = "2026-04-18T02:37:36Z"
-deepwiki_url = "https://deepwiki.com/sguzman/fiction-stuff/"
-project_page = "/projects/fiction-stuff/"
-readme_page = "/projects/readme/fiction-stuff/"
-readme_source = "missing"
-topics = []
-languages = []
-pie_css = "conic-gradient(#9ea7b3 0 100%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/manifoldr"
-owner = "sguzman"
-repo = "manifoldr"
-slug = "manifoldr"
-title = "manifoldr"
-description = "Rust manifold API cli"
-highlight = true
-primary_language = "Rust"
-commit_count = 4
-created_at = "2026-05-01T22:06:52Z"
-updated_at = "2026-05-01T23:20:53Z"
-pushed_at = "2026-05-01T23:20:50Z"
-deepwiki_url = "https://deepwiki.com/sguzman/manifoldr/"
-project_page = "/projects/manifoldr/"
-readme_page = "/projects/readme/manifoldr/"
-readme_source = "local:tmp/manifoldr/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/clean-tts-text"
-owner = "sguzman"
-repo = "clean-tts-text"
-slug = "clean-tts-text"
-title = "clean-tts-text"
-description = "A preprocessing project to clean up and normal;ize text to be fed into a tts engine for clean, stable output"
-highlight = false
-primary_language = "Rust"
-commit_count = 18
-created_at = "2026-02-03T15:53:13Z"
-updated_at = "2026-02-11T07:22:34Z"
-pushed_at = "2026-02-03T21:29:29Z"
-deepwiki_url = "https://deepwiki.com/sguzman/clean-tts-text/"
-project_page = "/projects/clean-tts-text/"
-readme_page = "/projects/readme/clean-tts-text/"
-readme_source = "local:tmp/clean-tts-text/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/MathematicaMathFun"
-owner = "sguzman"
-repo = "MathematicaMathFun"
-slug = "mathematicamathfun"
-title = "MathematicaMathFun"
-description = "A repo for my Mathematica document files - mostly math research and fun"
-highlight = false
-primary_language = "Mathematica"
-commit_count = 126
-created_at = "2019-04-05T19:44:51Z"
-updated_at = "2024-09-26T09:16:24Z"
-pushed_at = "2024-09-15T00:38:02Z"
-deepwiki_url = "https://deepwiki.com/sguzman/MathematicaMathFun/"
-project_page = "/projects/mathematicamathfun/"
-readme_page = "/projects/readme/mathematicamathfun/"
-readme_source = "local:tmp/MathematicaMathFun/README.md"
-topics = ["algebraic-geometry", "algebraic-topology", "differential-equations", "differential-geometry", "math", "mathematica", "number-theory"]
-languages = [{ name = "Mathematica", percent = 100.00, color = "#9ea7b3" }]
-pie_css = "conic-gradient(#9ea7b3 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/oxban"
-owner = "sguzman"
-repo = "oxban"
-slug = "oxban"
-title = "oxban"
-description = "A simple kanban program to stress test the following tech: rust + yew + css + tauri"
-highlight = false
-primary_language = "Rust"
-commit_count = 14
-created_at = "2026-02-16T01:13:46Z"
-updated_at = "2026-02-16T03:21:10Z"
-pushed_at = "2026-02-16T03:21:07Z"
-deepwiki_url = "https://deepwiki.com/sguzman/oxban/"
-project_page = "/projects/oxban/"
-readme_page = "/projects/readme/oxban/"
-readme_source = "local:tmp/oxban/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 91.51, color = "#dea584" }, { name = "CSS", percent = 6.06, color = "#663399" }, { name = "HTML", percent = 1.51, color = "#e34c26" }, { name = "Shell", percent = 0.91, color = "#89e051" }]
-pie_css = "conic-gradient(#dea584 0.00% 91.51%, #663399 91.51% 97.57%, #e34c26 97.57% 99.09%, #89e051 99.09% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/game-site-scraper"
-owner = "sguzman"
-repo = "game-site-scraper"
-slug = "game-site-scraper"
-title = "game-site-scraper"
-description = "A scraper for a certain game site"
-highlight = false
-primary_language = "Rust"
-commit_count = 16
-created_at = "2026-02-07T19:29:26Z"
-updated_at = "2026-03-30T19:11:44Z"
-pushed_at = "2026-03-30T19:11:40Z"
-deepwiki_url = "https://deepwiki.com/sguzman/game-site-scraper/"
-project_page = "/projects/game-site-scraper/"
-readme_page = "/projects/readme/game-site-scraper/"
-readme_source = "local:tmp/game-site-scraper/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
-repo_url = "https://github.com/sguzman/lisp-lang-rust-chatgpt"
-owner = "sguzman"
-repo = "lisp-lang-rust-chatgpt"
-slug = "lisp-lang-rust-chatgpt"
-title = "lisp-lang-rust-chatgpt"
-description = "A working conversation using rust to build a simple compiler for lisp, using chatgpt as a guide"
-highlight = true
-primary_language = "Rust"
-commit_count = 8
-created_at = "2023-11-08T19:02:54Z"
-updated_at = "2023-11-08T19:24:40Z"
-pushed_at = "2023-11-08T20:12:48Z"
-deepwiki_url = "https://deepwiki.com/sguzman/lisp-lang-rust-chatgpt/"
-project_page = "/projects/lisp-lang-rust-chatgpt/"
-readme_page = "/projects/readme/lisp-lang-rust-chatgpt/"
-readme_source = "local:tmp/lisp-lang-rust-chatgpt/README.md"
-topics = []
-languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
-pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
-
-[[projects]]
 repo_url = "https://github.com/sguzman/chatgpt-tool-shim"
 owner = "sguzman"
 repo = "chatgpt-tool-shim"
@@ -956,7 +389,7 @@ highlight = true
 primary_language = "TypeScript"
 commit_count = 10
 created_at = "2026-05-08T20:30:28Z"
-updated_at = "2026-05-08T22:33:50Z"
+updated_at = "2026-05-29T16:12:21Z"
 pushed_at = "2026-05-08T22:33:45Z"
 deepwiki_url = "https://deepwiki.com/sguzman/chatgpt-tool-shim/"
 project_page = "/projects/chatgpt-tool-shim/"
@@ -1005,8 +438,8 @@ project_page = "/projects/weathergraph-rs/"
 readme_page = "/projects/readme/weathergraph-rs/"
 readme_source = "raw:main/README.md"
 topics = []
-languages = [{ name = "Rust", percent = 84.71, color = "#dea584" }, { name = "Python", percent = 15.29, color = "#3572A5" }]
-pie_css = "conic-gradient(#dea584 0.00% 84.71%, #3572A5 84.71% 100.00%)"
+languages = [{ name = "Rust", percent = 84.72, color = "#dea584" }, { name = "Python", percent = 15.28, color = "#3572A5" }]
+pie_css = "conic-gradient(#dea584 0.00% 84.72%, #3572A5 84.72% 100.00%)"
 
 [[projects]]
 repo_url = "https://github.com/sguzman/mnist-from-scratch"
@@ -1030,25 +463,613 @@ languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
 pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
 
 [[projects]]
-repo_url = "https://github.com/sguzman/cinegraph"
+repo_url = "https://github.com/sguzman/xpos-js"
 owner = "sguzman"
-repo = "cinegraph"
-slug = "cinegraph"
-title = "cinegraph"
-description = "A rust-based film data aggregator and query engine"
+repo = "xpos-js"
+slug = "xpos-js"
+title = "xpos-js"
+description = "Simple extension to act as a sort of server endpoint for live tabs on browser"
+highlight = true
+primary_language = "JavaScript"
+commit_count = 25
+created_at = "2026-03-05T17:04:56Z"
+updated_at = "2026-03-10T04:36:25Z"
+pushed_at = "2026-03-10T04:36:22Z"
+deepwiki_url = "https://deepwiki.com/sguzman/xpos-js/"
+project_page = "/projects/xpos-js/"
+readme_page = "/projects/readme/xpos-js/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "JavaScript", percent = 94.22, color = "#f1e05a" }, { name = "HTML", percent = 4.20, color = "#e34c26" }, { name = "CSS", percent = 1.57, color = "#663399" }]
+pie_css = "conic-gradient(#f1e05a 0.00% 94.22%, #e34c26 94.22% 98.43%, #663399 98.43% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/browsr"
+owner = "sguzman"
+repo = "browsr"
+slug = "browsr"
+title = "browsr"
+description = "Http server integrating browser tab data from my previous extension project xpose"
+highlight = true
+primary_language = "Rust"
+commit_count = 11
+created_at = "2026-03-05T17:21:50Z"
+updated_at = "2026-05-03T01:12:03Z"
+pushed_at = "2026-05-03T01:11:59Z"
+deepwiki_url = "https://deepwiki.com/sguzman/browsr/"
+project_page = "/projects/browsr/"
+readme_page = "/projects/readme/browsr/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 98.69, color = "#dea584" }, { name = "Dockerfile", percent = 1.31, color = "#384d54" }]
+pie_css = "conic-gradient(#dea584 0.00% 98.69%, #384d54 98.69% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/http-cache"
+owner = "sguzman"
+repo = "http-cache"
+slug = "http-cache"
+title = "http-cache"
+description = "a forward proxy for heavy caching"
 highlight = false
 primary_language = "Rust"
+commit_count = 24
+created_at = "2026-03-08T05:17:36Z"
+updated_at = "2026-03-09T21:48:52Z"
+pushed_at = "2026-03-09T21:48:47Z"
+deepwiki_url = "https://deepwiki.com/sguzman/http-cache/"
+project_page = "/projects/http-cache/"
+readme_page = "/projects/readme/http-cache/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/rivet"
+owner = "sguzman"
+repo = "rivet"
+slug = "rivet"
+title = "rivet"
+description = "Taskwarrior-like plus extra features like gui, calendar view/sync"
+highlight = true
+primary_language = "TypeScript"
+commit_count = 128
+created_at = "2026-02-16T04:11:41Z"
+updated_at = "2026-05-04T03:28:04Z"
+pushed_at = "2026-05-04T03:28:00Z"
+deepwiki_url = "https://deepwiki.com/sguzman/rivet/"
+project_page = "/projects/rivet/"
+readme_page = "/projects/readme/rivet/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "TypeScript", percent = 54.88, color = "#3178c6" }, { name = "Rust", percent = 41.09, color = "#dea584" }, { name = "CSS", percent = 3.31, color = "#663399" }, { name = "Just", percent = 0.37, color = "#384d54" }, { name = "Handlebars", percent = 0.20, color = "#f7931e" }, { name = "JavaScript", percent = 0.09, color = "#f1e05a" }, { name = "HTML", percent = 0.06, color = "#e34c26" }]
+pie_css = "conic-gradient(#3178c6 0.00% 54.88%, #dea584 54.88% 95.97%, #663399 95.97% 99.28%, #384d54 99.28% 99.65%, #f7931e 99.65% 99.85%, #f1e05a 99.85% 99.94%, #e34c26 99.94% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/zimrs"
+owner = "sguzman"
+repo = "zimrs"
+slug = "zimrs"
+title = "zimrs"
+description = "Zim -> sqlite"
+highlight = false
+primary_language = "Rust"
+commit_count = 21
+created_at = "2026-02-26T21:24:23Z"
+updated_at = "2026-05-03T01:13:03Z"
+pushed_at = "2026-05-03T01:12:59Z"
+deepwiki_url = "https://deepwiki.com/sguzman/zimrs/"
+project_page = "/projects/zimrs/"
+readme_page = "/projects/readme/zimrs/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 99.12, color = "#dea584" }, { name = "HTML", percent = 0.51, color = "#e34c26" }, { name = "Shell", percent = 0.36, color = "#89e051" }]
+pie_css = "conic-gradient(#dea584 0.00% 99.12%, #e34c26 99.12% 99.64%, #89e051 99.64% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/translate-gemma-rs"
+owner = "sguzman"
+repo = "translate-gemma-rs"
+slug = "translate-gemma-rs"
+title = "translate-gemma-rs"
+description = "Simple program to convert markdown files with translategemma from ollama"
+highlight = true
+primary_language = "Rust"
+commit_count = 22
+created_at = "2026-01-25T08:02:50Z"
+updated_at = "2026-05-03T01:12:54Z"
+pushed_at = "2026-05-03T01:12:50Z"
+deepwiki_url = "https://deepwiki.com/sguzman/translate-gemma-rs/"
+project_page = "/projects/translate-gemma-rs/"
+readme_page = "/projects/readme/translate-gemma-rs/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/voltlane"
+owner = "sguzman"
+repo = "voltlane"
+slug = "voltlane"
+title = "voltlane"
+description = "a chiptune/midi composer app (based off of furnace and fl-studio)"
+highlight = false
+primary_language = "Rust"
+commit_count = 17
+created_at = "2026-02-23T10:33:41Z"
+updated_at = "2026-05-03T01:13:00Z"
+pushed_at = "2026-05-03T01:12:56Z"
+deepwiki_url = "https://deepwiki.com/sguzman/voltlane/"
+project_page = "/projects/voltlane/"
+readme_page = "/projects/readme/voltlane/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 58.60, color = "#dea584" }, { name = "TypeScript", percent = 37.81, color = "#3178c6" }, { name = "CSS", percent = 3.26, color = "#663399" }, { name = "Shell", percent = 0.24, color = "#89e051" }, { name = "HTML", percent = 0.08, color = "#e34c26" }]
+pie_css = "conic-gradient(#dea584 0.00% 58.60%, #3178c6 58.60% 96.41%, #663399 96.41% 99.67%, #89e051 99.67% 99.92%, #e34c26 99.92% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/typr"
+owner = "sguzman"
+repo = "typr"
+slug = "typr"
+title = "typr"
+description = "Type theory experiments"
+highlight = false
+primary_language = "Rust"
+commit_count = 6
+created_at = "2026-02-22T08:18:01Z"
+updated_at = "2026-05-03T01:12:58Z"
+pushed_at = "2026-05-03T01:12:55Z"
+deepwiki_url = "https://deepwiki.com/sguzman/typr/"
+project_page = "/projects/typr/"
+readme_page = "/projects/readme/typr/"
+readme_source = "local:tmp/typr/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/rustune"
+owner = "sguzman"
+repo = "rustune"
+slug = "rustune"
+title = "rustune"
+description = "rust port of fortune-mod"
+highlight = true
+primary_language = "Rust"
 commit_count = 10
-created_at = "2026-05-31T01:55:48Z"
-updated_at = "2026-06-01T17:07:58Z"
-pushed_at = ""
-deepwiki_url = "https://deepwiki.com/sguzman/cinegraph/"
-project_page = "/projects/cinegraph/"
-readme_page = "/projects/readme/cinegraph/"
-readme_source = ""
+created_at = "2026-02-15T03:18:20Z"
+updated_at = "2026-05-04T03:59:02Z"
+pushed_at = "2026-05-04T03:58:57Z"
+deepwiki_url = "https://deepwiki.com/sguzman/rustune/"
+project_page = "/projects/rustune/"
+readme_page = "/projects/readme/rustune/"
+readme_source = "local:tmp/rustune/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/quack-check"
+owner = "sguzman"
+repo = "quack-check"
+slug = "quack-check"
+title = "quack-check"
+description = "A wrapper around docling for detecting quality of text and producing high quality output transcript"
+highlight = true
+primary_language = "Rust"
+commit_count = 17
+created_at = "2026-02-13T20:05:07Z"
+updated_at = "2026-05-04T02:11:24Z"
+pushed_at = "2026-05-04T02:11:19Z"
+deepwiki_url = "https://deepwiki.com/sguzman/quack-check/"
+project_page = "/projects/quack-check/"
+readme_page = "/projects/readme/quack-check/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 70.76, color = "#dea584" }, { name = "Python", percent = 29.24, color = "#3572A5" }]
+pie_css = "conic-gradient(#dea584 0.00% 70.76%, #3572A5 70.76% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/symfose"
+owner = "sguzman"
+repo = "symfose"
+slug = "symfose"
+title = "symfose"
+description = "A virtual instrument player"
+highlight = false
+primary_language = "Rust"
+commit_count = 26
+created_at = "2026-02-10T00:11:48Z"
+updated_at = "2026-05-03T01:12:53Z"
+pushed_at = "2026-05-03T01:12:49Z"
+deepwiki_url = "https://deepwiki.com/sguzman/symfose/"
+project_page = "/projects/symfose/"
+readme_page = "/projects/readme/symfose/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 98.73, color = "#dea584" }, { name = "Handlebars", percent = 1.27, color = "#f7931e" }]
+pie_css = "conic-gradient(#dea584 0.00% 98.73%, #f7931e 98.73% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/cite-otter"
+owner = "sguzman"
+repo = "cite-otter"
+slug = "cite-otter"
+title = "cite-otter"
+description = "A fast, friendly citation parser in Rust"
+highlight = true
+primary_language = "Rust"
+commit_count = 167
+created_at = "2026-01-21T18:00:31Z"
+updated_at = "2026-02-09T02:36:54Z"
+pushed_at = "2026-02-09T02:36:51Z"
+deepwiki_url = "https://deepwiki.com/sguzman/cite-otter/"
+project_page = "/projects/cite-otter/"
+readme_page = "/projects/readme/cite-otter/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 94.52, color = "#dea584" }, { name = "Shell", percent = 3.53, color = "#89e051" }, { name = "Just", percent = 1.09, color = "#384d54" }, { name = "Handlebars", percent = 0.49, color = "#f7931e" }, { name = "Ruby", percent = 0.34, color = "#701516" }, { name = "CSS", percent = 0.04, color = "#663399" }]
+pie_css = "conic-gradient(#dea584 0.00% 94.52%, #89e051 94.52% 98.05%, #384d54 98.05% 99.14%, #f7931e 99.14% 99.62%, #701516 99.62% 99.96%, #663399 99.96% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/zpars"
+owner = "sguzman"
+repo = "zpars"
+slug = "zpars"
+title = "zpars"
+description = "A rust zpaq port"
+highlight = false
+primary_language = "Rust"
+commit_count = 11
+created_at = "2026-01-31T10:24:42Z"
+updated_at = "2026-05-03T01:13:04Z"
+pushed_at = "2026-05-03T01:13:00Z"
+deepwiki_url = "https://deepwiki.com/sguzman/zpars/"
+project_page = "/projects/zpars/"
+readme_page = "/projects/readme/zpars/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/rust-code"
+owner = "sguzman"
+repo = "rust-code"
+slug = "rust-code"
+title = "rust-code"
+description = "Parser for US Federal Code to pack structure into json format"
+highlight = true
+primary_language = "Rust"
+commit_count = 20
+created_at = "2022-02-20T20:50:10Z"
+updated_at = "2022-02-20T20:52:35Z"
+pushed_at = "2022-02-25T23:04:31Z"
+deepwiki_url = "https://deepwiki.com/sguzman/rust-code/"
+project_page = "/projects/rust-code/"
+readme_page = "/projects/readme/rust-code/"
+readme_source = "local:tmp/rust-code/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/rics"
+owner = "sguzman"
+repo = "rics"
+slug = "rics"
+title = "rics"
+description = "Calendar file (ics) generator from heterogeneous sources"
+highlight = false
+primary_language = "Rust"
+commit_count = 36
+created_at = "2026-02-25T16:39:27Z"
+updated_at = "2026-05-22T04:49:00Z"
+pushed_at = "2026-05-22T04:48:57Z"
+deepwiki_url = "https://deepwiki.com/sguzman/rics/"
+project_page = "/projects/rics/"
+readme_page = "/projects/readme/rics/"
+readme_source = "local:tmp/rics/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/cfr-to-text"
+owner = "sguzman"
+repo = "cfr-to-text"
+slug = "cfr-to-text"
+title = "cfr-to-text"
+description = "Extract text from cfr xml files"
+highlight = true
+primary_language = "Rust"
+commit_count = 6
+created_at = "2026-01-29T11:54:35Z"
+updated_at = "2026-05-03T01:12:12Z"
+pushed_at = "2026-05-03T01:12:07Z"
+deepwiki_url = "https://deepwiki.com/sguzman/cfr-to-text/"
+project_page = "/projects/cfr-to-text/"
+readme_page = "/projects/readme/cfr-to-text/"
+readme_source = "local:tmp/cfr-to-text/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/calibre-updatr-rs"
+owner = "sguzman"
+repo = "calibre-updatr-rs"
+slug = "calibre-updatr-rs"
+title = "calibre-updatr-rs"
+description = "Calibre update but in rust (python version made me pull my hair out)"
+highlight = false
+primary_language = "Rust"
+commit_count = 26
+created_at = "2026-01-28T04:29:59Z"
+updated_at = "2026-05-03T01:12:09Z"
+pushed_at = "2026-05-03T01:12:06Z"
+deepwiki_url = "https://deepwiki.com/sguzman/calibre-updatr-rs/"
+project_page = "/projects/calibre-updatr-rs/"
+readme_page = "/projects/readme/calibre-updatr-rs/"
+readme_source = "local:tmp/calibre-updatr-rs/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/bw-password-dedup"
+owner = "sguzman"
+repo = "bw-password-dedup"
+slug = "bw-password-dedup"
+title = "bw-password-dedup"
+description = "Clean duplicate passwords from bitwarden's export json"
+highlight = false
+primary_language = "Rust"
+commit_count = 6
+created_at = "2026-01-28T10:51:47Z"
+updated_at = "2026-05-03T01:12:06Z"
+pushed_at = "2026-05-03T01:12:02Z"
+deepwiki_url = "https://deepwiki.com/sguzman/bw-password-dedup/"
+project_page = "/projects/bw-password-dedup/"
+readme_page = "/projects/readme/bw-password-dedup/"
+readme_source = "local:tmp/bw-password-dedup/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/slurp"
+owner = "sguzman"
+repo = "slurp"
+slug = "slurp"
+title = "slurp"
+description = "A surrealdb ingester cli tool"
+highlight = true
+primary_language = "Nix"
+commit_count = 28
+created_at = "2025-09-25T18:30:33Z"
+updated_at = "2025-09-25T19:46:50Z"
+pushed_at = "2025-09-25T19:52:12Z"
+deepwiki_url = "https://deepwiki.com/sguzman/slurp/"
+project_page = "/projects/slurp/"
+readme_page = "/projects/readme/slurp/"
+readme_source = "local:tmp/slurp/README.md"
+topics = []
+languages = [{ name = "Nix", percent = 53.61, color = "#7e7eff" }, { name = "Rust", percent = 46.39, color = "#dea584" }]
+pie_css = "conic-gradient(#7e7eff 0.00% 53.61%, #dea584 53.61% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/atmos"
+owner = "sguzman"
+repo = "atmos"
+slug = "atmos"
+title = "atmos"
+description = "Experiment using toml to configure bevy game stuff"
+highlight = true
+primary_language = "Rust"
+commit_count = 214
+created_at = "2025-12-16T14:31:08Z"
+updated_at = "2026-01-20T00:50:12Z"
+pushed_at = "2026-01-20T00:50:08Z"
+deepwiki_url = "https://deepwiki.com/sguzman/atmos/"
+project_page = "/projects/atmos/"
+readme_page = "/projects/readme/atmos/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/fiction-stuff"
+owner = "sguzman"
+repo = "fiction-stuff"
+slug = "fiction-stuff"
+title = "fiction-stuff"
+description = "Fiction schema for generating fictional universes"
+highlight = true
+primary_language = ""
+commit_count = 19
+created_at = "2026-04-16T12:40:39Z"
+updated_at = "2026-04-23T14:00:01Z"
+pushed_at = "2026-04-18T02:37:36Z"
+deepwiki_url = "https://deepwiki.com/sguzman/fiction-stuff/"
+project_page = "/projects/fiction-stuff/"
+readme_page = "/projects/readme/fiction-stuff/"
+readme_source = "missing"
 topics = []
 languages = []
-pie_css = ""
+pie_css = "conic-gradient(#9ea7b3 0 100%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/manifoldr"
+owner = "sguzman"
+repo = "manifoldr"
+slug = "manifoldr"
+title = "manifoldr"
+description = "Rust manifold API cli"
+highlight = true
+primary_language = "Rust"
+commit_count = 25
+created_at = "2026-05-01T22:06:52Z"
+updated_at = "2026-05-06T20:00:02Z"
+pushed_at = "2026-05-06T19:59:58Z"
+deepwiki_url = "https://deepwiki.com/sguzman/manifoldr/"
+project_page = "/projects/manifoldr/"
+readme_page = "/projects/readme/manifoldr/"
+readme_source = "local:tmp/manifoldr/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/clean-tts-text"
+owner = "sguzman"
+repo = "clean-tts-text"
+slug = "clean-tts-text"
+title = "clean-tts-text"
+description = "A preprocessing project to clean up and normal;ize text to be fed into a tts engine for clean, stable output"
+highlight = false
+primary_language = "Rust"
+commit_count = 19
+created_at = "2026-02-03T15:53:13Z"
+updated_at = "2026-05-03T01:12:16Z"
+pushed_at = "2026-05-03T01:12:12Z"
+deepwiki_url = "https://deepwiki.com/sguzman/clean-tts-text/"
+project_page = "/projects/clean-tts-text/"
+readme_page = "/projects/readme/clean-tts-text/"
+readme_source = "local:tmp/clean-tts-text/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/MathematicaMathFun"
+owner = "sguzman"
+repo = "MathematicaMathFun"
+slug = "mathematicamathfun"
+title = "MathematicaMathFun"
+description = "A repo for my Mathematica document files - mostly math research and fun"
+highlight = true
+primary_language = "Mathematica"
+commit_count = 126
+created_at = "2019-04-05T19:44:51Z"
+updated_at = "2024-09-26T09:16:24Z"
+pushed_at = "2024-09-15T00:38:02Z"
+deepwiki_url = "https://deepwiki.com/sguzman/MathematicaMathFun/"
+project_page = "/projects/mathematicamathfun/"
+readme_page = "/projects/readme/mathematicamathfun/"
+readme_source = "raw:master/README.md"
+topics = ["algebraic-geometry", "algebraic-topology", "differential-equations", "differential-geometry", "math", "mathematica", "number-theory"]
+languages = [{ name = "Mathematica", percent = 100.00, color = "#9ea7b3" }]
+pie_css = "conic-gradient(#9ea7b3 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/oxban"
+owner = "sguzman"
+repo = "oxban"
+slug = "oxban"
+title = "oxban"
+description = "A simple kanban program to stress test the following tech: rust + yew + css + tauri"
+highlight = true
+primary_language = "Rust"
+commit_count = 16
+created_at = "2026-02-16T01:13:46Z"
+updated_at = "2026-05-04T01:50:56Z"
+pushed_at = "2026-05-04T01:50:52Z"
+deepwiki_url = "https://deepwiki.com/sguzman/oxban/"
+project_page = "/projects/oxban/"
+readme_page = "/projects/readme/oxban/"
+readme_source = "local:tmp/oxban/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 91.51, color = "#dea584" }, { name = "CSS", percent = 6.06, color = "#663399" }, { name = "HTML", percent = 1.51, color = "#e34c26" }, { name = "Shell", percent = 0.91, color = "#89e051" }]
+pie_css = "conic-gradient(#dea584 0.00% 91.51%, #663399 91.51% 97.57%, #e34c26 97.57% 99.09%, #89e051 99.09% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/game-site-scraper"
+owner = "sguzman"
+repo = "game-site-scraper"
+slug = "game-site-scraper"
+title = "game-site-scraper"
+description = "A scraper for a certain game site"
+highlight = false
+primary_language = "Rust"
+commit_count = 17
+created_at = "2026-02-07T19:29:26Z"
+updated_at = "2026-05-03T01:12:22Z"
+pushed_at = "2026-05-03T01:12:18Z"
+deepwiki_url = "https://deepwiki.com/sguzman/game-site-scraper/"
+project_page = "/projects/game-site-scraper/"
+readme_page = "/projects/readme/game-site-scraper/"
+readme_source = "local:tmp/game-site-scraper/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/lisp-lang-rust-chatgpt"
+owner = "sguzman"
+repo = "lisp-lang-rust-chatgpt"
+slug = "lisp-lang-rust-chatgpt"
+title = "lisp-lang-rust-chatgpt"
+description = "A working conversation using rust to build a simple compiler for lisp, using chatgpt as a guide"
+highlight = true
+primary_language = "Rust"
+commit_count = 8
+created_at = "2023-11-08T19:02:54Z"
+updated_at = "2023-11-08T19:24:40Z"
+pushed_at = "2023-11-08T20:12:48Z"
+deepwiki_url = "https://deepwiki.com/sguzman/lisp-lang-rust-chatgpt/"
+project_page = "/projects/lisp-lang-rust-chatgpt/"
+readme_page = "/projects/readme/lisp-lang-rust-chatgpt/"
+readme_source = "local:tmp/lisp-lang-rust-chatgpt/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/wxmatch"
+owner = "sguzman"
+repo = "wxmatch"
+slug = "wxmatch"
+title = "wxmatch"
+description = "weather station data playground"
+highlight = false
+primary_language = "Rust"
+commit_count = 26
+created_at = "2026-05-15T22:11:21Z"
+updated_at = "2026-05-17T02:21:04Z"
+pushed_at = "2026-05-17T02:21:00Z"
+deepwiki_url = "https://deepwiki.com/sguzman/wxmatch/"
+project_page = "/projects/wxmatch/"
+readme_page = "/projects/readme/wxmatch/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 99.33, color = "#dea584" }, { name = "Shell", percent = 0.67, color = "#89e051" }]
+pie_css = "conic-gradient(#dea584 0.00% 99.33%, #89e051 99.33% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/simurom"
+owner = "sguzman"
+repo = "simurom"
+slug = "simurom"
+title = "simurom"
+description = "A 2D toml game engine"
+highlight = false
+primary_language = "Rust"
+commit_count = 114
+created_at = "2026-05-16T02:46:56Z"
+updated_at = "2026-05-19T02:01:42Z"
+pushed_at = "2026-05-19T02:01:37Z"
+deepwiki_url = "https://deepwiki.com/sguzman/simurom/"
+project_page = "/projects/simurom/"
+readme_page = "/projects/readme/simurom/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 65.91, color = "#dea584" }, { name = "Python", percent = 33.02, color = "#3572A5" }, { name = "WGSL", percent = 0.95, color = "#1a5e9a" }, { name = "GLSL", percent = 0.11, color = "#5686a5" }]
+pie_css = "conic-gradient(#dea584 0.00% 65.91%, #3572A5 65.91% 98.94%, #1a5e9a 98.94% 99.89%, #5686a5 99.89% 100.00%)"
 
 [[projects]]
 repo_url = "https://github.com/sguzman/kalx"
@@ -1062,35 +1083,14 @@ primary_language = "Rust"
 commit_count = 10
 created_at = "2026-05-18T18:26:33Z"
 updated_at = "2026-05-18T21:41:06Z"
-pushed_at = ""
+pushed_at = "2026-05-18T21:41:02Z"
 deepwiki_url = "https://deepwiki.com/sguzman/kalx/"
 project_page = "/projects/kalx/"
 readme_page = "/projects/readme/kalx/"
-readme_source = ""
+readme_source = "raw:main/README.md"
 topics = []
-languages = []
-pie_css = ""
-
-[[projects]]
-repo_url = "https://github.com/sguzman/pokesay"
-owner = "sguzman"
-repo = "pokesay"
-slug = "pokesay"
-title = "pokesay"
-description = "Like cowsay with pokemon"
-highlight = false
-primary_language = "Rust"
-commit_count = 10
-created_at = "2026-06-01T15:31:59Z"
-updated_at = "2026-06-01T16:08:23Z"
-pushed_at = ""
-deepwiki_url = "https://deepwiki.com/sguzman/pokesay/"
-project_page = "/projects/pokesay/"
-readme_page = "/projects/readme/pokesay/"
-readme_source = ""
-topics = []
-languages = []
-pie_css = ""
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
 
 [[projects]]
 repo_url = "https://github.com/sguzman/rivetr"
@@ -1101,38 +1101,17 @@ title = "rivetr"
 description = "A remake of rivet project in egui"
 highlight = false
 primary_language = "Rust"
-commit_count = 10
+commit_count = 11
 created_at = "2026-05-22T15:33:54Z"
 updated_at = "2026-05-22T18:54:27Z"
-pushed_at = ""
+pushed_at = "2026-05-22T18:54:23Z"
 deepwiki_url = "https://deepwiki.com/sguzman/rivetr/"
 project_page = "/projects/rivetr/"
 readme_page = "/projects/readme/rivetr/"
-readme_source = ""
+readme_source = "raw:main/README.md"
 topics = []
-languages = []
-pie_css = ""
-
-[[projects]]
-repo_url = "https://github.com/sguzman/simurom"
-owner = "sguzman"
-repo = "simurom"
-slug = "simurom"
-title = "simurom"
-description = "A 2D toml game engine"
-highlight = false
-primary_language = "Rust"
-commit_count = 10
-created_at = "2026-05-16T02:46:56Z"
-updated_at = "2026-05-19T02:01:42Z"
-pushed_at = ""
-deepwiki_url = "https://deepwiki.com/sguzman/simurom/"
-project_page = "/projects/simurom/"
-readme_page = "/projects/readme/simurom/"
-readme_source = ""
-topics = []
-languages = []
-pie_css = ""
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
 
 [[projects]]
 repo_url = "https://github.com/sguzman/vessel"
@@ -1143,35 +1122,56 @@ title = "vessel"
 description = "vessel is a Rust-native media extraction, download, and metadata-ledger engine that aims for yt-dlp-grade functionality while adding durable, idempotent dataset maintenance for channels, videos, playlists, comments, subtitles, and historical metadata snapshots."
 highlight = false
 primary_language = "Rust"
-commit_count = 10
+commit_count = 26
 created_at = "2026-05-28T16:24:14Z"
 updated_at = "2026-05-31T01:43:19Z"
-pushed_at = ""
+pushed_at = "2026-05-31T01:43:15Z"
 deepwiki_url = "https://deepwiki.com/sguzman/vessel/"
 project_page = "/projects/vessel/"
 readme_page = "/projects/readme/vessel/"
-readme_source = ""
+readme_source = "raw:main/README.md"
 topics = []
-languages = []
-pie_css = ""
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
 
 [[projects]]
-repo_url = "https://github.com/sguzman/wxmatch"
+repo_url = "https://github.com/sguzman/cinegraph"
 owner = "sguzman"
-repo = "wxmatch"
-slug = "wxmatch"
-title = "wxmatch"
-description = "weather station data playground"
+repo = "cinegraph"
+slug = "cinegraph"
+title = "cinegraph"
+description = "A rust-based film data aggregator and query engine"
 highlight = false
 primary_language = "Rust"
-commit_count = 10
-created_at = "2026-05-15T22:11:21Z"
-updated_at = "2026-05-17T02:21:04Z"
-pushed_at = ""
-deepwiki_url = "https://deepwiki.com/sguzman/wxmatch/"
-project_page = "/projects/wxmatch/"
-readme_page = "/projects/readme/wxmatch/"
-readme_source = ""
+commit_count = 13
+created_at = "2026-05-31T01:55:48Z"
+updated_at = "2026-06-01T17:07:58Z"
+pushed_at = "2026-06-01T17:04:23Z"
+deepwiki_url = "https://deepwiki.com/sguzman/cinegraph/"
+project_page = "/projects/cinegraph/"
+readme_page = "/projects/readme/cinegraph/"
+readme_source = "raw:main/README.md"
 topics = []
-languages = []
-pie_css = ""
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"
+
+[[projects]]
+repo_url = "https://github.com/sguzman/pokesay"
+owner = "sguzman"
+repo = "pokesay"
+slug = "pokesay"
+title = "pokesay"
+description = "Like cowsay with pokemon"
+highlight = false
+primary_language = "Rust"
+commit_count = 3
+created_at = "2026-06-01T15:31:59Z"
+updated_at = "2026-06-01T16:08:23Z"
+pushed_at = "2026-06-01T16:06:18Z"
+deepwiki_url = "https://deepwiki.com/sguzman/pokesay/"
+project_page = "/projects/pokesay/"
+readme_page = "/projects/readme/pokesay/"
+readme_source = "raw:main/README.md"
+topics = []
+languages = [{ name = "Rust", percent = 100.00, color = "#dea584" }]
+pie_css = "conic-gradient(#dea584 0.00% 100.00%)"

@@ -6,7 +6,7 @@ description: " ML fundamentals and training using mnist data"
 
 ## Overview
 
-A high-performance, educational machine learning laboratory for the MNIST dataset, built entirely from scratch in Rust. This project implements fundamental ML architectures without high-level frameworks, focusing on raw mathematical implementation and terminal-based visualization.
+A high-performance, educational machine learning laboratory for the MNIST dataset, built entirely from scratch in Rust. This project implements fundamental ML architectures without high-level frameworks (like PyTorch or TensorFlow), focusing on raw mathematical implementation and terminal-based visualization.
 
 ## Ambition
 
@@ -20,11 +20,11 @@ Work through neural-network fundamentals from first principles in Rust, with the
 
 ## Highlights
 
-- **Custom Dataset Pipeline**: Hand-written parser for the IDX binary format.
+- **Custom Dataset Pipeline**: Hand-written parser for the IDX binary format and
+- **Hierarchical Model Suite**:
 - **Perceptron**: Multiclass mistake-driven linear classifier.
 - **Softmax Regression**: Probabilistic linear model with cross-entropy loss.
-- **Multi-Layer Perceptron (MLP)**: 3-layer neural network with manual backpropagation.
-- Predictor workflow for 28x28 PNG handwritten digits.
+- **Multi-Layer Perceptron (MLP)**: 3-layer neural network (784 -> 128 -> 10)
 
 ## Stats
 

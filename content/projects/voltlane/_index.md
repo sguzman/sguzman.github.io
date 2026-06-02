@@ -6,7 +6,7 @@ description: "a chiptune/midi composer app (based off of furnace and fl-studio)"
 
 ## Overview
 
-Voltlane is a Rust-first FL-style/chiptune composition prototype built with:
+Voltlane is a Rust-first FL-style and chiptune composition prototype with a Rust core, Tauri desktop shell, and React UI.
 
 ## Ambition
 
@@ -19,19 +19,19 @@ I’m building this to become a sharp, reusable tool that I can rely on in real 
 
 ## Highlights
 
-- `voltlane-core` (Rust): project model, timeline engine, export pipeline, parity tooling, and tracing.
-- `src-tauri` (Rust/Tauri): desktop shell and typed command bridge to the core.
-- `ui` (React + TypeScript + CSS): lightweight visual playlist/mixer control surface.
-- Rust domain model for projects, tracks, clips, effects, transport, and notes.
-- Command-style engine API for:
+- Rust core for project, timeline, clip, effect, and export logic.
+- Tauri desktop host and command bridge.
+- React UI for playlist, transport, mixer, and editing workflows.
+- Parity/golden-baseline tooling for engine behavior.
+- Audio import, rendering, and export support with native and external tool paths.
 
 ## Stats
 
 - Project page: /projects/voltlane/
 - Primary language: Rust
-- Commits: 16
+- Commits: 17
 - Created: 2026-02-23T10:33:41Z
-- Last updated: 2026-02-23T13:51:07Z
+- Last updated: 2026-05-03T01:13:00Z
 
 ## Links
 

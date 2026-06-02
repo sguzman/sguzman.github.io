@@ -6,7 +6,7 @@ description: "Dead simple sym linking"
 
 ## Overview
 
-A tiny, no-bullshit dotfile linker.
+`fathrs` is a small Rust CLI for deploying dotfiles and similar filesystem artifacts from a declarative `links.toml` file. It reads source-to-target mappings, resolves them relative to a configurable base directory, and then creates symlinks or copies files/directories into place.
 
 ## Ambition
 
@@ -20,19 +20,19 @@ A lightweight, zero-dependency alternative to complex dotfile managers for manag
 
 ## Highlights
 
-- **TOML-driven symlink map** (`links.toml`)
-- **File symlinks** and **folder symlinks**
-- **Force mode** to replace existing targets
-- **Dry run** mode to preview actions
-- **Intense logging** via `tracing` (spans + debug/trace details)
+- Reads link definitions from a TOML config.
+- Creates symlinks for files or directories.
+- Supports replacing existing destinations with `--force`.
+- Supports dry runs before touching the filesystem.
+- Can probe configured destinations and report their current state.
 
 ## Stats
 
 - Project page: /projects/fathrs/
 - Primary language: Rust
-- Commits: 47
+- Commits: 49
 - Created: 2026-01-16T19:23:07Z
-- Last updated: 2026-04-20T09:27:04Z
+- Last updated: 2026-05-03T22:47:19Z
 
 ## Links
 

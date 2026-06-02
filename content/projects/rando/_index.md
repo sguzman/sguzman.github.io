@@ -6,7 +6,7 @@ description: "Thick rust random tooling"
 
 ## Overview
 
-Thick rust random tooling
+`rando` is a Rust statistics, distribution-fitting, and experimentation crate. It combines descriptive statistics, hypothesis tests, fitted probability distributions, rolling-window analysis, basic plotting, simple predictive models, and a small demo binary in one repository.
 
 ## Ambition
 
@@ -18,13 +18,21 @@ Create a 'Mathematica-like' experience for Rust developers, where complex statis
 - Comprehensive suite of hypothesis tests (T-test, Z-test, Correlation).
 - High-performance statistical toolkit focusing on ease-of-use.
 
+## Highlights
+
+- fit probability distributions to observed samples
+- compare candidate distribution families
+- run goodness-of-fit and classical hypothesis tests
+- transform price-like time series into return series
+- compute rolling p-values over sliding windows
+
 ## Stats
 
 - Project page: /projects/rando/
 - Primary language: Rust
-- Commits: 8
+- Commits: 10
 - Created: 2026-04-24T01:01:18Z
-- Last updated: 2026-04-24T17:38:19Z
+- Last updated: 2026-05-04T02:24:14Z
 
 ## Links
 

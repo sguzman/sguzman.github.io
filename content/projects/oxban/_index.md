@@ -30,9 +30,9 @@ Create a premium, local-first Kanban experience that combines the performance of
 
 - Project page: /projects/oxban/
 - Primary language: Rust
-- Commits: 14
+- Commits: 16
 - Created: 2026-02-16T01:13:46Z
-- Last updated: 2026-02-16T03:21:10Z
+- Last updated: 2026-05-04T01:50:56Z
 
 ## Links
 

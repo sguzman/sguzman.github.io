@@ -8,196 +8,58 @@ draft = false
 
 # Voltlane
 
-Voltlane is a Rust-first FL-style/chiptune composition prototype built with:
+Voltlane is a Rust-first FL-style and chiptune composition prototype with a Rust core, Tauri desktop shell, and React UI.
 
-- `voltlane-core` (Rust): project model, timeline engine, export pipeline, parity tooling, and tracing.
-- `src-tauri` (Rust/Tauri): desktop shell and typed command bridge to the core.
-- `ui` (React + TypeScript + CSS): lightweight visual playlist/mixer control surface.
+## Intent
 
-The current implementation now spans Milestone A/B plus core audio-clip workflow slices: project lifecycle, transport controls, colored tracks, clip creation/editing, audio import/indexing, exports, parity harness, logging, and docs.
+Prove a music-production workflow where the sequencing engine, export logic, parity tooling, and desktop UI are cleanly separated but still operate on one shared project model.
 
-## Features Implemented
+## Ambition
 
-- Rust domain model for projects, tracks, clips, effects, transport, and notes.
-- Command-style engine API for:
-  - project create/load/save/autosave
-  - track add/reorder/hide/mute/enable
-  - clip add/move
-  - audio asset scan/decode/analyze/import
-  - audio clip trim/fade/reverse/stretch/gain/pan editing
-  - effect attachment
-  - playback + loop control
-- Export pipeline:
-  - MIDI (`.mid`) via `midly`
-  - WAV (`.wav`) via deterministic renderer + `hound`
-  - MP3 (`.mp3`) via `ffmpeg` sidecar invocation
-  - Stem WAV export (`stem_wav`) with per-track files
-- Extensive structured logging with `tracing` in core and bridge.
-- Tauri commands for all major operations (`project/track/clip/export/parity`).
-- React UI for playlist lanes, track controls, transport, and parity panel.
-- Clip editor panel for MIDI/pattern note editing (add/remove/update notes, quantize, transpose).
-- Interactive piano roll editing for MIDI clips (drag + resize + snap).
-- Tracker grid editor for chip pattern clips (row/effect editing with pattern-note regeneration).
-- Chip macro editor lanes for pattern clips (`arpeggio`, `env`, `duty`) with loop metadata.
-- Source-chip-aware backend rendering pipeline (`gameboy_apu`, `nes/2a03`, `sn76489/psg`, generic fallback).
-- Built-in insert FX DSP in the core renderer (`eq`, `compressor`, `reverb`, `delay`, `limiter`, `bitcrusher`).
-- Export render-mode selection (`offline` or `realtime`) from UI through Rust core.
-- Automation clip editing with parameter-ID targeting and point tables.
-- Mixer routing controls: track gain/pan, bus output assignment, and send lanes.
-- Audio browser panel for asset indexing, waveform preview metadata, and direct import into audio tracks.
-- Deterministic parity harness:
-  - golden baseline test
-  - CLI parity report generation
+The current workspace and roadmap clearly aim beyond a toy sequencer toward a fuller desktop composition environment with timeline editing, audio handling, effects, export, and parity-oriented engine validation.
 
-## Repository Layout
+## Current Status
 
-- `Cargo.toml`: Rust workspace root
-- `crates/voltlane-core`: core engine/domain/export/parity modules
-- `crates/voltlane-core/tests`: export/parity integration tests + golden baseline
-- `src-tauri`: Tauri host and command bridge
-- `ui`: React/TypeScript frontend
-- `scripts/run_parity_harness.sh`: parity harness runner
-- `ROADMAP.md`: progress tracker with checkboxes
-- `src-tauri/res/soundfonts`: bundled SoundFonts
+The codebase already covers project lifecycle, transport, clip editing, export paths, parity harnesses, UI lanes, and Tauri integration. It is still a prototype, but a substantial one.
 
-## Build and Run
+## Core Capabilities Or Focus Areas
 
-## Runtime Config
+- Rust core for project, timeline, clip, effect, and export logic.
+- Tauri desktop host and command bridge.
+- React UI for playlist, transport, mixer, and editing workflows.
+- Parity/golden-baseline tooling for engine behavior.
+- Audio import, rendering, and export support with native and external tool paths.
 
-The app reads runtime settings from:
+## Project Layout
 
-- `voltlane.config.toml`
+- `crates/voltlane-core/`: core engine, timeline, export, parity, and tracing logic.
+- `src-tauri/`: desktop shell and Tauri command bridge into the Rust core.
+- `crates/`: workspace member crates grouped by subsystem.
+- `scripts/`: helper scripts for development, validation, or release workflows.
+- `Cargo.toml`: crate or workspace manifest and the first place to check for package structure.
 
-This file contains app parameters (mode, defaults, diagnostics, audio scan/cache behavior, paths, Wayland behavior, export binary path).
+## Setup And Requirements
 
-Current mode is set to:
+- Rust toolchain.
+- Node.js and `pnpm` for the UI/tooling.
+- Tauri prerequisites and `ffmpeg` for the MP3 export path.
 
-- `mode = "dev"`
-
-In `dev` mode, each app launch writes timestamped Rust tracing logs into:
-
-- `logs/`
-
-MIDI SoundFont defaults are configured here too:
-
-- `midi.default_soundfont_path = "src-tauri/res/soundfonts/piano.sf2"`
-- `midi.default_soundfont_license_path = "src-tauri/res/soundfonts/piano.sf2.LICENSE"`
-
-Audio workflow defaults are configured here:
-
-- `audio.asset_directories = ["data/audio-library"]`
-- `audio.waveform_cache_dir = "data/waveform-cache"`
-- `audio.analysis_bucket_size = 1024`
-
-Export defaults are configured here:
-
-- `export.ffmpeg_binary = "ffmpeg"`
-- `export.default_render_mode = "offline"`
-- `export.stems_output_dir_name = "stems"`
-
-### Install dependencies
-
-```bash
-pnpm install
-```
-
-### Rust checks/tests
+## Build / Run / Test Commands
 
 ```bash
 cargo check -p voltlane-core
-cargo check -p voltlane-tauri
 cargo test -p voltlane-core
-cargo test -p voltlane-core --test project_corruption_prop
-```
-
-### Frontend build
-
-```bash
+pnpm install
 pnpm --dir ui run build
-```
-
-### Run desktop app (dev)
-
-```bash
 pnpm run tauri:dev
-# or
-cargo tauri dev
 ```
 
-### Wayland note (Linux)
+## Notes, Limitations, Or Known Gaps
 
-Voltlane reads Wayland compatibility toggles from `voltlane.config.toml`.
-With the current config it auto-applies:
+- Prototype status matters here: the feature set is broad, but product ergonomics are still evolving.
+- Desktop/audio/toolchain setup is part of the real development surface, not a side concern.
 
-- `WEBKIT_DISABLE_DMABUF_RENDERER=1`
+## Next Steps Or Roadmap Hints
 
-when `WAYLAND_DISPLAY` is present.
-
-## Logging
-
-- Core tracing is initialized at runtime with session UUID and per-run timestamped JSON log files.
-- Tauri plugin log forwards logs to stdout, log dir, and webview stream.
-- Log filtering and sink behavior are configured in `voltlane.config.toml`.
-
-## Crash Recovery
-
-- On startup, Voltlane checks for the latest autosave file in the configured autosave directory.
-- If an autosave is found, the UI shows a restore prompt with timestamp and supports one-click restore.
-
-## Parity Harness
-
-### Golden parity test
-
-```bash
-cargo test -p voltlane-core parity_report_matches_golden_baseline
-```
-
-### Generate parity report artifact
-
-```bash
-cargo run -p voltlane-core --bin voltlane-cli -- parity-report --output data/parity/report.json
-```
-
-### One-shot runner
-
-```bash
-./scripts/run_parity_harness.sh
-```
-
-### Performance regression suite
-
-```bash
-./scripts/run_perf_regression.sh
-```
-
-Golden baseline lives at:
-
-- `crates/voltlane-core/tests/fixtures/parity_baseline.json`
-
-To refresh it intentionally:
-
-```bash
-UPDATE_PARITY_BASELINE=1 cargo test -p voltlane-core parity_report_matches_golden_baseline
-```
-
-## Export Notes
-
-- MP3 export requires `ffmpeg` in `PATH` unless you pass a specific binary path through Tauri command input.
-- WAV, MIDI, and per-track stem WAV exports are Rust-native in this implementation.
-- Stem output files are named like `01_track_name.wav`.
-
-## CI
-
-- Workflow file: `.github/workflows/ci.yml`
-- CI runs `fmt`, `clippy`, workspace tests, UI build, and `cargo audit`.
-
-## SoundFont Asset
-
-- Integrated SoundFont: `src-tauri/res/soundfonts/piano.sf2`
-- SoundFont package readme: `src-tauri/res/soundfonts/README.md`
-- License record file: `src-tauri/res/soundfonts/piano.sf2.LICENSE`
-- License metadata indicates TimGM6mb is GPL-2 (see license file for full details).
-
-## Status
-
-This is still a prototype, but the current roadmap phases are now checked end-to-end in code and tests.
+- Keep the core engine contracts stable as the UI grows richer.
+- Use parity and golden-baseline workflows to prevent regressions in audio/export behavior.

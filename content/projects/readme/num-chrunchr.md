@@ -8,565 +8,384 @@ draft = false
 
 # num-chrunchr
 
-**num-chrunchr** is a Rust toolkit for **factoring and structurally analyzing extremely large integers**, including numbers that do **not** fit comfortably in RAM.
+`num-chrunchr` is a Rust CLI for working with very large integers when the useful question is not always "can I fully factor this in RAM?" but "what can I learn about this number with the representation and compute budget I actually have?"
 
-It is built around a simple idea:
+The project is built around three ideas:
 
-> A "number" is not always a `BigInt`.  
-> It is a *representation* that may support only certain operations efficiently (streaming, symbolic, disk-backed, RAM-backed, GPU-assisted, etc.).
+- use the cheapest representation that still supports the next operation;
+- stream from disk when materializing a full big integer is unnecessary or too expensive;
+- emit structure reports and compressed descriptions even when full factorization is impractical.
 
-This repo currently provides a working MVP for **disk-backed decimal numbers** with:
+Today the repository contains a working CLI, streaming arithmetic primitives, a resumable small-factor peeling pipeline, near-power decomposition tooling, an optional GPU batch remainder engine, configuration, and design notes for the next optimization steps.
 
-- streaming `N mod p` (`u32`/`u64`)
-- streaming long division `N / d` for small `d`
-- quick analysis (decimal length + leading digits)
-- structured logging via `tracing`
+## What The Project Does
 
-…and a clear path to expand into a full multi-strategy factoring system.
+`num-chrunchr` currently focuses on large-number analysis and partial factor search rather than promising complete factorization for arbitrarily large inputs.
 
----
+Core capabilities already present in the codebase:
 
-## Goals
+- streaming decimal operations on numbers stored as text files;
+- loading moderately sized values into `BigUint` when an in-memory upgrade is reasonable;
+- scanning divisor ranges on CPU or GPU-backed batch remainder kernels;
+- resumable "peel" runs that strip small factors and persist reports;
+- near-power analysis that approximates a number as powers of a chosen base;
+- compression of exponent sequences produced by repeated near-power decomposition;
+- binary-input support for numbers supplied as raw bytes instead of decimal text;
+- structure reporting for patterns like near-square, near-power, and sparse decimal terms.
 
-1. **Factor when feasible** (small/medium inputs; or large inputs with small factors).
-2. **Use heuristics when not feasible**, and still produce a meaningful "structure report":
-   - size characteristics (digits/bit-estimates)
-   - residue sketches (many `mod p`)
-   - special-form detection (near-square, near-power, sparse expansions)
-   - best known compressed representations
-   - power-of-two base fast paths (see `docs/power-of-2-bases.md`)
-3. **Scale beyond RAM**:
-   - stream from disk (decimal and later limb files)
-   - operate piecewise and persist intermediate states
-4. **Optionally accelerate prime scanning with GPU** (planned):
-   - batch remainder updates for huge prime sets
+The project is best understood as a research-oriented toolkit for "number understanding": factor what is cheap, sketch what is expensive, and preserve enough structure to continue later.
 
----
+## Representation Strategy
 
-## Non-goals (important)
+The crate deliberately avoids a single representation model.
 
-- This is not intended as a turnkey “break RSA” tool.
-- Factoring arbitrary, cryptographically-sized semiprimes is hard; the project will eventually integrate / wrap mature external implementations (QS/NFS, ECM, etc.) rather than reimplement everything from scratch.
-- “Compression” here means *useful mathematical representation*, not general-purpose lossless compression.
+### `DecimalStream`
 
----
+Implemented in [src/repr/mod.rs](/win/linux/Code/rust/num-chrunchr/src/repr/mod.rs:1), `DecimalStream` is the main out-of-core representation for decimal text inputs.
 
-## Current Features (MVP)
+It supports:
 
-### Disk-backed `DecimalStream`
+- counting decimal digits;
+- extracting leading digits;
+- computing `N mod p` with streaming Horner-style updates;
+- dividing by a small `u32` divisor and writing the quotient back to disk.
 
-Input is a text file containing decimal digits. Any non-digit characters are ignored. This makes it easy to:
+This is the representation that keeps the project useful for very large decimal files.
 
-- store gigantic numbers as text
-- include separators/newlines
-- stream operations without loading the whole value
+### `BigIntRam`
 
-### Streaming operations (no full materialization)
+Implemented in [src/repr/bigint_ram.rs](/win/linux/Code/rust/num-chrunchr/src/repr/bigint_ram.rs:1), `BigIntRam` upgrades a decimal stream into a `num_bigint::BigUint` once the configured size threshold makes that practical.
 
-- `decimal_len()` — count digits by streaming
-- `leading_digits(k)` — read first `k` digits (streaming)
-- `mod_u32(p)` / `mod_u64(p)` — Horner-style streaming modulus
-- `div_u32_to_path(d, out)` — streaming long division by small `d`
+This path is used for:
 
-### Logging
+- exact arithmetic on smaller cofactors;
+- structural detection that benefits from full big-integer access;
+- ECM-assisted follow-up inside the peel strategy.
 
-Uses `tracing` + `tracing-subscriber` with env filtering.
+### `LimbFile`
 
----
+Implemented in [src/repr/limb_file.rs](/win/linux/Code/rust/num-chrunchr/src/repr/limb_file.rs:1), `LimbFile` is a disk-backed base-`2^32` representation.
 
-## Why capability-based representations?
+It is not yet the dominant representation in the CLI, but it exists as an important bridge for:
 
-Different representations excel at different operations:
+- chunked binary-style processing;
+- future GPU-friendly arithmetic paths;
+- avoiding repeated decimal parsing when a limb encoding is better suited to the workload.
 
-- **DecimalStream** (disk-backed text)
-  - Great: `mod p`, `div by small p`, quick size/leading-digit analysis
-  - Not great: big multiplications, general-purpose big-int algorithms
+## Strategy Layer
 
-- **BigIntRam** (implemented)
-  - Great: Pollard Rho, p-1/p+1, ECM, etc.
-  - Limited: RAM size
+The strategy code lives under [src/strategy](/win/linux/Code/rust/num-chrunchr/src/strategy/mod.rs:1).
 
-- **ExprAst** (planned)
+### Peel
 
----
+The `peel` command is the main resumable factor workflow in the repository today.
 
-## Near-power sequence compression
+It:
 
-After running `near-power`, you can optionally compress the exponent sequence:
+- copies the chosen input into a working cofactor file under the report directory;
+- sieves small primes up to a configured bound;
+- computes batched remainders for chunks of primes;
+- divides out discovered small factors;
+- persists factor counts to `factors.json`;
+- writes modular sketches to `sketch.json`;
+- writes a higher-level structural summary to `structure.json`;
+- optionally upgrades the remaining cofactor to `BigUint` and uses ECM when size policy allows.
 
-- `--compress-seqA`: choose a base `B` and store deltas `e_i - B`.
-- `--compress-seqB`: store `e_0` and deltas `e_i - e_{i-1}`.
+This makes `peel` a hybrid pipeline: streaming first, exact arithmetic later if the remaining cofactor becomes small enough.
 
-Select the optimization scheme with `--compress-scheme`:
+### Structure Reports
 
-- `min-max-abs`
-- `min-total-abs` (default)
-- `min-digit-count`
-- `min-bit-count`
-- `min-varint-size`
+Implemented in [src/strategy/report.rs](/win/linux/Code/rust/num-chrunchr/src/strategy/report.rs:1), structure reports summarize properties of the current number or cofactor.
 
-Example:
+The report currently tracks:
 
+- decimal length;
+- approximate bit length;
+- leading digits;
+- whether the value is close to a square;
+- whether the value is close to a small perfect power;
+- sparse non-zero decimal terms for smaller values;
+- a `special_forms` summary list for quick inspection.
+
+## GPU Support
+
+The GPU path lives under [src/gpu](/win/linux/Code/rust/num-chrunchr/src/gpu/mod.rs:1), primarily in [src/gpu/batch_mod.rs](/win/linux/Code/rust/num-chrunchr/src/gpu/batch_mod.rs:1).
+
+The implemented GPU engine is a batch remainder engine, not a full general-purpose big-integer backend. That is an important distinction.
+
+What it does well:
+
+- update many prime remainders in parallel;
+- accelerate divisor-range scans and batched small-factor testing;
+- auto-tune or accept configured batch sizes.
+
+What it does not claim to do:
+
+- replace all CPU-side arithmetic;
+- fully offload arbitrary factorization algorithms;
+- avoid the cost of quotient generation after a factor is found.
+
+If GPU initialization is disabled or unavailable, the code can fall back to the CPU batch engine.
+
+## CLI Overview
+
+Build and inspect the CLI with:
+
+```bash
+cargo build
+cargo run -- --help
 ```
-num-chrunchr --input big.bin --binary near-power --base-number 2 --n-times 5 \
-  --compress-seqA --compress-scheme min-total-abs
+
+The top-level commands currently exposed by [src/main.rs](/win/linux/Code/rust/num-chrunchr/src/main.rs:1) are:
+
+- `mod`: compute `N mod p` from a streamed input;
+- `div`: divide by a small divisor and write the quotient;
+- `analyze`: print decimal length and leading digits;
+- `digits`: print the decimal digit count;
+- `log`: estimate `log_base(N)` and optionally its integer part;
+- `pow`: raise the supplied number to an exponent and emit decimal output;
+- `near-power`: find the nearest `base^k` approximation and optionally iterate on the delta;
+- `cache`: inspect or purge cached `near-power` results;
+- `write-decimal`: convert raw binary bytes to decimal text;
+- `estimate-any-factor`: estimate search time or success probability under a divisor budget;
+- `range-factors`: scan an inclusive divisor range and print matching factors;
+- `peel`: run the resumable small-factor peeling workflow.
+
+## Input Modes
+
+The CLI accepts numbers in two primary ways:
+
+- `--number <digits>` for inline decimal input;
+- `--input <path>` for file-based input.
+
+For file-based inputs, the default interpretation is decimal text with non-digit bytes ignored by the streaming decimal routines.
+
+Binary mode is also supported:
+
+- `--binary` reads `--input` as a raw integer byte string;
+- `--little-endian` switches binary interpretation from big-endian to little-endian.
+
+Binary mode applies only to file inputs, not inline `--number`.
+
+## Common Workflows
+
+### 1. Quick inspection of a large decimal file
+
+```bash
+cargo run -- --input res/big-num.txt analyze
+cargo run -- --input res/big-num.txt digits
+cargo run -- --input res/big-num.txt log --base 10 --integer-part
 ```
 
-Prime-rounds mode (use primes as bases, no explicit base allowed):
+### 2. Streaming divisibility checks
 
+```bash
+cargo run -- --input res/big-num.txt mod --p 97
+cargo run -- --input res/big-num.txt div --d 3 --out quotient.txt
 ```
-num-chrunchr --input big.bin --binary near-power --prime-rounds --n-times 5
+
+### 3. Resumable small-factor peeling
+
+```bash
+cargo run -- --input res/big-num.txt peel
 ```
-  - Great: numbers like `a^b +/- c`, products, factorial-like forms, sparse sums
-  - Allows: fast `mod p` without expansion via modular exponentiation
-  - Enables: algebraic factor rules
 
-- **LimbFile** (implemented)
-  - Disk-backed base 2^32/2^64 limbs
-  - Great for GPU kernels and chunked high-throughput arithmetic
+Useful flags:
 
-  - Cached residues for fast screening + resumability
+- `--config <path>` to select an alternate TOML config;
+- `peel --primes-limit <n>` to override the configured sieve bound;
+- `peel --reset` to discard prior report state and restart.
 
-The factoring strategy engine will choose algorithms based on:
+### 4. Divisor range scanning
 
-- input size
-- which capabilities are available
-- what has already been learned (factors found, sketch residues, detected forms)
+```bash
+cargo run -- --input res/big-num.txt range-factors --start 2 --end 100000
+```
 
----
+Notable options:
+
+- `--use-gpu` to prefer the GPU batch remainder engine;
+- `--first` or `--last` to constrain output;
+- `--all` to emit repeated factors;
+- `--limit <n>` to cap matches;
+- `--gpu-batch-size <n>` to override automatic GPU batch sizing.
+
+### 5. Near-power decomposition
+
+```bash
+cargo run -- --number 123456789 near-power --base-number 10
+```
+
+This command can:
+
+- search for the nearest exponent `k` such that `base^k` is closest to the target;
+- repeat the process over the remaining delta with `--n-times`;
+- optionally disallow overshoot with `--no-overshoot`;
+- switch to prime bases by round with `--prime-rounds`;
+- cache computed decompositions under `.cache/num-chrunchr` with `--cache`.
+
+For power-of-two bases, the code includes a dedicated fast path described in [docs/power-of-2-bases.md](/win/linux/Code/rust/num-chrunchr/docs/power-of-2-bases.md:1).
+
+### 6. Compressing exponent sequences
+
+When `near-power` is run with multiple iterations, its exponent sequence can be compressed:
+
+```bash
+cargo run -- --number 123456789012345 near-power \
+  --base-number 10 \
+  --n-times 8 \
+  --compress-seq-a
+```
+
+Available modes:
+
+- `--compress-seq-a`: store a chosen base plus per-entry deltas;
+- `--compress-seq-b`: store the first exponent and consecutive deltas.
+
+Available optimization schemes:
+
+- `min-max-abs`;
+- `min-total-abs` (default);
+- `min-digit-count`;
+- `min-bit-count`;
+- `min-varint-size`.
+
+See [docs/compress-seq.md](/win/linux/Code/rust/num-chrunchr/docs/compress-seq.md:1) and [docs/roadmaps/compress-seq-roadmap.md](/win/linux/Code/rust/num-chrunchr/docs/roadmaps/compress-seq-roadmap.md:1) for the rationale and roadmap notes.
+
+### 7. Cache management
+
+```bash
+cargo run -- cache list
+cargo run -- cache purge --confirm
+```
+
+The cache currently stores serialized `near-power` entries keyed by target, base, and settings metadata.
+
+## Configuration
+
+The default runtime configuration is checked in at [config/default.toml](/win/linux/Code/rust/num-chrunchr/config/default.toml:1).
+
+Main sections:
+
+- `[logging]`: tracing level and timestamp format;
+- `[stream]`: buffer size for streamed file processing;
+- `[analysis]`: how many leading digits to record;
+- `[policies]`: arithmetic limits such as divisor caps and in-memory upgrade threshold;
+- `[policies.ecm]`: whether ECM is enabled and what search bounds it uses;
+- `[strategy]`: peel defaults such as sieve bound, batch size, report directory, and GPU preference;
+- `[range_factors]`: GPU batch-size override for divisor scans.
+
+Important defaults in the current repo:
+
+- stream buffer size: `65536`;
+- leading digits recorded: `32`;
+- in-memory upgrade threshold: `128` decimal digits;
+- peel prime limit: `1_000_000`;
+- default report directory: `reports`;
+- strategy GPU preference: enabled by default in the checked-in config;
+- range-factor GPU batch size: `0` meaning auto-tune.
+
+If the configured file does not exist, the crate falls back to built-in defaults defined in [src/config.rs](/win/linux/Code/rust/num-chrunchr/src/config.rs:1).
+
+## Generated Artifacts
+
+Some outputs are created at runtime rather than stored in git.
+
+### `reports/`
+
+The peel strategy writes artifacts into the configured report directory, `reports/` by default:
+
+- `cofactor.txt`: the current remaining cofactor;
+- `factors.json`: discovered factor multiplicities;
+- `sketch.json`: residues modulo a small prime set;
+- `structure.json`: structural summary of the remaining number.
+
+These files are intended to make long-running or exploratory work resumable and inspectable.
+
+### `.cache/num-chrunchr`
+
+`near-power --cache` writes serialized cache entries under the user cache tree. The code treats the cache as disposable derived state.
 
 ## Project Layout
 
-Current structure (MVP):
-
-src/
-main.rs # CLI entrypoint
-repr/
-mod.rs # DecimalStream implementation (streaming ops)
-bigint_ram.rs # RAM-based factoring helpers
-limb_file.rs # Disk-backed base 2^32 limbs for GPU/IO-friendly scans
-
-Planned expansions:
-
-src/
-repr/
-decimal_stream.rs
-bigint_ram.rs
-expr_ast.rs
-limb_file.rs
-sketch.rs
-ops/
-mod.rs # traits + shared arithmetic helpers
-stream.rs
-bigint.rs
-strategy/
-mod.rs
-peel_small.rs # trial division / small-factor peeling
-upgrade.rs # stream -> bigint conversion thresholds
-rho.rs # Pollard Rho (RAM mode)
-pminus1.rs # Pollard p-1 / p+1
-ecm.rs # ECM integration or wrapper
-report.rs # structure report / certificates
-gpu/
-mod.rs
-batch_mod.rs # GPU-assisted remainder scanning (planned)
-
----
-
-## CLI Usage (current)
-
-### Input sources
-
-- Use `--input <path>` to stream decimal digits from a file (non-digit characters are ignored).
-- Use `--number "<digits>"` to provide a short decimal string inline (it is written to a temp file, which is then streamed).
-- Use global `--binary` to treat `--input` as raw bytes encoding an integer; default byte order is big-endian, and `--little-endian` switches order.
-
-### Commands
-
-- `analyze` — digit length + leading digits
-- `digits` — return decimal digit count of input
-- `log` — compute `log_base(N)` with optional integer-only output
-- `pow` — compute `N^exponent` and emit decimal
-- `mod` — compute `N mod p` streaming
-- `div` — divide by a small `u32` divisor (streaming), write quotient to a file
-- `write-decimal` — convert raw binary input bytes into decimal text output (`--binary`, optional `--little-endian`)
-- `estimate-any-factor` — estimate trial-division scan time and likely success for finding any factor (supports `--digits` without an input file)
-- `range-factors` — scan an inclusive integer range and return divisors in that range using streaming modulus checks (`--all` includes repeated factors for each divisor power that divides `N`), with optional GPU batch scanning via `--use-gpu`.
-  - With `--use-gpu`, divisors up to `u32::MAX` are scanned on the GPU and larger divisors in the same request are scanned on CPU.
-  - `--first` returns only the first factor found in ascending scan order; `--last` returns only the largest factor found in range.
-  - `--low-latency-first` only affects `--first` with GPU auto-batch and prioritizes first-result latency over peak throughput.
-  - `--limit <N>` stops after `N` matching factors are emitted.
-  - `--gpu-batch-size <N>` tunes divisors-per-GPU-chunk; `0` means auto-tune from adapter limits.
-- `peel` — run the streaming small-factor peeling strategy; progress is stored under `reports/` (see below).
-
-### Examples (fish shell)
-
-1) Create a file with digits or supply inline:
-
-```fish
-printf "123456789012345678901234567890\n" > n.txt
-
-    Analyze from file:
-
-cargo run -- --input n.txt analyze --leading 20
-
-    Analyze inline digits:
-
-cargo run -- --number "20260228123456" analyze
-
-    Modulus:
-
-cargo run -- --input n.txt mod --p 97
-
-cargo run -- --input n.bin --binary --little-endian mod --p 97
-
-    Binary to decimal file:
-
-cargo run -- --input n.bin --binary --little-endian write-decimal --out n.txt
-
-    Digit count:
-
-cargo run -- --input n.txt digits
-
-    Logarithm:
-
-cargo run -- --input n.txt log --base 10
-
-cargo run -- --input n.txt log --base 2 --integer-part
-
-    Exponentiation:
-
-cargo run -- --number "12" pow --exponent 20
-
-cargo run -- --number "12" pow --exponent 20 --out power.txt
-
-    Divide:
-
-cargo run -- --input n.txt div --d 3 --out q.txt
-
-This writes quotient digits to q.txt and prints remainder=....
-
-`div`, `analyze`, and `peel` currently support decimal input only; `--binary` is supported by `digits`, `log`, `pow`, `mod`, `write-decimal`, `estimate-any-factor`, and `range-factors`.
-
-    Any-factor estimate:
-
-cargo run -- estimate-any-factor --digits 1000000 --factors-per-sec 350000000 --mode unknown
-
-cargo run -- --input n.bin --binary estimate-any-factor --max-divisor 100000000000 --factors-per-sec 350000000 --mode random
-
-This reports estimated scan time and, for random mode, an approximate success probability of hitting a small factor under the scan cutoff.
-
-    Range divisor scan:
-
-cargo run -- --input n.txt range-factors --start 2 --end 1000
-
-This prints a JSON array of all divisors from the inclusive range `[2, 1000]` without loading the whole number into RAM.
-
-cargo run -- --input n.txt range-factors --start 2 --end 1000 --all
-
-This includes repeated entries when `d^k` keeps dividing `N` for the same divisor `d`.
-
-cargo run -- --input n.txt range-factors --start 2 --end 1000 --first
-
-This returns just the first factor in ascending order (or `null` if none are found).
-
-cargo run -- --input n.txt range-factors --start 2 --end 1000 --last
-
-This returns only the largest factor in range (or `null` if none are found).
-
-cargo run -- --input n.txt range-factors --start 2 --end 1000 --limit 3
-
-This stops after returning three matching factors.
-
-cargo run -- --input n.bin --binary range-factors --start 2 --end 1000 --use-gpu
-
-This treats `n.bin` as a raw big-endian integer and uses the GPU batch remainder engine.
-
-cargo run -- --input n.bin --binary --little-endian range-factors --start 2 --end 1000 --use-gpu
-
-This reads the same raw bytes as little-endian.
-
-cargo run -- --input n.txt range-factors --start 2 --end 10000000 --use-gpu --gpu-batch-size 65536
-
-This overrides the GPU divisor chunk size for throughput tuning.
-
-    Peel small factors and persist reports:
-
-cargo run -- --input n.txt peel --primes-limit 500
-
-### Reports
-
-`peel` keeps resumable state inside `config.strategy.report_directory` (default `reports/`). You can inspect:
-
-- `factors.json` — list of peeled primes/exponents along with the input label.
-- `cofactor.txt` — the current working decimal digits for the remaining cofactor.
-- `sketch.json` — residues of the current cofactor against the primes listed in `config.strategy.sketch_primes`.
-
-The next peel invocation will detect these files and resume from the last known quotient unless you pass `--reset`.
-
-### Configuration
-
-`config/default.toml` exposes the tuning knobs you need:
-
-- `logging` / `stream` / `analysis` segments we already mention.
-- `policies` (modulus/divisor limits, division budget).
-- `policies.ecm` (enable/disable ECM, adjust stage 1/2 bounds, curve budget, and RNG seed for the Lenstra fallback that runs after the RAM upgrade when Pollard/p±1 stall).
-- `strategy` — `primes_limit`, `batch_size`, `report_directory`, `sketch_primes`, and `use_gpu` control how aggressively `peel` sieves, how many primes are grouped for each batch scan, where state is persisted, and whether the GPU-backed batch modulo kernel is engaged.
-- `range_factors` — `gpu_batch_size` controls `range-factors --use-gpu` chunking (`0` auto-tunes from adapter limits).
-
-### GPU acceleration
-
-When you set `strategy.use_gpu = true`, the `peel` command streams digit chunks through a `wgpu` compute shader that updates every tracked remainder across the current prime batch in parallel. GPU initialization is treated as required in this mode, so failures abort the run instead of silently falling back.
-Logging
-
-Set RUST_LOG to control verbosity.
-
-Examples (fish):
-
-set -x RUST_LOG info
-cargo run -- --input n.txt analyze
-
-More detail:
-
-set -x RUST_LOG "num-chrunchr=debug,info"
-cargo run -- --input n.txt mod --p 1000003
-
-Design Notes: Streaming Modulus
-
-For DecimalStream, modulus is computed with a streaming Horner method:
-
-    Start r = 0
-
-    For each digit d in the file:
-
-        r = (r * 10 + d) mod p
-
-This is:
-
-    O(number_of_digits) time
-
-    O(1) memory
-
-    Works even when the input is many GBs of decimal text
-
-Division by a small integer
-
-div_u32_to_path(d, out) implements streaming long division:
-
-    reads digits sequentially
-
-    maintains a remainder
-
-    emits quotient digits as it goes
-
-    never holds the whole number in memory
-
-This operation is crucial because it lets the strategy engine:
-
-    detect a small factor p
-
-    divide it out immediately
-
-    continue factoring the smaller quotient (still disk-backed)
-
-Compression and “Structure” (planned)
-
-Factoring becomes infeasible for truly enormous numbers. So num-chrunchr will also produce a structure report with:
-
-    size estimates (digits, approximate bits)
-
-    residue sketches: N mod p_i for many primes
-
-    detected special forms (when possible)
-
-    candidate compressed representations
-
-Your "series of exponents" idea
-
-We will support sparse base-B representations:
-
-    N = Σ d_i * B^{e_i} with 1 <= d_i < B, decreasing e_i, skipping zero runs.
-
-There are two variants:
-
-    Approximate (stream-only, very large N)
-
-    Use (decimal_len, leading_digits) to estimate floor(log_B(N))
-
-    Produce a compressed description candidate for reporting/heuristics
-
-    Exact (requires BigIntRam or later LimbFile subtraction)
-
-    Compute the true sparse expansion and store the (d_i, e_i) pairs
-
-Other planned compression / heuristic tactics
-
-    Near-square detection (Fermat-style): check if N ≈ a^2
-
-    Near-power detection: fit N ≈ a^k, represent as a^k +/- c
-
-    Recognize algebraic forms in ExprAst:
-
-        x^k - y^k, x^k + y^k
-
-        products and partial factorizations
-
-        repunit/Mersenne-like patterns (where applicable)
-
-    Batch-GCD tricks for small prime blocks (when P fits in RAM)
-
-Factoring Strategy Roadmap
-Phase 1: Small-factor peeling (works for huge files)
-
-    Sieve primes up to a bound
-
-    Compute N mod p streaming
-
-    If divisible, divide out and repeat
-
-    Persist factors found
-
-This alone will completely factor many large numbers that contain small primes.
-Phase 2: Upgrade to RAM BigInt when feasible
-
-When the remaining cofactor is small enough:
-
-    load it into BigIntRam
-
-    run:
-
-        Pollard Rho (Brent variant)
-
-        Pollard p-1 / p+1
-
-        primality tests (probabilistic first)
-
-Phase 3: ECM and heavier tools
-
-    integrate ECM (library or wrapper)
-
-    later: QS/NFS via wrappers
-
-Phase 4: GPU acceleration
-
-Primary GPU target: batch remainder scanning:
-
-    test divisibility by huge batches of primes efficiently
-
-    keep remainders on-device, stream chunks from disk
-
-    CPU fallback always available
-
-The batch remainder engine now ships a `repr::LimbFile` helper so you can persist base-2^32 limbs, and the `gpu::BatchModEngine`/CPU fallback already stream through those chunks via `wgpu` shaders or CPU loops depending on hardware.
-
-GPU work will likely be most practical on systems with NVIDIA hardware, but the design will aim to keep the interface backend-agnostic.
-Resumability (planned)
-
-Long runs should be restartable. Planned artifacts:
-
-    factors.json — factors found so far, exponents
-
-    sketch.json — stored residues (p -> N mod p)
-
-    cofactor.txt — current quotient as a new DecimalStream
-
-    report.md — structure report / certificate of attempts
-
-The strategy engine will:
-
-    detect existing sidecars
-
-    resume from last known cofactor and factor list
-
-Correctness and Safety Notes
-
-    Streaming routines treat non-digits as separators. This is convenient, but be mindful when using untrusted inputs.
-
-    Remainder and division are exact for the digits seen.
-
-    For enormous numbers, “structure” output may include approximations unless explicitly marked exact.
-
-    This is research-grade tooling; validate results when used for anything high-stakes.
-
-Contributing
-
-Contributions are welcome, especially in these areas:
-
-    prime peeling strategy module (CPU first)
-
-    sketch persistence format
-
-    RAM BigInt upgrade + Pollard Rho implementation
-
-    expression AST + modular evaluation
-
-    limb-file representation and GPU batch mods
-
-Recommended dev hygiene:
-
-    cargo fmt
-
-    cargo clippy
-
-    cargo test
-
-(Exact CI tooling will be added as the crate grows.)
-License
-
-This project is licensed under CC0-1.0 (public domain dedication). See the license = "CC0-1.0" entry in Cargo.toml.
-
-If you add dependencies or code, please ensure the result remains compatible with CC0 distribution.
-Status
-
-MVP stage:
-
-    ✅ disk-backed decimal stream
-
-    ✅ streaming mod / div / analyze
-
-    🔜 small-factor peeling strategy
-
-    🔜 resumable factor reports + sketches
-
-    🔜 BigInt upgrade + Pollard Rho/p-1
-
-    🔜 expression/AST compressed representations
-
-    🔜 limb files + GPU batch remainder scanning
-
-Phase 3 now includes Lenstra’s ECM via the `ecm` crate, with `[policies.ecm]` letting you toggle the fallback, adjust the stage 1/2 bounds, curve budget, and RNG seed that the RAM upgrade uses when Pollard/p±1 are stuck.
-
-FAQ
-Why not just store everything as a BigInt?
-
-Because once you pass a certain size, even “basic” operations become dominated by memory and bandwidth, and you lose the ability to do useful incremental work. Streaming representations let you:
-
-    find small factors
-
-    compute sketches
-
-    generate structure reports
-
-    reduce the number
-    …without ever holding it all in memory.
-
-Will this factor a 1000-digit RSA number?
-
-Not by itself. For that, you’ll rely on advanced algorithms and mature implementations (ECM, QS, NFS), likely via wrappers or integrations.
-What’s the most valuable near-term addition?
-
-A small prime peeling strategy that repeatedly:
-
-    scans primes
-
-    finds divisors via streaming mod
-
-    divides via streaming long division
-
-    persists factors and continues on the quotient
-
-That will immediately make the tool useful on very large inputs.
-
-
-ChatGPT can make mistakes. Check important info. See Cookie Preferences.
+The repository is small enough that the layout reflects the architecture directly:
+
+```text
+num-chrunchr/
+├── Cargo.toml
+├── README.md
+├── LICENSE
+├── config/
+│   └── default.toml
+├── docs/
+│   ├── compress-seq.md
+│   ├── info.md
+│   ├── power-of-2-bases.md
+│   └── roadmaps/
+│       ├── compress-seq-roadmap.md
+│       └── power-of-2-optimizations.md
+├── res/
+│   └── big-num.txt
+├── scripts/
+│   ├── bench_power_of_two.fish
+│   └── bench_power_of_two.sh
+└── src/
+    ├── main.rs
+    ├── config.rs
+    ├── source.rs
+    ├── gpu/
+    │   ├── mod.rs
+    │   └── batch_mod.rs
+    ├── repr/
+    │   ├── mod.rs
+    │   ├── bigint_ram.rs
+    │   └── limb_file.rs
+    └── strategy/
+        ├── mod.rs
+        └── report.rs
 ```
+
+### Layout Notes
+
+- [src/main.rs](/win/linux/Code/rust/num-chrunchr/src/main.rs:1) contains the CLI surface, command dispatch, near-power logic, cache handling, and several utility routines.
+- [src/config.rs](/win/linux/Code/rust/num-chrunchr/src/config.rs:1) defines the config schema and defaulting behavior.
+- [src/source.rs](/win/linux/Code/rust/num-chrunchr/src/source.rs:1) normalizes file versus inline number sources and creates temporary files for streamed inline input.
+- [src/repr](/win/linux/Code/rust/num-chrunchr/src/repr/mod.rs:1) holds number representation backends.
+- [src/gpu](/win/linux/Code/rust/num-chrunchr/src/gpu/mod.rs:1) contains the batch modular arithmetic engine.
+- [src/strategy](/win/linux/Code/rust/num-chrunchr/src/strategy/mod.rs:1) implements higher-level factor and report workflows.
+- [docs/info.md](/win/linux/Code/rust/num-chrunchr/docs/info.md:1) captures the original architectural direction behind the project.
+- `scripts/bench_power_of_two.*` exist to benchmark the specialized near-power fast path for bases `2^m`.
+- `res/big-num.txt` is a sample resource for local experiments and smoke tests.
+
+## Development
+
+Standard cargo workflows apply:
+
+```bash
+cargo fmt
+cargo test
+cargo run -- --help
+```
+
+The codebase already includes unit tests across configuration loading, representations, structure detection, and CLI-related logic embedded in `main.rs`.
+
+## Design Direction
+
+The repository already shows a clear design thesis:
+
+- start with streamed representations;
+- upgrade to full big integers only when policy and size permit;
+- use GPU acceleration where the operation is embarrassingly parallel;
+- preserve intermediate knowledge as reports, sketches, and compressed decompositions.
+
+The roadmap notes in [docs/roadmaps](/win/linux/Code/rust/num-chrunchr/docs/roadmaps/compress-seq-roadmap.md:1) and [docs/roadmaps](/win/linux/Code/rust/num-chrunchr/docs/roadmaps/power-of-2-optimizations.md:1) make it clear that the project is still evolving, but the current implementation is already coherent enough to use as a serious experimentation base.
+
+## Limitations And Expectations
+
+- Full factorization of extremely large inputs is not guaranteed and is not the sole purpose of the crate.
+- Several workflows are intentionally heuristic or reporting-oriented.
+- `BigIntRam` still requires complete materialization of the value once the upgrade path is taken.
+- `LimbFile` is present as infrastructure, but it is not yet the universal execution backend.
+- GPU acceleration currently targets batched modular scans, not arbitrary exact arithmetic.
+
+That tradeoff is deliberate: the project prioritizes practical progress on oversized inputs over pretending every number can be handled by one algorithm or one representation.

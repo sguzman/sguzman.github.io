@@ -30,9 +30,9 @@ Modernize the classic Unix fortune command with a memory-safe Rust implementatio
 
 - Project page: /projects/rustune/
 - Primary language: Rust
-- Commits: 8
+- Commits: 10
 - Created: 2026-02-15T03:18:20Z
-- Last updated: 2026-02-15T04:02:49Z
+- Last updated: 2026-05-04T03:59:02Z
 
 ## Links
 

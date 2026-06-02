@@ -6,7 +6,7 @@ description: "A program to clean and merge book metadata libraries into one cohe
 
 ## Overview
 
-`bulk-merge` is a Rust CLI that ingests large bibliographic metadata dumps into PostgreSQL as usable, queryable tables.
+`bulk-merge` is a Rust CLI for loading large bibliographic metadata dumps into PostgreSQL in a reproducible, resumable, and inspectable way.
 
 ## Ambition
 
@@ -20,19 +20,19 @@ Build the foundation for a universal open-library index that can handle hundreds
 
 ## Highlights
 
-- LibGen-only ingestion
-- Dedicated tables per dump kind (`fiction` vs `compact`)
-- Resumable imports and incremental updates tracked in `bm_meta`
-- Ingest speed first: bulk load via `COPY`, create indexes after load
-- 1-to-1 field mapping from the MySQL dump to PostgreSQL columns (no semantic normalization yet)
+- a CLI for provisioning schemas, ingesting dumps, and inspecting status
+- PostgreSQL migrations for metadata bookkeeping and source schemas
+- resumability for long-running imports
+- an offline path for converting very large SQL dumps into intermediate TSV files before `COPY` loading
+- configuration-driven behavior for naming, typing, logging, indexing, retry, and cache layout
 
 ## Stats
 
 - Project page: /projects/bulk-merge/
 - Primary language: Rust
-- Commits: 56
+- Commits: 58
 - Created: 2026-04-13T23:06:29Z
-- Last updated: 2026-04-22T23:53:12Z
+- Last updated: 2026-05-03T22:25:23Z
 
 ## Links
 

@@ -30,9 +30,9 @@ Eliminate the 'robotic' artifacts and awkward pauses in AI-generated narration b
 
 - Project page: /projects/clean-tts-text/
 - Primary language: Rust
-- Commits: 18
+- Commits: 19
 - Created: 2026-02-03T15:53:13Z
-- Last updated: 2026-02-11T07:22:34Z
+- Last updated: 2026-05-03T01:12:16Z
 
 ## Links
 

@@ -30,9 +30,9 @@ A robust, industrial-grade extraction tool for the Code of Federal Regulations, 
 
 - Project page: /projects/cfr-to-text/
 - Primary language: Rust
-- Commits: 5
+- Commits: 6
 - Created: 2026-01-29T11:54:35Z
-- Last updated: 2026-01-29T12:49:25Z
+- Last updated: 2026-05-03T01:12:12Z
 
 ## Links
 

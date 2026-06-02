@@ -24,7 +24,7 @@ Build a serious Rust toolkit for working with nflverse data locally, with fast e
 - **Idempotent Caching**: Efficiently manage large Parquet datasets under `.cache/nflxport`.
 - **Analytical Query Engine**: Perform statistical queries directly from the CLI.
 - **Wolfram Mathematica Bridge**: Seamlessly export data for advanced symbolic analysis.
-- Built-in DuckDB engine for local SQL queries over cached data.
+- `crates/nflxport-core`: Core logic, data fetching, and query engine.
 
 ## Stats
 

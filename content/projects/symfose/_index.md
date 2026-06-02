@@ -6,7 +6,7 @@ description: "A virtual instrument player"
 
 ## Overview
 
-Symfose is a Rust desktop app for playing virtual instruments from your keyboard, starting with piano.
+Symfose is a Rust desktop app for playing virtual instruments from the keyboard, starting with piano and practice-oriented scoring.
 
 ## Ambition
 
@@ -19,19 +19,19 @@ I’m building this to become a sharp, reusable tool that I can rely on in real 
 
 ## Highlights
 
-- real-time instrument play from configurable keyboard mappings
-- playable song charts with tempo-aware timing
-- score mode (accuracy + streak + grading)
-- timed/challenge modes
-- ergonomic mapping optimization per song:
+- Keyboard-driven virtual instrument playback.
+- SoundFont-backed audio resources.
+- Configurable runtime behavior.
+- Song-loading and scoring-oriented modules.
+- Reference docs and bundled resource structure.
 
 ## Stats
 
 - Project page: /projects/symfose/
 - Primary language: Rust
-- Commits: 25
+- Commits: 26
 - Created: 2026-02-10T00:11:48Z
-- Last updated: 2026-02-10T04:38:21Z
+- Last updated: 2026-05-03T01:12:53Z
 
 ## Links
 

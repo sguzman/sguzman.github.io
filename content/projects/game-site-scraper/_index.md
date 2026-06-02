@@ -30,9 +30,9 @@ Build a high-throughput, industrial-grade scraping engine that transforms unstru
 
 - Project page: /projects/game-site-scraper/
 - Primary language: Rust
-- Commits: 16
+- Commits: 17
 - Created: 2026-02-07T19:29:26Z
-- Last updated: 2026-03-30T19:11:44Z
+- Last updated: 2026-05-03T01:12:22Z
 
 ## Links
 
