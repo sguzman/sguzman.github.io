@@ -770,7 +770,31 @@
 &lt;ul&gt;
 &lt;li&gt;Want new primitives? Add a template under a scene’s &lt;code&gt;entities/&lt;/code&gt;, mark it &lt;code&gt;cuttable&lt;/code&gt; if you want the slicer to target it, and extend &lt;code&gt;schemas/3d.entity.schema.json&lt;/code&gt; if you add fields.&lt;/li&gt;
 &lt;li&gt;Need advanced slicing? Follow the ideas in &lt;code&gt;tmp/cut.md&lt;/code&gt; to expand beyond cubes, improve cap triangulation, or adjust the physics colliders/RigidBody mass split logic.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>brazen README</title><link>https://sguzman.github.io/projects/readme/brazen/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/brazen/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/brazen" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/brazen/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>backster README</title><link>https://sguzman.github.io/projects/readme/backster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/backster/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/backster" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/backster/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="backster"&gt;
+ Backster
+ &lt;a class="heading-link" href="#backster"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Backster is a Rust command-line research bench for experimenting with trading ideas against time-series market data. It focuses on repeatable, config-driven runs rather than notebook-centric workflows: you point the binary at a TOML file, Backster loads a price series, runs a strategy or optimizer, and reports return statistics.&lt;/p&gt;
+&lt;p&gt;Today the repo is primarily oriented around:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;backtesting long/short strategies over daily close data&lt;/li&gt;
+&lt;li&gt;fitting rolling return distributions and turning them into trade signals&lt;/li&gt;
+&lt;li&gt;running repeatable multi-run experiments for stochastic strategies&lt;/li&gt;
+&lt;li&gt;fetching and caching market data through Wolfram / WSTP&lt;/li&gt;
+&lt;li&gt;prototyping pipeline-style signal generation in TOML instead of hard-coding every idea in Rust&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="what-the-project-does"&gt;
+ What The Project Does
+ &lt;a class="heading-link" href="#what-the-project-does"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Backster has two top-level execution modes:&lt;/p&gt;</description></item><item><title>brazen README</title><link>https://sguzman.github.io/projects/readme/brazen/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/brazen/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/brazen" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/brazen/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="brazen"&gt;
  Brazen
  &lt;a class="heading-link" href="#brazen"&gt;
@@ -778,15 +802,8 @@
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Brazen is a Rust browser-platform skeleton built around an &lt;code&gt;egui&lt;/code&gt;/&lt;code&gt;eframe&lt;/code&gt; shell and a future Servo-backed content engine. The current repo is intentionally the first durable platform layer: configuration, runtime paths, tracing, a capability-oriented permission model, a feature-gated engine seam, and tests that keep those pieces stable while the rendering backend evolves.&lt;/p&gt;
-&lt;h2 id="current-status"&gt;
- Current Status
- &lt;a class="heading-link" href="#current-status"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;The app currently launches a desktop shell with:&lt;/p&gt;</description></item><item><title>browsr README</title><link>https://sguzman.github.io/projects/readme/browsr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/browsr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/browsr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/browsr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Brazen is a Rust desktop browser/runtime project built around an &lt;code&gt;egui&lt;/code&gt; / &lt;code&gt;eframe&lt;/code&gt; shell, a configurable engine abstraction, and an automation-oriented platform layer. It is not just a browser UI prototype: the repository also contains profile persistence, permissions, a cache/asset plane, extraction helpers, automation APIs, MCP integration seams, and an optional Servo-backed integration path.&lt;/p&gt;
+&lt;p&gt;The project is structured so the durable platform concerns come first: bootstrapping, config, runtime paths, policy, persistence, diagnostics, and automation. Rendering and deep engine integration are then plugged into those seams instead of being allowed to dominate the whole codebase.&lt;/p&gt;</description></item><item><title>browsr README</title><link>https://sguzman.github.io/projects/readme/browsr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/browsr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/browsr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/browsr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="browsr"&gt;
  browsr
  &lt;a class="heading-link" href="#browsr"&gt;
@@ -794,25 +811,23 @@
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;browsr&lt;/code&gt; is a local HTTP + WebSocket bridge for live browser session introspection.&lt;/p&gt;
-&lt;p&gt;It is designed to work with the &lt;code&gt;xpose&lt;/code&gt; Edge/Chromium extension:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The extension connects to &lt;code&gt;browsr&lt;/code&gt; over WebSocket.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;browsr&lt;/code&gt; exposes stable HTTP endpoints for multiple local clients.&lt;/li&gt;
-&lt;li&gt;Clients can list windows/tabs and request tab snapshots (HTML/text/selection).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="architecture"&gt;
- Architecture
- &lt;a class="heading-link" href="#architecture"&gt;
+&lt;p&gt;&lt;code&gt;browsr&lt;/code&gt; is a local HTTP and WebSocket bridge for live browser session introspection, designed to pair with a Chromium/Edge extension.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;xpose&lt;/code&gt; extension -&amp;gt; WebSocket -&amp;gt; &lt;code&gt;browsr&lt;/code&gt; (&lt;code&gt;/ws&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;client apps / CLI / GUI -&amp;gt; HTTP -&amp;gt; &lt;code&gt;browsr&lt;/code&gt; (&lt;code&gt;/v1/...&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;browsr&lt;/code&gt; sends command envelopes to the extension:&lt;/p&gt;</description></item><item><title>bulk-merge README</title><link>https://sguzman.github.io/projects/readme/bulk-merge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/bulk-merge/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/bulk-merge" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/bulk-merge/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Expose a stable local service that can broker browser state and tab snapshots to multiple clients without each client needing to speak directly to the extension protocol.&lt;/p&gt;
+&lt;h2 id="ambition"&gt;
+ Ambition
+ &lt;a class="heading-link" href="#ambition"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Based on the split between API, protocol, state, and WebSocket integration, the project appears to be moving toward a dependable local browser-observation service that can feed downstream tooling, automation, or indexing systems.&lt;/p&gt;</description></item><item><title>bulk-merge README</title><link>https://sguzman.github.io/projects/readme/bulk-merge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/bulk-merge/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/bulk-merge" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/bulk-merge/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="bulk-merge"&gt;
  bulk-merge
  &lt;a class="heading-link" href="#bulk-merge"&gt;
@@ -820,44 +835,23 @@
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;bulk-merge&lt;/code&gt; is a Rust CLI that ingests large bibliographic metadata dumps into
-PostgreSQL as usable, queryable tables.&lt;/p&gt;
-&lt;h2 id="phase-1-scope-current"&gt;
- Phase 1 scope (current)
- &lt;a class="heading-link" href="#phase-1-scope-current"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;bulk-merge&lt;/code&gt; is a Rust CLI for loading large bibliographic metadata dumps into PostgreSQL in a reproducible, resumable, and inspectable way.&lt;/p&gt;
+&lt;p&gt;The repository is centered on bulk ingestion workflows for datasets such as LibGen and OpenLibrary. It provides:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;LibGen-only ingestion&lt;/li&gt;
-&lt;li&gt;Dedicated tables per dump kind (&lt;code&gt;fiction&lt;/code&gt; vs &lt;code&gt;compact&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Resumable imports and incremental updates tracked in &lt;code&gt;bm_meta&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Ingest speed first: bulk load via &lt;code&gt;COPY&lt;/code&gt;, create indexes after load&lt;/li&gt;
-&lt;li&gt;1-to-1 field mapping from the MySQL dump to PostgreSQL columns (no semantic normalization yet)&lt;/li&gt;
+&lt;li&gt;a CLI for provisioning schemas, ingesting dumps, and inspecting status&lt;/li&gt;
+&lt;li&gt;PostgreSQL migrations for metadata bookkeeping and source schemas&lt;/li&gt;
+&lt;li&gt;resumability for long-running imports&lt;/li&gt;
+&lt;li&gt;an offline path for converting very large SQL dumps into intermediate TSV files before &lt;code&gt;COPY&lt;/code&gt; loading&lt;/li&gt;
+&lt;li&gt;configuration-driven behavior for naming, typing, logging, indexing, retry, and cache layout&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="non-goals-phase-1"&gt;
- Non-goals (Phase 1)
- &lt;a class="heading-link" href="#non-goals-phase-1"&gt;
+&lt;h2 id="what-the-project-does"&gt;
+ What The Project Does
+ &lt;a class="heading-link" href="#what-the-project-does"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Cross-source merging / identity resolution&lt;/li&gt;
-&lt;li&gt;Fuzzy matching / deduplication graphs&lt;/li&gt;
-&lt;li&gt;Universal canonical “work/author” schema&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="quick-start"&gt;
- Quick start
- &lt;a class="heading-link" href="#quick-start"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Ensure Postgres is running (see &lt;code&gt;tmp/docker-compose.yaml&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>bw-password-dedup README</title><link>https://sguzman.github.io/projects/readme/bw-password-dedup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/bw-password-dedup/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/bw-password-dedup" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/bw-password-dedup/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;At a high level, &lt;code&gt;bulk-merge&lt;/code&gt; turns source dump files into queryable PostgreSQL tables while keeping enough metadata to answer:&lt;/p&gt;</description></item><item><title>bw-password-dedup README</title><link>https://sguzman.github.io/projects/readme/bw-password-dedup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/bw-password-dedup/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/bw-password-dedup" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/bw-password-dedup/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="bw-passport-dedup"&gt;
  bw-passport-dedup
  &lt;a class="heading-link" href="#bw-passport-dedup"&gt;
@@ -894,7 +888,16 @@ PostgreSQL as usable, queryable tables.&lt;/p&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;The tool looks for &lt;code&gt;config.toml&lt;/code&gt; in the current directory (or use &lt;code&gt;--config &amp;lt;FILE&amp;gt;&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>calibre-updatr-rs README</title><link>https://sguzman.github.io/projects/readme/calibre-updatr-rs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/calibre-updatr-rs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/calibre-updatr-rs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/calibre-updatr-rs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The tool looks for &lt;code&gt;config.toml&lt;/code&gt; in the current directory (or use &lt;code&gt;--config &amp;lt;FILE&amp;gt;&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>caliberate README</title><link>https://sguzman.github.io/projects/readme/caliberate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/caliberate/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/caliberate" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/caliberate/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="caliberate"&gt;
+ Caliberate
+ &lt;a class="heading-link" href="#caliberate"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Caliberate is a Rust workspace for building a Calibre-like ebook platform as a set of focused crates instead of a single monolith. The repository combines runnable binaries, shared domain crates, and a large documentation tree that tracks parity goals against Calibre&amp;rsquo;s CLI, server, GUI, ingest, metadata, and plugin surfaces.&lt;/p&gt;
+&lt;p&gt;The project is not a finished drop-in Calibre replacement. It is an actively structured platform build with real implementations in configuration, storage, ingest, database, server, GUI shell, and utility layers, alongside roadmap and tranche docs for areas that are still partial or stubbed.&lt;/p&gt;</description></item><item><title>calibre-updatr-rs README</title><link>https://sguzman.github.io/projects/readme/calibre-updatr-rs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/calibre-updatr-rs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/calibre-updatr-rs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/calibre-updatr-rs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="calibre-metadata-updatr-rust"&gt;
  Calibre Metadata Updatr (Rust)
  &lt;a class="heading-link" href="#calibre-metadata-updatr-rust"&gt;
@@ -1000,43 +1003,30 @@ Commands:
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Chunkr is a CLI for extracting text + metadata from Calibre libraries, cleaning
-and chunking that text, and inserting the resulting chunks into Qdrant and
-Quickwit. Configuration is centralized in a single TOML file so that all
-properties, policies, and paths are controlled in one place.&lt;/p&gt;
-&lt;p&gt;This README formalizes the intended interface and configuration for the project.&lt;/p&gt;
-&lt;h2 id="goals"&gt;
- Goals
- &lt;a class="heading-link" href="#goals"&gt;
+&lt;p&gt;&lt;code&gt;chunkr&lt;/code&gt; is a Rust CLI for turning an ebook library into search- and retrieval-ready text artifacts. It extracts text and metadata from Calibre-managed books, normalizes and chunks that text, generates embeddings through an HTTP provider, and inserts the resulting records into downstream systems such as Qdrant and Quickwit.&lt;/p&gt;
+&lt;p&gt;The repository is organized around a practical ingestion pipeline:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;extract&lt;/code&gt;: walk a Calibre library and emit plain text plus sidecar metadata.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;chunk&lt;/code&gt;: clean extracted text and convert it into JSONL chunk records.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;insert&lt;/code&gt;: embed chunk text and write the results to vector and search indexes.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dups&lt;/code&gt;, &lt;code&gt;dup-stats&lt;/code&gt;, &lt;code&gt;dedup&lt;/code&gt;: inspect and manage duplicate books in a Calibre library.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="what-the-project-does"&gt;
+ What The Project Does
+ &lt;a class="heading-link" href="#what-the-project-does"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Deterministic, idempotent extraction from Calibre (skip already-processed
-files).&lt;/li&gt;
-&lt;li&gt;Robust handling for large EPUB/PDF files (chunk during extraction to avoid
-memory spikes).&lt;/li&gt;
-&lt;li&gt;Clean, normalized text and metadata-enriched chunks for downstream search and
-embeddings.&lt;/li&gt;
-&lt;li&gt;Straightforward insertion into Qdrant + Quickwit with sensible defaults.&lt;/li&gt;
-&lt;li&gt;Extensive logging for long-running pipelines.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="commands"&gt;
- Commands
- &lt;a class="heading-link" href="#commands"&gt;
+&lt;p&gt;Chunkr is not just a text splitter. The crate is structured as an end-to-end ingestion tool for personal or research-scale libraries where Calibre is the source of truth and Qdrant/Quickwit are downstream consumers.&lt;/p&gt;</description></item><item><title>cinegraph README</title><link>https://sguzman.github.io/projects/readme/cinegraph/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/cinegraph/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/cinegraph" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/cinegraph/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="cinegraph"&gt;
+ cinegraph
+ &lt;a class="heading-link" href="#cinegraph"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
-&lt;/h2&gt;
-&lt;h3 id="extract"&gt;
- &lt;code&gt;extract&lt;/code&gt;
- &lt;a class="heading-link" href="#extract"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Extracts plaintext and metadata from a Calibre library into a target folder.&lt;/p&gt;</description></item><item><title>cite-otter README</title><link>https://sguzman.github.io/projects/readme/cite-otter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/cite-otter/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/cite-otter" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/cite-otter/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;cinegraph&lt;/code&gt; is a local Rust workspace for downloading, idempotently caching, and importing film datasets into an embedded SQLite warehouse. The current implementation supports IMDb as the canonical bulk dataset, TMDb as API-hydrated enrichment, and Wikidata as a local-dump enrichment source layered onto the same SQLite warehouse, with Tantivy-based full-text search and an Oxigraph-based RDF/SPARQL graph projection built from SQLite.&lt;/p&gt;</description></item><item><title>cite-otter README</title><link>https://sguzman.github.io/projects/readme/cite-otter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/cite-otter/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/cite-otter" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/cite-otter/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="cite-otter"&gt;
  Cite-Otter
  &lt;a class="heading-link" href="#cite-otter"&gt;
@@ -1252,46 +1242,13 @@ complete.&lt;/li&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;A tiny, no-bullshit dotfile linker.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;fathrs&lt;/code&gt; reads a &lt;code&gt;links.toml&lt;/code&gt; file and creates &lt;strong&gt;symlinks&lt;/strong&gt; from your target paths to your source paths. That is all. No templates. No variable expansion. No “rendering.” Just links, with loud logging so you can see exactly what happened.&lt;/p&gt;
-&lt;p&gt;This is essentially a minimal, single-binary “dotter-rs style” linker.&lt;/p&gt;
-&lt;h2 id="features"&gt;
- Features
- &lt;a class="heading-link" href="#features"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;TOML-driven symlink map&lt;/strong&gt; (&lt;code&gt;links.toml&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;File symlinks&lt;/strong&gt; and &lt;strong&gt;folder symlinks&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Force mode&lt;/strong&gt; to replace existing targets&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Dry run&lt;/strong&gt; mode to preview actions&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Intense logging&lt;/strong&gt; via &lt;code&gt;tracing&lt;/code&gt; (spans + debug/trace details)&lt;/li&gt;
-&lt;li&gt;Cross-platform symlink creation (Unix + Windows)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="non-features-on-purpose"&gt;
- Non-features (on purpose)
- &lt;a class="heading-link" href="#non-features-on-purpose"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;No templates&lt;/li&gt;
-&lt;li&gt;No “config language”&lt;/li&gt;
-&lt;li&gt;No magic variable substitution&lt;/li&gt;
-&lt;li&gt;No copying files (it links)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="install--build"&gt;
- Install / Build
- &lt;a class="heading-link" href="#install--build"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo build --release
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run the binary:&lt;/p&gt;</description></item><item><title>flatfekt README</title><link>https://sguzman.github.io/projects/readme/flatfekt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/flatfekt/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/flatfekt" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/flatfekt/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fathrs&lt;/code&gt; is a small Rust CLI for deploying dotfiles and similar filesystem
+artifacts from a declarative &lt;code&gt;links.toml&lt;/code&gt; file. It reads source-to-target
+mappings, resolves them relative to a configurable base directory, and then
+creates symlinks or copies files/directories into place.&lt;/p&gt;
+&lt;p&gt;The project is intentionally narrow in scope: it is a linker, not a full
+dotfile management framework. There is no templating layer, no profile engine,
+and no repository mutation logic beyond making the requested links or copies.&lt;/p&gt;</description></item><item><title>flatfekt README</title><link>https://sguzman.github.io/projects/readme/flatfekt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/flatfekt/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/flatfekt" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/flatfekt/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="flatfekt"&gt;
  flatfekt
  &lt;a class="heading-link" href="#flatfekt"&gt;
@@ -1299,22 +1256,8 @@ complete.&lt;/li&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;flatfekt&lt;/code&gt; is a &lt;strong&gt;2D scene runtime built on Bevy&lt;/strong&gt; where scenes are &lt;strong&gt;declared in TOML&lt;/strong&gt; and then instantiated, simulated, animated, and rendered by an engine layer.&lt;/p&gt;
-&lt;p&gt;The intended end state is an umbrella capability set that supports:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;simulations (agents + physics + rule-driven world evolution)&lt;/li&gt;
-&lt;li&gt;games and interactive sketches&lt;/li&gt;
-&lt;li&gt;motion-graphics style scene choreography (timelines, transitions, text effects)&lt;/li&gt;
-&lt;li&gt;reusable “content packs” of scenes and assets&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="core-idea"&gt;
- Core idea
- &lt;a class="heading-link" href="#core-idea"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Bevy provides the runtime (ECS, scheduling, rendering, input integration). TOML provides authored state (scene description, parameters, bindings). The engine layer interprets TOML into a running world and manages the lifecycle (load/reset/reload, transitions, patches, timelines).&lt;/p&gt;</description></item><item><title>game-site-scraper README</title><link>https://sguzman.github.io/projects/readme/game-site-scraper/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/game-site-scraper/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/game-site-scraper" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/game-site-scraper/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;flatfekt&lt;/code&gt; is a Rust workspace for a TOML-driven 2D Bevy scene runner and simulation environment. Scenes, playback, simulation, and export inputs are declared in TOML; engine behavior, feature flags, limits, paths, and operational policy are centralized in a control-pane config.&lt;/p&gt;
+&lt;p&gt;The repository is organized as a reusable engine workspace rather than a single app crate. The runtime is intended to support interactive playback, deterministic-ish timeline stepping, baked simulation playback, scene stitching, and export workflows from the same scene model.&lt;/p&gt;</description></item><item><title>game-site-scraper README</title><link>https://sguzman.github.io/projects/readme/game-site-scraper/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/game-site-scraper/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/game-site-scraper" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/game-site-scraper/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="game-scraper"&gt;
  game-scraper
  &lt;a class="heading-link" href="#game-scraper"&gt;
@@ -1369,7 +1312,21 @@ complete.&lt;/li&gt;
 &lt;li&gt;M4: Real caching implementation&lt;/li&gt;
 &lt;li&gt;M5: Metrics endpoint and exporters&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;M1, M2, and a meaningful M4 slice are implemented in this workspace, with tests.&lt;/p&gt;</description></item><item><title>lantern-leaf README</title><link>https://sguzman.github.io/projects/readme/lantern-leaf/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/lantern-leaf/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/lantern-leaf" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/lantern-leaf/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;M1, M2, and a meaningful M4 slice are implemented in this workspace, with tests.&lt;/p&gt;</description></item><item><title>kalx README</title><link>https://sguzman.github.io/projects/readme/kalx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/kalx/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/kalx" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/kalx/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="kalx"&gt;
+ kalx
+ &lt;a class="heading-link" href="#kalx"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;kalx&lt;/code&gt; is a Rust CLI for exploring and operating against Kalshi&amp;rsquo;s Trade API from the terminal.&lt;/p&gt;
+&lt;p&gt;It is built for two modes at once:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fast human inspection with &lt;code&gt;clap&lt;/code&gt; subcommands, tables, and tracing&lt;/li&gt;
+&lt;li&gt;stable scripting with JSON, NDJSON, and CSV output&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;kalx&lt;/code&gt; is demo-first. Read commands are straightforward. Write commands default to dry-run previews unless you explicitly opt into live execution.&lt;/p&gt;</description></item><item><title>lantern-leaf README</title><link>https://sguzman.github.io/projects/readme/lantern-leaf/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/lantern-leaf/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/lantern-leaf" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/lantern-leaf/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="lanternleaf"&gt;
  LanternLeaf
  &lt;a class="heading-link" href="#lanternleaf"&gt;
@@ -1521,105 +1478,15 @@ complete.&lt;/li&gt;
 &lt;li&gt;Select branch &lt;strong&gt;&lt;code&gt;gh-pages&lt;/code&gt;&lt;/strong&gt; and folder &lt;strong&gt;&lt;code&gt;/ (root)&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Your site URL will be:&lt;/p&gt;</description></item><item><title>mathematica-mcp README</title><link>https://sguzman.github.io/projects/readme/mathematica-mcp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mathematica-mcp/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/mathematica-mcp" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/mathematica-mcp/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id="mathematica-mcp-server"&gt;
- Mathematica-Mcp-Server
- &lt;a class="heading-link" href="#mathematica-mcp-server"&gt;
+&lt;h1 id="mathematica-mcp"&gt;
+ Mathematica MCP
+ &lt;a class="heading-link" href="#mathematica-mcp"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;An MCP (Model Context Protocol) server that exposes a local
-&lt;strong&gt;Wolfram/Mathematica kernel&lt;/strong&gt; over &lt;strong&gt;stdio&lt;/strong&gt;, with:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;multi-session kernel management&lt;/li&gt;
-&lt;li&gt;tamper-evident session IDs&lt;/li&gt;
-&lt;li&gt;a safe-ish &lt;code&gt;FinancialData[...]&lt;/code&gt; helper&lt;/li&gt;
-&lt;li&gt;an interactive &lt;strong&gt;REPL&lt;/strong&gt; for testing without an MCP client&lt;/li&gt;
-&lt;li&gt;extensive structured logging via &lt;code&gt;tracing&lt;/code&gt; (to stderr)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This is intended for MCP hosts like Continue and other stdio-based MCP clients.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id="what-this-server-provides"&gt;
- What This Server Provides
- &lt;a class="heading-link" href="#what-this-server-provides"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;h3 id="tools-all-prefixed-with-mathematica"&gt;
- Tools (all Prefixed with &lt;code&gt;mathematica.&lt;/code&gt;)
- &lt;a class="heading-link" href="#tools-all-prefixed-with-mathematica"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;mathematica.create_session&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Launch a new kernel session and return a session id.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mathematica.execute_code&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Evaluate Wolfram Language code in a specific session.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mathematica.close_session&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Shutdown a specific session.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mathematica.list_sessions&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Return all active sessions and creation times.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mathematica.time&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Return current local + UTC time (RFC3339).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mathematica.get_finance&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;“Sugar syntax” for &lt;code&gt;FinancialData[...]&lt;/code&gt; that builds valid WL and evaluates
-it in-session.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id="requirements"&gt;
- Requirements
- &lt;a class="heading-link" href="#requirements"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;h3 id="system-prerequisites"&gt;
- System Prerequisites
- &lt;a class="heading-link" href="#system-prerequisites"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;A working Wolfram kernel executable:
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;WolframKernel&lt;/code&gt; (common) or &lt;code&gt;MathKernel&lt;/code&gt; (older installs)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;WSTP must be available on your system (typically installed alongside
-Mathematica / Wolfram Engine).&lt;/li&gt;
-&lt;li&gt;Rust toolchain (recent stable).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="notes-about-licensing--data"&gt;
- Notes About Licensing / Data
- &lt;a class="heading-link" href="#notes-about-licensing--data"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;FinancialData[...]&lt;/code&gt; depends on your Wolfram installation and the data sources
-it can access. Some data requires an active license or network access.&lt;/p&gt;</description></item><item><title>MathematicaMathFun README</title><link>https://sguzman.github.io/projects/readme/mathematicamathfun/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mathematicamathfun/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/MathematicaMathFun" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/MathematicaMathFun/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mathematica-mcp&lt;/code&gt; is a Rust MCP server that exposes a local Wolfram Language / Mathematica kernel over stdio. It is intended for MCP-compatible clients that need symbolic computation, numerical evaluation, finance lookups, or notebook-style experimentation backed by a real local kernel instead of a remote API.&lt;/p&gt;
+&lt;p&gt;The repository also includes a local REPL that exercises the same session-management and evaluation path without requiring an MCP host, which makes it useful for development, debugging, and validating kernel setup.&lt;/p&gt;</description></item><item><title>MathematicaMathFun README</title><link>https://sguzman.github.io/projects/readme/mathematicamathfun/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mathematicamathfun/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/MathematicaMathFun" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/MathematicaMathFun/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="mathematicamathfun"&gt;
  MathematicaMathFun
  &lt;a class="heading-link" href="#mathematicamathfun"&gt;
@@ -1627,74 +1494,7 @@ it can access. Some data requires an active license or network access.&lt;/p&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;A research-oriented repository of Wolfram Language notebooks exploring advanced topics in pure and applied mathematics.&lt;/p&gt;
-&lt;h2 id="overview"&gt;
- Overview
- &lt;a class="heading-link" href="#overview"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;This repository serves as a personal computational laboratory for investigating complex mathematical structures. It contains a collection of research-grade &lt;code&gt;.nb&lt;/code&gt; files focused on symbolic analysis, topological visualization, and system modeling.&lt;/p&gt;
-&lt;h2 id="featured-research"&gt;
- Featured Research
- &lt;a class="heading-link" href="#featured-research"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;h3 id="1-algebraic-topology--differential-geometry"&gt;
- 1. Algebraic Topology &amp;amp; Differential Geometry
- &lt;a class="heading-link" href="#1-algebraic-topology--differential-geometry"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Curvature Analysis&lt;/strong&gt;: Notebooks for visualizing Riemann tensors and Gaussian curvature on multi-dimensional manifolds.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Complex Function Theory&lt;/strong&gt;: Symbolic exploration of holomorphicity and conformal mapping.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="2-calculus-of-variations--optimization"&gt;
- 2. Calculus of Variations &amp;amp; Optimization
- &lt;a class="heading-link" href="#2-calculus-of-variations--optimization"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Functional Minimization&lt;/strong&gt;: Implementations of Euler-Lagrange equations for physical systems and shortest-path problems.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Probability Density Models&lt;/strong&gt;: High-fidelity visualizations of sector-based statistical distributions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="3-dynamic-systems--fractals"&gt;
- 3. Dynamic Systems &amp;amp; Fractals
- &lt;a class="heading-link" href="#3-dynamic-systems--fractals"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;System Stability&lt;/strong&gt;: Analysis of attractor basins and phase-space trajectories for non-linear oscillators.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Generative Geometry&lt;/strong&gt;: Scripts for rendering complex recursive patterns and fractal sets.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="technical-details"&gt;
- Technical Details
- &lt;a class="heading-link" href="#technical-details"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Language&lt;/strong&gt;: Wolfram Language (Mathematica)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Primary Focus&lt;/strong&gt;: Symbolic computation, numerical analysis, and research-grade visualization.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="usage"&gt;
- Usage
- &lt;a class="heading-link" href="#usage"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;These notebooks are best viewed in &lt;strong&gt;Wolfram Mathematica&lt;/strong&gt; or &lt;strong&gt;Wolfram Desktop&lt;/strong&gt;. For a lightweight preview, you can use the &lt;strong&gt;Wolfram Player&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>mnist-from-scratch README</title><link>https://sguzman.github.io/projects/readme/mnist-from-scratch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mnist-from-scratch/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/mnist-from-scratch" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/mnist-from-scratch/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A repo for my Mathematica document files - mostly math research and fun&lt;/p&gt;</description></item><item><title>mnist-from-scratch README</title><link>https://sguzman.github.io/projects/readme/mnist-from-scratch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/mnist-from-scratch/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/mnist-from-scratch" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/mnist-from-scratch/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="mnist-from-scratch-in-rust"&gt;
  MNIST from Scratch in Rust
  &lt;a class="heading-link" href="#mnist-from-scratch-in-rust"&gt;
@@ -1749,13 +1549,14 @@ visualization.&lt;/p&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;num-chrunchr&lt;/strong&gt; is a Rust toolkit for &lt;strong&gt;factoring and structurally analyzing extremely large integers&lt;/strong&gt;, including numbers that do &lt;strong&gt;not&lt;/strong&gt; fit comfortably in RAM.&lt;/p&gt;
-&lt;p&gt;It is built around a simple idea:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A &amp;ldquo;number&amp;rdquo; is not always a &lt;code&gt;BigInt&lt;/code&gt;.&lt;br&gt;
-It is a &lt;em&gt;representation&lt;/em&gt; that may support only certain operations efficiently (streaming, symbolic, disk-backed, RAM-backed, GPU-assisted, etc.).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This repo currently provides a working MVP for &lt;strong&gt;disk-backed decimal numbers&lt;/strong&gt; with:&lt;/p&gt;</description></item><item><title>oxban README</title><link>https://sguzman.github.io/projects/readme/oxban/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/oxban/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/oxban" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/oxban/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;num-chrunchr&lt;/code&gt; is a Rust CLI for working with very large integers when the useful question is not always &amp;ldquo;can I fully factor this in RAM?&amp;rdquo; but &amp;ldquo;what can I learn about this number with the representation and compute budget I actually have?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;The project is built around three ideas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;use the cheapest representation that still supports the next operation;&lt;/li&gt;
+&lt;li&gt;stream from disk when materializing a full big integer is unnecessary or too expensive;&lt;/li&gt;
+&lt;li&gt;emit structure reports and compressed descriptions even when full factorization is impractical.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Today the repository contains a working CLI, streaming arithmetic primitives, a resumable small-factor peeling pipeline, near-power decomposition tooling, an optional GPU batch remainder engine, configuration, and design notes for the next optimization steps.&lt;/p&gt;</description></item><item><title>oxban README</title><link>https://sguzman.github.io/projects/readme/oxban/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/oxban/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/oxban" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/oxban/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="oxban"&gt;
  Oxban
  &lt;a class="heading-link" href="#oxban"&gt;
@@ -1830,7 +1631,38 @@ It is a &lt;em&gt;representation&lt;/em&gt; that may support only certain operat
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;From repo root:&lt;/p&gt;</description></item><item><title>pollstats README</title><link>https://sguzman.github.io/projects/readme/pollstats/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/pollstats/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/pollstats" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/pollstats/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;From repo root:&lt;/p&gt;</description></item><item><title>pokesay README</title><link>https://sguzman.github.io/projects/readme/pokesay/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/pokesay/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/pokesay" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/pokesay/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="pokesay"&gt;
+ Pokesay
+ &lt;a class="heading-link" href="#pokesay"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;pokesay&lt;/code&gt; is a CLI tool that works like the classic &lt;code&gt;cowsay&lt;/code&gt; or &lt;code&gt;iron-pony&lt;/code&gt;, but it renders beautiful Pokemon pixel art sprites in your terminal!
+It combines the balloon-wrapping features of a cowsay clone with the awesome terminal pokemon sprites sourced from &lt;code&gt;krabby&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Prints your text inside a perfectly wrapped speech bubble or thought bubble.&lt;/li&gt;
+&lt;li&gt;Displays high-quality ANSI Pokemon sprites below the text bubble.&lt;/li&gt;
+&lt;li&gt;Search for a specific pokemon by name.&lt;/li&gt;
+&lt;li&gt;Grab a random pokemon to deliver your message.&lt;/li&gt;
+&lt;li&gt;Standalone binary with bundled assets (no need to keep an &lt;code&gt;assets&lt;/code&gt; folder around!).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation"&gt;
+ Installation
+ &lt;a class="heading-link" href="#installation"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To run &lt;code&gt;pokesay&lt;/code&gt;, make sure you have &lt;a href="https://www.rust-lang.org/learn/get-started" class="external-link" target="_blank" rel="noopener"&gt;Rust&lt;/a&gt; installed.&lt;/p&gt;</description></item><item><title>pollstats README</title><link>https://sguzman.github.io/projects/readme/pollstats/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/pollstats/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/pollstats" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/pollstats/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="pollstats"&gt;
  pollstats
  &lt;a class="heading-link" href="#pollstats"&gt;
@@ -1982,14 +1814,33 @@ and HTTP routes.&lt;/li&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;quack-check is a deterministic PDF transcript orchestrator built around Docling. It classifies PDF quality, chooses a policy, chunks large files safely, runs Docling (or native extraction), and merges a stable transcript with optional post-processing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Why&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;quack-check&lt;/code&gt; is a deterministic PDF transcript orchestration tool written in Rust. It sits above the actual extraction backends and makes explicit decisions about:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;PDFs are not uniform. Some have clean embedded text, some have partial/broken layers, and some are image-only scans.&lt;/li&gt;
-&lt;li&gt;Docling can do a lot, but deterministic orchestration, chunking, and policy decisions are on you.&lt;/li&gt;
-&lt;li&gt;quack-check makes those decisions explicit and configurable.&lt;/li&gt;
+&lt;li&gt;how to inspect a PDF before conversion&lt;/li&gt;
+&lt;li&gt;which extraction path to use&lt;/li&gt;
+&lt;li&gt;when to split a document into chunks&lt;/li&gt;
+&lt;li&gt;how to merge chunk output into a stable final transcript&lt;/li&gt;
+&lt;li&gt;which metadata and audit artifacts to keep&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Key Features&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>rics README</title><link>https://sguzman.github.io/projects/readme/rics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rics/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rics" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rics/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The project is aimed at repeatable, policy-driven transcript generation rather than ad hoc one-off extraction.&lt;/p&gt;</description></item><item><title>rando README</title><link>https://sguzman.github.io/projects/readme/rando/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rando/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rando" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rando/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="rando"&gt;
+ Rando
+ &lt;a class="heading-link" href="#rando"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;rando&lt;/code&gt; is a Rust statistics, distribution-fitting, and experimentation crate. It combines descriptive statistics, hypothesis tests, fitted probability distributions, rolling-window analysis, basic plotting, simple predictive models, and a small demo binary in one repository.&lt;/p&gt;
+&lt;p&gt;The codebase is currently structured more like a research toolkit than a polished end-user application: most of the value is in the reusable library modules under &lt;code&gt;src/&lt;/code&gt;, while &lt;code&gt;src/main.rs&lt;/code&gt; demonstrates one complete workflow on synthetic data.&lt;/p&gt;</description></item><item><title>ria README</title><link>https://sguzman.github.io/projects/readme/ria/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/ria/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/ria" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/ria/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="ria"&gt;
+ ria
+ &lt;a class="heading-link" href="#ria"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;ria&lt;/code&gt; is a Rust command-line interface for Archive.org workflows. The project aims to provide a practical, scriptable, and eventually parity-focused alternative to the Python &lt;code&gt;internetarchive&lt;/code&gt; CLI while keeping the implementation small, observable, and maintainable.&lt;/p&gt;
+&lt;p&gt;The current crate already includes real command handling for metadata lookup and updates, search, account-oriented service endpoints, and file transfer operations such as upload, download, copy, move, and delete. It also includes configuration discovery, environment and CLI overrides, structured output modes, HTTP retry and throttling controls, and release/parity documentation.&lt;/p&gt;</description></item><item><title>rics README</title><link>https://sguzman.github.io/projects/readme/rics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rics/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rics" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rics/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="rics"&gt;
  rics
  &lt;a class="heading-link" href="#rics"&gt;
@@ -2092,22 +1943,56 @@ and HTTP routes.&lt;/li&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Rivet is a Rust-first Taskwarrior port with two layers:&lt;/p&gt;
+&lt;p&gt;Rivet is a Rust workspace for building a Taskwarrior-style task manager with two
+main product surfaces:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;A CLI-compatible core (&lt;code&gt;task&lt;/code&gt;) focused on Taskwarrior-style workflows.&lt;/li&gt;
-&lt;li&gt;A desktop GUI layer built with Rust + TypeScript/React + Tailwind + Material UI + Tauri on top of the same core data model.&lt;/li&gt;
+&lt;li&gt;a &lt;code&gt;task&lt;/code&gt;-compatible CLI implemented in Rust&lt;/li&gt;
+&lt;li&gt;a desktop GUI implemented with Tauri on the backend and React on the frontend&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="mascot"&gt;
- Mascot
- &lt;a class="heading-link" href="#mascot"&gt;
+&lt;p&gt;The repository is organized so both surfaces share the same core task model and
+persisted task data where that makes sense. The CLI is the compatibility-driven
+engine; the GUI builds richer workflows on top of adjacent Rust services and
+shared DTO contracts.&lt;/p&gt;</description></item><item><title>rivetr README</title><link>https://sguzman.github.io/projects/readme/rivetr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rivetr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rivetr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rivetr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="rivetr"&gt;
+ Rivetr
+ &lt;a class="heading-link" href="#rivetr"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Rivetr is a native desktop rewrite of the older Rivet Tauri app.&lt;/p&gt;
+&lt;p&gt;This repo now contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;crates/rivet_core&lt;/code&gt;: vendored Rust task engine and datastore logic&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crates/rivet_app&lt;/code&gt;: native &lt;code&gt;eframe&lt;/code&gt;/&lt;code&gt;egui&lt;/code&gt; application&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;assets/tags.toml&lt;/code&gt;: tag schema used by the app&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rivet.toml&lt;/code&gt;: runtime defaults read by the app&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="features"&gt;
+ Features
+ &lt;a class="heading-link" href="#features"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;&lt;img src="branding/mascot.png" alt="Rivet Mascot"&gt;&lt;/p&gt;
-&lt;p&gt;Branding assets live under &lt;code&gt;branding/&lt;/code&gt;. The app, taskbar, and platform icons are generated from
-&lt;code&gt;branding/mascot-square.png&lt;/code&gt; into &lt;code&gt;crates/rivet-gui/src-tauri/icons/&lt;/code&gt;, and web favicons are in
-&lt;code&gt;crates/rivet-gui/ui/assets/icons/&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>rust-code README</title><link>https://sguzman.github.io/projects/readme/rust-code/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rust-code/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rust-code" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rust-code/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Task list with filtering, details, add/edit, and bulk actions&lt;/li&gt;
+&lt;li&gt;Kanban workspace backed by task tags&lt;/li&gt;
+&lt;li&gt;Calendar workspace with month/week/day views&lt;/li&gt;
+&lt;li&gt;Local ICS import into task-compatible calendar entries&lt;/li&gt;
+&lt;li&gt;Native persisted UI state&lt;/li&gt;
+&lt;li&gt;Compatibility with existing Rivet/Taskwarrior-style datastore files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="run"&gt;
+ Run
+ &lt;a class="heading-link" href="#run"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The app requires a desktop session. If you launch it in a headless Linux shell,
+Rivetr now returns a clearer error instead of only the raw &lt;code&gt;winit&lt;/code&gt; message.&lt;/p&gt;</description></item><item><title>rust-code README</title><link>https://sguzman.github.io/projects/readme/rust-code/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/rust-code/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/rust-code" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/rust-code/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="rust-code"&gt;
  rust-code
  &lt;a class="heading-link" href="#rust-code"&gt;
@@ -2157,7 +2042,16 @@ and HTTP routes.&lt;/li&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;All binaries use &lt;code&gt;tracing&lt;/code&gt; and honor &lt;code&gt;RUST_LOG&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>slurp README</title><link>https://sguzman.github.io/projects/readme/slurp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/slurp/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/slurp" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/slurp/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;All binaries use &lt;code&gt;tracing&lt;/code&gt; and honor &lt;code&gt;RUST_LOG&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>simurom README</title><link>https://sguzman.github.io/projects/readme/simurom/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/simurom/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/simurom" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/simurom/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="simurom"&gt;
+ simurom
+ &lt;a class="heading-link" href="#simurom"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;simurom&lt;/code&gt; is a Rust workspace for a TOML-driven 2D Bevy scene runner and dedicated video game environment. Scenes, playback, simulation, and inputs are declared in TOML; engine behavior, feature flags, limits, paths, and operational policy are centralized in a control-pane config.&lt;/p&gt;
+&lt;p&gt;The repository is organized as a reusable engine workspace rather than a single app crate. The runtime is intended to support interactive playback and deterministic-ish timeline stepping from the same scene model.&lt;/p&gt;</description></item><item><title>slurp README</title><link>https://sguzman.github.io/projects/readme/slurp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/slurp/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/slurp" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/slurp/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="slurp"&gt;
  slurp
  &lt;a class="heading-link" href="#slurp"&gt;
@@ -2200,67 +2094,47 @@ Parallel insertion, colored logs, and flexible verbosity levels make it practica
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Symfose is a Rust desktop app for playing virtual instruments from your keyboard, starting with piano.&lt;/p&gt;
-&lt;p&gt;It is inspired by browser virtual pianos, but aimed at structured practice and performance scoring.&lt;/p&gt;
-&lt;h2 id="project-ambition"&gt;
- Project Ambition
- &lt;a class="heading-link" href="#project-ambition"&gt;
+&lt;p&gt;Symfose is a Rust desktop app for playing virtual instruments from the keyboard, starting with piano and practice-oriented scoring.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Symfose is being built to support:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;real-time instrument play from configurable keyboard mappings&lt;/li&gt;
-&lt;li&gt;playable song charts with tempo-aware timing&lt;/li&gt;
-&lt;li&gt;score mode (accuracy + streak + grading)&lt;/li&gt;
-&lt;li&gt;timed/challenge modes&lt;/li&gt;
-&lt;li&gt;ergonomic mapping optimization per song:
-&lt;ul&gt;
-&lt;li&gt;avoids same-finger conflicts&lt;/li&gt;
-&lt;li&gt;minimizes awkward reaches&lt;/li&gt;
-&lt;li&gt;supports multi-key chords without relying on shift-heavy combos&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;instrument profiles so multiple instruments can be added later without changing core gameplay&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="what-works-today"&gt;
- What Works Today
- &lt;a class="heading-link" href="#what-works-today"&gt;
+&lt;p&gt;Move beyond a simple virtual piano toward a practice and performance environment with structured input, soundfont handling, and scoring-aware workflows.&lt;/p&gt;
+&lt;h2 id="ambition"&gt;
+ Ambition
+ &lt;a class="heading-link" href="#ambition"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;desktop GUI app (&lt;code&gt;iced&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;playable keyboard piano in a native window&lt;/li&gt;
-&lt;li&gt;horizontal white/black piano key layout with horizontal scrolling when needed&lt;/li&gt;
-&lt;li&gt;reactive key visuals for physical keypresses, mouse clicks, and autoplay touches&lt;/li&gt;
-&lt;li&gt;realistic piano synthesis through SoundFont (&lt;code&gt;SF2&lt;/code&gt;) rendering via &lt;code&gt;rustysynth&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;song library loaded from &lt;code&gt;res/songs/*.toml&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;MIDI song ingestion from &lt;code&gt;res/assets/midi/*.mid|*.midi&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;source processing cache in &lt;code&gt;.cache/songs/v2/&lt;/code&gt; for fast warm startups&lt;/li&gt;
-&lt;li&gt;song key/timing lane rendered above the keyboard (virtual-piano style)&lt;/li&gt;
-&lt;li&gt;three song modes:
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Timer&lt;/code&gt;: metronome + note/timing scoring&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Tutorial&lt;/code&gt;: step-by-step progression with configurable strictness&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Auto Play&lt;/code&gt;: automatic playback with key reactivity&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;live volume slider in GUI (runtime gain adjustment)&lt;/li&gt;
-&lt;li&gt;live instrument profile switching in GUI (e.g., piano and acoustic guitar)&lt;/li&gt;
-&lt;li&gt;rich tracing logs to console and rolling files&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="quick-start"&gt;
- Quick Start
- &lt;a class="heading-link" href="#quick-start"&gt;
+&lt;p&gt;The docs, resources, and roadmap shape point toward a fuller music-practice desktop application rather than a toy keyboard visualizer.&lt;/p&gt;</description></item><item><title>translate-gemma-rs README</title><link>https://sguzman.github.io/projects/readme/translate-gemma-rs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/translate-gemma-rs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/translate-gemma-rs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/translate-gemma-rs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="translate-gemma"&gt;
+ translate-gemma
+ &lt;a class="heading-link" href="#translate-gemma"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;translate-gemma&lt;/code&gt; is a Rust CLI for translating Markdown files through Ollama/TranslateGemma while preserving code blocks and markup structure.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To use a custom config:&lt;/p&gt;</description></item><item><title>typr README</title><link>https://sguzman.github.io/projects/readme/typr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/typr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/typr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/typr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Make local model-based Markdown translation practical by handling caching, chunking, directory traversal, and markup preservation instead of leaving those concerns to one-off scripts.&lt;/p&gt;
+&lt;h2 id="ambition"&gt;
+ Ambition
+ &lt;a class="heading-link" href="#ambition"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The CLI modes, cache support, REPL flow, and language-code helpers suggest a durable local translation utility for documentation workflows, not just a single-purpose script.&lt;/p&gt;</description></item><item><title>typr README</title><link>https://sguzman.github.io/projects/readme/typr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/typr/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/typr" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/typr/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="typr"&gt;
  typr
  &lt;a class="heading-link" href="#typr"&gt;
@@ -2350,7 +2224,29 @@ Parallel insertion, colored logs, and flexible verbosity levels make it practica
 &lt;li&gt;&lt;code&gt;(comp op1 op2)&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(seq op1 op2 op3 ...)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;comp&lt;/code&gt;/&lt;code&gt;seq&lt;/code&gt; are pipeline-ordered: the left operator runs first.&lt;/p&gt;</description></item><item><title>voltlane README</title><link>https://sguzman.github.io/projects/readme/voltlane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/voltlane/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/voltlane" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/voltlane/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;comp&lt;/code&gt;/&lt;code&gt;seq&lt;/code&gt; are pipeline-ordered: the left operator runs first.&lt;/p&gt;</description></item><item><title>vessel README</title><link>https://sguzman.github.io/projects/readme/vessel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/vessel/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/vessel" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/vessel/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="vessel"&gt;
+ Vessel
+ &lt;a class="heading-link" href="#vessel"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Rust-native YouTube metadata and download tooling, built as a replacement-oriented port of the &lt;code&gt;yt-dlp&lt;/code&gt; workflow with a local SQLite dataset per project.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;vessel&lt;/code&gt; is organized around project-scoped datasets under &lt;code&gt;.cache/vessel/&amp;lt;project&amp;gt;/&lt;/code&gt;. Each project has:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a SQLite database&lt;/li&gt;
+&lt;li&gt;a project-local channel registry in TOML&lt;/li&gt;
+&lt;li&gt;downloaded artifacts, subtitles, thumbnails, and plugins under the same root&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="current-scope"&gt;
+ Current Scope
+ &lt;a class="heading-link" href="#current-scope"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Implemented today:&lt;/p&gt;</description></item><item><title>voltlane README</title><link>https://sguzman.github.io/projects/readme/voltlane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/voltlane/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/voltlane" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/voltlane/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="voltlane"&gt;
  Voltlane
  &lt;a class="heading-link" href="#voltlane"&gt;
@@ -2358,13 +2254,23 @@ Parallel insertion, colored logs, and flexible verbosity levels make it practica
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Voltlane is a Rust-first FL-style/chiptune composition prototype built with:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;voltlane-core&lt;/code&gt; (Rust): project model, timeline engine, export pipeline, parity tooling, and tracing.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;src-tauri&lt;/code&gt; (Rust/Tauri): desktop shell and typed command bridge to the core.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ui&lt;/code&gt; (React + TypeScript + CSS): lightweight visual playlist/mixer control surface.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The current implementation now spans Milestone A/B plus core audio-clip workflow slices: project lifecycle, transport controls, colored tracks, clip creation/editing, audio import/indexing, exports, parity harness, logging, and docs.&lt;/p&gt;</description></item><item><title>weathergraph-rs README</title><link>https://sguzman.github.io/projects/readme/weathergraph-rs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/weathergraph-rs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/weathergraph-rs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/weathergraph-rs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Voltlane is a Rust-first FL-style and chiptune composition prototype with a Rust core, Tauri desktop shell, and React UI.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Prove a music-production workflow where the sequencing engine, export logic, parity tooling, and desktop UI are cleanly separated but still operate on one shared project model.&lt;/p&gt;
+&lt;h2 id="ambition"&gt;
+ Ambition
+ &lt;a class="heading-link" href="#ambition"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The current workspace and roadmap clearly aim beyond a toy sequencer toward a fuller desktop composition environment with timeline editing, audio handling, effects, export, and parity-oriented engine validation.&lt;/p&gt;</description></item><item><title>weathergraph-rs README</title><link>https://sguzman.github.io/projects/readme/weathergraph-rs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/weathergraph-rs/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/weathergraph-rs" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/weathergraph-rs/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="weathergraph-rs"&gt;
  weathergraph-rs
  &lt;a class="heading-link" href="#weathergraph-rs"&gt;
@@ -2440,26 +2346,109 @@ Parallel insertion, colored logs, and flexible verbosity levels make it practica
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Woven is a Rust + &lt;code&gt;egui&lt;/code&gt; notebook-style frontend for the Wolfram Language (Mathematica), with an explicit goal of replacing/modernizing plotting using &lt;code&gt;egui_plot&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id="requirements"&gt;
- Requirements
- &lt;a class="heading-link" href="#requirements"&gt;
+&lt;p&gt;Woven is a Rust and &lt;code&gt;egui&lt;/code&gt; notebook-style frontend for the Wolfram Language, with a specific interest in modernizing plotting through &lt;code&gt;egui_plot&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Build a local notebook environment where Wolfram evaluation, plotting, and notebook-style interaction can be driven through a native Rust UI rather than the traditional frontend stack.&lt;/p&gt;
+&lt;h2 id="ambition"&gt;
+ Ambition
+ &lt;a class="heading-link" href="#ambition"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The project seems aimed at a Rust-native Mathematica notebook experience, potentially growing into a serious alternative shell for evaluation, plotting, and interactive workflows.&lt;/p&gt;</description></item><item><title>wxmatch README</title><link>https://sguzman.github.io/projects/readme/wxmatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/wxmatch/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/wxmatch" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/wxmatch/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="wxmatch"&gt;
+ wxmatch
+ &lt;a class="heading-link" href="#wxmatch"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;wxmatch&lt;/code&gt; is a Rust CLI for downloading, caching, normalizing, querying, and comparing station-level weather observations.&lt;/p&gt;
+&lt;p&gt;The project is aimed at a workflow like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fetch historical observations for a station.&lt;/li&gt;
+&lt;li&gt;Normalize them into one canonical observation model.&lt;/li&gt;
+&lt;li&gt;Build daily summaries and hourly day profiles.&lt;/li&gt;
+&lt;li&gt;Ask questions such as:
+&lt;ul&gt;
+&lt;li&gt;What happened on this day?&lt;/li&gt;
+&lt;li&gt;How likely is today to reach a target high?&lt;/li&gt;
+&lt;li&gt;Which historical days looked most like this one?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="status"&gt;
+ Status
+ &lt;a class="heading-link" href="#status"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="implemented-now"&gt;
+ Implemented now
+ &lt;a class="heading-link" href="#implemented-now"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Async Rust CLI built with &lt;code&gt;clap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Structured console and rolling JSON file logging with &lt;code&gt;tracing&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Stable cache layout under &lt;code&gt;.cache/wxmatch/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Station metadata fetch via the NWS API&lt;/li&gt;
+&lt;li&gt;Historical adapters for &lt;code&gt;IEM ASOS 1-minute&lt;/code&gt;, &lt;code&gt;NOAA/NCEI ASOS 5-minute&lt;/code&gt;, and &lt;code&gt;GHCNh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Current observation fetch for &lt;code&gt;NWS API&lt;/code&gt; with repeated snapshots preserved by timestamp&lt;/li&gt;
+&lt;li&gt;Canonical normalized observations stored in Parquet&lt;/li&gt;
+&lt;li&gt;Derived daily summaries and hourly day profiles stored in Parquet&lt;/li&gt;
+&lt;li&gt;Source precedence for overlapping timestamps: &lt;code&gt;NCEI 5-minute&lt;/code&gt; -&amp;gt; &lt;code&gt;IEM 1-minute&lt;/code&gt; -&amp;gt; &lt;code&gt;NWS API&lt;/code&gt; -&amp;gt; &lt;code&gt;GHCNh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;query day&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;query prob&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;query analogs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cache manifests&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;query duckdb-paths&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cache doctor&lt;/code&gt; warnings for missing or stale manifests&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--format text|json&lt;/code&gt; for &lt;code&gt;source list&lt;/code&gt;, &lt;code&gt;station inspect&lt;/code&gt;, manifest inspection, and query commands&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="planned-next"&gt;
+ Planned next
+ &lt;a class="heading-link" href="#planned-next"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Additional calibration and validation against larger backfilled station histories&lt;/li&gt;
+&lt;li&gt;More provenance detail for overlapping-source reconciliation&lt;/li&gt;
+&lt;li&gt;Broader source and station coverage testing outside the current smoke set&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="why-these-sources"&gt;
+ Why These Sources
+ &lt;a class="heading-link" href="#why-these-sources"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;A Wolfram installation that provides &lt;code&gt;WolframKernel&lt;/code&gt; and WSTP (e.g., Wolfram Engine / Mathematica).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;wolframscript&lt;/code&gt; on &lt;code&gt;PATH&lt;/code&gt; is strongly recommended (used by WSTP discovery/linking).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IEM ASOS 1-minute&lt;/code&gt;: fastest path to useful high-frequency U.S. station history with a straightforward download interface.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NOAA/NCEI ASOS 5-minute&lt;/code&gt;: authoritative U.S. archive for later validation and fallback.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NWS API&lt;/code&gt;: current-station metadata and live observation snapshots for &lt;code&gt;today&lt;/code&gt; workflows.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GHCNh&lt;/code&gt;: lower-frequency but broad-coverage fallback for future non-ASOS expansion.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="running"&gt;
- Running
- &lt;a class="heading-link" href="#running"&gt;
+&lt;h2 id="cache-philosophy"&gt;
+ Cache Philosophy
+ &lt;a class="heading-link" href="#cache-philosophy"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Config is required at &lt;code&gt;config/woven.toml&lt;/code&gt; and defaults to &lt;code&gt;mode = &amp;quot;dev&amp;quot;&lt;/code&gt; (which writes logs under &lt;code&gt;logs/&lt;/code&gt;).&lt;/p&gt;</description></item><item><title>xpos-js README</title><link>https://sguzman.github.io/projects/readme/xpos-js/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/xpos-js/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/xpos-js" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/xpos-js/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wxmatch&lt;/code&gt; keeps raw downloads and normalized outputs separate.&lt;/p&gt;</description></item><item><title>xpos-js README</title><link>https://sguzman.github.io/projects/readme/xpos-js/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/xpos-js/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/xpos-js" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/xpos-js/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="xpose"&gt;
  xpose
  &lt;a class="heading-link" href="#xpose"&gt;
@@ -2497,51 +2486,23 @@ Parallel insertion, colored logs, and flexible verbosity levels make it practica
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;zimrs&lt;/code&gt; converts a Wiktionary &lt;code&gt;.zim&lt;/code&gt; archive into a queryable dictionary database and includes operational tooling for verification, reindexing, export, benchmarking, and release packaging.&lt;/p&gt;
-&lt;p&gt;Default backend is PostgreSQL (&lt;code&gt;data.dictionary&lt;/code&gt;). SQLite remains fully supported as a compatibility backend.&lt;/p&gt;
-&lt;h2 id="features"&gt;
- Features
- &lt;a class="heading-link" href="#features"&gt;
+&lt;p&gt;&lt;code&gt;zimrs&lt;/code&gt; converts Wiktionary &lt;code&gt;.zim&lt;/code&gt; archives into a queryable dictionary database and includes tooling for verification, reindexing, export, benchmarking, and release packaging.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Postgres-first ingestion with automatic startup checks, database bootstrap, and schema management.&lt;/li&gt;
-&lt;li&gt;SQLite compatibility mode for local/offline workflows.&lt;/li&gt;
-&lt;li&gt;Configurable ZIM -&amp;gt; DB ingestion with namespace/MIME/prefix filters.&lt;/li&gt;
-&lt;li&gt;Resumable checkpointing for long-running archive conversions.&lt;/li&gt;
-&lt;li&gt;Optional parallel extraction workers.&lt;/li&gt;
-&lt;li&gt;Nested-list-aware definition extraction and relation extraction (&lt;code&gt;synonyms&lt;/code&gt;, &lt;code&gt;antonyms&lt;/code&gt;, &lt;code&gt;translations&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;Per-language normalization plugins and confidence scoring.&lt;/li&gt;
-&lt;li&gt;Alias normalization table for search (&lt;code&gt;lemma_aliases&lt;/code&gt;).&lt;/li&gt;
-&lt;li&gt;Optional search indexing (&lt;code&gt;page_fts&lt;/code&gt;) for both backends.&lt;/li&gt;
-&lt;li&gt;Incremental reindex command.&lt;/li&gt;
-&lt;li&gt;JSON/JSONL export command.&lt;/li&gt;
-&lt;li&gt;Release artifact builder with packaged sample database.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="commands"&gt;
- Commands
- &lt;a class="heading-link" href="#commands"&gt;
+&lt;p&gt;Turn large offline dictionary archives into a maintainable searchable database with enough operational tooling to verify correctness and ship releases confidently.&lt;/p&gt;
+&lt;h2 id="ambition"&gt;
+ Ambition
+ &lt;a class="heading-link" href="#ambition"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Convert (default command)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml convert
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Incremental reindex&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml reindex
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Export to JSONL&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml export-json --output out/wiktionary.jsonl
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Build synthetic sample DB (SQLite helper for release tooling)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml sample-db --output out/sample.sqlite
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Build release artifacts bundle (archive + checksum + sample DB)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cargo run --release -- --config config/wiktionary.toml build-artifacts
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Default command behavior:&lt;/p&gt;</description></item><item><title>zpars README</title><link>https://sguzman.github.io/projects/readme/zpars/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/zpars/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/zpars" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/zpars/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The breadth of commands, benchmarks, scripts, and release helpers suggests an ambition to be a dependable ingestion and release pipeline for offline dictionary data rather than a single conversion command.&lt;/p&gt;</description></item><item><title>zpars README</title><link>https://sguzman.github.io/projects/readme/zpars/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sguzman.github.io/projects/readme/zpars/</guid><description>&lt;p&gt;&lt;a href="https://github.com/sguzman/zpars" class="external-link" target="_blank" rel="noopener"&gt;Repository&lt;/a&gt; | &lt;a href="https://deepwiki.com/sguzman/zpars/" class="external-link" target="_blank" rel="noopener"&gt;DeepWiki&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="zpars"&gt;
  zpars
  &lt;a class="heading-link" href="#zpars"&gt;
@@ -2549,20 +2510,20 @@ Parallel insertion, colored logs, and flexible verbosity levels make it practica
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;zpars&lt;/code&gt; is an in-progress Rust port of core ZPAQ compression/decompression ideas.&lt;/p&gt;
-&lt;p&gt;Current implementation includes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A native Rust block codec (&lt;code&gt;.zpars&lt;/code&gt;) with LZ77-based compression/decompression.&lt;/li&gt;
-&lt;li&gt;A CLI built with &lt;code&gt;clap&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Toggleable structured logging via &lt;code&gt;tracing&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;ZPAQ archive inspection and partial extraction tooling.&lt;/li&gt;
-&lt;li&gt;Compatibility tests that exercise the bundled reference implementation in &lt;code&gt;tmp/zpaq&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="status"&gt;
- Status
- &lt;a class="heading-link" href="#status"&gt;
+&lt;p&gt;&lt;code&gt;zpars&lt;/code&gt; is an in-progress Rust port of core ZPAQ compression and decompression ideas.&lt;/p&gt;
+&lt;h2 id="intent"&gt;
+ Intent
+ &lt;a class="heading-link" href="#intent"&gt;
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
  &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
  &lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;This repository is &lt;strong&gt;not yet a full bit-compatible ZPAQ Level 2 implementation&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;Explore a native Rust implementation of key archive/codec behaviors while keeping CLI access, structured logging, and compatibility work visible.&lt;/p&gt;
+&lt;h2 id="ambition"&gt;
+ Ambition
+ &lt;a class="heading-link" href="#ambition"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The current CLI, docs, tests, and reference-implementation linkage suggest an ambition to become a serious Rust-native archive/inspection tool rather than a pure experiment.&lt;/p&gt;</description></item></channel></rss>
