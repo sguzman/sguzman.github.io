@@ -1,0 +1,141 @@
+# Foundry staging sample, authored exclusively from public GitHub README evidence.
+# This is NOT an export from private Taria or Projectarium.
+# Do not auto-populate it from any private editorial/cohort/review file.
+# Copy and publication should be reviewed before promotion to main.
+
+[[projects]]
+id = "lantern-leaf"
+name = "LanternLeaf"
+category = "Desktop"
+feature = true
+kicker = "01 / READING SYSTEMS"
+tagline = "A document reader that keeps speech and text in step."
+description = "A native Rust reader for EPUB, TXT, and Markdown, with sentence-aware playback, Piper speech synthesis, bookmarks, and a local library flow."
+stack = ["Rust", "Piper", "Desktop"]
+repo = "https://github.com/sguzman/lantern-leaf"
+details = "/projects/lantern-leaf/"
+
+[[projects]]
+id = "morphos"
+name = "Morphos"
+category = "Systems"
+feature = true
+kicker = "02 / COMPUTATIONAL GEOMETRY"
+tagline = "Geometry you can inspect, edit, and rebuild."
+description = "A declarative 3D workspace where TOML source, headless geometry evaluation, and a native viewport share one versioned model."
+stack = ["Rust", "3D", "Declarative"]
+repo = "https://github.com/sguzman/morphos"
+
+[[projects]]
+id = "ephemeris"
+name = "Ephemeris"
+category = "Desktop"
+feature = false
+kicker = "CALENDARS"
+tagline = "One event. Many calendars."
+description = "A local-first Rust calendar built around canonical events, recurrence, SQLite, and programmable views. iCalendar support covers a documented subset."
+stack = ["Rust", "SQLite", "egui"]
+repo = "https://github.com/sguzman/ephemeris"
+
+[[projects]]
+id = "glyphflick"
+name = "Glyphflick"
+category = "Tools"
+feature = false
+kicker = "DESKTOP UTILITIES"
+tagline = "Summon, select a glyph, disappear."
+description = "A one-shot Unicode picker for Wayland desktops with fast local search, a native grid, and deliberate clipboard semantics."
+stack = ["Rust", "Wayland", "Unicode"]
+repo = "https://github.com/sguzman/glyphflick"
+
+[[projects]]
+id = "fathrs"
+name = "Fathrs"
+category = "Tools"
+feature = false
+kicker = "SYSTEM CONFIGURATION"
+tagline = "Deploy dotfiles without ceremony."
+description = "A declarative Linux symlink and copy utility with configuration validation, dry runs, drift detection, and verification."
+stack = ["Rust", "CLI", "Linux"]
+repo = "https://github.com/sguzman/fathrs"
+details = "/projects/fathrs/"
+
+[[projects]]
+id = "cite-otter"
+name = "Cite-Otter"
+category = "Systems"
+feature = false
+kicker = "PARSING / COMPATIBILITY"
+tagline = "Citation parsing, rebuilt in Rust."
+description = "A Rust reimplementation of the AnyStyle citation workflow, with structured parsing and an explicit reference-parity roadmap."
+stack = ["Rust", "Parsing", "Research"]
+repo = "https://github.com/sguzman/cite-otter"
+details = "/projects/cite-otter/"
+
+[[projects]]
+id = "music-gallery"
+name = "Music Gallery"
+category = "Web"
+feature = false
+kicker = "INTERACTIVE PRACTICE"
+tagline = "Guitar melodies made visible."
+description = "A data-driven practice gallery pairing fret diagrams with timed WebAudio playback, looping, navigation, and MIDI export."
+stack = ["JavaScript", "WebAudio", "Music"]
+repo = "https://github.com/sguzman/music-gallery"
+
+[[projects]]
+id = "weathergraph-rs"
+name = "Weathergraph Rust"
+category = "Research"
+feature = false
+kicker = "SCIENTIFIC COMPUTING"
+tagline = "A weather neural network, expressed in Rust."
+description = "A Rust-native inference port of Keisler's 2022 graph weather model, with checkpoint inspection, parity fixtures, and NetCDF output."
+stack = ["Rust", "Candle", "Weather"]
+repo = "https://github.com/sguzman/weathergraph-rs"
+details = "/projects/weathergraph-rs/"
+
+[[projects]]
+id = "viewwright"
+name = "ViewWright"
+category = "Systems"
+feature = false
+kicker = "INTERFACE AUTHORING"
+tagline = "Specify the interface before writing the widgets."
+description = "A TOML-first UI blueprint system that projects authored intent into structured layouts and egui previews."
+stack = ["Rust", "TOML", "UI"]
+repo = "https://github.com/sguzman/viewwright"
+
+[[projects]]
+id = "viewwitness"
+name = "ViewWitness"
+category = "Systems"
+feature = false
+kicker = "INTERFACE EVIDENCE"
+tagline = "Record what the interface actually displayed."
+description = "A structured witness format for observed egui UI states, including semantic hierarchy, geometry, visibility, paint evidence, and diffs."
+stack = ["Rust", "egui", "Evidence"]
+repo = "https://github.com/sguzman/viewwitness"
+
+[[projects]]
+id = "simurom"
+name = "Simurom"
+category = "Research"
+feature = false
+kicker = "DECLARATIVE WORLDS"
+tagline = "Build a world from a scene description."
+description = "An experimental Bevy workspace for TOML-described 2D scenes, simulation, playback, and headless timeline tracing."
+stack = ["Rust", "Bevy", "TOML"]
+repo = "https://github.com/sguzman/simurom"
+details = "/projects/simurom/"
+
+[[projects]]
+id = "lexwright"
+name = "Lexwright"
+category = "Tools"
+feature = false
+kicker = "TEXT INSTRUMENTS"
+tagline = "A scratchpad that gets out of your way."
+description = "An ephemeral keyboard-first writing overlay: expand text, press Enter to copy, or Escape to discard without changing the clipboard."
+stack = ["Rust", "egui", "Wayland"]
+repo = "https://github.com/sguzman/lexwright"
