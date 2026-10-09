@@ -104,6 +104,20 @@ The actual committed filter script was executed with simulated DOM sections popu
 
 A fresh environment assessment confirms `git`, `node` and `chromium` are present but the container has no `hugo` binary and cannot resolve github.com for a remote clone. No actions were run, no public build or deploy was attempted, and these constraints remain marked as blockers rather than silently bypassed. Run `bash scripts/verify_foundry.sh` in a disposable checkout where Hugo and Playwright are already available (agent-owned QA, not owner manual work).
 
+## 2026-10-09 inherited-theme compatibility review
+
+The staging Foundry page uses Hugo Coder's existing `baseof.html` and `head/custom-styles.html` asset pipeline, which supports custom CSS from `assets/css/foundry.css`. A direct read of Coder's bundled `assets/scss/_content.scss` uncovered a concrete render regression not visible to the source-only catalogue checks:
+
+- Coder's broad `.content header` selector adds `6.4rem` top and `3.2rem` bottom margins to **all descendant headers**, including Foundry's masthead and each editorial group heading.
+- Coder's `.content article p` rule justifies paragraphs with automatic hyphenation, conflicting with Foundry's left-aligned reading/cards.
+- Coder's `.content header h1` heading size can override the large Foundry project-details title because its selector is more specific.
+
+The repair is confined to `assets/css/foundry.css`: specific `.content .foundry …` overrides reset header margins, paragraph justification, and detail-header title sizing, leaving unrelated pages and the theme unchanged. The Node source checker asserts these guards remain present, and Chromium QA now asserts actual computed style for masthead/group margins, exhibit/gallery paragraph alignment, and project title size.
+
+All seven fast-changing public flagship README blob IDs were re-checked through GitHub after the repair and **none differed from its recorded `source_readme_blob`**.
+
+**Verification scope:** this identifies and fixes a source-confirmed CSS specificity conflict; it is not a successful rendered Hugo test. The real Hugo/Chromium release gate remains mandatory and unrun in this environment.
+
 ## Expected follow-ups
 
 1. Run the single offline build and browser QA command through Codex or another implementation worker, not manual owner testing, then inspect all produced screenshots and any failures.
