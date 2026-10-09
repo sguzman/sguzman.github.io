@@ -50,12 +50,15 @@ index.querySelectorAll = (selector) => {
   }
   return cards;
 };
+const toolbar = fakeNode();
+toolbar.hidden = true;
 const search = fakeNode();
 const count = fakeNode();
 const empty = fakeNode();
 const categories = ["all", "desktop", "systems", "tools", "research", "web"];
 const filters = categories.map((category) => fakeNode({ foundryFilter: category }));
 const byId = new Map([
+  ["foundry-index-toolbar", toolbar],
   ["foundry-search", search],
   ["foundry-index-grid", index],
   ["foundry-results", count],
@@ -75,6 +78,7 @@ const expect = (value, explanation) => { if (!value) fail.push(explanation); };
 const shown = () => cards.filter((card) => !card.hidden).length;
 const toolCount = entries.filter((e) => e.category === "Tools").length;
 
+expect(toolbar.hidden === false, "JS must reveal working search controls.");
 expect(shown() === entries.length, "Initial render should show all cards.");
 expect(empty.hidden, "Empty state should be initially hidden.");
 expect(count.textContent.includes(`Showing ${entries.length} of ${entries.length}`),
