@@ -132,6 +132,15 @@ async function main() {
     check("theme does not justify exhibit paragraphs", await page.locator(".foundry-feature-desc").first().evaluate(
       (element) => getComputedStyle(element).textAlign === "left",
     ));
+    check("theme does not displace editorial section headers", await page.locator(".foundry-index-group-head").first().evaluate(
+      (element) => {
+        const css = getComputedStyle(element);
+        return css.marginTop === "0px" && css.marginBottom === "0px";
+      },
+    ));
+    check("theme does not justify gallery descriptions", await page.locator(".foundry-index-description").first().evaluate(
+      (element) => getComputedStyle(element).textAlign === "left",
+    ));
     check("JavaScript enables the search toolbar", await page.locator("#foundry-index-toolbar").isVisible());
     check("source link remains available", await page.locator('a[href="https://github.com/sguzman/lantern-leaf"]').count() > 0);
     check("all seven flagship identities appear in the index", await page.locator(".foundry-index-item.is-flagship").count() === authored.entries.filter((item) => item.exhibit === "flagship").length);
