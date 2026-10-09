@@ -56,6 +56,9 @@ assert(styles.includes("@media (max-width: 670px)") &&
 assert(script.includes('setAttribute("aria-pressed"') &&
   script.includes("card.hidden = !show"),
   "Accessible progressive filtering not found.");
+assert(template.includes('id="foundry-index-toolbar" hidden') &&
+  script.includes("toolbar.hidden = false"),
+  "Uninitialized filter controls must not appear without working JavaScript.");
 assert(/branches:\s*\n\s*- main/m.test(deployWorkflow),
   "Deployment trigger was altered; staging must not auto-deploy.");
 
