@@ -1,6 +1,7 @@
-{{ define "title" }}Foundry — Software & experiments · {{ .Site.Title }}{{ end }}
+{{ define "title" }}{{ if eq .RelPermalink "/projects/" }}Foundry — Software & experiments{{ else }}{{ .Title }}{{ end }} · {{ .Site.Title }}{{ end }}
 
 {{ define "content" }}
+{{ if eq .RelPermalink "/projects/" }}
 {{- $works := .Site.Data.foundry_public.projects | default (slice) -}}
 {{- $featured := where $works "feature" true -}}
 {{- $other := where $works "feature" false -}}
@@ -135,4 +136,14 @@
   </div>
 </section>
 <script defer src="{{ "js/foundry.js" | relURL }}"></script>
+{{ else }}
+<section class="container page">
+  <article>
+    <header>
+      <h1 class="title"><a class="title-link" href="{{ .Permalink | safeURL }}">{{ .Title }}</a></h1>
+    </header>
+    {{ .Content }}
+  </article>
+</section>
+{{ end }}
 {{ end }}
