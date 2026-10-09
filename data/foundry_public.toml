@@ -163,3 +163,237 @@ tagline = "A scratchpad that gets out of your way."
 description = "An ephemeral keyboard-first writing overlay: expand text, press Enter to copy, or Escape to discard without changing the clipboard."
 stack = ["Rust", "egui", "Wayland"]
 repo = "https://github.com/sguzman/lexwright"
+
+[[projects]]
+id = "starbyte"
+source_readme_blob = "60346d83fd1d2a0311ddab7b3231a2741bd7e93e"
+source_verified_on = "2026-10-09"
+name = "Starbyte"
+category = "Desktop"
+feature = true
+kicker = "EMULATION / EXPERIMENTAL"
+tagline = "A friendlier place to explore the Super Nintendo."
+description = "An experimental Rust-native SNES emulator and Wayland desktop library. Commercial-game playability remains unestablished; compatibility is judged by repeatable game-specific tests."
+stack = ["Rust", "SNES", "Wayland"]
+repo = "https://github.com/sguzman/starbyte"
+
+[[projects]]
+id = "chatarium"
+source_readme_blob = "a8eb4cd65c7bd6b054c91708b743493a67f057bb"
+source_verified_on = "2026-10-09"
+name = "Chatarium"
+category = "Desktop"
+feature = true
+kicker = "CONVERSATION / RELIABILITY"
+tagline = "Conversations shouldn't disappear with the tab."
+description = "A local-first Rust conversation workstation and empirical protocol-observation project, emphasizing durable authored text, explicit network uncertainty, and recoverable state. Broader native account integration remains a goal."
+stack = ["Rust", "SQLite", "Resilience"]
+repo = "https://github.com/sguzman/chatarium"
+
+[[projects]]
+id = "vessel"
+source_readme_blob = "c520285bb06bfc9d64871a4d6b11754ea18ec17b"
+source_verified_on = "2026-10-09"
+name = "Vessel"
+category = "Systems"
+feature = true
+kicker = "MEDIA / PROVENANCE"
+tagline = "Keep the transcript. Keep its provenance."
+description = "A Rust control plane for Sourcearium media-derived research text. It owns transcript precedence, source policy, validation, and repeatable reconciliation while external tools handle download and ASR machinery."
+stack = ["Rust", "Media", "Provenance"]
+repo = "https://github.com/sguzman/vessel"
+
+[[projects]]
+id = "otpick"
+source_readme_blob = "8e291d82252ecc61ac40bd4ca4ca0fd49b99fdf4"
+source_verified_on = "2026-10-09"
+name = "OTPick"
+category = "Tools"
+feature = false
+kicker = "SECURE UTILITIES"
+tagline = "A one-shot code picker for Linux."
+description = "A maintained local TOTP authenticator: summon, search, copy the current code, and exit. The encrypted vault stays outside the repository and normal picking requires no network access."
+stack = ["Rust", "TOTP", "Linux"]
+repo = "https://github.com/sguzman/otpick"
+
+[[projects]]
+id = "mirrarium"
+source_readme_blob = "88688333a7e28ed65c3e5a54b6db83500fb909d1"
+source_verified_on = "2026-10-09"
+name = "Mirrarium"
+category = "Systems"
+feature = false
+kicker = "BROWSER / PRESERVATION"
+tagline = "Observe first. Archive before reconstructing."
+description = "A Chromium-first capture and local-corpus project for ChatGPT browser evidence, with a Rust native messaging host and deliberately cautious plans for replay and revalidation."
+stack = ["Rust", "Chromium", "Archiving"]
+repo = "https://github.com/sguzman/mirrarium"
+
+[[projects]]
+id = "ludographium"
+source_readme_blob = "9c27a59852d5788216ff36d506fb329556f7cf92"
+source_verified_on = "2026-10-09"
+name = "Ludographium"
+category = "Research"
+feature = false
+kicker = "GAMES / METADATA"
+tagline = "Video game history, with source identity intact."
+description = "A provenance-first offline catalog of console and handheld releases, regional records, fingerprints, and metadata claims. Raw source observations are not treated as counts of unique games."
+stack = ["Rust", "Games", "Catalogs"]
+repo = "https://github.com/sguzman/ludographium"
+
+[[projects]]
+id = "cheatarium"
+source_readme_blob = "7b60d109e37cb4e5156f3802b6c0445c6ccb7b8e"
+source_verified_on = "2026-10-09"
+name = "Cheatarium"
+category = "Research"
+feature = false
+kicker = "GAMES / PRESERVATION"
+tagline = "The strange, inventive history of game cheats."
+description = "An attributed archive of console cheat codes, passwords, unlockables, and their original sources, with curated browsing and explicit distinctions between collected codes and verified effects."
+stack = ["Rust", "Games", "Archives"]
+repo = "https://github.com/sguzman/cheatarium"
+
+[[projects]]
+id = "piperd"
+source_readme_blob = "4385a0855e4920ecb3a217108390a7004f0c044c"
+source_verified_on = "2026-10-09"
+name = "PiperD"
+category = "Systems"
+feature = false
+kicker = "SPEECH / ALIGNMENT"
+tagline = "Speech synthesis with honest timing information."
+description = "Rust text-to-speech utilities using Piper models, with optional word timing when phoneme-duration outputs are available. Other models cannot promise the same alignment."
+stack = ["Rust", "Piper", "Speech"]
+repo = "https://github.com/sguzman/piperd"
+
+[[projects]]
+id = "cinegraph"
+source_readme_blob = "16e6413e02b08e58f1258977791467bdc08a3dd3"
+source_verified_on = "2026-10-09"
+name = "Cinegraph"
+category = "Research"
+feature = false
+kicker = "FILM / KNOWLEDGE GRAPHS"
+tagline = "Film metadata from records to relationships."
+description = "A local film-data warehouse built around SQLite, with IMDb as a bulk source, TMDb and Wikidata enrichment, Tantivy full-text search, and an RDF/SPARQL graph projection."
+stack = ["Rust", "SQLite", "Graph"]
+repo = "https://github.com/sguzman/cinegraph"
+
+[[projects]]
+id = "mathematica-mcp"
+source_readme_blob = "fa10af0822724d02885121a3315070b6fc2662cd"
+source_verified_on = "2026-10-09"
+name = "Mathematica MCP"
+category = "Tools"
+feature = false
+kicker = "COMPUTING / INTERFACES"
+tagline = "A local Wolfram kernel for tool-using clients."
+description = "A Rust MCP server and REPL that manages sessions in an installed Wolfram Language kernel via WSTP. The proprietary kernel is required separately."
+stack = ["Rust", "MCP", "Wolfram"]
+repo = "https://github.com/sguzman/mathematica-mcp"
+
+[[projects]]
+id = "interactive-demos"
+source_readme_blob = "191da177d70e1b9925d40b405bc867c729ec13e3"
+source_verified_on = "2026-10-09"
+name = "Interactive Demos"
+category = "Web"
+feature = false
+kicker = "BROWSER / EXPERIMENTS"
+tagline = "Small experiments, permanently available."
+description = "A public browser-based gallery for interactive visual studies, with a shared demo manifest and individual HTML/CSS/JavaScript experiments."
+stack = ["JavaScript", "Web", "Geometry"]
+repo = "https://github.com/sguzman/interactive-demos"
+
+[[projects]]
+id = "marginalia"
+source_readme_blob = "460eab8deb56ac9bcf516f83596569b48491c932"
+source_verified_on = "2026-10-09"
+name = "Marginalia"
+category = "Web"
+feature = false
+kicker = "WRITING / PUBLISHING"
+tagline = "A personal writing space built for the web."
+description = "A Hugo-based static publishing site with a documented GitHub Pages workflow. Its public README describes the deployment setup rather than a broader publishing-engine feature set."
+stack = ["Hugo", "Markdown", "Web"]
+repo = "https://github.com/sguzman/marginalia"
+
+[[projects]]
+id = "pulsewire"
+source_readme_blob = "516218056583e9a5af87497f8508a6b4a827bc6d"
+source_verified_on = "2026-10-09"
+name = "Pulsewire"
+category = "Systems"
+feature = false
+kicker = "ARCHIVE / FEEDS"
+tagline = "Make incoming information durable."
+description = "A feed ingestion engine with RSS/Atom polling, adaptive backoff, per-domain limits, SQL-backed source history, and an HTTP service for reader clients."
+stack = ["Rust", "RSS", "Databases"]
+repo = "https://github.com/sguzman/pulsewire"
+
+[[projects]]
+id = "rssify"
+source_readme_blob = "aa6042f1845bb6271edc66853c969f1eed84f90b"
+source_verified_on = "2026-10-09"
+name = "Rssify"
+category = "Systems"
+feature = false
+kicker = "ARCHIVE / PIPELINES"
+tagline = "A feed-collection pipeline designed for change."
+description = "A Rust-first RSS/Atom/JSON-feed pipeline oriented around raw captured content, normalized metadata, and extractable derived records. Some broader orchestration features remain stated goals."
+stack = ["Rust", "Feeds", "CLI"]
+repo = "https://github.com/sguzman/rssify"
+
+[[projects]]
+id = "youtube-channel-stats"
+source_readme_blob = "dd4a927454c17dbaefd0c9d39b55cd346c0a705e"
+source_verified_on = "2026-10-09"
+name = "YouTube Channel Statistics"
+category = "Research"
+feature = false
+kicker = "HISTORICAL / TIME SERIES"
+tagline = "An early design for collecting channel histories."
+description = "A historical repository outlining channel identity, metadata, and time-series storage as a service-oriented collection system. Its README describes planned topology, not verified completed services."
+stack = ["Python", "Rust", "Time series"]
+repo = "https://github.com/sguzman/youtube-channel-stats"
+
+[[projects]]
+id = "rivetr"
+source_readme_blob = "9648d877b2656d56a77fc81de71e6fa616bc0fc3"
+source_verified_on = "2026-10-09"
+name = "Rivetr"
+category = "Desktop"
+feature = false
+kicker = "HISTORICAL / DESKTOP"
+tagline = "A native rewrite of a task-management workspace."
+description = "A Rust/egui successor to the older Tauri Rivet application, with task editing, filters, Kanban, a calendar workspace, local ICS input, and native state persistence."
+stack = ["Rust", "egui", "Tasks"]
+repo = "https://github.com/sguzman/rivetr"
+
+[[projects]]
+id = "rust-template"
+source_readme_blob = "fbd6c0600b188145d12d27ce7d516a3b122ae122"
+source_verified_on = "2026-10-09"
+name = "Rust Template"
+category = "Tools"
+feature = false
+kicker = "HISTORICAL / TOOLING"
+tagline = "Start projects with the same engineering baseline."
+description = "An opinionated Rust project scaffold with formatting, linting, dependency checks, release tools, and a shared layout. It is a template, not a standalone user application."
+stack = ["Rust", "Tooling", "Templates"]
+repo = "https://github.com/sguzman/rust-template"
+
+[[projects]]
+id = "atmos"
+source_readme_blob = "762a9018d228582ae04c7690048477fd6c682549"
+source_verified_on = "2026-10-09"
+name = "Atmos"
+category = "Research"
+feature = false
+kicker = "HISTORICAL / WORLDS"
+tagline = "Declarative scenes, physical worlds, and cuts."
+description = "An experimental Bevy scene engine driven by TOML descriptions, mesh caching, Rapier physics, and prototype slicing interactions. Broader simulation ideas are exploratory."
+stack = ["Rust", "Bevy", "Simulation"]
+repo = "https://github.com/sguzman/atmos"
