@@ -15,7 +15,6 @@ import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { mkdir, readFile, stat } from "node:fs/promises";
 import { extname, resolve, sep, join } from "node:path";
-import { pathToFileURL } from "node:url";
 
 const root = resolve(process.argv[2] || "public");
 const screenshotDir = process.env.FOUNDRY_QA_DIR || "";
@@ -90,7 +89,18 @@ async function main() {
     }
     browser = await playwright.chromium.launch(settings);
     const origin = "http://127.0.0.1:" + address.port;
-    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    const onlyLocal = async (route) => {
+      const requested = new URL(route.request().url());
+      if (requested.origin === origin) {
+        await route.continue();
+      } else {
+        // No CDNs, trackers, or network access during deterministic browser QA.
+        await route.abort();
+      }
+    };
+    const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    await context.route("**/*", onlyLocal);
+    const page = await context.newPage();
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
 
@@ -146,6 +156,7 @@ async function main() {
       javaScriptEnabled: false,
       viewport: { width: 390, height: 844 },
     });
+    await noJs.route("**/*", onlyLocal);
     try {
       const fallback = await noJs.newPage();
       await fallback.goto(origin + "/projects/", { waitUntil: "load" });
@@ -156,6 +167,7 @@ async function main() {
       await noJs.close();
     }
 
+    await context.close();
     console.log("PASS: " + checked.length + " Foundry browser checks: responsive presentation, search, filters, nested routes, and no-JS fallback.");
     if (screenshotDir) console.log("Screenshots saved under: " + resolve(screenshotDir));
   } finally {
