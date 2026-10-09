@@ -50,6 +50,10 @@ Not a private Taria/Projectarium export adapter. No private files are read.
     {{- errorf "Foundry %q has no valid public-source review date" $id -}}
   {{- end -}}
 
+  {{- if ne (printf "%T" $work.feature) "bool" -}}
+    {{- errorf "Foundry %q requires a true/false featured flag" $id -}}
+  {{- end -}}
+
   {{- if not (in $categories ($work.category | default "")) -}}
     {{- errorf "Foundry %q has unknown presentation category" $id -}}
   {{- end -}}
