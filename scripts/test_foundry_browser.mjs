@@ -13,11 +13,13 @@
  */
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
-import { mkdir, readFile, stat } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, stat } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { extname, resolve, sep, join } from "node:path";
 
 const root = resolve(process.argv[2] || "public");
-const screenshotDir = process.env.FOUNDRY_QA_DIR || "";
+// Capture evidence by default in a new temporary folder; never in the public build.
+const screenshotDir = process.env.FOUNDRY_QA_DIR || await mkdtemp(join(tmpdir(), "foundry-qa-"));
 const mediaTypes = new Map([
   [".html", "text/html; charset=utf-8"],
   [".css", "text/css; charset=utf-8"],
@@ -128,7 +130,7 @@ async function main() {
     await page.locator(".foundry-skip").focus();
     check("skip link is keyboard-focusable", await page.evaluate(() => document.activeElement?.classList.contains("foundry-skip")));
 
-    if (screenshotDir) await mkdir(screenshotDir, { recursive: true });
+    await mkdir(screenshotDir, { recursive: true });
     for (const [label, width, height] of [
       ["desktop", 1440, 900],
       ["tablet", 768, 1024],
@@ -139,9 +141,7 @@ async function main() {
         return document.documentElement.scrollWidth - document.documentElement.clientWidth;
       });
       check(label + " has no horizontal overflow", horizontalOverflow <= 2);
-      if (screenshotDir) {
-        await page.screenshot({ path: join(screenshotDir, "foundry-" + label + ".png"), fullPage: true });
-      }
+      await page.screenshot({ path: join(screenshotDir, "foundry-" + label + ".png"), fullPage: true });
     }
     check("browser JS reports no exceptions", errors.length === 0);
 
@@ -169,7 +169,7 @@ async function main() {
 
     await context.close();
     console.log("PASS: " + checked.length + " Foundry browser checks: responsive presentation, search, filters, nested routes, and no-JS fallback.");
-    if (screenshotDir) console.log("Screenshots saved under: " + resolve(screenshotDir));
+    console.log("Screenshots saved under: " + resolve(screenshotDir));
   } finally {
     if (browser) await browser.close();
     await new Promise((done) => server.close(done));
