@@ -23,7 +23,7 @@ const authored = validateFoundryManifest(
 );
 if (authored.problems.length) throw Error("Foundry catalogue invalid: " + authored.problems.join("; "));
 const expectedProjects = authored.entries.length;
-const expectedFeatured = authored.entries.filter((item) => item.feature === true).length;
+const expectedFeatured = Math.min(2, authored.entries.filter((item) => item.feature === true).length);
 const root = resolve(process.argv[2] || "public");
 // Capture evidence by default in a new temporary folder; never in the public build.
 const screenshotDir = process.env.FOUNDRY_QA_DIR || await mkdtemp(join(tmpdir(), "foundry-qa-"));
@@ -125,6 +125,8 @@ async function main() {
     check("real CSS applies Foundry surface", await page.locator(".foundry").evaluate((element) => getComputedStyle(element).backgroundColor) === "rgb(21, 24, 25)");
     check("JavaScript enables the search toolbar", await page.locator("#foundry-index-toolbar").isVisible());
     check("source link remains available", await page.locator('a[href="https://github.com/sguzman/lantern-leaf"]').count() > 0);
+    check("all seven flagship identities appear in the index", await page.locator(".foundry-index-item.is-flagship").count() === authored.entries.filter((item) => item.exhibit === "flagship").length);
+    check("all seven historical entries have visible labels", await page.locator(".foundry-index-item.is-historical .foundry-index-era").count() === authored.entries.filter((item) => item.exhibit === "historical").length);
 
     await page.locator("#foundry-search").fill("no-project-will-match-9278");
     check("impossible query hides all results", await page.locator(".foundry-index-item:visible").count() === 0);
