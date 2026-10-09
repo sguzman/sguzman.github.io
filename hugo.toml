@@ -5,7 +5,7 @@ theme = "coder"
 
 [params]
 avatarURL = "/images/avatar.png?v=20260424"
-customCSS = ["css/custom.css"]
+customCSS = ["css/custom.css", "css/foundry.css"]
 
 [menus]
 [[menus.main]]
