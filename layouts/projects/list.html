@@ -132,10 +132,11 @@
 
       <div class="foundry-index" id="foundry-index-grid">
         {{- range $index, $work := $works }}
-        <article class="foundry-index-item" data-foundry-card data-foundry-category="{{ .category | lower }}" data-foundry-search="{{ printf "%s %s %s %s" .name .tagline .description (delimit .stack " ") | lower }}">
+        <article class="foundry-index-item{{ if eq .exhibit "historical" }} is-historical{{ end }}" data-foundry-card data-foundry-exhibit="{{ .exhibit }}" data-foundry-category="{{ .category | lower }}" data-foundry-search="{{ printf "%s %s %s %s" .name .tagline .description (delimit .stack " ") | lower }}">
           <div class="foundry-index-number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</div>
           <div class="foundry-index-content">
             <span class="foundry-index-kicker">{{ .kicker }} / {{ .category }}</span>
+            {{- if eq .exhibit "historical" }}<span class="foundry-index-era">HISTORICAL EXHIBIT</span>{{ end }}
             <h3>{{ .name }}</h3>
             <p class="foundry-index-tagline">{{ .tagline }}</p>
             <p class="foundry-index-description">{{ .description }}</p>
