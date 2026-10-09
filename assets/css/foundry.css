@@ -28,6 +28,26 @@
 }
 .foundry *, .foundry *::before, .foundry *::after { box-sizing: border-box; }
 .foundry [hidden] { display: none !important; }
+/*
+ * Hugo Coder's generic .content header and .content article p selectors
+ * otherwise leak theme layout into this embedded exhibition. Scope every
+ * override to Foundry; no site-wide theme changes.
+ */
+.content .foundry header {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.content .foundry article p {
+  text-align: left;
+  text-justify: auto;
+  hyphens: none;
+}
+.content .foundry .foundry-detail-header h1 {
+  font-size: clamp(50px, 8vw, 114px);
+  line-height: 1.05;
+  margin: 0;
+}
+
 .foundry a { color: inherit; text-decoration: none; }
 .foundry-skip {
   position: absolute; z-index: 1000; left: 20px; top: 12px;
