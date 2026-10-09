@@ -52,6 +52,14 @@ assert(!/(?:\.Site\.Data\.projectarium|\.Site\.Data\.cohorts)/.test(template),
   "The public template must not consume private source data.");
 assert(template.includes("NOT A PRODUCT CAPTURE"),
   "CSS concept art must be visibly identified as such.");
+assert(template.includes('data-foundry-group="{{ $tier }}"') &&
+  template.includes('slice "flagship" "gallery" "historical"') &&
+  template.includes('class="foundry-index-items"'),
+  "The public index must present all three distinct editorial groups.");
+assert(script.includes('index.querySelectorAll("[data-foundry-group]")') &&
+  script.includes("group.hidden = !groupCards.some"),
+  "Search/category filtering must hide empty editorial group headings.");
+
 
 const blockTokens = [...template.matchAll(/\{\{-?\s*(define|range|with|if|end)\b/g)];
 const opens = blockTokens.filter(([, name]) => name !== "end").length;
@@ -63,6 +71,10 @@ assert(styles.includes('--f-display:') && styles.includes('--f-reading:') &&
   styles.includes('--f-mono:'), "Design typography tokens are missing.");
 assert(styles.includes("@media (max-width: 670px)") &&
   styles.includes("prefers-reduced-motion"), "Mobile/reduced-motion hooks are missing.");
+assert(styles.includes(".foundry-index-group-head") &&
+  styles.includes(".foundry-index-items"),
+  "Grouping layout styles are missing.");
+
 assert(script.includes('setAttribute("aria-pressed"') &&
   script.includes("card.hidden = !show"),
   "Accessible progressive filtering not found.");
