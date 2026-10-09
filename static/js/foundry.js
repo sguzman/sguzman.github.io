@@ -2,12 +2,13 @@
 (() => {
   "use strict";
 
+  const toolbar = document.getElementById("foundry-index-toolbar");
   const search = document.getElementById("foundry-search");
   const index = document.getElementById("foundry-index-grid");
   const count = document.getElementById("foundry-results");
   const empty = document.getElementById("foundry-empty");
   const filters = Array.from(document.querySelectorAll("[data-foundry-filter]"));
-  if (!index || !search || !count || !empty || !filters.length) return;
+  if (!toolbar || !index || !search || !count || !empty || !filters.length) return;
 
   const cards = Array.from(index.querySelectorAll(".foundry-index-item[data-foundry-card]"));
   let category = "all";
@@ -46,4 +47,5 @@
   }
   search.addEventListener("input", render);
   render();
+  toolbar.hidden = false;
 })();
