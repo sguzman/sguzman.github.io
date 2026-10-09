@@ -38,17 +38,27 @@ function fakeNode(dataset = {}) {
 }
 
 const cards = entries.map((project) => fakeNode({
+  foundryExhibit: project.exhibit,
   foundryCategory: project.category.toLowerCase(),
   foundrySearch: [
     project.name, project.tagline, project.description, ...project.stack,
   ].join(" ").toLowerCase(),
 }));
+const groups = ["flagship", "gallery", "historical"].map((tier) => {
+  const group = fakeNode({ foundryGroup: tier });
+  group.querySelectorAll = (selector) => {
+    if (selector !== ".foundry-index-item[data-foundry-card]") {
+      throw Error("Unexpected group selector: " + selector);
+    }
+    return cards.filter((card) => card.dataset.foundryExhibit === tier);
+  };
+  return group;
+});
 const index = fakeNode();
 index.querySelectorAll = (selector) => {
-  if (selector !== ".foundry-index-item[data-foundry-card]") {
-    throw Error("Unexpected card selector: " + selector);
-  }
-  return cards;
+  if (selector === ".foundry-index-item[data-foundry-card]") return cards;
+  if (selector === "[data-foundry-group]") return groups;
+  throw Error("Unexpected index selector: " + selector);
 };
 const toolbar = fakeNode();
 toolbar.hidden = true;
@@ -79,6 +89,7 @@ const shown = () => cards.filter((card) => !card.hidden).length;
 const toolCount = entries.filter((e) => e.category === "Tools").length;
 
 expect(toolbar.hidden === false, "JS must reveal working search controls.");
+expect(groups.every((group) => !group.hidden), "All editorial groups should initially be visible.");
 expect(shown() === entries.length, "Initial render should show all cards.");
 expect(empty.hidden, "Empty state should be initially hidden.");
 expect(count.textContent.includes(`Showing ${entries.length} of ${entries.length}`),
@@ -88,6 +99,7 @@ search.value = "a query that no project matches";
 search.fire("input");
 expect(shown() === 0, "Unmatched query did not hide every card.");
 expect(!empty.hidden, "Empty-state message was not shown.");
+expect(groups.every((group) => group.hidden), "Empty search should hide all empty editorial sections.");
 expect(index.classList.contains("is-filtered"), "Filtered results lost single-column layout.");
 
 search.value = "";
@@ -97,11 +109,16 @@ expect(shown() === entries.length, "Clearing search did not restore all cards.")
 const toolsButton = filters[categories.indexOf("tools")];
 toolsButton.fire("click");
 expect(shown() === toolCount, "Tools category count incorrect.");
+expect(groups.every((group) => {
+  const matches = cards.some((card) => card.dataset.foundryExhibit === group.dataset.foundryGroup && !card.hidden);
+  return group.hidden === !matches;
+}), "Category filtering must hide empty sections and retain nonempty ones.");
 expect(toolsButton.attrs.get("aria-pressed") === "true", "Active filter is not accessible.");
 expect(index.classList.contains("is-filtered"), "Category filtering should reflow the layout.");
 
 filters[0].fire("click");
 expect(shown() === entries.length, "All filter did not reset category.");
+expect(groups.every((group) => !group.hidden), "All filter should restore all editorial group headings.");
 expect(!index.classList.contains("is-filtered"), "Default index should return to two columns.");
 expect(filters[0].attrs.get("aria-pressed") === "true", "All category was not pressed.");
 
