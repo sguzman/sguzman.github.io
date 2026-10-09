@@ -95,6 +95,12 @@ export function validateFoundryManifest(source) {
         problems.push(`Missing ${key} on project #${index + 1}.`);
       }
     }
+    for (const key of ["name", "kicker", "tagline", "description"]) {
+      const display = item[key] || "";
+      if (/<\\/?[a-z][^>]*>/i.test(display)) {
+        problems.push(`HTML markup not permitted in public ${key} on #${index + 1}.`);
+      }
+    }
     const id = item.id || "";
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
       problems.push(`Invalid Project ID #${index + 1}.`);
