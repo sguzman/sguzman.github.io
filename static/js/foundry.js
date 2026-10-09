@@ -26,6 +26,8 @@
       if (show) visible += 1;
     }
 
+    index.classList.toggle("is-filtered", category !== "all" || !!query);
+
     for (const button of filters) {
       const selected = button.dataset.foundryFilter === category;
       button.classList.toggle("is-active", selected);
