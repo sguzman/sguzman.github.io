@@ -74,6 +74,11 @@ assert(styles.includes("@media (max-width: 670px)") &&
 assert(styles.includes(".foundry-index-group-head") &&
   styles.includes(".foundry-index-items"),
   "Grouping layout styles are missing.");
+assert(styles.includes(".content .foundry header") &&
+  styles.includes(".content .foundry article p") &&
+  styles.includes(".content .foundry .foundry-detail-header h1"),
+  "Foundry must explicitly override inherited Coder header and paragraph presentation.");
+
 
 assert(script.includes('setAttribute("aria-pressed"') &&
   script.includes("card.hidden = !show"),
