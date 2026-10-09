@@ -9,9 +9,10 @@ fails the build on any extra field, malformed identifier, or unreviewed link.
 Not a private Taria/Projectarium export adapter. No private files are read.
 */ -}}
 {{- $works := . -}}
-{{- $fields := slice "id" "source_readme_blob" "source_verified_on" "name" "category" "feature" "kicker" "tagline" "description" "stack" "repo" "details" -}}
-{{- $required := slice "id" "source_readme_blob" "source_verified_on" "name" "category" "feature" "kicker" "tagline" "description" "stack" "repo" -}}
+{{- $fields := slice "id" "source_readme_blob" "source_verified_on" "name" "category" "feature" "exhibit" "kicker" "tagline" "description" "stack" "repo" "details" -}}
+{{- $required := slice "id" "source_readme_blob" "source_verified_on" "name" "category" "feature" "exhibit" "kicker" "tagline" "description" "stack" "repo" -}}
 {{- $categories := slice "Desktop" "Systems" "Tools" "Research" "Web" -}}
+{{- $exhibits := slice "flagship" "gallery" "historical" -}}
 {{- $seen := slice -}}
 
 {{- if or (eq (len $works) 0) (gt (len $works) 40) -}}
@@ -54,6 +55,13 @@ Not a private Taria/Projectarium export adapter. No private files are read.
     {{- errorf "Foundry %q requires a true/false featured flag" $id -}}
   {{- end -}}
 
+  {{- if not (in $exhibits ($work.exhibit | default "")) -}}
+    {{- errorf "Foundry %q has unrecognized public exhibit tier" $id -}}
+  {{- end -}}
+  {{- if ne (eq $work.exhibit "flagship") (eq $work.feature true) -}}
+    {{- errorf "Foundry %q has feature/tier disagreement" $id -}}
+  {{- end -}}
+
   {{- if not (in $categories ($work.category | default "")) -}}
     {{- errorf "Foundry %q has unknown presentation category" $id -}}
   {{- end -}}
@@ -89,5 +97,13 @@ Not a private Taria/Projectarium export adapter. No private files are read.
     {{- if findRE "(?i)(taria/projectarium|source_projectarium_revision|publication_authority|cohort_id|/mnt/data/)" . -}}
       {{- errorf "Foundry %q has a private-source marker in technology labels" $id -}}
     {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if eq (len $works) 30 -}}
+  {{- $featured := len (where $works "exhibit" "flagship") -}}
+  {{- $gallery := len (where $works "exhibit" "gallery") -}}
+  {{- $historical := len (where $works "exhibit" "historical") -}}
+  {{- if or (ne $featured 7) (ne $gallery 16) (ne $historical 7) -}}
+    {{- errorf "Foundry public exhibition must contain 7 flagships, 16 gallery works and 7 historical works" -}}
   {{- end -}}
 {{- end -}}
