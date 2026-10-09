@@ -1,0 +1,83 @@
+{{- /*
+Foundry public exhibit guard.
+
+This validator executes in the Hugo build itself. A test script must never be
+the sole privacy gate because the normal Pages deployment runs Hugo directly.
+It accepts only manually curated, publicly sourced presentation fields and
+fails the build on any extra field, malformed identifier, or unreviewed link.
+
+Not a private Taria/Projectarium export adapter. No private files are read.
+*/ -}}
+{{- $works := . -}}
+{{- $fields := slice "id" "source_readme_blob" "source_verified_on" "name" "category" "feature" "kicker" "tagline" "description" "stack" "repo" "details" -}}
+{{- $required := slice "id" "source_readme_blob" "source_verified_on" "name" "category" "feature" "kicker" "tagline" "description" "stack" "repo" -}}
+{{- $categories := slice "Desktop" "Systems" "Tools" "Research" "Web" -}}
+{{- $seen := slice -}}
+
+{{- if or (eq (len $works) 0) (gt (len $works) 40) -}}
+  {{- errorf "Foundry public catalogue must contain 1–40 reviewed records, got %d" (len $works) -}}
+{{- end -}}
+
+{{- range $index, $work := $works -}}
+  {{- $id := $work.id | default "" -}}
+
+  {{- range $key, $_ := $work -}}
+    {{- if not (in $fields $key) -}}
+      {{- errorf "Foundry public catalogue record %d has forbidden field %q" $index $key -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- range $field := $required -}}
+    {{- if not (isset $work $field) -}}
+      {{- errorf "Foundry record %d lacks required field %q" $index $field -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not (findRE "^[a-z0-9]+(-[a-z0-9]+)*$" $id) -}}
+    {{- errorf "Foundry invalid public Project ID at record %d" $index -}}
+  {{- end -}}
+  {{- if in $seen $id -}}
+    {{- errorf "Foundry duplicate public Project ID %q" $id -}}
+  {{- end -}}
+  {{- $seen = append $seen $id -}}
+
+  {{- $source := $work.source_readme_blob | default "" -}}
+  {{- if not (findRE "^[0-9a-f]{40}$" $source) -}}
+    {{- errorf "Foundry %q missing a pinned public README blob" $id -}}
+  {{- end -}}
+  {{- $date := $work.source_verified_on | default "" -}}
+  {{- if not (findRE "^20[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$" $date) -}}
+    {{- errorf "Foundry %q has no valid public-source review date" $id -}}
+  {{- end -}}
+
+  {{- if not (in $categories ($work.category | default "")) -}}
+    {{- errorf "Foundry %q has unknown presentation category" $id -}}
+  {{- end -}}
+
+  {{- $repo := $work.repo | default "" -}}
+  {{- if ne $repo (printf "https://github.com/sguzman/%s" $id) -}}
+    {{- errorf "Foundry %q repository link is not its reviewed public identity" $id -}}
+  {{- end -}}
+
+  {{- with $work.details -}}
+    {{- if ne . (printf "/projects/%s/" $id) -}}
+      {{- errorf "Foundry %q has invalid detail link" $id -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- range $field := slice "name" "kicker" "tagline" "description" -}}
+    {{- $text := index $work $field | default "" -}}
+    {{- if or (not $text) (in $text "<") (in $text ">") -}}
+      {{- errorf "Foundry %q has empty or markup-bearing field %q" $id $field -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if or (not $work.stack) (eq (len $work.stack) 0) -}}
+    {{- errorf "Foundry %q needs reviewed technology labels" $id -}}
+  {{- end -}}
+  {{- range $work.stack -}}
+    {{- if or (not .) (in . "<") (in . ">") -}}
+      {{- errorf "Foundry %q has invalid technology label" $id -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
