@@ -1,19 +1,138 @@
-{{ define "title" }}
-  {{ title (i18n (lower .Title)) | default .Title }} · {{ .Site.Title }}
-{{ end }}
+{{ define "title" }}Foundry — Software & experiments · {{ .Site.Title }}{{ end }}
 
 {{ define "content" }}
-  <section class="container page">
-    <article>
-      <header>
-        <h1 class="title">
-          <a class="title-link" href="{{ .Permalink | safeURL }}">
-            {{ title (i18n (lower .Title)) | default .Title }}
-          </a>
-        </h1>
-      </header>
-      {{ .Content }}
-    </article>
-  </section>
-  <script defer src="/js/projects.js"></script>
+{{- $works := .Site.Data.foundry_public.projects | default (slice) -}}
+{{- $featured := where $works "feature" true -}}
+{{- $other := where $works "feature" false -}}
+<main class="foundry" id="foundry-top">
+  <div class="foundry-frame">
+    <header class="foundry-masthead">
+      <a href="#foundry-top" class="foundry-mark" aria-label="Foundry, back to top">
+        <span class="foundry-mark-symbol" aria-hidden="true">F<span>.</span></span>
+        <span class="foundry-mark-caption">INDEPENDENT SOFTWARE<br>AND COMPUTATIONAL WORKS</span>
+      </a>
+      <div class="foundry-masthead-meta" aria-label="Exhibition information">
+        <span>SELECTED PUBLIC WORKS</span>
+        <span>AN ONGOING EXHIBITION</span>
+      </div>
+    </header>
+
+    <section class="foundry-intro" aria-labelledby="foundry-title">
+      <div class="foundry-intro-aside">
+        <span class="foundry-vertical-line" aria-hidden="true"></span>
+        <span>ENGINEERING / INTERFACES / RESEARCH</span>
+      </div>
+      <div class="foundry-intro-main">
+        <p class="foundry-eyebrow"><span class="foundry-status-dot" aria-hidden="true"></span> PROJECT EXHIBITION / 001</p>
+        <h1 id="foundry-title">Made to<br><em>work.</em></h1>
+        <div class="foundry-intro-footer">
+          <p>Original software, unusual instruments, and experiments in making complicated things usable. Built with curiosity, documented with evidence.</p>
+          <a class="foundry-scroll-link" href="#foundry-featured">EXPLORE THE WORK <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="foundry-section" id="foundry-featured" aria-labelledby="foundry-featured-title">
+      <div class="foundry-section-head">
+        <div>
+          <p class="foundry-eyebrow">01 / THE WORKBENCH</p>
+          <h2 id="foundry-featured-title">Selected studies<span class="foundry-accent">.</span></h2>
+        </div>
+        <p class="foundry-section-note">Detailed enough to reward a closer look. No metrics masquerading as merit.</p>
+      </div>
+
+      <div class="foundry-feature-grid">
+        {{- range $featured }}
+        <article class="foundry-feature" data-foundry-card data-foundry-category="{{ .category | lower }}" data-foundry-search="{{ printf "%s %s %s %s" .name .tagline .description (delimit .stack " ") | lower }}">
+          <div class="foundry-feature-art" aria-hidden="true">
+            <div class="foundry-art-grid"></div>
+            <span class="foundry-art-disc"></span>
+            <span class="foundry-art-cross cross-a">+</span>
+            <span class="foundry-art-cross cross-b">+</span>
+            <span class="foundry-art-line art-line-a"></span>
+            <span class="foundry-art-line art-line-b"></span>
+            <span class="foundry-art-label">VISUAL STUDY / NOT A PRODUCT CAPTURE</span>
+          </div>
+          <div class="foundry-feature-body">
+            <div class="foundry-feature-top">
+              <span>{{ .kicker }}</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+            <h3>{{ .name }}</h3>
+            <p class="foundry-feature-tagline">{{ .tagline }}</p>
+            <p class="foundry-feature-desc">{{ .description }}</p>
+            <ul class="foundry-stack" aria-label="Technologies">
+              {{- range .stack }}<li>{{ . }}</li>{{ end }}
+            </ul>
+            <div class="foundry-card-actions">
+              <a href="{{ .repo }}" target="_blank" rel="noopener noreferrer" aria-label="Open {{ .name }} source repository">SOURCE <span aria-hidden="true">↗</span></a>
+              {{- with .details }}<a href="{{ . | relURL }}">DETAILS <span aria-hidden="true">→</span></a>{{ end }}
+            </div>
+          </div>
+        </article>
+        {{- end }}
+      </div>
+    </section>
+
+    <section class="foundry-section foundry-index-section" aria-labelledby="foundry-index-title" id="foundry-index">
+      <div class="foundry-section-head">
+        <div>
+          <p class="foundry-eyebrow">02 / INDEX OF WORKS</p>
+          <h2 id="foundry-index-title">Browse the collection<span class="foundry-accent">.</span></h2>
+        </div>
+        <p class="foundry-section-note">Each entry links to its public source. The exhibition will grow as verified artifacts become ready.</p>
+      </div>
+
+      <div class="foundry-index-toolbar">
+        <div class="foundry-search-wrap">
+          <label for="foundry-search">FIND A PROJECT</label>
+          <input id="foundry-search" type="search" placeholder="Search names, ideas, or tools" autocomplete="off">
+        </div>
+        <fieldset class="foundry-filters" aria-label="Filter by discipline">
+          <legend>DISCIPLINE</legend>
+          <button type="button" data-foundry-filter="all" aria-pressed="true" class="is-active">All</button>
+          <button type="button" data-foundry-filter="desktop" aria-pressed="false">Desktop</button>
+          <button type="button" data-foundry-filter="systems" aria-pressed="false">Systems</button>
+          <button type="button" data-foundry-filter="tools" aria-pressed="false">Tools</button>
+          <button type="button" data-foundry-filter="research" aria-pressed="false">Research</button>
+          <button type="button" data-foundry-filter="web" aria-pressed="false">Web</button>
+        </fieldset>
+      </div>
+
+      <p class="foundry-results" id="foundry-results" aria-live="polite">Showing {{ len $works }} publicly sourced works</p>
+
+      <div class="foundry-index" id="foundry-index-grid">
+        {{- range $index, $work := $works }}
+        <article class="foundry-index-item" data-foundry-card data-foundry-category="{{ .category | lower }}" data-foundry-search="{{ printf "%s %s %s %s" .name .tagline .description (delimit .stack " ") | lower }}">
+          <div class="foundry-index-number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</div>
+          <div class="foundry-index-content">
+            <span class="foundry-index-kicker">{{ .kicker }} / {{ .category }}</span>
+            <h3>{{ .name }}</h3>
+            <p class="foundry-index-tagline">{{ .tagline }}</p>
+            <p class="foundry-index-description">{{ .description }}</p>
+            <div class="foundry-index-bottom">
+              <ul class="foundry-stack" aria-label="Technologies">{{ range .stack }}<li>{{ . }}</li>{{ end }}</ul>
+              <div class="foundry-index-links">
+                {{- with .details }}<a href="{{ . | relURL }}">DETAILS <span aria-hidden="true">→</span></a>{{ end }}
+                <a href="{{ .repo }}" target="_blank" rel="noopener noreferrer" aria-label="Open {{ .name }} source repository">SOURCE <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+        {{- end }}
+      </div>
+      <p class="foundry-empty" id="foundry-empty" hidden>No matching projects. Try a different search or discipline.</p>
+    </section>
+
+    <footer class="foundry-footer">
+      <div class="foundry-footer-word">BUILD<br><span>ANYWAY.</span></div>
+      <div class="foundry-footer-aside">
+        <span>ENGINEERING, WITHOUT GATEKEEPERS.</span>
+        <p>Independently developed software. Sources and limitations are the record; popularity is not the measure.</p>
+        <a href="#foundry-top">BACK TO THE TOP ↑</a>
+      </div>
+    </footer>
+  </div>
+</main>
+<script defer src="{{ "js/foundry.js" | relURL }}"></script>
 {{ end }}
