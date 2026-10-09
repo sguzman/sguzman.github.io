@@ -71,8 +71,11 @@ fi
 require_text "$root" 'id="foundry-index-toolbar"'
 require_text "$root" 'js/foundry.js'
 
-if grep -Ei 'source_projectarium_revision|taria/projectarium/|publication_authority|cohort_id|/mnt/data/' "$root" >/dev/null; then
-  echo "ERROR: private-only marker leaked into the public project index" >&2
+# Audit every generated text artifact, not just the index. Hidden DOM and JSON
+# payloads are public too; CSS/JS hiding does not constitute privacy.
+if grep -RIE --include='*.html' --include='*.css' --include='*.js' --include='*.json' --include='*.xml' \
+  'source_projectarium_revision|taria/projectarium/|publication_authority|cohort_id|/mnt/data/' "$output" >/dev/null; then
+  echo "ERROR: private-only marker found in generated site output" >&2
   exit 1
 fi
 
