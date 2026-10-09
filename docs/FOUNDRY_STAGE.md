@@ -22,8 +22,10 @@ A future import path must accept only *explicitly authorized public presentation
 - `scripts/check_foundry.mjs`: zero-dependency Node static privacy, evidence/link, route-guard, stylesheet, source-workflow, and JavaScript syntax checks;
 - `scripts/test_foundry_contract.mjs`: offline rejection fixtures for private keys/paths, malformed TOML, missing source evidence, bad URLs, duplicate IDs and injected markup;
 - `scripts/test_foundry_ui.mjs`: zero-dependency mocked-DOM behavioral test that evaluates the actual Foundry browser script against the real public sample, including search, empty state, filtering and reset;
-- `scripts/verify_foundry.sh`: runs both Node checks, real Hugo generation in a temporary directory and checks generated project index/legacy routes for private markers.
+- `scripts/verify_foundry.sh`: runs three Node checks, builds real Hugo output into a temporary directory, verifies the built stylesheet and all existing nested project section routes, and checks the gallery index for private markers.
 - `hugo.toml`: registers the stylesheet through Hugo Coder's `assets/` custom CSS pipeline.
+
+The public index remains fully browseable without JavaScript. Search/category controls stay hidden until the browser script has attached functioning listeners; keyboard users can skip the long intro via a focus-visible link to the index. The offline UI harness verifies progressive filter initialization, initial results, filtering, empty state and reset.
 
 The design's featured geometry/art shapes are **CSS editorial studies explicitly labeled “NOT A PRODUCT CAPTURE”**. They are not generated or invented application screenshots.
 
@@ -56,7 +58,9 @@ Source-level validation performed through GitHub on 2026-10-09 (later stages add
 
 **Executed in the assistant's isolated JavaScript environment on 2026-10-09:** the **exact committed** strict manifest validator accepted all 12 staged records and rejected nine injected invalid variants; the **exact committed** browser filter code passed five behavior checks with a simulated document. A malformed HTML-tag regex was discovered in the first execution and corrected before passing.
 
-**Still not executed as Node shell commands in a real checkout:** `node scripts/check_foundry.mjs`, `node scripts/test_foundry_contract.mjs`, `node scripts/test_foundry_ui.mjs`, the real Hugo build, screenshot/mobile browser QA, and accessibility tests. The independent execution above is valuable verification but does not replace the full `bash scripts/verify_foundry.sh` gate. The current assistant tool container has Chromium and Node, but no Hugo executable or network route to clone the repository, and a tool-based static review is not a substitute for those missing gates. A Codex implementation worker should run the normal checks inside a disposable checkout before the branch is considered mergeable.
+**After the follow-up changes**, direct evaluation of the exact committed browser script and fixture validator in the tool's isolated JavaScript runtime confirmed all 12 records plus the progressive-toolbar, empty-query, Tools-category and reset behaviors. The execution is still not a full Hugo page or browser render.
+
+**Still not executed as Node shell commands in a real checkout:** `node scripts/check_foundry.mjs`, `node scripts/test_foundry_contract.mjs`, `node scripts/test_foundry_ui.mjs`, the real Hugo build, screenshot/mobile browser QA, and accessibility tests. The independent execution above is valuable verification but does not replace the full `bash scripts/verify_foundry.sh` gate. The current assistant tool container has Chromium and Node, but no Hugo executable or network route to clone the repository, and a tool-based static review is not a substitute for those missing gates. A Codex implementation worker should run the normal checks inside a disposable checkout before the branch is considered mergeable. This assistant container's managed Chromium additionally blocks navigation to local HTTP test pages with `ERR_BLOCKED_BY_ADMINISTRATOR`, so direct live-browser QA cannot be claimed in this runtime. No attempt should be made to evade that environment policy.
 
 ## Expected follow-ups
 
