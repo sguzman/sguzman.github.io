@@ -11,6 +11,7 @@
   if (!toolbar || !index || !search || !count || !empty || !filters.length) return;
 
   const cards = Array.from(index.querySelectorAll(".foundry-index-item[data-foundry-card]"));
+  const groups = Array.from(index.querySelectorAll("[data-foundry-group]"));
   let category = "all";
 
   function render() {
@@ -25,6 +26,11 @@
       const show = matchesCategory && matchesText;
       card.hidden = !show;
       if (show) visible += 1;
+    }
+
+    for (const group of groups) {
+      const groupCards = Array.from(group.querySelectorAll(".foundry-index-item[data-foundry-card]"));
+      group.hidden = !groupCards.some((card) => !card.hidden);
     }
 
     index.classList.toggle("is-filtered", category !== "all" || !!query);
