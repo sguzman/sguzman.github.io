@@ -38,18 +38,43 @@ require_text "$root" "LanternLeaf"
 require_text "$root" "Morphos"
 require_text "$root" "NOT A PRODUCT CAPTURE"
 
-# Historical nested project section routes must not be replaced by the catalogue.
-for project in flatfekt fathrs cinegraph simurom; do
+# Every previously committed nested section route must retain its page and content.
+legacy_count=0
+while IFS= read -r -d '' source; do
+  project="${source#content/projects/}"
+  project="${project%/_index.md}"
   path="$output/projects/$project/index.html"
   require_file "$path"
   require_text "$path" "foundry-detail-article"
   require_text "$path" "BACK TO EXHIBITION"
-done
+  legacy_count=$((legacy_count + 1))
+done < <(find content/projects -mindepth 2 -maxdepth 2 -type f -name '_index.md' -print0)
+
+if ((legacy_count == 0)); then
+  echo "ERROR: no existing project detail sections were verified" >&2
+  exit 1
+fi
+
+# The theme must have emitted the actual Foundry CSS, not merely HTML class names.
+css_found=0
+while IFS= read -r -d '' stylesheet; do
+  if grep -Fq '.foundry-index' "$stylesheet" && grep -Fq '.foundry-feature' "$stylesheet"; then
+    css_found=1
+    break
+  fi
+done < <(find "$output" -type f -name '*.css' -print0)
+if ((css_found == 0)); then
+  echo "ERROR: generated website is missing the Foundry CSS asset" >&2
+  exit 1
+fi
+
+require_text "$root" 'id="foundry-index-toolbar"'
+require_text "$root" 'js/foundry.js'
 
 if grep -Ei 'source_projectarium_revision|taria/projectarium/|publication_authority|cohort_id|/mnt/data/' "$root" >/dev/null; then
   echo "ERROR: private-only marker leaked into the public project index" >&2
   exit 1
 fi
 
-echo "PASS: Foundry offline validation, public index render, nested legacy routes, and privacy scan."
+echo "PASS: Foundry offline checks, index render, $legacy_count existing project detail routes, built CSS asset, and privacy scan."
 echo "Still required before merge: automated Chromium/Firefox visual + keyboard/accessibility review."
