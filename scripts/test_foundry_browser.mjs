@@ -125,6 +125,13 @@ async function main() {
     check("three accessible editorial section headings", await page.locator(".foundry-index-group h3").count() === 3);
     check("all editorial groups are initially visible", await page.locator(".foundry-index-group:visible").count() === 3);
     check("real CSS applies Foundry surface", await page.locator(".foundry").evaluate((element) => getComputedStyle(element).backgroundColor) === "rgb(21, 24, 25)");
+    check("theme does not add masthead margins", await page.locator(".foundry-masthead").evaluate((element) => {
+      const computed = getComputedStyle(element);
+      return computed.marginTop === "0px" && computed.marginBottom === "0px";
+    }));
+    check("theme does not justify exhibit paragraphs", await page.locator(".foundry-feature-desc").first().evaluate(
+      (element) => getComputedStyle(element).textAlign === "left",
+    ));
     check("JavaScript enables the search toolbar", await page.locator("#foundry-index-toolbar").isVisible());
     check("source link remains available", await page.locator('a[href="https://github.com/sguzman/lantern-leaf"]').count() > 0);
     check("all seven flagship identities appear in the index", await page.locator(".foundry-index-item.is-flagship").count() === authored.entries.filter((item) => item.exhibit === "flagship").length);
@@ -169,6 +176,12 @@ async function main() {
       const response = await page.goto(origin + "/projects/" + name + "/", { waitUntil: "load" });
       check(name + " nested project route loads", response?.status() === 200);
       check(name + " content survives gallery redesign", await page.locator(".foundry-detail-article").count() === 1);
+      check(name + " document heading keeps Foundry typography", await page.locator(".foundry-detail-header h1").evaluate(
+        (element) => {
+          const style = getComputedStyle(element);
+          return parseFloat(style.fontSize) >= 50 && parseFloat(style.lineHeight) > 0;
+        },
+      ));
       check(name + " is not replaced with gallery", await page.locator(".foundry-index").count() === 0);
     }
 
