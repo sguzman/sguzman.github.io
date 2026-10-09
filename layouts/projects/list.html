@@ -131,9 +131,30 @@
       <p class="foundry-results" id="foundry-results" aria-live="polite">Showing {{ len $works }} publicly sourced works</p>
 
       <div class="foundry-index" id="foundry-index-grid">
-        {{- range $index, $work := $works }}
+        {{- $ordinal := 0 -}}
+        {{- range $tier := slice "flagship" "gallery" "historical" -}}
+        {{- $group := where $works "exhibit" $tier -}}
+        <section class="foundry-index-group" data-foundry-group="{{ $tier }}" aria-labelledby="foundry-group-{{ $tier }}">
+          <header class="foundry-index-group-head">
+            <div>
+              <p class="foundry-eyebrow">
+                {{- if eq $tier "flagship" }}A / FLAGSHIP WORK
+                {{- else if eq $tier "gallery" }}B / TOOLBOX AND STUDIES
+                {{- else }}C / ARCHIVE{{ end -}}
+              </p>
+              <h3 id="foundry-group-{{ $tier }}">
+                {{- if eq $tier "flagship" }}Foundational systems
+                {{- else if eq $tier "gallery" }}Other work
+                {{- else }}Earlier explorations{{ end -}}
+              </h3>
+            </div>
+            <span>{{ len $group }} WORKS</span>
+          </header>
+          <div class="foundry-index-items">
+            {{- range $index, $work := $group -}}
+            {{- $ordinal = add $ordinal 1 -}}
         <article class="foundry-index-item{{ if eq .exhibit "historical" }} is-historical{{ else if eq .exhibit "flagship" }} is-flagship{{ end }}" data-foundry-card data-foundry-exhibit="{{ .exhibit }}" data-foundry-category="{{ .category | lower }}" data-foundry-search="{{ printf "%s %s %s %s" .name .tagline .description (delimit .stack " ") | lower }}">
-          <div class="foundry-index-number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</div>
+          <div class="foundry-index-number" aria-hidden="true">{{ printf "%02d" $ordinal }}</div>
           <div class="foundry-index-content">
             <span class="foundry-index-kicker">{{ .kicker }} / {{ .category }}</span>
             {{- if eq .exhibit "historical" }}<span class="foundry-index-era">HISTORICAL EXHIBIT</span>{{ else if eq .exhibit "flagship" }}<span class="foundry-index-era is-flagship">FLAGSHIP STUDY</span>{{ end }}
@@ -149,6 +170,10 @@
             </div>
           </div>
         </article>
+
+            {{- end }}
+          </div>
+        </section>
         {{- end }}
       </div>
       <p class="foundry-empty" id="foundry-empty" hidden>No matching projects. Try a different search or discipline.</p>
