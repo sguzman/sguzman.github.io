@@ -314,8 +314,26 @@
   background: var(--f-orange); border-color: var(--f-orange); color: #151819;
 }
 .foundry-results { font: 600 12px/1.4 var(--f-mono); color: var(--f-muted); padding: 23px 0 17px; }
-.foundry-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--f-rule); }
-.foundry-index.is-filtered { grid-template-columns: 1fr; }
+.foundry-index { display: block; }
+.foundry-index-group { margin: 0 0 61px; }
+.foundry-index-group:last-child { margin-bottom: 0; }
+.foundry-index-group-head {
+  display: flex; justify-content: space-between; align-items: end; gap: 22px;
+  padding: 24px 0 18px; border-bottom: 1px solid var(--f-rule);
+}
+.foundry-index-group-head h3 {
+  font: 800 clamp(24px, 3.1vw, 40px)/1.2 var(--f-display);
+  letter-spacing: -.04em; margin-top: 10px;
+}
+.foundry-index-group-head > span {
+  color: var(--f-muted);
+  font: 700 11px/1.4 var(--f-mono);
+  flex: 0 0 auto;
+}
+.foundry-index-items {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.foundry-index.is-filtered .foundry-index-items { grid-template-columns: 1fr; }
 .foundry-index.is-filtered .foundry-index-item,
 .foundry-index.is-filtered .foundry-index-item:nth-child(even) {
   border-left: 0; padding-left: 0; padding-right: 0;
@@ -389,7 +407,7 @@
   .foundry-intro h1 { font-size: clamp(73px, 17vw, 115px); padding: 26px 0 35px; }
   .foundry-section { padding: 63px 0 78px; }
   .foundry-section-head { gap: 17px; margin-bottom: 30px; }
-  .foundry-feature-grid, .foundry-index { grid-template-columns: 1fr; }
+  .foundry-feature-grid, .foundry-index-items { grid-template-columns: 1fr; }
   .foundry-index-item, .foundry-index-item:nth-child(even) { border-left: 0; padding: 31px 0; grid-template-columns: 35px minmax(0, 1fr); }
   .foundry-feature-art { height: 240px; }
   .foundry-feature-body { padding: 26px; }
