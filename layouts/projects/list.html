@@ -59,6 +59,27 @@
             <span class="foundry-art-cross cross-b">+</span>
             <span class="foundry-art-line art-line-a"></span>
             <span class="foundry-art-line art-line-b"></span>
+            {{- if eq .id "lantern-leaf" }}
+            <div class="foundry-art-diagram foundry-art-diagram-reader">
+              <span class="foundry-diagram-source">EPUB / TEXT / MARKDOWN</span>
+              <div class="foundry-diagram-reading-lines">
+                <span></span><span></span><span class="is-active"></span><span></span><span></span>
+              </div>
+              <div class="foundry-diagram-speech">
+                <span class="foundry-diagram-audio">▂ ▆ █ ▃ ▇ ▅ ▂ ▆ ▄</span>
+                <span>SENTENCE-SYNCED SPEECH</span>
+              </div>
+            </div>
+            {{- else if eq .id "morphos" }}
+            <div class="foundry-art-diagram foundry-art-diagram-morphos">
+              <span class="foundry-diagram-source">SOURCE / SCENE.TOML</span>
+              <div class="foundry-diagram-geometry">
+                <span class="foundry-geometry-shape"></span>
+                <span class="foundry-geometry-label">EVALUATED GEOMETRY</span>
+              </div>
+              <span class="foundry-diagram-output">WORKSPACE → VIEWPORT → CLI</span>
+            </div>
+            {{- end }}
             <span class="foundry-art-label">VISUAL STUDY / NOT A PRODUCT CAPTURE</span>
           </div>
           <div class="foundry-feature-body">
