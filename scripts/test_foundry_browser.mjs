@@ -110,6 +110,9 @@ async function main() {
     check("root returns HTTP 200", rootResponse?.status() === 200);
     check("Hugo renders one Foundry main exhibition", await page.locator(".foundry:not(.foundry-detail)").count() === 1);
     check("two featured studies appear", await page.locator(".foundry-feature").count() === 2);
+    check("one semantic page heading", await page.locator(".foundry h1").count() === 1);
+    check("concept art is visibly not a screenshot", await page.locator(".foundry-art-label").filter({ hasText: "NOT A PRODUCT CAPTURE" }).count() === 2);
+    check("search control has an associated label", await page.locator('label[for="foundry-search"]').count() === 1);
     const count = await page.locator(".foundry-index-item").count();
     check("curated gallery contains twelve records", count === 12);
     check("real CSS applies Foundry surface", await page.locator(".foundry").evaluate((element) => getComputedStyle(element).backgroundColor) === "rgb(21, 24, 25)");
@@ -143,6 +146,9 @@ async function main() {
       check(label + " has no horizontal overflow", horizontalOverflow <= 2);
       await page.screenshot({ path: join(screenshotDir, "foundry-" + label + ".png"), fullPage: true });
     }
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    const motion = await page.locator(".foundry-feature").first().evaluate((node) => getComputedStyle(node).transitionDuration);
+    check("reduced-motion preference disables feature transitions", motion === "0s");
     check("browser JS reports no exceptions", errors.length === 0);
 
     for (const name of ["flatfekt", "fathrs", "cinegraph", "simurom"]) {
