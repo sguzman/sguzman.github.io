@@ -70,6 +70,8 @@ The Foundry staging catalogue now contains **30 manually written public-README-b
 
 The browser QA harness now derives record and feature counts from the same validated public fixture, rather than hard-coding the original 12-entry/two-feature design scaffold.
 
+The public catalogue is now explicitly curated into **seven flagships, 16 gallery works and seven historical exhibits**. This is public-facing presentation metadata authored from public repository evidence, not a private ontology export. Both the offline data validator and the normal Hugo build-time validator reject unknown tiers and featured/tier disagreements. The seven historical works carry a clearly visible `HISTORICAL EXHIBIT` marker; planned capabilities are not treated as executed implementations.
+
 **Keep the branch staged:** these additions are drafts for presentation and source reconciliation. They do not supersede the mandatory real Hugo build, rendered browser tests, rights-cleared artwork, and user acceptance of the final public gallery.
 
 ## 2026-10-09 hardening continuation
