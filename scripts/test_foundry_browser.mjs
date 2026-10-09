@@ -16,7 +16,14 @@ import { createServer } from "node:http";
 import { mkdir, mkdtemp, readFile, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { extname, resolve, sep, join } from "node:path";
+import { validateFoundryManifest } from "./foundry_contract.mjs";
 
+const authored = validateFoundryManifest(
+  await readFile(new URL("../data/foundry_public.toml", import.meta.url), "utf8"),
+);
+if (authored.problems.length) throw Error("Foundry catalogue invalid: " + authored.problems.join("; "));
+const expectedProjects = authored.entries.length;
+const expectedFeatured = authored.entries.filter((item) => item.feature === true).length;
 const root = resolve(process.argv[2] || "public");
 // Capture evidence by default in a new temporary folder; never in the public build.
 const screenshotDir = process.env.FOUNDRY_QA_DIR || await mkdtemp(join(tmpdir(), "foundry-qa-"));
@@ -109,12 +116,12 @@ async function main() {
     const rootResponse = await page.goto(origin + "/projects/", { waitUntil: "load" });
     check("root returns HTTP 200", rootResponse?.status() === 200);
     check("Hugo renders one Foundry main exhibition", await page.locator(".foundry:not(.foundry-detail)").count() === 1);
-    check("two featured studies appear", await page.locator(".foundry-feature").count() === 2);
+    check("featured studies appear", await page.locator(".foundry-feature").count() === expectedFeatured);
     check("one semantic page heading", await page.locator(".foundry h1").count() === 1);
-    check("concept art is visibly not a screenshot", await page.locator(".foundry-art-label").filter({ hasText: "NOT A PRODUCT CAPTURE" }).count() === 2);
+    check("concept art is visibly not a screenshot", await page.locator(".foundry-art-label").filter({ hasText: "NOT A PRODUCT CAPTURE" }).count() === expectedFeatured);
     check("search control has an associated label", await page.locator('label[for="foundry-search"]').count() === 1);
     const count = await page.locator(".foundry-index-item").count();
-    check("curated gallery contains twelve records", count === 12);
+    check("curated gallery contains all reviewed public records", count === expectedProjects);
     check("real CSS applies Foundry surface", await page.locator(".foundry").evaluate((element) => getComputedStyle(element).backgroundColor) === "rgb(21, 24, 25)");
     check("JavaScript enables the search toolbar", await page.locator("#foundry-index-toolbar").isVisible());
     check("source link remains available", await page.locator('a[href="https://github.com/sguzman/lantern-leaf"]').count() > 0);
@@ -166,7 +173,7 @@ async function main() {
     try {
       const fallback = await noJs.newPage();
       await fallback.goto(origin + "/projects/", { waitUntil: "load" });
-      check("no-JS mode retains all twelve entries", await fallback.locator(".foundry-index-item").count() === 12);
+      check("no-JS mode retains all reviewed records", await fallback.locator(".foundry-index-item").count() === expectedProjects);
       check("no-JS mode hides nonfunctional filters", await fallback.locator("#foundry-index-toolbar").isHidden());
       check("no-JS mode retains repository links", await fallback.locator('a[href="https://github.com/sguzman/morphos"]').count() > 0);
     } finally {
