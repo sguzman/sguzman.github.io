@@ -74,6 +74,9 @@ Not a private Taria/Projectarium export adapter. No private files are read.
     {{- if or (not $text) (in $text "<") (in $text ">") -}}
       {{- errorf "Foundry %q has empty or markup-bearing field %q" $id $field -}}
     {{- end -}}
+    {{- if findRE "(?i)(taria/projectarium|source_projectarium_revision|publication_authority|cohort_id|/mnt/data/)" $text -}}
+      {{- errorf "Foundry %q has a private-source marker in public field %q" $id $field -}}
+    {{- end -}}
   {{- end -}}
 
   {{- if or (not $work.stack) (eq (len $work.stack) 0) -}}
@@ -82,6 +85,9 @@ Not a private Taria/Projectarium export adapter. No private files are read.
   {{- range $work.stack -}}
     {{- if or (not .) (in . "<") (in . ">") -}}
       {{- errorf "Foundry %q has invalid technology label" $id -}}
+    {{- end -}}
+    {{- if findRE "(?i)(taria/projectarium|source_projectarium_revision|publication_authority|cohort_id|/mnt/data/)" . -}}
+      {{- errorf "Foundry %q has a private-source marker in technology labels" $id -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
