@@ -29,6 +29,14 @@
 .foundry *, .foundry *::before, .foundry *::after { box-sizing: border-box; }
 .foundry [hidden] { display: none !important; }
 .foundry a { color: inherit; text-decoration: none; }
+.foundry-skip {
+  position: absolute; z-index: 1000; left: 20px; top: 12px;
+  padding: 12px 17px; background: var(--f-orange); color: var(--f-bg) !important;
+  font: 700 13px/1.4 var(--f-mono);
+  transform: translateY(-160%); transition: transform .12s ease;
+}
+.foundry-skip:focus { transform: translateY(0); }
+
 .foundry a:focus-visible, .foundry button:focus-visible, .foundry input:focus-visible {
   outline: 3px solid var(--f-orange);
   outline-offset: 5px;
