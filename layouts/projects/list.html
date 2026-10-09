@@ -2,7 +2,13 @@
 
 {{ define "content" }}
 {{ if eq .RelPermalink "/projects/" }}
-{{- $works := .Site.Data.foundry_public.projects | default (slice) -}}
+{{- $catalogue := .Site.Data.foundry_public -}}
+{{- range $key, $_ := $catalogue -}}
+  {{- if ne $key "projects" -}}
+    {{- errorf "Foundry catalogue has forbidden top-level key %q" $key -}}
+  {{- end -}}
+{{- end -}}
+{{- $works := $catalogue.projects | default (slice) -}}
 {{- partial "foundry/validate.html" $works -}}
 {{- $featured := where $works "feature" true -}}
 <section class="foundry" id="foundry-top" aria-label="Software project exhibition">
