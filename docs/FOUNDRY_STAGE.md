@@ -14,7 +14,7 @@ A future import path must accept only *explicitly authorized public presentation
 
 ## Staged implementation
 
-- `layouts/projects/list.html`: responsive editorial index only at `/projects/`, seven featured public-source studies, a browseable project index, and a guarded legacy-page render branch that preserves all nested section `.Content`;
+- `layouts/projects/list.html`: responsive editorial index only at `/projects/`, two large lead studies (from seven public-source flagships), a browseable project index, and a guarded legacy-page render branch that preserves all nested section `.Content`;
 - `data/foundry_public.toml`: manually reviewed public-source demo copy only;
 - `assets/css/foundry.css`: scoped charcoal/steel/orange Foundry system, Lexend display, Atkinson Hyperlegible Next text, local Monaspace Neon or system mono fallback, and accessible long-form project page typography;
 - `static/js/foundry.js`: unobtrusive category/search controls using accessible buttons and a live result count;
@@ -49,7 +49,7 @@ Check that generated `public/projects/index.html` includes all publicly authored
 
 Source-level validation performed through GitHub on 2026-10-09 (later stages add pinned README blobs and nine more offline negative cases):
 
-- confirmed 30 unique public-source catalogue records and seven featured studies;
+- confirmed 30 unique public-source catalogue records and seven flagships;
 - pinned all 30 entries to observed public README blob SHAs, with review date;
 - added an independent offline public manifest parser with field whitelist and executable negative regression tests;
 - confirmed all link targets use public GitHub repositories and the template consumes only `foundry_public.toml`;
@@ -66,11 +66,11 @@ Source-level validation performed through GitHub on 2026-10-09 (later stages add
 
 ## 2026-10-09 public-source catalogue expansion
 
-The Foundry staging catalogue now contains **30 manually written public-README-based records**, including **seven featured studies**. Each record pins the exact public repository README blob observed through GitHub and states its source review date. This was a public-source editorial drafting pass, **not** an export from private Projectarium or a grant of release authority for private records. In particular: Starbyte is explicitly experimental; Chatarium's broader native account integration is prospective; Vessel coordinates third-party acquisition/ASR tools; the YouTube Channel Statistics specimen is presented as a historical topology proposal, not an independently demonstrated completed product.
+The Foundry staging catalogue now contains **30 manually written public-README-based records**, including **seven flagships** (two displayed as large lead studies). Each record pins the exact public repository README blob observed through GitHub and states its source review date. This was a public-source editorial drafting pass, **not** an export from private Projectarium or a grant of release authority for private records. In particular: Starbyte is explicitly experimental; Chatarium's broader native account integration is prospective; Vessel coordinates third-party acquisition/ASR tools; the YouTube Channel Statistics specimen is presented as a historical topology proposal, not an independently demonstrated completed product.
 
 The browser QA harness now derives record and feature counts from the same validated public fixture, rather than hard-coding the original 12-entry/two-feature design scaffold.
 
-The public catalogue is now explicitly curated into **seven flagships, 16 gallery works and seven historical exhibits**. This is public-facing presentation metadata authored from public repository evidence, not a private ontology export. Both the offline data validator and the normal Hugo build-time validator reject unknown tiers and featured/tier disagreements. The seven historical works carry a clearly visible `HISTORICAL EXHIBIT` marker; planned capabilities are not treated as executed implementations.
+The public catalogue is now explicitly curated into **seven flagships, 16 gallery works and seven historical exhibits**. This is public-facing presentation metadata authored from public repository evidence, not a private ontology export. Both the offline data validator and the normal Hugo build-time validator reject unknown tiers and featured/tier disagreements. The seven historical works carry a clearly visible `HISTORICAL EXHIBIT` marker; flagships carry a `FLAGSHIP STUDY` marker, while only LanternLeaf and Morphos occupy the larger lead-study panels. Planned capabilities are not treated as executed implementations.
 
 **Keep the branch staged:** these additions are drafts for presentation and source reconciliation. They do not supersede the mandatory real Hugo build, rendered browser tests, rights-cleared artwork, and user acceptance of the final public gallery.
 
