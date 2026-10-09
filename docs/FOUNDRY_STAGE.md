@@ -21,6 +21,7 @@ A future import path must accept only *explicitly authorized public presentation
 - `scripts/foundry_contract.mjs`: narrow, fail-closed parser and whitelist for staging's public-only TOML fields; every record pins the public README's Git blob and review date;
 - `scripts/check_foundry.mjs`: zero-dependency Node static privacy, evidence/link, route-guard, stylesheet, source-workflow, and JavaScript syntax checks;
 - `scripts/test_foundry_contract.mjs`: offline rejection fixtures for private keys/paths, malformed TOML, missing source evidence, bad URLs, duplicate IDs and injected markup;
+- `scripts/test_foundry_ui.mjs`: zero-dependency mocked-DOM behavioral test that evaluates the actual Foundry browser script against the real public sample, including search, empty state, filtering and reset;
 - `scripts/verify_foundry.sh`: runs both Node checks, real Hugo generation in a temporary directory and checks generated project index/legacy routes for private markers.
 - `hugo.toml`: registers the stylesheet through Hugo Coder's `assets/` custom CSS pipeline.
 
@@ -53,7 +54,9 @@ Source-level validation performed through GitHub on 2026-10-09 (later stages add
 - counted Hugo template opening/closing directives without mismatch;
 - confirmed **main** still points at `29197cdbf499b495fc58f5081cf0d5cbf76e5f9a`.
 
-**Not yet executed here:** the new Node static checker and mutation tests as actual processes, a real Hugo build, screenshot/mobile browser QA, and automated functional accessibility tests. The earlier connector-side static reviews did pass, but do not substitute for an executable build/test run. The current assistant tool container has Chromium and Node, but no Hugo executable or network route to clone the repository, and a tool-based static review is not a substitute for those missing gates. A Codex implementation worker should run the normal checks inside a disposable checkout before the branch is considered mergeable.
+**Executed in the assistant's isolated JavaScript environment on 2026-10-09:** the **exact committed** strict manifest validator accepted all 12 staged records and rejected nine injected invalid variants; the **exact committed** browser filter code passed five behavior checks with a simulated document. A malformed HTML-tag regex was discovered in the first execution and corrected before passing.
+
+**Still not executed as Node shell commands in a real checkout:** `node scripts/check_foundry.mjs`, `node scripts/test_foundry_contract.mjs`, `node scripts/test_foundry_ui.mjs`, the real Hugo build, screenshot/mobile browser QA, and accessibility tests. The independent execution above is valuable verification but does not replace the full `bash scripts/verify_foundry.sh` gate. The current assistant tool container has Chromium and Node, but no Hugo executable or network route to clone the repository, and a tool-based static review is not a substitute for those missing gates. A Codex implementation worker should run the normal checks inside a disposable checkout before the branch is considered mergeable.
 
 ## Expected follow-ups
 
