@@ -96,6 +96,14 @@ Public presentation uses only **two large lead studies**, with badges distinguis
 
 **Unresolved release gates:** Hugo site compilation in a real checkout, actual Chromium rendered-page QA, visual screenshot review, third-party artwork/license review, final editorial/design approval, and a separate authorized production promotion. No private source or GitHub-hosted private runner was used.
 
+## 2026-10-09 editorial index grouping
+
+The 30 publicly sourced works are now rendered in **three distinct, accessible index sections** rather than a single uninterrupted grid: 7 flagship systems, 16 other works, and 7 earlier explorations. Search and discipline filtering remove an empty section heading when all its cards are filtered away. With JavaScript disabled, all three groups and all links remain visible.
+
+The actual committed filter script was executed with simulated DOM sections populated from the 30-record public catalogue. **Twelve checks passed**, covering toolbar activation, counts, empty search, empty-section removal, category filtering, restoration, Hugo structural balance, CSS selectors and the updated regression harness. The local Playwright QA script has corresponding tests for real rendered section headings and no-JavaScript fallback; it remains **unexecuted as a real browser run** here.
+
+A fresh environment assessment confirms `git`, `node` and `chromium` are present but the container has no `hugo` binary and cannot resolve github.com for a remote clone. No actions were run, no public build or deploy was attempted, and these constraints remain marked as blockers rather than silently bypassed. Run `bash scripts/verify_foundry.sh` in a disposable checkout where Hugo and Playwright are already available (agent-owned QA, not owner manual work).
+
 ## Expected follow-ups
 
 1. Run the single offline build and browser QA command through Codex or another implementation worker, not manual owner testing, then inspect all produced screenshots and any failures.
