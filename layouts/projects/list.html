@@ -137,13 +137,32 @@
 </section>
 <script defer src="{{ "js/foundry.js" | relURL }}"></script>
 {{ else }}
-<section class="container page">
-  <article>
-    <header>
-      <h1 class="title"><a class="title-link" href="{{ .Permalink | safeURL }}">{{ .Title }}</a></h1>
+<section class="foundry foundry-detail" aria-label="Project notes">
+  <div class="foundry-frame">
+    <nav class="foundry-detail-nav" aria-label="Project navigation">
+      <a href="{{ "/projects/" | relURL }}"><span aria-hidden="true">←</span> BACK TO EXHIBITION</a>
+      <span>SOFTWARE / PROJECT NOTES</span>
+    </nav>
+    <header class="foundry-detail-header">
+      <p class="foundry-eyebrow">{{ if in .RawContent "GENERATED: scripts/update_project_readmes.py" }}REPOSITORY-DERIVED NOTES{{ else }}PROJECT DOCUMENTATION{{ end }}</p>
+      <h1>{{ .Title }}</h1>
+      {{- with .Description }}<p class="foundry-detail-subtitle">{{ . }}</p>{{ end }}
     </header>
-    {{ .Content }}
-  </article>
+    <div class="foundry-detail-main">
+      <aside class="foundry-detail-context">
+        <div class="foundry-detail-accent" aria-hidden="true"></div>
+        <strong>DOCUMENT RECORD</strong>
+        <p>This page preserves its existing project notes. The Foundry index is a separately edited exhibition, not proof that every historical claim here remains current.</p>
+        <a href="{{ "/projects/" | relURL }}">VIEW THE COLLECTION <span aria-hidden="true">↗</span></a>
+      </aside>
+      <article class="foundry-detail-article">
+        {{ .Content }}
+      </article>
+    </div>
+    <footer class="foundry-detail-footer">
+      <a href="{{ "/projects/" | relURL }}"><span aria-hidden="true">←</span> ALL PROJECTS</a>
+    </footer>
+  </div>
 </section>
 {{ end }}
 {{ end }}
