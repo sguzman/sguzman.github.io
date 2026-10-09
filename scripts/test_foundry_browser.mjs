@@ -122,6 +122,8 @@ async function main() {
     check("search control has an associated label", await page.locator('label[for="foundry-search"]').count() === 1);
     const count = await page.locator(".foundry-index-item").count();
     check("curated gallery contains all reviewed public records", count === expectedProjects);
+    check("three accessible editorial section headings", await page.locator(".foundry-index-group h3").count() === 3);
+    check("all editorial groups are initially visible", await page.locator(".foundry-index-group:visible").count() === 3);
     check("real CSS applies Foundry surface", await page.locator(".foundry").evaluate((element) => getComputedStyle(element).backgroundColor) === "rgb(21, 24, 25)");
     check("JavaScript enables the search toolbar", await page.locator("#foundry-index-toolbar").isVisible());
     check("source link remains available", await page.locator('a[href="https://github.com/sguzman/lantern-leaf"]').count() > 0);
@@ -131,13 +133,16 @@ async function main() {
     await page.locator("#foundry-search").fill("no-project-will-match-9278");
     check("impossible query hides all results", await page.locator(".foundry-index-item:visible").count() === 0);
     check("empty-result notice becomes visible", await page.locator("#foundry-empty").isVisible());
+    check("no empty editorial headings remain", await page.locator(".foundry-index-group:visible").count() === 0);
     await page.locator("#foundry-search").fill("");
     await page.locator('[data-foundry-filter="tools"]').click();
     const toolsTotal = await page.locator('.foundry-index-item[data-foundry-category="tools"]').count();
     check("tools category filters precisely", await page.locator(".foundry-index-item:visible").count() === toolsTotal);
+    check("category filtering hides empty editorial groups", await page.locator('[data-foundry-group="flagship"]').isHidden());
     check("filter announces pressed state", await page.locator('[data-foundry-filter="tools"]').getAttribute("aria-pressed") === "true");
     await page.locator('[data-foundry-filter="all"]').click();
     check("All filter restores all records", await page.locator(".foundry-index-item:visible").count() === count);
+    check("All restores all three editorial headings", await page.locator(".foundry-index-group:visible").count() === 3);
 
     await page.locator(".foundry-skip").focus();
     check("skip link is keyboard-focusable", await page.evaluate(() => document.activeElement?.classList.contains("foundry-skip")));
@@ -176,6 +181,7 @@ async function main() {
       const fallback = await noJs.newPage();
       await fallback.goto(origin + "/projects/", { waitUntil: "load" });
       check("no-JS mode retains all reviewed records", await fallback.locator(".foundry-index-item").count() === expectedProjects);
+      check("no-JS mode retains all editorial headings", await fallback.locator(".foundry-index-group:visible").count() === 3);
       check("no-JS mode hides nonfunctional filters", await fallback.locator("#foundry-index-toolbar").isHidden());
       check("no-JS mode retains repository links", await fallback.locator('a[href="https://github.com/sguzman/morphos"]').count() > 0);
     } finally {
