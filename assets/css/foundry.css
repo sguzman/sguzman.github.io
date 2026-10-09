@@ -329,6 +329,15 @@
 }
 .foundry-index-number { font: 600 12px/1.3 var(--f-mono); color: var(--f-orange); padding-top: 4px; }
 .foundry-index-content { display: flex; flex-direction: column; min-width: 0; }
+.foundry-index-item.is-flagship {
+  background: linear-gradient(115deg, #2b322f65, transparent 65%);
+}
+.foundry-index-item.is-flagship .foundry-index-number { color: var(--f-orange); }
+.foundry-index-era.is-flagship {
+  color: var(--f-orange);
+  border-color: var(--f-orange);
+}
+
 .foundry-index-item.is-historical {
   background: linear-gradient(120deg, #25272062, transparent 68%);
 }
