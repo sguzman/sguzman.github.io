@@ -4,7 +4,7 @@
 {{- $works := .Site.Data.foundry_public.projects | default (slice) -}}
 {{- $featured := where $works "feature" true -}}
 {{- $other := where $works "feature" false -}}
-<main class="foundry" id="foundry-top">
+<section class="foundry" id="foundry-top" aria-label="Software project exhibition">
   <div class="foundry-frame">
     <header class="foundry-masthead">
       <a href="#foundry-top" class="foundry-mark" aria-label="Foundry, back to top">
@@ -133,6 +133,6 @@
       </div>
     </footer>
   </div>
-</main>
+</section>
 <script defer src="{{ "js/foundry.js" | relURL }}"></script>
 {{ end }}
