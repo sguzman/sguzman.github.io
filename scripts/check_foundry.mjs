@@ -24,6 +24,14 @@ const items = manifest.split(/^\[\[projects\]\]\s*$/m).slice(1);
 const field = (block, key) => block.match(new RegExp(`^${key} = "([^"\\n]+)"$`, "m"))?.[1];
 const ids = new Set();
 const allowedCategories = new Set(["Desktop", "Systems", "Tools", "Research", "Web"]);
+const allowedFields = new Set([
+  "id", "source_readme_blob", "source_verified_on",
+  "name", "category", "feature", "kicker", "tagline",
+  "description", "stack", "repo", "details",
+]);
+assert(!/^\[(?!\[projects\]\]$)/m.test(manifest),
+  "Unexpected TOML table header in public-only exhibit fixture.");
+
 
 assert(items.length > 0, "Public-source fixture must not be empty.");
 for (const [i, item] of items.entries()) {
@@ -31,6 +39,16 @@ for (const [i, item] of items.entries()) {
   assert(!!id && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id), `Invalid project ID #${i + 1}`);
   assert(!ids.has(id), `Duplicate project ID: ${id}`);
   ids.add(id);
+  const actualKeys = [...item.matchAll(/^([a-z][a-z0-9_]*)\s*=/gm)].map((m) => m[1]);
+  assert(new Set(actualKeys).size === actualKeys.length, `Duplicate TOML field in ${id}`);
+  for (const key of actualKeys) {
+    assert(allowedFields.has(key), `Unapproved public exhibit field ${key} in ${id}`);
+  }
+  const sourceBlob = field(item, "source_readme_blob") || "";
+  assert(/^[0-9a-f]{40}$/.test(sourceBlob), `No pinned public README Git blob in ${id}`);
+  const verifiedOn = field(item, "source_verified_on") || "";
+  assert(/^20\d\d-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/.test(verifiedOn),
+    `Missing source review date in ${id}`);
   for (const name of ["name", "tagline", "description", "kicker", "repo", "category"]) {
     assert(!!field(item, name), `Missing or malformed ${name} in ${id}`);
   }
