@@ -18,7 +18,10 @@ A future import path must accept only *explicitly authorized public presentation
 - `data/foundry_public.toml`: manually reviewed public-source demo copy only;
 - `assets/css/foundry.css`: scoped charcoal/steel/orange Foundry system, Lexend display, Atkinson Hyperlegible Next text, local Monaspace Neon or system mono fallback, and accessible long-form project page typography;
 - `static/js/foundry.js`: unobtrusive category/search controls using accessible buttons and a live result count;
-- `scripts/check_foundry.mjs`: zero-dependency Node static privacy, data/link, route-guard, stylesheet, source-workflow, and JavaScript syntax checks;
+- `scripts/foundry_contract.mjs`: narrow, fail-closed parser and whitelist for staging's public-only TOML fields; every record pins the public README's Git blob and review date;
+- `scripts/check_foundry.mjs`: zero-dependency Node static privacy, evidence/link, route-guard, stylesheet, source-workflow, and JavaScript syntax checks;
+- `scripts/test_foundry_contract.mjs`: offline rejection fixtures for private keys/paths, malformed TOML, missing source evidence, bad URLs, duplicate IDs and injected markup;
+- `scripts/verify_foundry.sh`: runs both Node checks, real Hugo generation in a temporary directory and checks generated project index/legacy routes for private markers.
 - `hugo.toml`: registers the stylesheet through Hugo Coder's `assets/` custom CSS pipeline.
 
 The design's featured geometry/art shapes are **CSS editorial studies explicitly labeled “NOT A PRODUCT CAPTURE”**. They are not generated or invented application screenshots.
@@ -32,24 +35,25 @@ Until the source is tested using a real Hugo build, **do not fast-forward or mer
 Manual-free QA target for an implementation agent in a disposable checkout (not a task for the site owner):
 
 ```sh
-node scripts/check_foundry.mjs
-hugo --minify
+bash scripts/verify_foundry.sh
 ```
 
 Check that generated `public/projects/index.html` includes all publicly authored cards, correct source URLs, loaded `foundry.css` asset, working filtered/empty states, and zero private Projectarium files. **Critically, inspect multiple existing nested section routes** such as `/projects/flatfekt/` and `/projects/fathrs/`: their existing long-form content must still render and existing URLs must not redirect to the catalogue. Also test narrow mobile, browser zoom, keyboard navigation, screen reader headings, full UTF-8 labels and reduced motion.
 
 ## Current remote review
 
-Source-level validation performed through GitHub on 2026-10-09:
+Source-level validation performed through GitHub on 2026-10-09 (later stages add pinned README blobs and nine more offline negative cases):
 
 - confirmed 12 unique public-source fixture records and exactly two featured studies;
+- pinned all 12 entries to observed public README blob SHAs, with review date;
+- added an independent offline public manifest parser with field whitelist and executable negative regression tests;
 - confirmed all link targets use public GitHub repositories and the template consumes only `foundry_public.toml`;
 - confirmed the `/projects/` guard preserves nested `_index.md` project documents;
 - confirmed existing content, site navigation, home, and production Actions workflow are unchanged;
 - counted Hugo template opening/closing directives without mismatch;
 - confirmed **main** still points at `29197cdbf499b495fc58f5081cf0d5cbf76e5f9a`.
 
-**Not yet executed:** the new Node static checker as a process, a real Hugo build, screenshot/mobile browser QA, and automated functional accessibility tests. The current tool host has Chromium and Node, but no Hugo executable or network route to clone the repository, and a tool-based static review is not a substitute for those missing gates. A Codex implementation worker should run the normal checks inside a disposable checkout before the branch is considered mergeable.
+**Not yet executed here:** the new Node static checker and mutation tests as actual processes, a real Hugo build, screenshot/mobile browser QA, and automated functional accessibility tests. The earlier connector-side static reviews did pass, but do not substitute for an executable build/test run. The current assistant tool container has Chromium and Node, but no Hugo executable or network route to clone the repository, and a tool-based static review is not a substitute for those missing gates. A Codex implementation worker should run the normal checks inside a disposable checkout before the branch is considered mergeable.
 
 ## Expected follow-ups
 
