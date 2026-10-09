@@ -196,6 +196,11 @@
 }
 .foundry-results { font: 600 12px/1.4 var(--f-mono); color: var(--f-muted); padding: 23px 0 17px; }
 .foundry-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--f-rule); }
+.foundry-index.is-filtered { grid-template-columns: 1fr; }
+.foundry-index.is-filtered .foundry-index-item,
+.foundry-index.is-filtered .foundry-index-item:nth-child(even) {
+  border-left: 0; padding-left: 0; padding-right: 0;
+}
 .foundry-index-item {
   min-width: 0; display: grid; grid-template-columns: 45px minmax(0,1fr);
   gap: 8px; padding: 35px 28px 39px 0; border-bottom: 1px solid var(--f-rule);
