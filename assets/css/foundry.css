@@ -252,3 +252,94 @@
   .foundry-feature { transition: none; }
   .foundry-feature:hover { transform: none; }
 }
+
+
+/* Existing public project-page presentation: no content mutation. */
+.foundry-detail-nav {
+  border-bottom: 1px solid var(--f-rule); padding: 34px 0 27px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  font: 700 12px/1.4 var(--f-mono); letter-spacing: .04em;
+}
+.foundry-detail-nav a, .foundry-detail-footer a { color: var(--f-orange); }
+.foundry-detail-nav > span { color: var(--f-muted); }
+.foundry-detail-header {
+  padding: clamp(65px, 8vw, 122px) 0 65px;
+  border-bottom: 1px solid var(--f-rule);
+}
+.foundry-detail-header h1 {
+  font-weight: 800; font-size: clamp(50px, 8vw, 114px);
+  line-height: 1.05; letter-spacing: -.07em;
+  overflow-wrap: anywhere; padding-top: 24px;
+}
+.foundry-detail-subtitle {
+  font-size: clamp(19px, 2vw, 26px); font-weight: 500;
+  max-width: 830px; line-height: 1.52;
+  padding-top: 25px; color: var(--f-secondary) !important;
+}
+.foundry-detail-main {
+  display: grid; grid-template-columns: clamp(175px, 22%, 285px) minmax(0,1fr);
+  gap: clamp(32px, 5vw, 85px);
+  padding: 65px 0 125px;
+}
+.foundry-detail-context { color: var(--f-secondary); font-size: 15px; line-height: 1.6; }
+.foundry-detail-context .foundry-detail-accent { width: 45px; height: 3px; background: var(--f-orange); margin-bottom: 23px; }
+.foundry-detail-context strong { display: block; color: var(--f-paper); font: 700 12px/1.5 var(--f-mono); }
+.foundry-detail-context p { margin: 15px 0 25px; color: inherit; }
+.foundry-detail-context a {
+  color: var(--f-orange); border-bottom: 1px solid var(--f-orange);
+  display: inline-flex; gap: 14px; padding-bottom: 8px;
+  font: 700 11px/1.4 var(--f-mono);
+}
+.foundry-detail-article { min-width: 0; width: 100%; color: var(--f-secondary); }
+.foundry-detail-article > :first-child { margin-top: 0 !important; }
+.foundry-detail-article h2 {
+  font: 800 clamp(27px, 3vw, 41px)/1.22 var(--f-display);
+  letter-spacing: -.045em; color: var(--f-paper);
+  margin: 45px 0 18px; padding-top: 25px;
+  border-top: 1px solid var(--f-rule);
+}
+.foundry-detail-article h3, .foundry-detail-article h4 {
+  font: 700 clamp(20px, 2vw, 27px)/1.25 var(--f-display);
+  letter-spacing: -.025em; color: var(--f-paper); margin: 31px 0 13px;
+}
+.foundry-detail-article p, .foundry-detail-article li, .foundry-detail-article blockquote {
+  color: var(--f-secondary); font: 400 17px/1.74 var(--f-reading);
+}
+.foundry-detail-article p { margin: 16px 0; }
+.foundry-detail-article ul, .foundry-detail-article ol { padding-left: 1.6em; margin: 17px 0; }
+.foundry-detail-article li { margin: 7px 0; }
+.foundry-detail-article a { color: #ff9779; text-decoration: underline; text-underline-offset: 4px; }
+.foundry-detail-article a:hover { color: #ffc6b5; }
+.foundry-detail-article code {
+  color: #f6cfab; background: #28302e; padding: 1px 5px;
+  font: 500 14px/1.5 var(--f-mono); overflow-wrap: anywhere;
+}
+.foundry-detail-article pre {
+  background: #202626 !important; border: 1px solid var(--f-rule);
+  border-radius: 0; padding: 19px; overflow-x: auto;
+  font: 500 14px/1.65 var(--f-mono);
+}
+.foundry-detail-article pre code { background: transparent; padding: 0; white-space: pre; overflow-wrap: normal; }
+.foundry-detail-article blockquote {
+  border-left: 3px solid var(--f-orange); padding: 4px 0 4px 22px;
+  margin: 24px 0; background: transparent;
+}
+.foundry-detail-article img { max-width: 100%; height: auto; }
+.foundry-detail-article table {
+  width: 100%; border-collapse: collapse; display: block; overflow-x: auto;
+}
+.foundry-detail-article th, .foundry-detail-article td {
+  border: 1px solid var(--f-rule); padding: 11px 14px; text-align: left;
+  color: var(--f-secondary); font-size: 15px; vertical-align: top;
+}
+.foundry-detail-article th { color: var(--f-paper); background: #252b29; }
+.foundry-detail-footer {
+  border-top: 1px solid var(--f-rule); padding: 36px 0 70px;
+  font: 700 12px/1.4 var(--f-mono);
+}
+@media (max-width: 780px) {
+  .foundry-detail-main { display: flex; flex-direction: column; padding: 38px 0 72px; }
+  .foundry-detail-context { border-bottom: 1px solid var(--f-rule); padding-bottom: 26px; }
+  .foundry-detail-header { padding: 55px 0 45px; }
+  .foundry-detail-nav > span { display: none; }
+}
