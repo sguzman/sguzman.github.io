@@ -329,6 +329,22 @@
 }
 .foundry-index-number { font: 600 12px/1.3 var(--f-mono); color: var(--f-orange); padding-top: 4px; }
 .foundry-index-content { display: flex; flex-direction: column; min-width: 0; }
+.foundry-index-item.is-historical {
+  background: linear-gradient(120deg, #25272062, transparent 68%);
+}
+.foundry-index-item.is-historical .foundry-index-number { color: #d2a97e; }
+.foundry-index-era {
+  display: inline-block;
+  align-self: flex-start;
+  color: #ffbd9d;
+  font: 700 10px/1.25 var(--f-mono);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  border: 1px solid #a96f54;
+  padding: 6px 9px;
+  margin-top: 12px;
+}
+
 .foundry-index-kicker { color: var(--f-muted); font: 600 11px/1.35 var(--f-mono); text-transform: uppercase; letter-spacing: .035em; }
 .foundry-index-content h3 { font-size: clamp(30px, 3.1vw, 48px); line-height: 1.14; padding: 13px 0 10px; font-weight: 700; }
 .foundry-index-tagline { font-size: 18px; line-height: 1.45; font-weight: 700; }
