@@ -97,7 +97,7 @@ export function validateFoundryManifest(source) {
     }
     for (const key of ["name", "kicker", "tagline", "description"]) {
       const display = item[key] || "";
-      if (/<\\/?[a-z][^>]*>/i.test(display)) {
+      if (/<\/?[a-z][^>]*>/i.test(display)) {
         problems.push(`HTML markup not permitted in public ${key} on #${index + 1}.`);
       }
     }
