@@ -86,6 +86,16 @@ The public catalogue is now explicitly curated into **seven flagships, 16 galler
 - The paired CSS reader/geometry concept illustrations now convey mechanisms grounded in the already public README evidence, instead of purely decorative wireframe shapes.
 - **Build/browser evidence still pending:** this assistant runtime cannot clone GitHub and has no installed Hugo. Static and isolated-JavaScript checks do not equal a real Hugo/Chromium pass. The staging branch must not be merged on this evidence alone.
 
+## 2026-10-09 thirty-exhibit source audit
+
+The full public-only catalogue passed the strict committed validator with **30 distinct reviewed records** partitioned exactly **7 flagship / 16 gallery / 7 historical**. Unknown tiers, conflicting flagship flags, duplicate IDs and unapproved fields were deliberately injected and rejected.
+
+The gallery's **actual committed filtering JavaScript** was executed against a simulated DOM containing all 30 records: toolbar initialization, initial complete results, empty search, research category filtering and reset passed. Separately, the staged Playwright test module structurally parsed after replacing module-only `import`/`import.meta` syntax solely for the isolated JavaScript parser; this was **not** a Playwright execution.
+
+Public presentation uses only **two large lead studies**, with badges distinguishing all seven flagships and all seven historical exhibits in the index. Browser QA reads the expected 30-record and two-lead-study counts dynamically.
+
+**Unresolved release gates:** Hugo site compilation in a real checkout, actual Chromium rendered-page QA, visual screenshot review, third-party artwork/license review, final editorial/design approval, and a separate authorized production promotion. No private source or GitHub-hosted private runner was used.
+
 ## Expected follow-ups
 
 1. Run the single offline build and browser QA command through Codex or another implementation worker, not manual owner testing, then inspect all produced screenshots and any failures.
