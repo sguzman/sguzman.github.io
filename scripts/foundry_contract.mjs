@@ -8,15 +8,16 @@ export function validateFoundryManifest(source) {
   const entries = [];
   const allowed = new Set([
     "id", "source_readme_blob", "source_verified_on",
-    "name", "category", "feature", "kicker", "tagline",
+    "name", "category", "feature", "exhibit", "kicker", "tagline",
     "description", "stack", "repo", "details",
   ]);
   const required = [
     "id", "source_readme_blob", "source_verified_on",
-    "name", "category", "feature", "kicker",
+    "name", "category", "feature", "exhibit", "kicker",
     "tagline", "description", "stack", "repo",
   ];
   const categories = new Set(["Desktop", "Systems", "Tools", "Research", "Web"]);
+  const exhibits = new Set(["flagship", "gallery", "historical"]);
   const forbidden = /taria\/projectarium\/|source_projectarium_revision|publication_authority|cohort_id|\/mnt\/data\//i;
 
   if (forbidden.test(source)) problems.push("Private-source identifiers or paths in public fixture.");
@@ -108,6 +109,10 @@ export function validateFoundryManifest(source) {
     if (ids.has(id)) problems.push(`Duplicate Project ID: ${id}.`);
     ids.add(id);
     if (!categories.has(item.category)) problems.push(`Unsupported category on ${id}.`);
+    if (!exhibits.has(item.exhibit)) problems.push(`Unknown exhibit tier on ${id}.`);
+    if ((item.exhibit === "flagship") !== (item.feature === true)) {
+      problems.push(`Featured flag does not match exhibit tier on ${id}.`);
+    }
     if (!/^[0-9a-f]{40}$/.test(item.source_readme_blob || "")) {
       problems.push(`Missing pinned public README blob on ${id}.`);
     }
@@ -123,6 +128,14 @@ export function validateFoundryManifest(source) {
         !/^\/projects\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(item.details)) {
       problems.push(`Unsafe details path on ${id}.`);
     }
+  }
+
+  const tierCounts = Object.fromEntries(["flagship", "gallery", "historical"].map(
+    (tier) => [tier, entries.filter((entry) => entry.exhibit === tier).length],
+  ));
+  if (entries.length === 30 &&
+      (tierCounts.flagship !== 7 || tierCounts.gallery !== 16 || tierCounts.historical !== 7)) {
+    problems.push("Full Foundry exhibition must contain 7 flagship, 16 gallery, and 7 historical records.");
   }
 
   return { entries, problems };
