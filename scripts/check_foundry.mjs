@@ -16,6 +16,7 @@ const assert = (condition, message) => { if (!condition) errors.push(message); }
 
 const manifest = read("data/foundry_public.toml");
 const template = read("layouts/projects/list.html");
+const mandatoryHugoGuard = read("layouts/_partials/foundry/validate.html");
 const styles = read("assets/css/foundry.css");
 const script = read("static/js/foundry.js");
 const config = read("hugo.toml");
@@ -36,8 +37,17 @@ assert(template.includes('{{ if eq .RelPermalink "/projects/" }}'),
   "The template must guard the root index from nested project sections.");
 assert(template.includes("{{ .Content }}") && template.includes("{{ else }}"),
   "Existing nested project documents must render without replacement.");
-assert(template.includes(".Site.Data.foundry_public.projects"),
-  "The template may read only the public staging data.");
+assert(template.includes(".Site.Data.foundry_public"),
+  "The template must use the public staging catalogue.");
+assert(template.includes('partial "foundry/validate.html" $works'),
+  "Hugo must enforce the strict public catalogue validator during every build.");
+assert(template.includes('Foundry catalogue has forbidden top-level key'),
+  "Hugo must reject extra top-level data sections.");
+assert(mandatoryHugoGuard.includes('errorf "Foundry') &&
+  mandatoryHugoGuard.includes("forbidden field") &&
+  mandatoryHugoGuard.includes("pinned public README blob") &&
+  mandatoryHugoGuard.includes("duplicate public Project ID"),
+  "The mandatory Hugo validator is missing fundamental fail-closed checks.");
 assert(!/(?:\.Site\.Data\.projectarium|\.Site\.Data\.cohorts)/.test(template),
   "The public template must not consume private source data.");
 assert(template.includes("NOT A PRODUCT CAPTURE"),
