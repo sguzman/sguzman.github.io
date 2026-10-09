@@ -2,7 +2,7 @@
 
 **Status:** experimental branch. No public deployment authorized, no private data used, and no editorial/publication approval implied.
 
-Foundry is a proposed redesign of `/projects/`. The only changed section template is `layouts/projects/list.html`. The main site navigation, home page, existing project detail URLs, README sync logic, and source content are intentionally preserved.
+Foundry is a proposed redesign of `/projects/`. The changed section template is `layouts/projects/list.html`. It renders the Foundry exhibition **only** at `/projects/`, and wraps nested legacy project section pages with a readable Foundry document presentation while retaining their `.Content` verbatim. Main navigation, home page, detail URLs, README sync logic, and source content remain unchanged.
 
 ## Provenance and privacy
 
@@ -14,9 +14,9 @@ A future import path must accept only *explicitly authorized public presentation
 
 ## Staged implementation
 
-- `layouts/projects/list.html`: responsive editorial page, two featured public-source examples and a browseable project index;
+- `layouts/projects/list.html`: responsive editorial index only at `/projects/`, two featured public-source examples, a browseable project index, and a guarded legacy-page render branch that preserves all nested section `.Content`;
 - `data/foundry_public.toml`: manually reviewed public-source demo copy only;
-- `assets/css/foundry.css`: scoped charcoal/steel/orange Foundry system, Lexend display, Atkinson Hyperlegible Next text, local Monaspace Neon or system mono fallback;
+- `assets/css/foundry.css`: scoped charcoal/steel/orange Foundry system, Lexend display, Atkinson Hyperlegible Next text, local Monaspace Neon or system mono fallback, and accessible long-form project page typography;
 - `static/js/foundry.js`: unobtrusive category/search controls using accessible buttons and a live result count;
 - `hugo.toml`: registers the stylesheet through Hugo Coder's `assets/` custom CSS pipeline.
 
@@ -35,7 +35,7 @@ hugo --minify
 node --check static/js/foundry.js
 ```
 
-Check that the generated `public/projects/index.html` includes all publicly authored cards, correct source URLs, loaded `foundry.css` asset, working filtered/empty states, and zero private Projectarium files. Also test narrow mobile, browser zoom, keyboard navigation, screen reader headings, full UTF-8 labels, reduced motion, and existing `/projects/<slug>/` route continuity.
+Check that generated `public/projects/index.html` includes all publicly authored cards, correct source URLs, loaded `foundry.css` asset, working filtered/empty states, and zero private Projectarium files. **Critically, inspect multiple existing nested section routes** such as `/projects/flatfekt/` and `/projects/fathrs/`: their existing long-form content must still render and existing URLs must not redirect to the catalogue. Also test narrow mobile, browser zoom, keyboard navigation, screen reader headings, full UTF-8 labels and reduced motion.
 
 ## Expected follow-ups
 
