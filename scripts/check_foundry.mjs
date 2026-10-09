@@ -8,6 +8,7 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { validateFoundryManifest } from "./foundry_contract.mjs";
 
 const read = (name) => readFileSync(new URL(`../${name}`, import.meta.url), "utf8");
 const errors = [];
@@ -20,53 +21,16 @@ const script = read("static/js/foundry.js");
 const config = read("hugo.toml");
 const deployWorkflow = read(".github/workflows/pages.yml");
 
-const items = manifest.split(/^\[\[projects\]\]\s*$/m).slice(1);
-const field = (block, key) => block.match(new RegExp(`^${key} = "([^"\\n]+)"$`, "m"))?.[1];
-const ids = new Set();
-const allowedCategories = new Set(["Desktop", "Systems", "Tools", "Research", "Web"]);
-const allowedFields = new Set([
-  "id", "source_readme_blob", "source_verified_on",
-  "name", "category", "feature", "kicker", "tagline",
-  "description", "stack", "repo", "details",
-]);
-assert(!/^\[(?!\[projects\]\]$)/m.test(manifest),
-  "Unexpected TOML table header in public-only exhibit fixture.");
+const verdict = validateFoundryManifest(manifest);
+errors.push(...verdict.problems);
+const items = verdict.entries;
 
-
-assert(items.length > 0, "Public-source fixture must not be empty.");
-for (const [i, item] of items.entries()) {
-  const id = field(item, "id");
-  assert(!!id && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id), `Invalid project ID #${i + 1}`);
-  assert(!ids.has(id), `Duplicate project ID: ${id}`);
-  ids.add(id);
-  const actualKeys = [...item.matchAll(/^([a-z][a-z0-9_]*)\s*=/gm)].map((m) => m[1]);
-  assert(new Set(actualKeys).size === actualKeys.length, `Duplicate TOML field in ${id}`);
-  for (const key of actualKeys) {
-    assert(allowedFields.has(key), `Unapproved public exhibit field ${key} in ${id}`);
+for (const item of items) {
+  if (item.details) {
+    assert(existsSync(new URL(`../content${item.details}_index.md`, import.meta.url)),
+      `Missing existing detail page for ${item.id}`);
   }
-  const sourceBlob = field(item, "source_readme_blob") || "";
-  assert(/^[0-9a-f]{40}$/.test(sourceBlob), `No pinned public README Git blob in ${id}`);
-  const verifiedOn = field(item, "source_verified_on") || "";
-  assert(/^20\d\d-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/.test(verifiedOn),
-    `Missing source review date in ${id}`);
-  for (const name of ["name", "tagline", "description", "kicker", "repo", "category"]) {
-    assert(!!field(item, name), `Missing or malformed ${name} in ${id}`);
-  }
-  assert(allowedCategories.has(field(item, "category")), `Unsupported category in ${id}`);
-  const repository = field(item, "repo") || "";
-  assert(/^https:\/\/github\.com\/sguzman\/[A-Za-z0-9_.-]+$/.test(repository),
-    `Only explicitly authored public GitHub source URLs are allowed: ${id}`);
-  const details = field(item, "details");
-  if (details) {
-    assert(/^\/projects\/[a-z0-9-]+\/$/.test(details), `Unsafe detail URL in ${id}`);
-    assert(existsSync(new URL(`../content${details}_index.md`, import.meta.url)),
-      `Missing existing detail page for ${id}`);
-  }
-  assert(/^stack = \[[^\n]+\]$/m.test(item), `Missing display technology labels: ${id}`);
-  assert(/^feature = (?:true|false)$/m.test(item), `Missing Boolean feature marker: ${id}`);
 }
-assert(!/(?:taria\/projectarium\/|source_projectarium_revision|publication_authority|cohort_id|\/mnt\/data\/)/i.test(manifest),
-  "The staged public fixture must contain no private ontology, provenance, or filesystem paths.");
 
 assert(template.includes('{{ if eq .RelPermalink "/projects/" }}'),
   "The template must guard the root index from nested project sections.");
