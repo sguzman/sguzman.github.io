@@ -151,6 +151,117 @@
 .foundry-art-line { position: absolute; height: 1px; width: 82%; left: 9%; background: #a1b8ad6a; }
 .foundry-art-line.art-line-a { top: 50%; }
 .foundry-art-line.art-line-b { top: 50%; transform: rotate(90deg); }
+.foundry-art-diagram {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  width: min(78%, 425px);
+  padding: clamp(17px, 2.7vw, 28px);
+  border: 1px solid #85908a;
+  background: #151a19f2;
+  box-shadow: 17px 19px 0 #10131382;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.foundry-diagram-source,
+.foundry-diagram-output,
+.foundry-geometry-label,
+.foundry-diagram-speech > span:last-child {
+  font: 700 clamp(10px, 1vw, 12px)/1.35 var(--f-mono);
+  letter-spacing: .035em;
+}
+.foundry-diagram-source { color: #d8dfd7; }
+.foundry-diagram-reading-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  border-left: 2px solid #89958d;
+  padding: 3px 0 3px 15px;
+}
+.foundry-diagram-reading-lines span {
+  display: block;
+  height: 8px;
+  width: 94%;
+  background: #4e5b55;
+}
+.foundry-diagram-reading-lines span:nth-child(2) { width: 82%; }
+.foundry-diagram-reading-lines span:nth-child(4) { width: 90%; }
+.foundry-diagram-reading-lines span:nth-child(5) { width: 63%; }
+.foundry-diagram-reading-lines span.is-active {
+  width: 86%;
+  background: var(--f-orange);
+  box-shadow: 0 0 0 3px #f0643b28;
+}
+.foundry-diagram-speech {
+  border-top: 1px solid #626b65;
+  padding-top: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.foundry-diagram-audio {
+  color: var(--f-orange);
+  white-space: nowrap;
+  font: 700 clamp(16px, 2vw, 21px)/1 var(--f-mono);
+  letter-spacing: .015em;
+}
+.foundry-diagram-speech > span:last-child {
+  color: #d8dfd7;
+  text-align: right;
+  max-width: 140px;
+}
+.foundry-art-diagram-morphos {
+  border-color: #bdac8e;
+  background: #171d1beb;
+}
+.foundry-diagram-geometry {
+  min-height: clamp(72px, 9vw, 119px);
+  border: 1px solid #5e7067;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(120deg, transparent 49.8%, #5e70672e 50%, transparent 50.2%),
+    repeating-linear-gradient(0deg, transparent 0 21px, #5e706723 22px),
+    repeating-linear-gradient(90deg, transparent 0 21px, #5e706723 22px);
+}
+.foundry-geometry-shape {
+  display: block;
+  width: clamp(55px, 7vw, 87px);
+  height: clamp(55px, 7vw, 87px);
+  border: 2px solid var(--f-orange);
+  transform: rotate(-27deg) skew(12deg, 12deg);
+  box-shadow: 11px -9px 0 -1px #151a19, 13px -11px 0 1px #c2b9a7;
+}
+.foundry-geometry-label {
+  position: absolute;
+  bottom: 8px;
+  left: 9px;
+  padding: 3px 5px;
+  background: #151a19;
+  color: #d8dfd7;
+}
+.foundry-diagram-output {
+  border-top: 1px solid #626b65;
+  padding-top: 11px;
+  color: var(--f-orange);
+}
+@media (max-width: 670px) {
+  .foundry-art-diagram {
+    width: min(83%, 390px);
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  .foundry-diagram-reading-lines { gap: 7px; }
+  .foundry-diagram-reading-lines span { height: 6px; }
+  .foundry-diagram-speech { padding-top: 8px; }
+}
 .foundry-art-label {
   position: absolute; right: 19px; bottom: 17px; padding: 6px 9px;
   font: 600 10px/1.3 var(--f-mono); letter-spacing: .05em;
