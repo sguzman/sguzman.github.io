@@ -9,6 +9,7 @@ command -v hugo >/dev/null 2>&1 || { echo "ERROR: Hugo is required to verify the
 
 node scripts/check_foundry.mjs
 node scripts/test_foundry_contract.mjs
+node scripts/test_foundry_ui.mjs
 
 output="$(mktemp -d)"
 trap 'rm -rf "$output"' EXIT
