@@ -76,5 +76,9 @@ if grep -Ei 'source_projectarium_revision|taria/projectarium/|publication_author
   exit 1
 fi
 
+# Run real Chromium/Playwright QA on generated public-only output.
+# This is a required local release gate, not a hosted GitHub Actions job.
+node scripts/test_foundry_browser.mjs "$output"
+
 echo "PASS: Foundry offline checks, index render, $legacy_count existing project detail routes, built CSS asset, and privacy scan."
-echo "Still required before merge: automated Chromium/Firefox visual + keyboard/accessibility review."
+echo "Still required before deployment: artifact/design acceptance and any additional manual editorial rights approvals."
