@@ -22,12 +22,14 @@ A future import path must accept only *explicitly authorized public presentation
 - `scripts/check_foundry.mjs`: zero-dependency Node static privacy, evidence/link, route-guard, stylesheet, source-workflow, and JavaScript syntax checks;
 - `scripts/test_foundry_contract.mjs`: offline rejection fixtures for private keys/paths, malformed TOML, missing source evidence, bad URLs, duplicate IDs and injected markup;
 - `scripts/test_foundry_ui.mjs`: zero-dependency mocked-DOM behavioral test that evaluates the actual Foundry browser script against the real public sample, including search, empty state, filtering and reset;
-- `scripts/verify_foundry.sh`: runs three Node checks, builds real Hugo output into a temporary directory, verifies the built stylesheet and all existing nested project section routes, and checks the gallery index for private markers.
+- `layouts/_partials/foundry/validate.html`: **mandatory Hugo-build privacy and structural gate**, invoked inside the project-section template; it fails the build on unauthorized public-data keys, invalid identities, bad repository URLs, unpinned README evidence, duplicate IDs, invalid categories and malformed records;
+- `scripts/verify_foundry.sh`: runs three Node checks, builds real Hugo output into a temporary directory, verifies the built stylesheet and all existing nested project section routes, scans the gallery index for private markers, then runs real Chromium browser QA;
+- `scripts/test_foundry_browser.mjs`: local-only Playwright/Chromium verification of rendered Foundry styling, actual search/filter behavior, route preservation, desktop/tablet/mobile overflow, keyboard focus, no-JavaScript fallback and console errors. It blocks all nonlocal network requests. Evidence screenshots are automatically saved to a new temporary folder unless `FOUNDRY_QA_DIR` is supplied.
 - `hugo.toml`: registers the stylesheet through Hugo Coder's `assets/` custom CSS pipeline.
 
 The public index remains fully browseable without JavaScript. Search/category controls stay hidden until the browser script has attached functioning listeners; keyboard users can skip the long intro via a focus-visible link to the index. The offline UI harness verifies progressive filter initialization, initial results, filtering, empty state and reset.
 
-The design's featured geometry/art shapes are **CSS editorial studies explicitly labeled “NOT A PRODUCT CAPTURE”**. They are not generated or invented application screenshots.
+The two featured design illustrations are **source-grounded CSS architecture studies**: LanternLeaf's document / sentence-synced speech flow and Morphos's TOML / evaluated geometry flow. Both remain labeled **NOT A PRODUCT CAPTURE**. Neither is represented as an actual running-app screenshot.
 
 ## Build and release behavior
 
@@ -35,7 +37,7 @@ The existing `.github/workflows/pages.yml` only deploys when **`main`** receives
 
 Until the source is tested using a real Hugo build, **do not fast-forward or merge this branch into `main`**.
 
-Manual-free QA target for an implementation agent in a disposable checkout (not a task for the site owner):
+Manual-free QA target for an implementation agent in a disposable checkout (not a task for the site owner). The agent is responsible for installing/providing **Hugo**, **Node 22+**, **Playwright/Playwright Core** and **Chromium** locally, without relying on Actions or requesting routine manual owner QA:
 
 ```sh
 bash scripts/verify_foundry.sh
@@ -62,9 +64,18 @@ Source-level validation performed through GitHub on 2026-10-09 (later stages add
 
 **Still not executed as Node shell commands in a real checkout:** `node scripts/check_foundry.mjs`, `node scripts/test_foundry_contract.mjs`, `node scripts/test_foundry_ui.mjs`, the real Hugo build, screenshot/mobile browser QA, and accessibility tests. The independent execution above is valuable verification but does not replace the full `bash scripts/verify_foundry.sh` gate. The current assistant tool container has Chromium and Node, but no Hugo executable or network route to clone the repository, and a tool-based static review is not a substitute for those missing gates. A Codex implementation worker should run the normal checks inside a disposable checkout before the branch is considered mergeable. This assistant container's managed Chromium additionally blocks navigation to local HTTP test pages with `ERR_BLOCKED_BY_ADMINISTRATOR`, so direct live-browser QA cannot be claimed in this runtime. No attempt should be made to evade that environment policy.
 
+## 2026-10-09 hardening continuation
+
+- Corrected an important architecture defect: `scripts/check_foundry.mjs` alone could not protect the standard GitHub Pages deployment. The **normal Hugo template now invokes its own strict validator**, and even unrecognized top-level TOML keys trigger `errorf` in Hugo. Offline Node checks confirm the Hugo guard file and invocation exist.
+- Preserved functioning filtering as progressive enhancement: the toolbar is hidden until JavaScript initializes; a first focus-only skip link bypasses the introductory artwork.
+- Extended `verify_foundry.sh` from four sample legacy routes to **all current nested project sections**; it also requires real compiled Foundry CSS.
+- Added a real, local-only Playwright browser test to the release gate. It uses a temporary loopback HTTP server, intercepts external requests, produces responsive screenshots to a temporary path, and tests no-JavaScript behavior.
+- The paired CSS reader/geometry concept illustrations now convey mechanisms grounded in the already public README evidence, instead of purely decorative wireframe shapes.
+- **Build/browser evidence still pending:** this assistant runtime cannot clone GitHub and has no installed Hugo. Static and isolated-JavaScript checks do not equal a real Hugo/Chromium pass. The staging branch must not be merged on this evidence alone.
+
 ## Expected follow-ups
 
-1. Run build and browser QA through Codex or another implementation worker, not manual owner testing.
+1. Run the single offline build and browser QA command through Codex or another implementation worker, not manual owner testing, then inspect all produced screenshots and any failures.
 2. Replace CSS editorial-study art only with honest rights-cleared captures when ready.
 3. Refine layout/typography after a real rendered browser review.
 4. Add a versioned, fail-closed public catalogue release gate independently of the design.
