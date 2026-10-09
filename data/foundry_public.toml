@@ -5,6 +5,8 @@
 
 [[projects]]
 id = "lantern-leaf"
+source_readme_blob = "36a9880ca5ab770c4ab07bea18e559fa1540aebf"
+source_verified_on = "2026-10-09"
 name = "LanternLeaf"
 category = "Desktop"
 feature = true
@@ -17,6 +19,8 @@ details = "/projects/lantern-leaf/"
 
 [[projects]]
 id = "morphos"
+source_readme_blob = "c8c8fc433fba7741bcde4072bdbacbe48c10d002"
+source_verified_on = "2026-10-09"
 name = "Morphos"
 category = "Systems"
 feature = true
@@ -28,6 +32,8 @@ repo = "https://github.com/sguzman/morphos"
 
 [[projects]]
 id = "ephemeris"
+source_readme_blob = "d5658841b50ade6a89d3b549a5cbebee063fa226"
+source_verified_on = "2026-10-09"
 name = "Ephemeris"
 category = "Desktop"
 feature = false
@@ -39,6 +45,8 @@ repo = "https://github.com/sguzman/ephemeris"
 
 [[projects]]
 id = "glyphflick"
+source_readme_blob = "cda851527f4e57224199119cebf253443dc79481"
+source_verified_on = "2026-10-09"
 name = "Glyphflick"
 category = "Tools"
 feature = false
@@ -50,6 +58,8 @@ repo = "https://github.com/sguzman/glyphflick"
 
 [[projects]]
 id = "fathrs"
+source_readme_blob = "af4e7d1a53aa3207397573bffe8dce77ffc59158"
+source_verified_on = "2026-10-09"
 name = "Fathrs"
 category = "Tools"
 feature = false
@@ -62,6 +72,8 @@ details = "/projects/fathrs/"
 
 [[projects]]
 id = "cite-otter"
+source_readme_blob = "7c8c22010fa803a59dc862965105c52d2af073ec"
+source_verified_on = "2026-10-09"
 name = "Cite-Otter"
 category = "Systems"
 feature = false
@@ -74,6 +86,8 @@ details = "/projects/cite-otter/"
 
 [[projects]]
 id = "music-gallery"
+source_readme_blob = "631e81a67ac3096f7c382ab14e7022dfb03e915d"
+source_verified_on = "2026-10-09"
 name = "Music Gallery"
 category = "Web"
 feature = false
@@ -85,6 +99,8 @@ repo = "https://github.com/sguzman/music-gallery"
 
 [[projects]]
 id = "weathergraph-rs"
+source_readme_blob = "c66864c9192c3f88f48d4fd210b4b60744583ef0"
+source_verified_on = "2026-10-09"
 name = "Weathergraph Rust"
 category = "Research"
 feature = false
@@ -97,6 +113,8 @@ details = "/projects/weathergraph-rs/"
 
 [[projects]]
 id = "viewwright"
+source_readme_blob = "0c2c85a5934ef4c292d92351e30c06c358d6a10f"
+source_verified_on = "2026-10-09"
 name = "ViewWright"
 category = "Systems"
 feature = false
@@ -108,6 +126,8 @@ repo = "https://github.com/sguzman/viewwright"
 
 [[projects]]
 id = "viewwitness"
+source_readme_blob = "49c3c3dcb12c2cc27f9e6d2e73193136663d3b56"
+source_verified_on = "2026-10-09"
 name = "ViewWitness"
 category = "Systems"
 feature = false
@@ -119,6 +139,8 @@ repo = "https://github.com/sguzman/viewwitness"
 
 [[projects]]
 id = "simurom"
+source_readme_blob = "a879ee406fbb2b525ae58a9e0591cab1791a6ea1"
+source_verified_on = "2026-10-09"
 name = "Simurom"
 category = "Research"
 feature = false
@@ -131,6 +153,8 @@ details = "/projects/simurom/"
 
 [[projects]]
 id = "lexwright"
+source_readme_blob = "5a8e8dd1fd5e88a5b7a34735dd40c12c9270aa65"
+source_verified_on = "2026-10-09"
 name = "Lexwright"
 category = "Tools"
 feature = false
